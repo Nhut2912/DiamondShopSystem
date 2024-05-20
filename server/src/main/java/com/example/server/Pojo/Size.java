@@ -13,7 +13,7 @@ public class Size {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(name = "size")
     private int size;
 
     @OneToMany(mappedBy = "ProductSizes" ,cascade = CascadeType.ALL)
