@@ -2,6 +2,7 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -13,9 +14,35 @@ public class Size {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "size")
+    @Column(name = "size", nullable = false)
     private int size;
 
-    @OneToMany(mappedBy = "ProductSizes" ,cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductSizes")
     private Set<Product> products;
+
+    @Override
+    public String toString() {
+        return "Size{" +
+                "id=" + id +
+                ", size=" + size +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+
 }
