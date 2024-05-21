@@ -12,16 +12,13 @@ import org.hibernate.annotations.Cascade;
 @Table(name = "ProductMaterial")
 public class ProductMaterial {
 
-    @EmbeddedId
-    private Product_Material_Key id;
-
+    @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @MapsId("productId")
     @JoinColumn(name = "ProductID")
     private Product products;
 
+    @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @MapsId("materialId")
     @JoinColumn(name = "MaterialID")
     private Material materials;
 
