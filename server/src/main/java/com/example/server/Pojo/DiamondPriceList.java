@@ -2,30 +2,25 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
+
 @Entity
-@Table(name="DIAMOND")
-public class Diamond {
+@Table(name = "DIAMONDPRICELIST")
+public class DiamondPriceList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(name = "Code", unique = true, length =50)
-    private String code;
+    @Column(name = "Price")
+    private Double price;
 
-    @Column(name ="Certificate")
-    private String certificate;
-
-    @Column(name ="Active",nullable = false)
-    private boolean active;
+    @Column(name = "EffDate")
+    private Date effDate;
 
     @Column(name = "Carat")
     private Double carat;
-
-    @ManyToOne()
-    @JoinColumn(name = "ProductID")
-    private Product DiamondProduct;
-
 
     @ManyToOne()
     @JoinColumn(name = "CutID")
@@ -42,4 +37,5 @@ public class Diamond {
     @ManyToOne()
     @JoinColumn(name = "ClarityID")
     private Clarity DiamondClarity;
+
 }

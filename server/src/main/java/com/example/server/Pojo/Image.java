@@ -1,9 +1,10 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Collection;
-
+@Data
 @Entity
 @Table(name = "IMAGES")
 public class Image {
@@ -19,14 +20,7 @@ public class Image {
     @JoinColumn(name = "ProductID")
     private Product Products;
 
-    public Image() {
-    }
 
-    public Image(Long id, String uri, Product products) {
-        Id = id;
-        this.uri = uri;
-        Products = products;
-    }
 
     @Override
     public String toString() {
@@ -36,20 +30,6 @@ public class Image {
                 '}';
     }
 
-    public Long getId() {
-        return Id;
-    }
 
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
 
 }

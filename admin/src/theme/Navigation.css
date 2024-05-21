@@ -24,3 +24,16 @@
     font-size: 15px;
     color: rgba(255, 255, 255,0.5);
 }
+.navigation > .main-menu > ul {
+    list-style: none;
+    padding-inline-start: 0px;
+}
+.navigation > .main-menu > ul > li > div{
+    width: 24px;
+    height: 24px;
+    background-color: aliceblue;
+}
+.navigation > .main-menu > ul > li {
+    display: flex; 
+    column-gap: 15px;
+}

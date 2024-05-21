@@ -20,8 +20,12 @@ public interface IProductServices {
 
     public void delete(Long ProductID);
 
-    public void update(Product product);
-
+//<<<<<<< HEAD
+//    public void update(Product product);
+//
+//=======
+//    public void  update(Product product);
+//>>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
 
     public List<Product> getProducts();
 
