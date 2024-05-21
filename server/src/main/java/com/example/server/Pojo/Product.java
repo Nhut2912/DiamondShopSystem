@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
-    //test push
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -33,7 +33,7 @@ public class Product {
     private int PriceRate;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne() //many to one khong nen dung cascade(Tran Viet Hoang)
     @JoinColumn(name = "SizeID")
     private Size ProductSizes;
 
@@ -41,7 +41,7 @@ public class Product {
     private Set<Image> Images;
 
     //Pham Trong Hieu
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne() //many to one khong nen dung cascade(Tran Viet Hoang)
     @JoinColumn(name = "CategoryID")
     private Category ProductCategory;
 
