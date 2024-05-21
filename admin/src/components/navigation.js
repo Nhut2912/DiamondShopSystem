@@ -7,7 +7,7 @@ const Navigation = () => {
     return(
         <div className="navigation">
             <div className="head-navigation">
-                <img src={ICONS.icon_logo_no_jewelry_text} alt="" />
+                <img src={ICONS.icon_logo_no_jewelry_text} width="50px" alt="" />
                 <h2>JEWELRY</h2>
             </div>
             <div className="main-menu">

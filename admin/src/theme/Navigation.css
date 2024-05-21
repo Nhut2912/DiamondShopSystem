@@ -4,7 +4,23 @@
 }
 .navigation > .head-navigation{
     margin: 50px 30px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+.navigation > .head-navigation > h2{
+    color: #D9B384;
+    font-family: 'Roboto Serif';
+    font-weight: 600;
+    font-size: 22px;
 }
 .navigation > .main-menu{
     margin: 0 30px;
+}
+
+.navigation > .main-menu > h5{
+    font-family: 'Roboto Serif';
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(255, 255, 255,0.5);
 }
