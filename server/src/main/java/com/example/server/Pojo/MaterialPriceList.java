@@ -1,12 +1,14 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Date;
 
 /*
 * Author: Pham Trong Hieu
 */
+@Data
 @Entity
 @Table(name = "MaterialPriceList")
 public class MaterialPriceList {

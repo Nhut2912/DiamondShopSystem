@@ -1,10 +1,12 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 /*
  * Author: Pham Trong Hieu
  */
+@Data
 @Entity
 @Table(name = "Warranty")
 public class Warranty {
@@ -33,45 +35,4 @@ public class Warranty {
                 '}';
     }
 
-    public Warranty() {
-    }
-
-    public Warranty(Long id, boolean status, WarrantyPolicy warrantyPolicy, Product product) {
-        this.id = id;
-        this.status = status;
-        this.warrantyPolicy = warrantyPolicy;
-        this.product = product;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public WarrantyPolicy getWarrantyPolicy() {
-        return warrantyPolicy;
-    }
-
-    public void setWarrantyPolicy(WarrantyPolicy warrantyPolicy) {
-        this.warrantyPolicy = warrantyPolicy;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }

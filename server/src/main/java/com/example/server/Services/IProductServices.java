@@ -22,7 +22,6 @@ public interface IProductServices {
 
     public void  update(Product product);
 
-
     public List<Product> getProducts();
 
 

@@ -1,10 +1,13 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 /*
  *Author: Tran Viet Hoang
  * Date: 21/5/2024
  */
+@Data
 @Entity
 @Table(name = "ACCOUNT")
 public class Account {
@@ -39,6 +42,10 @@ public class Account {
     @Column(name = "Gender")
     private boolean gender;
 
+<<<<<<< HEAD
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "account")
+    private Customer customer;
+
     public Account() {}
     public Account(String password, Long id, String email, String phone, boolean gender, String role, String address, String birthday, boolean active, String name) {
         this.password = password;
@@ -52,84 +59,7 @@ public class Account {
         this.active = active;
         this.name = name;
     }
+=======
+>>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public boolean getActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }
