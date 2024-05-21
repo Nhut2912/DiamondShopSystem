@@ -1,20 +1,19 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
-<<<<<<< HEAD
+
 import java.util.Set;
-=======
+
 import lombok.Data;
->>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
+
 
 /*
  *Author: Tran Viet Hoang
  * Date: 21/5/2024
  */
-<<<<<<< HEAD
-=======
+
 @Data
->>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
+
 @Entity
 @Table(name = "Customer")
 public class Customer {
@@ -33,7 +32,6 @@ public class Customer {
     private Set<Order> orders;
 
 
-<<<<<<< HEAD
     public Customer() {
     }
 
@@ -80,8 +78,5 @@ public class Customer {
     public void setAccount(Account account) {
         this.account = account;
     }
-=======
-    
 
->>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
 }
