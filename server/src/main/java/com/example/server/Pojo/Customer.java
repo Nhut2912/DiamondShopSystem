@@ -1,14 +1,14 @@
 package com.example.server.Pojo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.Set;
 
 /*
  *Author: Tran Viet Hoang
  * Date: 21/5/2024
  */
+@Entity
+@Table(name = "Customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,16 +17,26 @@ public class Customer {
     @Column(name = "PointMember")
     private int pointMember;
 
-    @Column(name = "AccountId")
-    private int accountId;
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "AccountId", referencedColumnName = "id")
+    private Account account;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
+    private Set<Order> orders;
+
 
     public Customer() {
     }
 
-    public Customer(Long id, int pointMember, int accountId) {
+    public Customer(Long id, int pointMember) {
         this.id = id;
         this.pointMember = pointMember;
-        this.accountId = accountId;
+    }
+
+    public Customer(Long id, int pointMember, Account account) {
+        this.id = id;
+        this.pointMember = pointMember;
+        this.account = account;
     }
 
     public int getPointMember() {
@@ -45,12 +55,20 @@ public class Customer {
         this.id = id;
     }
 
-    public int getAccountId() {
-        return accountId;
+//    public int getAccountId() {
+//        return accountId;
+//    }
+//
+//    public void setAccountId(int accountId) {
+//        this.accountId = accountId;
+//    }
+
+
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setAccount(Account account) {
+        this.account = account;
     }
-
 }

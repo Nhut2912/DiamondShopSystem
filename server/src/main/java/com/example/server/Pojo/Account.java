@@ -39,6 +39,9 @@ public class Account {
     @Column(name = "Gender")
     private boolean gender;
 
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "account")
+    private Customer customer;
+
     public Account() {}
     public Account(String password, Long id, String email, String phone, boolean gender, String role, String address, String birthday, boolean active, String name) {
         this.password = password;

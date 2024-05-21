@@ -2,12 +2,14 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 /*
  *Author: Tran Viet Hoang
  * Date: 21/5/2024
  */
 @Entity
-@Table(name = "Order")
+@Table(name = "Orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,30 +27,32 @@ public class Order {
     @Column(name = "DeliveryStatus")
     private boolean deliveryStatus;
 
-    @Column(name = "CustomerId")
-    private long customerId;
+
+    @ManyToOne()
+    @JoinColumn(name = "CustomerId")
+    private Customer customerOrder;
 
     @Column(name = "OrderStatus")
     private int orderStatus;
 
-    @Column(name = "OrderId")
-    private int orderId;
-
     @Column(name = "CancelReason")
     private String cancelReason;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderPayment")
+    private Set<Payment> orderPaymentSet;
 
     public Order() {
     }
 
-    public Order(Long id, String totalPrice, int orderStatus, String date, String address, boolean deliveryStatus, long customerId, int orderId, String cancelReason) {
+    public Order(Long id, String totalPrice, int orderStatus, String date, String address, boolean deliveryStatus, /*long customerId, int orderId,*/ String cancelReason) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.orderStatus = orderStatus;
         Date = date;
         this.address = address;
         this.deliveryStatus = deliveryStatus;
-        this.customerId = customerId;
-        this.orderId = orderId;
+ //       this.customerId = customerId;
+  //      this.orderId = orderId;
         this.cancelReason = cancelReason;
     }
 
@@ -92,13 +96,13 @@ public class Order {
         this.deliveryStatus = deliveryStatus;
     }
 
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
+//    public long getCustomerId() {
+//        return customerId;
+//    }
+//
+//    public void setCustomerId(long customerId) {
+//        this.customerId = customerId;
+//    }
 
     public int getOrderStatus() {
         return orderStatus;
@@ -108,13 +112,13 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
+//    public int getOrderId() {
+//        return orderId;
+//    }
+//
+//    public void setOrderId(int orderId) {
+//        this.orderId = orderId;
+//    }
 
     public String getCancelReason() {
         return cancelReason;
