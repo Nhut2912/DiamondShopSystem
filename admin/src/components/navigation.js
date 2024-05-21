@@ -6,43 +6,49 @@ import { ICONS } from "../constants";
 const Navigation = () => {
     return(
         <div className="navigation">
-            <div>
+            <div className="head-navigation">
                 <img src={ICONS.icon_logo_no_jewelry_text} alt="" />
                 <h2>JEWELRY</h2>
             </div>
-            <div>
-                <h3>Dashboard</h3>
+            <div className="main-menu">
+                <h5>
+                    MAIN MENU
+                </h5>
                 <ul>
                     <li>
-                        <img  alt="" />
-                        <span>Overview</span>
+                        <div>
+
+                        </div>
+                        Dashboard
                     </li>
-                </ul>
-            </div>
-            <div>
-                <h3>
-                    Manage
-                </h3>
-                <ul>
-                    <li>
+                    <li>    
+                        <div>
+                            
+                        </div>
                         Product
                     </li>
                     <li>
+                        <div></div>
                         Order
                     </li>
                     <li>
+                        <div></div>
                         Account
                     </li>
                     <li>
+                        <div></div>
                         Warranty
                     </li>
                     <li>
+                        <div></div>
                         Promotions
                     </li>
                     <li>
+                        <div></div>
                         Gold Price
                     </li>
                     <li>
+                        <div></div>
                         Diamond Price
                     </li>
 

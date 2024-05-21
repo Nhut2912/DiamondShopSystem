@@ -2,3 +2,9 @@
     background-color: #101727;
     max-width: 250px;
 }
+.navigation > .head-navigation{
+    margin: 50px 30px;
+}
+.navigation > .main-menu{
+    margin: 0 30px;
+}

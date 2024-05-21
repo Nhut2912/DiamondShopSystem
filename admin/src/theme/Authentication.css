@@ -11,7 +11,7 @@
 .login-form{
     width: 850px;
     height: 500px;
-    background-color: rgba(0, 0, 0,0.9);
+    background-color: #101727;
     overflow: hidden;
     display: grid;
     grid-template-columns: 45% 55%;
@@ -38,7 +38,7 @@
     letter-spacing: 1.25px;
     margin-bottom: 50px;
     text-align: center;
-    color: rgba(0, 0, 0,0.8);
+    color: rgba(16, 23, 39, 0.8);
 }
 .login-form > .login-information > .input-box{
     display: grid;
@@ -48,7 +48,8 @@
     font-family: 'Roboto Serif';
     font-size: 14px;
     font-weight: 500;
-    color: rgba(0, 0, 0,0.4);
+    color: rgba(16, 23, 39, 0.5);
+   
 }
 .login-form > .login-information > .input-box > label:nth-child(3){
     margin-top: 5px;
@@ -56,17 +57,17 @@
     text-decoration: underline;
 }
 .login-form > .login-information > .input-box > input::placeholder{
-    color: rgba(0, 0, 0,0.3);
+    color: rgba(16, 23, 39, 0.3);
 }
 .login-form > .login-information > .input-box > input{
     height: 45px;
-    border: 0.5px solid rgba(0, 0, 0,0.3);
+    border: 0.5px solid rgba(16, 23, 39, 0.4);
     outline: none;
     padding-left: 15px;
     font-family: 'Roboto Serif';
     font-size: 15px;
     font-weight: 600;
-    color: rgba(0, 0, 0,0.6);
+    color: rgba(16, 23, 39, 0.7);
 }
 .login-form > .login-information .button-login{
     background-color: aquamarine;
