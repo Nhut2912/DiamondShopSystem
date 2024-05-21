@@ -1,6 +1,7 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import java.util.Set;
  *Author: Tran Viet Hoang
  * Date: 21/5/2024
  */
+@Data
 @Entity
 @Table(name = "Orders")
 public class Order {
@@ -38,6 +40,7 @@ public class Order {
     @Column(name = "CancelReason")
     private String cancelReason;
 
+<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderPayment")
     private Set<Payment> orderPaymentSet;
 
@@ -127,4 +130,7 @@ public class Order {
     public void setCancelReason(String cancelReason) {
         this.cancelReason = cancelReason;
     }
+=======
+
+>>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
 }

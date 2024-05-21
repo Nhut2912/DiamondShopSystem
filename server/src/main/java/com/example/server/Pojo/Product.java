@@ -2,10 +2,11 @@ package com.example.server.Pojo;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Objects;
 import java.util.Set;
-
+@Data
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
@@ -55,24 +56,6 @@ public class Product {
     @JoinColumn(name = "WarrantyID", referencedColumnName = "id")
     private Warranty warranty;
 
-    public Product(Long id, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images) {
-        Id = id;
-        Code = code;
-        Active = active;
-        SecondaryDiamondCost = secondaryDiamondCost;
-        SecondaryMaterialCost = secondaryMaterialCost;
-        ProductionCost = productionCost;
-        PriceRate = priceRate;
-        ProductSizes = productSizes;
-        Images = images;
-    }
-
-    public Product() {
-
-    }
-
-
-
     @Override
     public String toString() {
         return "Product{" +
@@ -86,78 +69,6 @@ public class Product {
                 ", ProductSizes=" + ProductSizes +
                 ", Images=" + Images +
                 '}';
-    }
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getCode() {
-        return Code;
-    }
-
-    public void setCode(String code) {
-        Code = code;
-    }
-
-    public boolean isActive() {
-        return Active;
-    }
-
-    public void setActive(boolean active) {
-        Active = active;
-    }
-
-    public double getSecondaryDiamondCost() {
-        return SecondaryDiamondCost;
-    }
-
-    public void setSecondaryDiamondCost(double secondaryDiamondCost) {
-        SecondaryDiamondCost = secondaryDiamondCost;
-    }
-
-    public double getSecondaryMaterialCost() {
-        return SecondaryMaterialCost;
-    }
-
-    public void setSecondaryMaterialCost(double secondaryMaterialCost) {
-        SecondaryMaterialCost = secondaryMaterialCost;
-    }
-
-    public double getProductionCost() {
-        return ProductionCost;
-    }
-
-    public void setProductionCost(double productionCost) {
-        ProductionCost = productionCost;
-    }
-
-    public int getPriceRate() {
-        return PriceRate;
-    }
-
-    public void setPriceRate(int priceRate) {
-        PriceRate = priceRate;
-    }
-
-    public Size getProductSizes() {
-        return ProductSizes;
-    }
-
-    public void setProductSizes(Size productSizes) {
-        ProductSizes = productSizes;
-    }
-
-    public Set<Image> getImages() {
-        return Images;
-    }
-
-    public void setImages(Set<Image> images) {
-        Images = images;
     }
 
     @Override

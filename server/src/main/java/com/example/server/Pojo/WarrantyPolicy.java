@@ -1,10 +1,13 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.Set;
 /*
  * Author: Pham Trong Hieu
  */
+@Data
 @Entity
 @Table(name = "WarrantyPolicy")
 public class WarrantyPolicy {
@@ -22,14 +25,6 @@ public class WarrantyPolicy {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "warrantyPolicy")
     private Set<Warranty> warrantySet;
 
-    public WarrantyPolicy() {
-    }
-
-    public WarrantyPolicy(Long id, String name, int warrantyPeriod) {
-        this.id = id;
-        this.name = name;
-        this.warrantyPeriod = warrantyPeriod;
-    }
 
     @Override
     public String toString() {
@@ -40,27 +35,4 @@ public class WarrantyPolicy {
                 '}';
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getWarrantyPeriod() {
-        return warrantyPeriod;
-    }
-
-    public void setWarrantyPeriod(int warrantyPeriod) {
-        this.warrantyPeriod = warrantyPeriod;
-    }
 }
