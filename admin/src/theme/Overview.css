@@ -1,5 +1,5 @@
 .container-admin{
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 1.5fr 10.5fr;
 }
