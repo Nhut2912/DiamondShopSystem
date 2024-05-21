@@ -8,7 +8,7 @@ import { ICONS } from './constants';
 
 const Authentication = () => {
 
-  const [data,setData] = useState("");
+  // const [data,setData] = useState("");
 
   // useEffect(() => {
   //   fetch('http://localhost:8080/api/product/getProducts')
@@ -19,25 +19,48 @@ const Authentication = () => {
 
   const handleLogin = () => {
     
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type","application/json")
-    const raw = JSON.stringify({
-      "name": "Add your name in the body"
-    });
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
-    };
-      fetch('http://localhost:8080/api/product/save', requestOptions)
-      .then(response => response.text())
-      .then( data => setData(data));
-      console.log(data);
-      if(data === "true"){
-        window.location.href ="/admin"
-      }
+    // const myHeaders = new Headers();
+    // myHeaders.append("Content-Type","application/json")
+    // const raw = JSON.stringify({
+    //   "name": "Add your name in the body"
+    // });
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: "follow"
+    // };
+    //   fetch('http://localhost:8080/api/product/save', requestOptions)
+    //   .then(response => response.text())
+    //   .then( data => setData(data));
+    //   console.log(data);
+    //   if(data === "true"){
+    //     window.location.href ="/admin"
+    //   }
+
+    window.location.href ="/admin"
   }
+
+  /**
+   * author : Tran Minh Nhut
+   * date : 20/5/2024
+   * purpose : thu thap thong tin ve username va password
+   */
+
+   const [userName,setUserName] = useState("");
+   const [password,setPassword] = useState("");
+   
+   const getUserNameHandle = ( event ) => {
+        let value = event.target.value;
+        setUserName(value);
+        console.log(value);
+   }
+
+   const getPasswordHandle = ( event ) => {
+    let value = event.target.value;
+    setPassword(value);
+  }
+
 
   return (
     <div className='container'>
@@ -49,11 +72,11 @@ const Authentication = () => {
                   <h1>Login</h1>
                   <div className='input-box' >
                       <label>Username</label>
-                      <input type='text' placeholder='Email or phone number' />
+                      <input type='text' onBlur={event => getUserNameHandle(event)} placeholder='Email or phone number' />
                   </div>
                   <div className='input-box' >
                       <label>Password</label>
-                      <input type='password' />
+                      <input type='password' onBlur={getPasswordHandle} />
                       <label>Forgot password ?</label>
                   </div>
                   <div className='button-login' onClick={handleLogin}>
