@@ -56,20 +56,62 @@ public class Product {
     @JoinColumn(name = "WarrantyID", referencedColumnName = "id")
     private Warranty warranty;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Set<OrderDetail> productDetailSet;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "productId")
     private Set<Promotions_Product> products;
-=======
+//=======
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "DiamondProduct")
     private Set<Diamond> DiamondProducts;
->>>>>>> f5decc3a6366a04ddcdf6c125a5a14f5fae2046b
+
+    public Product(Long id, String name, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images, Category productCategory, Set<ProductMaterial> productMaterialSet, Warranty warranty, Set<OrderDetail> productDetailSet, Set<Promotions_Product> products, Set<Diamond> diamondProducts) {
+        Id = id;
+        Name = name;
+        Code = code;
+        Active = active;
+        SecondaryDiamondCost = secondaryDiamondCost;
+        SecondaryMaterialCost = secondaryMaterialCost;
+        ProductionCost = productionCost;
+        PriceRate = priceRate;
+        ProductSizes = productSizes;
+        Images = images;
+        ProductCategory = productCategory;
+        this.productMaterialSet = productMaterialSet;
+        this.warranty = warranty;
+        this.productDetailSet = productDetailSet;
+        this.products = products;
+        DiamondProducts = diamondProducts;
+    }
+
+    public Product() {
+    }
+
+    public Product(Product p) {
+        Id = p.Id;
+        Name = p.Name;
+        Code = p.Code;
+        Active = p.Active;
+        SecondaryDiamondCost = p.SecondaryDiamondCost;
+        SecondaryMaterialCost = p.SecondaryMaterialCost;
+        ProductionCost = p.ProductionCost;
+        PriceRate = p.PriceRate;
+        ProductSizes = p.ProductSizes;
+        Images = p.Images;
+        ProductCategory = p.ProductCategory;
+        this.productMaterialSet = p.productMaterialSet;
+        this.warranty = p.warranty;
+        this.productDetailSet = p.productDetailSet;
+        this.products = p.products;
+        DiamondProducts = p.DiamondProducts;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "Id=" + Id +
+                ", Name='" + Name + '\'' +
                 ", Code='" + Code + '\'' +
                 ", Active=" + Active +
                 ", SecondaryDiamondCost=" + SecondaryDiamondCost +
@@ -78,19 +120,40 @@ public class Product {
                 ", PriceRate=" + PriceRate +
                 ", ProductSizes=" + ProductSizes +
                 ", Images=" + Images +
+                ", ProductCategory=" + ProductCategory +
+                ", productMaterialSet=" + productMaterialSet +
+                ", warranty=" + warranty +
+                ", productDetailSet=" + productDetailSet +
+                ", products=" + products +
+                ", DiamondProducts=" + DiamondProducts +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Active == product.Active && Double.compare(SecondaryDiamondCost, product.SecondaryDiamondCost) == 0 && Double.compare(SecondaryMaterialCost, product.SecondaryMaterialCost) == 0 && Double.compare(ProductionCost, product.ProductionCost) == 0 && PriceRate == product.PriceRate && Objects.equals(Id, product.Id) && Objects.equals(Code, product.Code) && Objects.equals(ProductSizes, product.ProductSizes) && Objects.equals(Images, product.Images);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(Id, Code, Active, SecondaryDiamondCost, SecondaryMaterialCost, ProductionCost, PriceRate, ProductSizes, Images);
-    }
+    //>>>>>>> f5decc3a6366a04ddcdf6c125a5a14f5fae2046b
+//    @Override
+//    public String toString() {
+//        return "Product{" +
+//                "Id=" + Id +
+//                ", Code='" + Code + '\'' +
+//                ", Active=" + Active +
+//                ", SecondaryDiamondCost=" + SecondaryDiamondCost +
+//                ", SecondaryMaterialCost=" + SecondaryMaterialCost +
+//                ", ProductionCost=" + ProductionCost +
+//                ", PriceRate=" + PriceRate +
+//                ", ProductSizes=" + ProductSizes +
+//                ", Images=" + Images +
+//                '}';
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Product product = (Product) o;
+//        return Active == product.Active && Double.compare(SecondaryDiamondCost, product.SecondaryDiamondCost) == 0 && Double.compare(SecondaryMaterialCost, product.SecondaryMaterialCost) == 0 && Double.compare(ProductionCost, product.ProductionCost) == 0 && PriceRate == product.PriceRate && Objects.equals(Id, product.Id) && Objects.equals(Code, product.Code) && Objects.equals(ProductSizes, product.ProductSizes) && Objects.equals(Images, product.Images);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(Id, Code, Active, SecondaryDiamondCost, SecondaryMaterialCost, ProductionCost, PriceRate, ProductSizes, Images);
+//    }
 }

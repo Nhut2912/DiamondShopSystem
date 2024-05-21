@@ -24,4 +24,28 @@ public class ProductMaterial {
 
     @Column(name = "Weight")
     private double weight;
+
+    public ProductMaterial(Product products, Material materials, double weight) {
+        this.products = products;
+        this.materials = materials;
+        this.weight = weight;
+    }
+
+    public ProductMaterial() {
+    }
+
+    public ProductMaterial(ProductMaterial p) {
+        this.products = p.products;
+        this.materials = p.materials;
+        this.weight = p.weight;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductMaterial{" +
+                "products=" + products +
+                ", materials=" + materials +
+                ", weight=" + weight +
+                '}';
+    }
 }

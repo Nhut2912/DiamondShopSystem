@@ -25,6 +25,23 @@ public class Warranty {
     @OneToOne(mappedBy = "warranty")
     private Product product;
 
+    public Warranty(Long id, boolean status, WarrantyPolicy warrantyPolicy, Product product) {
+        this.id = id;
+        this.status = status;
+        this.warrantyPolicy = warrantyPolicy;
+        this.product = product;
+    }
+
+    public Warranty() {
+    }
+
+    public Warranty(Warranty w) {
+        this.id = w.id;
+        this.status = w.status;
+        this.warrantyPolicy = w.warrantyPolicy;
+        this.product = w.product;
+    }
+
     @Override
     public String toString() {
         return "Warranty{" +
@@ -34,5 +51,4 @@ public class Warranty {
                 ", product=" + product +
                 '}';
     }
-
 }

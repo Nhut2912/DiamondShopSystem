@@ -18,4 +18,27 @@ public class PaymentMethod {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "paymentMethod")
     private Set<Payment> paymentSet;
 
+    public PaymentMethod(Long id, String name, Set<Payment> paymentSet) {
+        this.id = id;
+        this.name = name;
+        this.paymentSet = paymentSet;
+    }
+
+    public PaymentMethod() {
+    }
+
+    public PaymentMethod(PaymentMethod p) {
+        this.id = p.id;
+        this.name = p.name;
+        this.paymentSet = p.paymentSet;
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentMethod{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", paymentSet=" + paymentSet +
+                '}';
+    }
 }

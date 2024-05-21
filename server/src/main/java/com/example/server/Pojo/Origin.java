@@ -20,4 +20,31 @@ public class Origin {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondOrigin")
     private Set<DiamondPriceList> diamondOriginss;
+
+    public Origin(Long id, boolean origin, Set<Diamond> diamondOrigins, Set<DiamondPriceList> diamondOriginss) {
+        Id = id;
+        this.origin = origin;
+        this.diamondOrigins = diamondOrigins;
+        this.diamondOriginss = diamondOriginss;
+    }
+
+    public Origin() {
+    }
+
+    public Origin(Origin o) {
+        Id = o.Id;
+        this.origin = o.origin;
+        this.diamondOrigins = o.diamondOrigins;
+        this.diamondOriginss = o.diamondOriginss;
+    }
+
+    @Override
+    public String toString() {
+        return "Origin{" +
+                "Id=" + Id +
+                ", origin=" + origin +
+                ", diamondOrigins=" + diamondOrigins +
+                ", diamondOriginss=" + diamondOriginss +
+                '}';
+    }
 }

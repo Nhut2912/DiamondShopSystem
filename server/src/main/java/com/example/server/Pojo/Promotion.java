@@ -24,4 +24,34 @@ public class Promotion {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "promotionId")
     private Set<Promotions_Customer> promotions;
+
+    public Promotion(Long id, Date dateStart, Date dateEnd, boolean active, Set<Promotions_Customer> promotions) {
+        this.id = id;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.active = active;
+        this.promotions = promotions;
+    }
+
+    public Promotion() {
+    }
+
+    public Promotion(Promotion p) {
+        this.id = p.id;
+        this.dateStart = p.dateStart;
+        this.dateEnd = p.dateEnd;
+        this.active = p.active;
+        this.promotions = p.promotions;
+    }
+
+    @Override
+    public String toString() {
+        return "Promotion{" +
+                "id=" + id +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", active=" + active +
+                ", promotions=" + promotions +
+                '}';
+    }
 }
