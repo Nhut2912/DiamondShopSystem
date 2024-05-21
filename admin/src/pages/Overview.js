@@ -7,7 +7,9 @@ const Overview = () => {
     return(
         <div className="container-admin">
             <Navigation />
-            <h1>Hello world</h1>
+            <div className="outlet">
+                
+            </div>
         </div>
     )
 }
