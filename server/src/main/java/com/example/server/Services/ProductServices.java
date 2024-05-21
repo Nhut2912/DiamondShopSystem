@@ -30,9 +30,8 @@ public class ProductServices implements IProductServices{
     }
 
     @Override
-    public Product update(Long id, Product product) {
-        product.setId(id);
-        return ProductRepository.save(product);
+    public void update(Product product) {
+
     }
 
     @Override

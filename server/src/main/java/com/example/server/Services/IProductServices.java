@@ -20,7 +20,7 @@ public interface IProductServices {
 
     public void delete(Long ProductID);
 
-    public Product update(Long id,Product product);
+    public void update(Product product);
 
 
     public List<Product> getProducts();
