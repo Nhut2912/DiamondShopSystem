@@ -1,11 +1,13 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
 /*
  * Author: Pham Trong Hieu
  */
+@Data
 @Entity
 @Table(name = "ProductMaterial")
 public class ProductMaterial {
