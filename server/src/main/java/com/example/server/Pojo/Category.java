@@ -16,10 +16,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "Name", nullable = false)
     private String name;
 
-    @Column(name = "active", nullable = false)
+    @Column(name = "Active", nullable = false)
     private boolean active;
 
     @Column(name = "CategoryType")

@@ -45,6 +45,13 @@ public class Product {
     @JoinColumn(name = "CategoryID")
     private Category ProductCategory;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    private Set<ProductMaterial> productMaterialSet;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "WarrantyID", referencedColumnName = "id")
+    private Warranty warranty;
+
     public Product(Long id, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images) {
         Id = id;
         Code = code;
