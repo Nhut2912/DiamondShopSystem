@@ -29,11 +29,10 @@ public class ProductServices implements IProductServices{
         ProductRepository.deleteById(ProductID);
     }
 
-    @Override
-    public Product update(Long id, Product product) {
-        product.setId(id);
-        return ProductRepository.save(product);
-    }
+//    @Override
+//    public void update(Product product) {
+//
+//    }
 
     @Override
     public List<Product> getProducts() {

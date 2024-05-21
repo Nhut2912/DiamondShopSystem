@@ -56,6 +56,8 @@ public class Product {
     @JoinColumn(name = "WarrantyID", referencedColumnName = "id")
     private Warranty warranty;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "DiamondProduct")
+    private Set<Diamond> DiamondProducts;
     @Override
     public String toString() {
         return "Product{" +
