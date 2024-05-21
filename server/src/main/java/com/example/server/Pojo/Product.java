@@ -40,6 +40,11 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Products")
     private Set<Image> Images;
 
+    //Pham Trong Hieu
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CategoryID")
+    private Category ProductCategory;
+
     public Product(Long id, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images) {
         Id = id;
         Code = code;
