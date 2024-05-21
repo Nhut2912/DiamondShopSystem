@@ -19,14 +19,13 @@ public class Image {
     @JoinColumn(name = "ProductID")
     private Product Products;
 
+    public Image() {
+    }
 
     public Image(Long id, String uri, Product products) {
         Id = id;
         this.uri = uri;
         Products = products;
-    }
-
-    public Image() {
     }
 
     @Override

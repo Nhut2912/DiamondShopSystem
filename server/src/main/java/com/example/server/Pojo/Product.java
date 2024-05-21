@@ -3,8 +3,8 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
 import java.util.Set;
-
 
 @Entity
 @Table(name = "PRODUCTS")
@@ -55,6 +55,8 @@ public class Product {
     public Product() {
 
     }
+
+
 
     @Override
     public String toString() {
@@ -141,5 +143,18 @@ public class Product {
 
     public void setImages(Set<Image> images) {
         Images = images;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Active == product.Active && Double.compare(SecondaryDiamondCost, product.SecondaryDiamondCost) == 0 && Double.compare(SecondaryMaterialCost, product.SecondaryMaterialCost) == 0 && Double.compare(ProductionCost, product.ProductionCost) == 0 && PriceRate == product.PriceRate && Objects.equals(Id, product.Id) && Objects.equals(Code, product.Code) && Objects.equals(ProductSizes, product.ProductSizes) && Objects.equals(Images, product.Images);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Id, Code, Active, SecondaryDiamondCost, SecondaryMaterialCost, ProductionCost, PriceRate, ProductSizes, Images);
     }
 }
