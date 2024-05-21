@@ -40,9 +40,12 @@ public class Order {
     @Column(name = "CancelReason")
     private String cancelReason;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderPayment")
     private Set<Payment> orderPaymentSet;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    private Set<OrderDetail> orderDetailSet;
 
     public Order() {
     }
@@ -130,7 +133,7 @@ public class Order {
     public void setCancelReason(String cancelReason) {
         this.cancelReason = cancelReason;
     }
-=======
-
->>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
+//=======
+//
+//>>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
 }

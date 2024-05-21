@@ -20,10 +20,10 @@ public class MaterialPriceList {
     private Date EffDate;
 
     @Column(name = "SellPrice")
-    private Long SellPrice;
+    private double SellPrice;
 
     @Column(name = "BuyPrice")
-    private Long BuyPrice;
+    private double BuyPrice;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "MaterialID")
