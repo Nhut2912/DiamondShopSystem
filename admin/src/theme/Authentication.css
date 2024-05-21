@@ -11,7 +11,7 @@
 .login-form{
     width: 850px;
     height: 500px;
-    background-color: #101727;
+    background-color: #1a1b1d;
     overflow: hidden;
     display: grid;
     grid-template-columns: 45% 55%;
@@ -38,7 +38,7 @@
     letter-spacing: 1.25px;
     margin-bottom: 50px;
     text-align: center;
-    color: rgba(16, 23, 39, 0.8);
+    color: #1a1b1d;
 }
 .login-form > .login-information > .input-box{
     display: grid;

@@ -45,7 +45,7 @@ const Navigation = () => {
     return(
         <div className="navigation">
             <div className="head-navigation">
-                <img src={ICONS.icon_logo_no_jewelry_text} width="50px" alt="" />
+                <img src={ICONS.icon_logo_no_jewelry_text} width="40px" alt="" />
                 <h2>JEWELRY</h2>
             </div>
             <div className="main-menu">
@@ -60,7 +60,7 @@ const Navigation = () => {
                         onClick={() => handleClick(item.name)}
                         >
                         <div>
-                            <img src={activeItem === item.name ? item.icon_active : item.icon} width="28px" height="28px" alt="" />
+                            <img src={activeItem === item.name ? item.icon_active : item.icon} width="24px" height="24px" alt="" />
                         </div>
                         {item.name}
                         </li>

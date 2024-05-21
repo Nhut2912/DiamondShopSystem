@@ -1,5 +1,5 @@
 .navigation{
-    background-color: #101727;
+    background-color: #1a1b1d;
     max-width: 250px;
 }
 .navigation > .head-navigation{
@@ -12,7 +12,7 @@
     color: #D9B384;
     font-family: 'Roboto Serif';
     font-weight: 600;
-    font-size: 22px;
+    font-size: 16px;
 }
 .navigation > .main-menu{
     margin: 0 30px;
@@ -22,15 +22,16 @@
     font-family: 'Roboto Serif';
     font-weight: 400;
     font-size: 13px;
-    color: rgba(255, 255, 255,0.5);
+    color: rgba(255, 255, 255,0.4);
     margin: 0;
 }
 .navigation > .main-menu > ul {
     list-style: none;
     padding-inline-start: 0px;
     display: grid;
-    row-gap: 30px;
-    margin: 20px 0 0 10px;
+    row-gap: 20px;
+    transform: translateX(-3px);
+    margin-top: 25px;
 }
 .navigation > .main-menu > ul > li > div{
     width: 28px;
@@ -40,16 +41,15 @@
 
 .navigation > .main-menu > ul > li {
     display: flex; 
-    column-gap: 15px;
+    column-gap: 10px;
     align-items: center;
     font-family: 'Roboto Serif';
     font-weight: 400;
     color: rgba(255, 255, 255,0.6);
-    font-size: 15px;
-    letter-spacing: 0.25px;
+    font-size: 14px;
     cursor: pointer;
 }
 .navigation > .main-menu > ul > li.isActive{
     color: rgba(255, 255, 255,1);
-    font-weight: 600;
+    font-weight: 500;
 }
