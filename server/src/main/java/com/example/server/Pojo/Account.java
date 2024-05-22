@@ -42,11 +42,6 @@ public class Account {
     @Column(name = "Gender")
     private boolean gender;
 
-<<<<<<< HEAD
-
-=======
-//<<<<<<< HEAD
->>>>>>> 54f5466e8e91da20e7290c5a13fe1e88a273dd0d
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "account")
     private Customer customer;
 
@@ -63,11 +58,6 @@ public class Account {
         this.active = active;
         this.name = name;
     }
-<<<<<<< HEAD
 
-=======
-//=======
-//>>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
->>>>>>> 54f5466e8e91da20e7290c5a13fe1e88a273dd0d
 
 }

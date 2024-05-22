@@ -6,14 +6,16 @@ import Authentication from './Authentication';
 import reportWebVitals from './reportWebVitals';
 import Overview from './pages/Overview';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import Product from './components/Product';
-import Order from './components/Order';
-import Account from './components/Account';
-import Warranty from './components/Warranty';
-import Promotions from './components/Promotions';
-import GoldPrice from './components/GoldPrice';
-import DiamondPrice from './components/DiamondPrice';
+import Dashboard from './pages/Dashboard';
+import Product from './pages/Product';
+import Order from './pages/Order';
+import Account from './pages/Account';
+import Warranty from './pages/Warranty';
+import Promotions from './pages/Promotions';
+import GoldPrice from './pages/GoldPrice';
+import DiamondPrice from './pages/DiamondPrice';
+import Notifications from './pages/Notifications';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,6 +33,7 @@ root.render(
                 <Route path="promotions" element={<Promotions />}/>
                 <Route path="gold-price" element={<GoldPrice />}/>
                 <Route path="diamond-price" element={<DiamondPrice />}/>
+                <Route path="notifications" element={<Notifications />}/>
             </Route>
         </Routes>
     </BrowserRouter>
