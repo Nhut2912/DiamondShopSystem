@@ -30,6 +30,25 @@ public class Category {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductCategory")
     private Set<Product> products;
 
+    public Category() {
+    }
+
+    public Category(Long id, String name, boolean active, int categoryType, Set<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.active = active;
+        CategoryType = categoryType;
+        this.products = products;
+    }
+
+    public Category(Category cate) {
+        this.id = cate.id;
+        this.name = cate.name;
+        this.active = cate.active;
+        this.CategoryType = cate.CategoryType;
+        this.products = cate.products;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
@@ -40,6 +59,4 @@ public class Category {
                 ", products=" + products +
                 '}';
     }
-
-
 }

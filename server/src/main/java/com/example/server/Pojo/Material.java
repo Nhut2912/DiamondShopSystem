@@ -22,14 +22,20 @@ public class Material {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materials")
     private Set<ProductMaterial> materialSet;
 
-
-
-    @Override
-    public String toString() {
-        return "Material{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public Material(Long id, String name, Set<MaterialPriceList> materialPrice, Set<ProductMaterial> materialSet) {
+        this.id = id;
+        this.name = name;
+        this.materialPrice = materialPrice;
+        this.materialSet = materialSet;
     }
 
+    public Material() {
+    }
+
+    public Material(Material m) {
+        this.id = m.id;
+        this.name = m.name;
+        this.materialPrice = m.materialPrice;
+        this.materialSet = m.materialSet;
+    }
 }

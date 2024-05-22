@@ -25,14 +25,30 @@ public class WarrantyPolicy {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "warrantyPolicy")
     private Set<Warranty> warrantySet;
 
+    public WarrantyPolicy(Long id, String name, int warrantyPeriod, Set<Warranty> warrantySet) {
+        this.id = id;
+        this.name = name;
+        this.warrantyPeriod = warrantyPeriod;
+        this.warrantySet = warrantySet;
+    }
+
+    public WarrantyPolicy() {
+    }
+
+    public WarrantyPolicy(WarrantyPolicy w) {
+        this.id = w.id;
+        this.name = w.name;
+        this.warrantyPeriod = w.warrantyPeriod;
+        this.warrantySet = w.warrantySet;
+    }
 
     @Override
     public String toString() {
         return "WarrantyPolicy{" +
-                "Id=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", warrantyPeriod=" + warrantyPeriod +
+                ", warrantySet=" + warrantySet +
                 '}';
     }
-
 }

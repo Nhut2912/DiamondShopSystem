@@ -20,15 +20,28 @@ public class Image {
     @JoinColumn(name = "ProductID")
     private Product Products;
 
-
-
-    @Override
-    public String toString() {
-        return "Image{" +
-                "Id=" + Id +
-                ", uri='" + uri +
-                '}';
+    public Image(Long id, String uri, Product products) {
+        Id = id;
+        this.uri = uri;
+        Products = products;
     }
+
+    public Image() {
+    }
+
+    public Image(Image i) {
+        Id = i.Id;
+        this.uri = uri;
+        Products = i.Products;
+    }
+
+    //    @Override
+//    public String toString() {
+//        return "Image{" +
+//                "Id=" + Id +
+//                ", uri='" + uri +
+//                '}';
+//    }
 
 
 

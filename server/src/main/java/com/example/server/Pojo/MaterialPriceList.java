@@ -29,5 +29,22 @@ public class MaterialPriceList {
     @JoinColumn(name = "MaterialID")
     private Material materials;
 
+    public MaterialPriceList(Long id, Date effDate, double sellPrice, double buyPrice, Material materials) {
+        this.id = id;
+        EffDate = effDate;
+        SellPrice = sellPrice;
+        BuyPrice = buyPrice;
+        this.materials = materials;
+    }
 
+    public MaterialPriceList() {
+    }
+
+    public MaterialPriceList(MaterialPriceList m) {
+        this.id = m.id;
+        EffDate = m.EffDate;
+        SellPrice = m.SellPrice;
+        BuyPrice = m.BuyPrice;
+        this.materials = m.materials;
+    }
 }

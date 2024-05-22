@@ -21,4 +21,31 @@ public class Clarity {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
     private Set<DiamondPriceList> diamondClarityss;
+
+    public Clarity() {
+    }
+
+    public Clarity(Long id, String clarity, Set<Diamond> diamondClaritys, Set<DiamondPriceList> diamondClarityss) {
+        Id = id;
+        this.clarity = clarity;
+        this.diamondClaritys = diamondClaritys;
+        this.diamondClarityss = diamondClarityss;
+    }
+
+    public Clarity(Clarity cla) {
+        Id = cla.Id;
+        this.clarity = cla.clarity;
+        this.diamondClaritys = cla.diamondClaritys;
+        this.diamondClarityss = cla.diamondClarityss;
+    }
+
+    @Override
+    public String toString() {
+        return "Clarity{" +
+                "Id=" + Id +
+                ", clarity='" + clarity + '\'' +
+                ", diamondClaritys=" + diamondClaritys +
+                ", diamondClarityss=" + diamondClarityss +
+                '}';
+    }
 }

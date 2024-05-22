@@ -15,4 +15,24 @@ public class Promotions_Product {
     @ManyToOne
     @JoinColumn(name = "ProductID")
     private Product productId;
+
+    public Promotions_Product(Promotion promotionId, Product productId) {
+        this.promotionId = promotionId;
+        this.productId = productId;
+    }
+
+    public Promotions_Product() {
+    }
+    public Promotions_Product(Promotions_Product p) {
+        this.promotionId = p.promotionId;
+        this.productId = p.productId;
+    }
+
+    @Override
+    public String toString() {
+        return "Promotions_Product{" +
+                "promotionId=" + promotionId +
+                ", productId=" + productId +
+                '}';
+    }
 }

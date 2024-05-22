@@ -20,4 +20,31 @@ public class Color {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondColor")
     private Set<DiamondPriceList> diamondColorss;
+
+    public Color() {
+    }
+
+    public Color(Long id, String color, Set<Diamond> diamondColors, Set<DiamondPriceList> diamondColorss) {
+        Id = id;
+        this.color = color;
+        this.diamondColors = diamondColors;
+        this.diamondColorss = diamondColorss;
+    }
+
+    public Color(Color c) {
+        Id = c.Id;
+        this.color = c.color;
+        this.diamondColors = c.diamondColors;
+        this.diamondColorss = c.diamondColorss;
+    }
+
+    @Override
+    public String toString() {
+        return "Color{" +
+                "Id=" + Id +
+                ", color='" + color + '\'' +
+                ", diamondColors=" + diamondColors +
+                ", diamondColorss=" + diamondColorss +
+                '}';
+    }
 }

@@ -21,11 +21,34 @@ public class Size {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductSizes")
     private Set<Product> products;
 
+    public Size(Long id, int size, Set<Product> products) {
+        this.id = id;
+        this.size = size;
+        this.products = products;
+    }
+
+    public Size() {
+    }
+
+    public Size(Size s) {
+        this.id = s.id;
+        this.size = s.size;
+        this.products = s.products;
+    }
+
     @Override
     public String toString() {
         return "Size{" +
                 "id=" + id +
                 ", size=" + size +
+                ", products=" + products +
                 '}';
     }
+    //    @Override
+//    public String toString() {
+//        return "Size{" +
+//                "id=" + id +
+//                ", size=" + size +
+//                '}';
+//    }
 }
