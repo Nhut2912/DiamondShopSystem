@@ -15,7 +15,7 @@
     overflow: hidden;
     display: grid;
     grid-template-columns: 45% 55%;
-    
+    border-radius: 10px;
 }
 .login-form .welcome{
     padding: 50px;
@@ -45,9 +45,9 @@
     margin-top: 10px;
 }
 .login-form > .login-information > .input-box > label{
-    font-family: 'Roboto Serif';
+    font-family: 'Poppins';
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: rgba(16, 23, 39, 0.5);
    
 }
@@ -64,10 +64,11 @@
     border: 0.5px solid rgba(16, 23, 39, 0.4);
     outline: none;
     padding-left: 15px;
-    font-family: 'Roboto Serif';
+    font-family: 'Poppins';
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     color: rgba(16, 23, 39, 0.7);
+    border-radius: 5px;
 }
 .login-form > .login-information .button-login{
     margin-top: 40px;
@@ -77,11 +78,12 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border-radius: 5px;
 }
 .login-form > .login-information .button-login > span{
     font-family: 'Roboto Serif';
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     color: #FFFFFF;
     letter-spacing: 1px ;
 }

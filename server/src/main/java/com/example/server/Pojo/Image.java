@@ -35,14 +35,6 @@ public class Image {
         Products = i.Products;
     }
 
-    //    @Override
-//    public String toString() {
-//        return "Image{" +
-//                "Id=" + Id +
-//                ", uri='" + uri +
-//                '}';
-//    }
-
 
 
 }

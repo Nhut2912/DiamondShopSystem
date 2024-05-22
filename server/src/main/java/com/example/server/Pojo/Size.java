@@ -44,11 +44,5 @@ public class Size {
                 ", products=" + products +
                 '}';
     }
-    //    @Override
-//    public String toString() {
-//        return "Size{" +
-//                "id=" + id +
-//                ", size=" + size +
-//                '}';
-//    }
+
 }

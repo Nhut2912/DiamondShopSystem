@@ -61,10 +61,10 @@ public class Diamond {
 
     public Diamond(Diamond d) {
         Id = d.Id;
-        this.code = code;
-        this.certificate = certificate;
-        this.active = active;
-        this.carat = carat;
+        this.code = d.code;
+        this.certificate = d.certificate;
+        this.active = d.active;
+        this.carat = d.carat;
         DiamondProduct = d.DiamondProduct;
         DiamondCut = d.DiamondCut;
         DiamondOrigin = d.DiamondOrigin;
