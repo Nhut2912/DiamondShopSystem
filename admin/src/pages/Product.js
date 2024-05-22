@@ -4,6 +4,7 @@ import '../theme/Product.css'
 import ICONS from '../constants/icons';
 import HeadTableCardProduct from '../components/HeadTableCardProduct';
 import CardProduct from '../components/CardProduct';
+import AddProduct from '../components/AddProduct';
 
 function Product() {
   
@@ -74,7 +75,7 @@ function Product() {
         <div className='product-content'>
               {!isAddProduct ? 
                   (
-                    <>
+                    <div className='product-view'>
                       <h4>
                         Showing 50 results    
                       </h4>
@@ -88,8 +89,9 @@ function Product() {
                           <CardProduct />
                           <CardProduct />
                       </div>
-                    </>
-                  ) : ''
+                    </div>
+                  ) :<AddProduct />
+              
               }
 
 

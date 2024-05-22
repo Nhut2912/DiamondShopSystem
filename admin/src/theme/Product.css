@@ -91,7 +91,6 @@
 }
 .product-container >  .product-content{
     background-color: rgba(26, 27, 29, 1);
-    height: 700px;
     border-radius: 10px;
     border-top-left-radius: 0;
     display: block;
@@ -99,7 +98,7 @@
     overflow: hidden;
     position: relative;
 }
-.product-container >  .product-content > h4{
+.product-container >  .product-content > .product-view > h4{
     text-align: right;
     margin: 0 42px;
     font-family: 'Poppins';
@@ -107,14 +106,18 @@
     font-size: 13px;
     color: rgba(255,255,255,0.2);
 }
-.product-container >  .product-content > .produc-items-container{
-    height: 600px;
+.product-container >  .product-content  > .product-view  > .produc-items-container{
     overflow-y: scroll;
     position: relative;
-
+    height: 66vh;
 }
-.product-container >  .product-content > .produc-items-container::-webkit-scrollbar{
+.product-container >  .product-content > .product-view > .produc-items-container::-webkit-scrollbar{
     width: 0 !important;
     display: none; 
+}
+
+.product-container >  .product-content > .product-view {
+    height: 77vh;
+    overflow:hidden;
 }
 
