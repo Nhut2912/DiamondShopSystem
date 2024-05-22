@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import '../theme/Product.css'
 import ICONS from '../constants/icons';
+import HeadTableCardProduct from '../components/HeadTableCardProduct';
+import CardProduct from '../components/CardProduct';
 
 function Product() {
   
@@ -70,6 +72,28 @@ function Product() {
               
         </div>
         <div className='product-content'>
+              {!isAddProduct ? 
+                  (
+                    <>
+                      <h4>
+                        Showing 50 results    
+                      </h4>
+                      <HeadTableCardProduct />
+                      <div className='produc-items-container'>
+                      
+                          <CardProduct />
+                          <CardProduct />
+                          <CardProduct />
+                          <CardProduct />
+                          <CardProduct />
+                          <CardProduct />
+                      </div>
+                    </>
+                  ) : ''
+              }
+
+
+
 
         </div>
     </div>

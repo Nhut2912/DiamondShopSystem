@@ -78,7 +78,7 @@
     padding: 15px 40px;
     font-family: 'Poppins';
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     color: rgba(255,255,255,0.7);
     cursor: pointer;
 }
@@ -94,4 +94,27 @@
     height: 700px;
     border-radius: 10px;
     border-top-left-radius: 0;
+    display: block;
+    padding-top: 20px;
+    overflow: hidden;
+    position: relative;
 }
+.product-container >  .product-content > h4{
+    text-align: right;
+    margin: 0 42px;
+    font-family: 'Poppins';
+    font-weight: 300;
+    font-size: 13px;
+    color: rgba(255,255,255,0.2);
+}
+.product-container >  .product-content > .produc-items-container{
+    height: 600px;
+    overflow-y: scroll;
+    position: relative;
+
+}
+.product-container >  .product-content > .produc-items-container::-webkit-scrollbar{
+    width: 0 !important;
+    display: none; 
+}
+
