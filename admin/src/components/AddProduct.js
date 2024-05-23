@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import '../theme/AddProduct.css';
 import InputBox from './InputBox';
@@ -7,119 +7,98 @@ import InputFile from './InputFile';
 import InputDoubleBox from './InputDoubleBox';
 import AddDiamond from './AddDiamond';
 import { ICONS } from '../constants';
+import AddMaterial from './AddMaterial';
 
 
 function AddProduct() {
 
-  /*
-    
-  */ 
+  const [imageDataProduct,setImageDataProduct] = useState([null,null,null]);
+  const [certificateDiamond,setCertificateDiamond] = useState([]);
  
-
-    const [imageProduct_1, setImageProduct_1] = useState(null);
-    const [imageProduct_2, setImageProduct_2] = useState(null);
-    const [imageProduct_3, setImageProduct_3] = useState(null);
-    const [imageData_1,setImageData_1] = useState(null);
-    const [imageData_2,setImageData_2] = useState(null);
-    const [imageData_3,setImageData_3] = useState(null);
-
-  /*
-    
+  /**
+   * 
+   * 
    */
+  const [name,setName] = useState(null);
+  const [code,setCode] = useState(null);
+  const [categoryProduct,setCategoryProduct] = useState(null);
+  const [productionCost,setProductionCost] = useState(null);
+  const [secondaryDiamondCost,setSecondaryDiamondCost] = useState(null);
+  const [SecondaryMaterialCost,setSecondaryMaterialCost] = useState(null);
+  const [productSize,setProductSize] = useState(null);
+  /** */
 
- const [diamondCount, setDiamondCount] = useState(1);
-
- const handleAddDiamond = () => {
-    setDiamondCount((prevCount) => prevCount + 1);
- 
+  const product = {
+      "Name" : "",
+      "Code" : "",
+      "Category" : "",
+      "ProductionCost" : "",
+      "SecondaryDiamondCost" : "",
+      "SecondaryMaterialCost" : "",
+      "Material" : [],
+      "ProductSize" : "",
+      "ImagesProduct" : [null],
+      "DiamondsProduct" : [null]
   };
 
+ 
+  /** Thong tin diamond trong product */
+ const [diamondProducts,setDiamondProducts] = useState([]);
+
+ const [diamondCount, setDiamondCount] = useState(1);
+ const handleAddDiamond = () => {
+    setDiamondCount((prevCount) => prevCount + 1);
+  };
+
+  const handleDeleteDiamond = (indexToDelete) => {
+    setDiamondCount((prevCount) => {
+      if (prevCount > 1) {
+        const updatedCertificateDiamond = certificateDiamond.filter((_, i) => i !== indexToDelete);
+        const updateDiamondProducts = diamondProducts.filter((_,i) =>  i !== indexToDelete );
+        setDiamondProducts(updateDiamondProducts);
+        setCertificateDiamond(updatedCertificateDiamond);
+        return prevCount - 1;
+      }
+      return prevCount; 
+    });
+  };
+
+
+ /** Thong tin material */
+ const [materialProducts,setMaterialProducts] = useState([]);
+ 
  const [materiaCount, setMaterialCount] = useState(1);
  const handleAddMaterial = () => {
     setMaterialCount((prevCount) => prevCount +1);
  }
+ const handleDeleteMaterial = (indexToDelete) => {
+  setMaterialCount((prevCount) => {
+    if (prevCount > 1) {
+      const updateMaterialProducts = materialProducts.filter((_,i) =>  i !== indexToDelete );
+      setMaterialProducts(updateMaterialProducts);
+      return prevCount - 1;
+    }
+    return prevCount; 
+  });
+};
+
 
   const category = [
-    {name : 'Rings'},
-    {name : 'Earrings'},
-    {name : 'Shake'},
-    {name : 'Pendant'},
-    {name : 'Jewelry Sets'}
+    {name : 'Rings'},{name : 'Earrings'},{name : 'Shake'},{name : 'Pendant'},{name : 'Jewelry Sets'}
+  ]
+  const origin = [ {value : "NATURAL" },   {value : "LAB GROWN" }  ]
+
+  const color = [{value : "K"},{value : "J"},{value : "I"},{value : "H"},{value : "G"}, {value : "F"},{value : "E"}, {value : "D"}
   ]
 
-
-  const origin = [
-    {value : "NATURAL" },
-    {value : "LAB GROWN" }
+  const clarity = [ {value : "SI2"}, {value : "SI1"}, {value : "VS2"}, {value : "VS1"}, {value : "VVS2"}, {value : "VVS1"}, {value : "IF"}, {value : "FL"}
   ]
 
-  const color = [
-    {value : "K"},
-    {value : "J"},
-    {value : "I"},
-    {value : "H"},
-    {value : "G"},
-    {value : "F"},
-    {value : "E"},
-    {value : "D"}
+  const cut = [ {value : "FAIR"},  {value : "GOOD"}, {value : "V.GOOD"}, {value : "EX."},
   ]
 
-  const clarity = [
-    {value : "SI2"},
-    {value : "SI1"},
-    {value : "VS2"},
-    {value : "VS1"},
-    {value : "VVS2"},
-    {value : "VVS1"},
-    {value : "IF"},
-    {value : "FL"}
-  ]
+  const material = [{name : "14K White Gold"},  {name : "18K White Gold"}, {name : "24K Gold"}]
 
-  const cut = [
-    {value : "FAIR"},
-    {value : "GOOD"},
-    {value : "V.GOOD"},
-    {value : "EX."},
-  ]
-
-
-  useEffect(() => {
-    if (imageProduct_1) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setImageData_1(event.target.result);
-      };
-      reader.readAsDataURL(imageProduct_1);
-    }
-  }, [imageProduct_1]);
-
-  
-  
-  useEffect(() => {
-    if (imageProduct_2) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setImageData_2(event.target.result);
-      };
-      reader.readAsDataURL(imageProduct_2);
-    }
-  }, [imageProduct_2]);
-  
-  useEffect(() => {
-    if (imageProduct_3) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setImageData_3(event.target.result);
-      };
-      reader.readAsDataURL(imageProduct_3);
-    }
-  }, [imageProduct_3]);
-
-  const imageData = {
-    'image' : imageData_1
-    
-  }
- console.log(imageData);
 
   return (
     <div className='add-product-container'>
@@ -136,9 +115,9 @@ function AddProduct() {
                 />
             </div>
             <div className='production-diamond-material-cost'>
-                <InputDoubleBox title={"Production Cost"} />
-                <InputDoubleBox title={"Secondary Diamond Cost"} />
-                <InputDoubleBox title={"Material Cost"} />
+                <InputDoubleBox title={"Production Cost"} _width="150px" />
+                <InputDoubleBox title={"Secondary Diamond Cost"}  _width="150px" />
+                <InputDoubleBox title={"Material Cost"}  _width="150px" />
             </div>
             <div className='product-material'>
                 <label>Material</label>
@@ -153,19 +132,17 @@ function AddProduct() {
                             <li>
                                 Weight {"(g)"}
                             </li>
+                            <li>
+                              Delete
+                            </li>
                         </ul>
                         {Array(materiaCount).fill(0).map((_,index) => (
-                            <ul>
-                                <li>
-                                    {index+1}
-                                </li>
-                                <li>
-                                    <InputSelectBox />
-                                </li>
-                                <li>
-                                    <InputDoubleBox />
-                                </li>
-                            </ul>
+                           <AddMaterial index={index} 
+                           handleDeleteMaterial={handleDeleteMaterial} 
+                           materialProducts={materialProducts}
+                           setMaterialProducts={setMaterialProducts}
+                           material={material}
+                           />
 
                         ))}
                         
@@ -182,23 +159,44 @@ function AddProduct() {
                 <label>
                     Images Product
                 </label>
+
+          
+
                 <div>
                     <div className='image-card'>
-                        {imageData_1 && <img src={imageData_1} alt='' />}
+                        {imageDataProduct[0] && <img src={imageDataProduct[0]} alt='' />}
                     </div>
-                    <InputFile title={"images-1"} _width="150px" selectedFile={setImageProduct_1} />
+                    <InputFile title={"images-1"} 
+                      _width="150px" 
+                      imageData={imageDataProduct}
+                      setImageData={setImageDataProduct}
+                      index={0}
+                      length={imageDataProduct.length}
+                      />
                 </div>
                 <div>
                     <div className='image-card'>
-                        {imageData_2 && <img src={imageData_2} alt='' />}
+                      {imageDataProduct[1] && <img src={imageDataProduct[1]} alt='' />}
                     </div>
-                    <InputFile title={"images-2"} _width="150px"  selectedFile={setImageProduct_2}  />
+                    <InputFile title={"images-2"} 
+                      _width="150px" 
+                      imageData={imageDataProduct}
+                      setImageData={setImageDataProduct}
+                      index={1}
+                      length={imageDataProduct.length}
+                      />
                 </div>
                 <div>
                     <div className='image-card'>
-                        {imageData_3 && <img src={imageData_3} alt='' />}
+                      {imageDataProduct[1] && <img src={imageDataProduct[2]} alt='' />}
                     </div>
-                    <InputFile title={"images-3"} _width="150px"  selectedFile={setImageProduct_3}  />
+                    <InputFile title={"images-3"} 
+                      _width="150px" 
+                      imageData={imageDataProduct}
+                      setImageData={setImageDataProduct}
+                      index={2}
+                      length={imageDataProduct.length}
+                      />
                 </div>
             </div>
         </div>
@@ -206,15 +204,27 @@ function AddProduct() {
             <h4>Diamonds product</h4>
             <div className='container-input-diamond'>
                 {Array(diamondCount).fill(0).map((_,index) => (
-                     <div className='diamond-information-add'>
+                  <div className='diamond-information-add'>
                      <span>No.{index+1}</span>
                      <AddDiamond 
                         color={color}
                         clarity={clarity} 
                         cut={cut} 
                         origin={origin}
-                       
+                        imageData ={certificateDiamond}
+                        index={index}
+                        setImageData={setCertificateDiamond}
+                        length={certificateDiamond.length} 
+                        setDiamondProducts={setDiamondProducts}
+                        diamondProducts={diamondProducts}
                      />
+                     {
+                      index >=  1 ? 
+                      <div className='delete-diamond-in-product' onClick={() => handleDeleteDiamond(index)} >
+                          <img src={ICONS.icon_delete} alt=''/>
+                     </div> : ''
+                     }
+                     
                  </div>
                 ))}
              
@@ -223,8 +233,19 @@ function AddProduct() {
                 </div>
             </div>
         </div>
+
+
+
+
+      <div className='submit-button-add-product' 
+      
+      >
+        <span>
+          Add Product
+        </span>
+      </div>
     </div>
   )
 }
 
-export default AddProduct
+export default AddProduct;

@@ -1,6 +1,5 @@
 .input-double-box-container{
     display: grid;
-    
 }
 .input-double-box-container > label{
     font-family: 'Poppins';
@@ -19,7 +18,6 @@
     color: rgba(255,255,255,0.7);
     font-size: 15px;
     font-weight: 400;
-    width: 150px;
     appearance: none;
-   
+   box-sizing: border-box;
 }
