@@ -13,8 +13,14 @@ import AddMaterial from './AddMaterial';
 function AddProduct() {
 
   const [imageDataProduct,setImageDataProduct] = useState([null,null,null]);
+  
+  const [fileImageProduct,setFileImageProduct] = useState([null,null,null]);
+
   const [certificateDiamond,setCertificateDiamond] = useState([]);
- 
+
+  const [fileCertificateDiamond,setFileCertificateDiamond] = useState([]);
+
+
   /**
    * 
    * 
@@ -172,6 +178,8 @@ function AddProduct() {
                       setImageData={setImageDataProduct}
                       index={0}
                       length={imageDataProduct.length}
+                      setFileImage={setFileImageProduct}
+                      fileImage={fileImageProduct}
                       />
                 </div>
                 <div>
@@ -184,11 +192,13 @@ function AddProduct() {
                       setImageData={setImageDataProduct}
                       index={1}
                       length={imageDataProduct.length}
+                      setFileImage={setFileImageProduct}
+                      fileImage={fileImageProduct}
                       />
                 </div>
                 <div>
                     <div className='image-card'>
-                      {imageDataProduct[1] && <img src={imageDataProduct[2]} alt='' />}
+                      {imageDataProduct[2] && <img src={imageDataProduct[2]} alt='' />}
                     </div>
                     <InputFile title={"images-3"} 
                       _width="150px" 
@@ -196,6 +206,8 @@ function AddProduct() {
                       setImageData={setImageDataProduct}
                       index={2}
                       length={imageDataProduct.length}
+                      setFileImage={setFileImageProduct}
+                      fileImage={fileImageProduct}
                       />
                 </div>
             </div>
@@ -217,6 +229,8 @@ function AddProduct() {
                         length={certificateDiamond.length} 
                         setDiamondProducts={setDiamondProducts}
                         diamondProducts={diamondProducts}
+                        setFileImage={setFileCertificateDiamond}
+                        fileImage={fileCertificateDiamond}
                      />
                      {
                       index >=  1 ? 

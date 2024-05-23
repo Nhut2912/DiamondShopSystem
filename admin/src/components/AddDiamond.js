@@ -9,7 +9,7 @@ import '../theme/AddDiamond.css';
 
 
 
-function AddDiamond({origin, color, clarity,cut ,imageData,index,setImageData,length,diamondProducts,setDiamondProducts}) { 
+function AddDiamond({origin, color, clarity,cut ,imageData,index,setImageData,length,diamondProducts,setDiamondProducts,fileImage,setFileImage}) { 
   
         
   const [code,setCode] = useState(null);
@@ -27,7 +27,7 @@ function AddDiamond({origin, color, clarity,cut ,imageData,index,setImageData,le
    "Carat" : caratDiamond  ,
    "Image" : ""}
   ), [code,originDiamond,colorDiamond,clarityDiamond,cutDiamond,caratDiamond]) 
-  
+
  const updatedDiamondProucts = useMemo(() => {
      const _updateDiamondProducts = [...diamondProducts];
      _updateDiamondProducts[index] = diamond;
@@ -69,6 +69,8 @@ function AddDiamond({origin, color, clarity,cut ,imageData,index,setImageData,le
                         index={index}
                         setImageData={setImageData}
                         length={length} 
+                        fileImage={fileImage}
+                        setFileImage={setFileImage}
                         />
                 </div>
     </div>

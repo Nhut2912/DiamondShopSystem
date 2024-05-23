@@ -2,19 +2,24 @@ import React from 'react'
 
 import '../theme/InputFile.css';
 
-function InputFile({title , _width, imageData, index,setImageData, length }) {
+function InputFile({title , _width, imageData, index,setImageData, length ,setFileImage,fileImage}) {
  const loadFileHandle = (event) => {
     const file = event;
     if(file){
+      
       const reader = new FileReader();
       reader.onload = event => {
          const dataURL = event.target.result;
          if(index < length){
             const updateImageData = [...imageData];
             updateImageData[index] = dataURL;
+            const updateFileImage = [...fileImage];
+            updateFileImage[index] = file;
+            setFileImage(updateFileImage);
             setImageData(updateImageData);
          }else{
             setImageData([...imageData,dataURL]);
+            setFileImage([...fileImage,file]);
          }
       };
       reader.readAsDataURL(file);
