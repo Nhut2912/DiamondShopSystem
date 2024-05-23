@@ -1,6 +1,7 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 /*
@@ -10,6 +11,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "ACCOUNT")
+@Builder
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
