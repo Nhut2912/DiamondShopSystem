@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import '../theme/Navigation.css';
 import { ICONS } from "../constants";
@@ -21,6 +21,16 @@ const Navigation = () => {
         { name: 'Gold Price',  path : "gold-price"},
         { name: 'Diamond Price', path : "diamond-price" },
     ]
+
+    useEffect(() => {
+        const uri = window.location.pathname;
+        contentItems.map((element) => {
+            if(uri.endsWith(element.path)){
+                setActiveItem(element.name)
+            }
+        })
+    },[])
+
     const handleClick = (item) => {
        contentItems.forEach((element) => {
             if(element.name === item){

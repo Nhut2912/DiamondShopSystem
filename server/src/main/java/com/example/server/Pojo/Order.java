@@ -41,7 +41,7 @@ public class Order {
     @Column(name = "CancelReason")
     private String cancelReason;
 
-//<<<<<<< HEAD
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderPayment")
     private Set<Payment> orderPaymentSet;
 
@@ -92,90 +92,5 @@ public class Order {
                 ", orderDetailSet=" + orderDetailSet +
                 '}';
     }
-    //    public Order(Long id, String totalPrice, int orderStatus, String date, String address, boolean deliveryStatus, /*long customerId, int orderId,*/ String cancelReason) {
-//        this.id = id;
-//        this.totalPrice = totalPrice;
-//        this.orderStatus = orderStatus;
-//        Date = date;
-//        this.address = address;
-//        this.deliveryStatus = deliveryStatus;
-// //       this.customerId = customerId;
-//  //      this.orderId = orderId;
-//        this.cancelReason = cancelReason;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public String getTotalPrice() {
-//        return totalPrice;
-//    }
-//
-//    public void setTotalPrice(String totalPrice) {
-//        this.totalPrice = totalPrice;
-//    }
-//
-//    public String getDate() {
-//        return Date;
-//    }
-//
-//    public void setDate(String date) {
-//        Date = date;
-//    }
-//
-//    public String getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
-//
-//    public boolean isDeliveryStatus() {
-//        return deliveryStatus;
-//    }
-//
-//    public void setDeliveryStatus(boolean deliveryStatus) {
-//        this.deliveryStatus = deliveryStatus;
-//    }
-//
-////    public long getCustomerId() {
-////        return customerId;
-////    }
-////
-////    public void setCustomerId(long customerId) {
-////        this.customerId = customerId;
-////    }
-//
-//    public int getOrderStatus() {
-//        return orderStatus;
-//    }
-//
-//    public void setOrderStatus(int orderStatus) {
-//        this.orderStatus = orderStatus;
-//    }
-//
-////    public int getOrderId() {
-////        return orderId;
-////    }
-////
-////    public void setOrderId(int orderId) {
-////        this.orderId = orderId;
-////    }
-//
-//    public String getCancelReason() {
-//        return cancelReason;
-//    }
-//
-//    public void setCancelReason(String cancelReason) {
-//        this.cancelReason = cancelReason;
-//    }
-////=======
-////
-////>>>>>>> 367fdd224da5a4f45dd0623da5c612480fb252c3
+
 }

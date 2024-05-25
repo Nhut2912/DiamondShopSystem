@@ -54,9 +54,9 @@ public class DiamondPriceList {
 
     public DiamondPriceList(DiamondPriceList dl) {
         Id = dl.Id;
-        this.price = price;
-        this.effDate = effDate;
-        this.carat = carat;
+        this.price = dl.price;
+        this.effDate = dl.effDate;
+        this.carat = dl.carat;
         DiamondCut = dl.DiamondCut;
         DiamondOrigin = dl.DiamondOrigin;
         DiamondColor = dl.DiamondColor;

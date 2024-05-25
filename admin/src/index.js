@@ -26,7 +26,9 @@ root.render(
             <Route path="/" element={<Authentication />} />
             <Route path="/admin" element={<Overview />}> 
                 <Route index element={<Dashboard />} />
-                <Route path="product" element={<Product />}/>
+                <Route path="product" element={<Product />} >
+                    
+                </Route>
                 <Route path="order" element={<Order />}/>
                 <Route path="account" element={<Account />}/>
                 <Route path="warranty" element={<Warranty />}/>

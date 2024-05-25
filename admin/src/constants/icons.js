@@ -19,7 +19,10 @@ import icon_warranty_active from '../assets/icons/warranty-active.svg'
 import icon_notification from '../assets/icons/notification.svg'
 import icon_notification_active from '../assets/icons/notification-active.svg'
 import icon_optional from '../assets/icons/option.svg'
-
+import icon_drop_down from '../assets/icons/drop-down-sorted.svg'
+import icon_add from '../assets/icons/add.svg';
+import icon_upload_file from '../assets/icons/upload-file.svg'
+import icon_delete from '../assets/icons/delete.svg'
 const ICONS = {
     icon_logo : icon_logo,
     icon_logo_no_jewelry_text : icon_logo_no_jewelry_text,
@@ -41,7 +44,11 @@ const ICONS = {
     icon_warranty_active:icon_warranty_active,
     icon_notification : icon_notification,
     icon_notification_active: icon_notification_active,
-    icon_optional : icon_optional
+    icon_optional : icon_optional,
+    icon_drop_down: icon_drop_down,
+    icon_add: icon_add,
+    icon_upload_file: icon_upload_file,
+    icon_delete: icon_delete
 }
 
 export default ICONS;

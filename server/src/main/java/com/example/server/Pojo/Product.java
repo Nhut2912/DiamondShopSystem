@@ -56,13 +56,13 @@ public class Product {
     @JoinColumn(name = "WarrantyID", referencedColumnName = "id")
     private Warranty warranty;
 
-//<<<<<<< HEAD
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private Set<OrderDetail> productDetailSet;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "productId")
     private Set<Promotions_Product> products;
-//=======
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "DiamondProduct")
     private Set<Diamond> DiamondProducts;
 
@@ -128,32 +128,5 @@ public class Product {
                 ", DiamondProducts=" + DiamondProducts +
                 '}';
     }
-    //>>>>>>> f5decc3a6366a04ddcdf6c125a5a14f5fae2046b
-//    @Override
-//    public String toString() {
-//        return "Product{" +
-//                "Id=" + Id +
-//                ", Code='" + Code + '\'' +
-//                ", Active=" + Active +
-//                ", SecondaryDiamondCost=" + SecondaryDiamondCost +
-//                ", SecondaryMaterialCost=" + SecondaryMaterialCost +
-//                ", ProductionCost=" + ProductionCost +
-//                ", PriceRate=" + PriceRate +
-//                ", ProductSizes=" + ProductSizes +
-//                ", Images=" + Images +
-//                '}';
-//    }
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Product product = (Product) o;
-//        return Active == product.Active && Double.compare(SecondaryDiamondCost, product.SecondaryDiamondCost) == 0 && Double.compare(SecondaryMaterialCost, product.SecondaryMaterialCost) == 0 && Double.compare(ProductionCost, product.ProductionCost) == 0 && PriceRate == product.PriceRate && Objects.equals(Id, product.Id) && Objects.equals(Code, product.Code) && Objects.equals(ProductSizes, product.ProductSizes) && Objects.equals(Images, product.Images);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(Id, Code, Active, SecondaryDiamondCost, SecondaryMaterialCost, ProductionCost, PriceRate, ProductSizes, Images);
-//    }
+
 }

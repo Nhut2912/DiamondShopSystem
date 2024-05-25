@@ -1,0 +1,41 @@
+.radio-input-container{
+    display: grid;
+}
+.radio-input-container > label{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;   
+
+}
+.radio-input-container > .container-option-radio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 5px;
+}
+.radio-input-container > .container-option-radio > div{
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.radio-input-container > .container-option-radio > div.isActive{
+    background-color: rgba(255,255,255,0.3);
+   
+}
+.radio-input-container > .container-option-radio > div > span{
+    font-family: 'Poppins';
+    font-size: 14px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300; 
+    
+}
+.radio-input-container > .container-option-radio > div.isActive > span{
+    color: rgba(255,255,255,1);
+    font-weight: 400;
+}
