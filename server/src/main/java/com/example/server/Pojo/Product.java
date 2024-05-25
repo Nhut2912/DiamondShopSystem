@@ -85,7 +85,26 @@ public class Product {
         DiamondProducts = diamondProducts;
     }
 
+    public Product(String name, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images, Category productCategory, Set<ProductMaterial> productMaterialSet, Warranty warranty, Set<OrderDetail> productDetailSet, Set<Promotions_Product> products, Set<Diamond> diamondProducts) {
+        Name = name;
+        Code = code;
+        Active = active;
+        SecondaryDiamondCost = secondaryDiamondCost;
+        SecondaryMaterialCost = secondaryMaterialCost;
+        ProductionCost = productionCost;
+        PriceRate = priceRate;
+        ProductSizes = productSizes;
+        Images = images;
+        ProductCategory = productCategory;
+        this.productMaterialSet = productMaterialSet;
+        this.warranty = warranty;
+        this.productDetailSet = productDetailSet;
+        this.products = products;
+        DiamondProducts = diamondProducts;
+    }
+
     public Product() {
+
     }
 
     public Product(Product p) {
@@ -129,4 +148,131 @@ public class Product {
                 '}';
     }
 
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getCode() {
+        return Code;
+    }
+
+    public void setCode(String code) {
+        Code = code;
+    }
+
+    public boolean isActive() {
+        return Active;
+    }
+
+    public void setActive(boolean active) {
+        Active = active;
+    }
+
+    public double getSecondaryDiamondCost() {
+        return SecondaryDiamondCost;
+    }
+
+    public void setSecondaryDiamondCost(double secondaryDiamondCost) {
+        SecondaryDiamondCost = secondaryDiamondCost;
+    }
+
+    public double getSecondaryMaterialCost() {
+        return SecondaryMaterialCost;
+    }
+
+    public void setSecondaryMaterialCost(double secondaryMaterialCost) {
+        SecondaryMaterialCost = secondaryMaterialCost;
+    }
+
+    public double getProductionCost() {
+        return ProductionCost;
+    }
+
+    public void setProductionCost(double productionCost) {
+        ProductionCost = productionCost;
+    }
+
+    public int getPriceRate() {
+        return PriceRate;
+    }
+
+    public void setPriceRate(int priceRate) {
+        PriceRate = priceRate;
+    }
+
+    public Size getProductSizes() {
+        return ProductSizes;
+    }
+
+    public void setProductSizes(Size productSizes) {
+        ProductSizes = productSizes;
+    }
+
+    public Set<Image> getImages() {
+        return Images;
+    }
+
+    public void setImages(Set<Image> images) {
+        Images = images;
+    }
+
+    public Category getProductCategory() {
+        return ProductCategory;
+    }
+
+    public void setProductCategory(Category productCategory) {
+        ProductCategory = productCategory;
+    }
+
+    public Set<ProductMaterial> getProductMaterialSet() {
+        return productMaterialSet;
+    }
+
+    public void setProductMaterialSet(Set<ProductMaterial> productMaterialSet) {
+        this.productMaterialSet = productMaterialSet;
+    }
+
+    public Warranty getWarranty() {
+        return warranty;
+    }
+
+    public void setWarranty(Warranty warranty) {
+        this.warranty = warranty;
+    }
+
+    public Set<OrderDetail> getProductDetailSet() {
+        return productDetailSet;
+    }
+
+    public void setProductDetailSet(Set<OrderDetail> productDetailSet) {
+        this.productDetailSet = productDetailSet;
+    }
+
+    public Set<Promotions_Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Promotions_Product> products) {
+        this.products = products;
+    }
+
+    public Set<Diamond> getDiamondProducts() {
+        return DiamondProducts;
+    }
+
+    public void setDiamondProducts(Set<Diamond> diamondProducts) {
+        DiamondProducts = diamondProducts;
+    }
 }
