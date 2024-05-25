@@ -18,8 +18,9 @@ function AddDiamond({origin, color, clarity,cut ,imageData,index,setImageData,le
   const [clarityDiamond,setClarityDiamond] =useState(null);
   const [cutDiamond,setCutDiamond] = useState(null);
   const [caratDiamond,setCaratDiamond] =useState(null);
+
   const diamond = useMemo( () => ({
-   "Diamond Code" :code ,
+   "DiamondCode" :code ,
    "Origin" : originDiamond === null ? origin[0].value : originDiamond ,
    "Color" : colorDiamond === null ? color[0].value : colorDiamond,
    "Clarity" : clarityDiamond === null ? clarity[0].value : clarityDiamond,

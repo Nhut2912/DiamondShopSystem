@@ -1,16 +1,18 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { ICONS } from '../constants'
 import InputSelectBox from './InputSelectBox'
 import InputDoubleBox from './InputDoubleBox'
+import '../theme/UpdateMaterial.css';
 
-function AddMaterial({index,
+
+function UpdateMaterial({index,
     handleDeleteMaterial,
     materialProducts,
     setMaterialProducts,
     material}) {
 
-  const [type, setType] = useState(null);
-  const [weight, setWeight] = useState(null);
+  const [type, setType] = useState(materialProducts[index].Type !== null ?materialProducts[index].Type : null );
+  const [weight, setWeight] = useState(materialProducts[index].Weight !== null ?materialProducts[index].Weight : null);
  
   const materialProduct = useMemo(() => (
     {
@@ -26,25 +28,19 @@ function AddMaterial({index,
     },[materialProduct]);
 
     setMaterialProducts(updatedMaterial);
-
-
-
-
   return (
     <ul>
             <li>
                 {index+1}
             </li>
             <li>
-    
                 <InputSelectBox setParams={setType} 
-                  
-                    
+                  getParams={materialProducts[index].Type}
                 options={material} />
             </li>
             <li>
                 <InputDoubleBox  _width="100px"  
-               
+                getParams={materialProducts[index].Weight}
                 setParams={setWeight}  />
             </li>
             <li>
@@ -61,4 +57,4 @@ function AddMaterial({index,
   )
 }
 
-export default AddMaterial
+export default UpdateMaterial

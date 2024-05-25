@@ -7,7 +7,15 @@
     font-size: 25px;
     font-weight: 500;
     color: rgba(255,255,255,0.9);
+    margin-bottom: 5px;
+}
+.product-container >  p{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(255,255,255,0.2);
     margin-bottom: 40px;
+    font-weight: 300;
+    cursor: pointer;
 }
 .product-container > .product-navigation{
     display: flex;

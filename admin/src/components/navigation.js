@@ -13,7 +13,7 @@ const Navigation = () => {
 
     const contentItems = [
         { name: 'Dashboard', path : "/admin"},
-        { name: 'Product', path : "product" },
+        { name: 'Product', path : "products" },
         { name: 'Order',  path : "order"},
         { name: 'Account',  path : "account"},
         { name: 'Warranty',  path : "warranty"},

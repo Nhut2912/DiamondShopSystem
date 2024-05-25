@@ -2,9 +2,8 @@ import React, { useCallback, useState } from 'react'
 
 import '../theme/InputRadio.css';
 
-function RadioInput({title, _width, items, setParams}) {
-  const [active,setActive] = useState(items[0].value)
-
+function RadioInput({title, _width, items, setParams, getParams}) {
+  const [active,setActive] = useState(getParams !== undefined && getParams !== null ? getParams : items[0].value) 
 
   const handleClick = (item) => {
       setParams(item);

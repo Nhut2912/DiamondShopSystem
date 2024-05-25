@@ -34,6 +34,9 @@ function Product() {
   return (
     <div className='product-container'>
         <h1>Product</h1>
+        <p>
+          Admin / <span>Products</span>
+        </p>
         <div className='product-navigation'>
               <ul>
                   {

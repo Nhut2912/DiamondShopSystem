@@ -1,10 +1,17 @@
 import React from 'react'
 
 import '../theme/CardProduct.css';
+import { useNavigate } from 'react-router-dom';
 
 function CardProduct() {
+  const navigate = useNavigate();
+  const productId = 123;
+  const handClick = (event) => {  
+    console.log(".....");
+    navigate(""+productId);
+  }
   return (
-    <div className='content-table-container'>
+    <div className='content-table-container' onClick={handClick} style={{'cursor': 'pointer'}} >
         <ul className='table-content'>
           <li>
               1

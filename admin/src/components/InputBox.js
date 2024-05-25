@@ -3,15 +3,25 @@ import React from 'react'
 import '../theme/InputBox.css';
 
 
-function InputBox({title, setParams}) {
+function InputBox({title, 
+  setParams,
+  getParams
+}) {
+
   const handleChange = (event) => {
+    
     const value = event.target.value;
-    setParams(value);
+    if(value !== ""){
+      console.log(value);
+      setParams(value);
+    }
+    
   }
   return (
     <div className='input-box-container'>
         <label>{title}</label>
         <input 
+          placeholder={getParams !== null ? getParams : null}
           onBlur={(event) => handleChange(event)}
           type='text' />
     </div>

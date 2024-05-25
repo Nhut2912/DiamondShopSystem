@@ -15,6 +15,7 @@ import Promotions from './pages/Promotions';
 import GoldPrice from './pages/GoldPrice';
 import DiamondPrice from './pages/DiamondPrice';
 import Notifications from './pages/Notifications';
+import DetailProduct from './components/DetailProduct';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,9 +27,8 @@ root.render(
             <Route path="/" element={<Authentication />} />
             <Route path="/admin" element={<Overview />}> 
                 <Route index element={<Dashboard />} />
-                <Route path="product" element={<Product />} >
-                    
-                </Route>
+                <Route path="products" element={<Product />} />
+                <Route path="products/:id" element={<DetailProduct />} />
                 <Route path="order" element={<Order />}/>
                 <Route path="account" element={<Account />}/>
                 <Route path="warranty" element={<Warranty />}/>
