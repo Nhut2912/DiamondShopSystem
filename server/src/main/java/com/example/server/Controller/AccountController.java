@@ -12,13 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+/*
+ * author : Tran Viet Hoang
+ * date : 23/5/2024
+ *
+ *
+ */
 @RestController
-@RequestMapping("api/Account")
+@RequestMapping("api/account")
 public class AccountController {
     @Autowired
     private IAccountRepository accountRepository;
 
+    @Autowired
+    private IRegistrationServices userService;
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody RegistrationRequest registerRequest){
+        return userService.register(registerRequest);
+
+    }
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody Account account){
          List<Account> accounts = accountRepository.findByEmail(account.getEmail());
