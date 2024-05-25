@@ -4,6 +4,9 @@ import com.example.server.Pojo.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 
 /*
  * author : Tran Viet Hoang
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface IAccountRepository extends JpaRepository<Account,Long> {
-    Account findByEmail(String email);
+public interface IAccountRepository extends JpaRepository<Account, Long> {
+
+    List<Account> findByEmail(String email);
 }
