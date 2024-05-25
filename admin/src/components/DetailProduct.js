@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../theme/DetailProduct.css'
 import InputBox from './InputBox';
@@ -8,56 +8,130 @@ import InputFile from './InputFile';
 import { ICONS } from '../constants';
 import UpdateMaterial from './UpdateMateria';
 import UpdateDiamond from './UpdateDiamond';
+import { useNavigate } from 'react-router-dom';
+
+import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { imageStorage } from '../FirebaseConfig';
 
 function DetailProduct() {
 
-
+ const navigate = useNavigate();
  const [isEdit, setIsEdit] = useState(false);
+ const [imageDataProduct,setImageDataProduct] = useState();
+ const [fileImageProduct,setFileImageProduct] = useState();
+ const [certificateDiamond,setCertificateDiamond] = useState();
+ const [fileCertificateDiamond,setFileCertificateDiamond] = useState();
+ const [name,setName] = useState();
+ const [code,setCode] = useState();
+ const [categoryProduct,setCategoryProduct] = useState();
+ const [productionCost,setProductionCost] = useState();
+ const [secondaryDiamondCost,setSecondaryDiamondCost] = useState();
+ const [SecondaryMaterialCost,setSecondaryMaterialCost] = useState();
+ const [productSize,setProductSize] = useState();
+ const [diamondProducts,setDiamondProducts] = useState();
+ const [diamondCount, setDiamondCount] = useState();
+ const [materialProducts,setMaterialProducts] = useState();
+ const [materiaCount, setMaterialCount] = useState();
 
- const product = {
-    "Name": "Nhẫn Vàng trắng 10K đính đá ECZ PNJ XMXMW000128",
-    "Code": "XMXMW000128",
-    "Category": "Shake",
-    "ProductionCost": "12.4",
-    "SecondaryDiamondCost": "12.5",
-    "SecondaryMaterialCost": "124.4",
-    "Material": [
-        {
-            "Type": "14K White Gold",
-            "Weight": "12.4"
-        },
-        {
-            "Type": "18K White Gold",
-            "Weight": "123.4"
+
+
+
+    useEffect(() => {
+        const product = {
+            "Name": "Nhẫn Vàng trắng 10K đính đá ECZ PNJ XMXMW000128",
+            "Code": "XMXMW000128",
+            "Category": "Shake",
+            "ProductionCost": "12.4",
+            "SecondaryDiamondCost": "12.5",
+            "SecondaryMaterialCost": "124.4",
+            "Material": [
+                {
+                    "Type": "14K White Gold",
+                    "Weight": "12.4"
+                },
+                {
+                    "Type": "18K White Gold",
+                    "Weight": "123.4"
+                }
+            ],
+            "ProductSize": "15",
+            "ImagesProduct": [
+                "uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_1",
+                "uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_2",
+                "uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_3"
+            ],
+            "DiamondsProduct": [
+                {   
+                    "DiamondCode" :"DDDDW000924",
+                    "Origin": "LAB GROWN",
+                    "Color": "J",
+                    "Clarity": "FL",
+                    "Cut": "GOOD",
+                    "Carat": "12.3",
+                    "Image": "uploads/undefined_ceritificate_1"
+                },
+                {   
+                    "DiamondCode" :"DDDDW000923",
+                    "Origin": "LAB GROWN",
+                    "Color": "E",
+                    "Clarity": "IF",
+                    "Cut": "GOOD",
+                    "Carat": "112.3",
+                    "Image": "uploads/undefined_ceritificate_2"
+                }
+            ]
         }
-    ],
-    "ProductSize": "15",
-    "ImagesProduct": [
-        "uploads/XMXMW000128_image_1",
-        "uploads/XMXMW000128_image_2",
-        "uploads/XMXMW000128_image_3"
-    ],
-    "DiamondsProduct": [
-        {   
-            "DiamondCode" :"DDDDW000924",
-            "Origin": "LAB GROWN",
-            "Color": "J",
-            "Clarity": "FL",
-            "Cut": "GOOD",
-            "Carat": "12.3",
-            "Image": "uploads/undefined_ceritificate_1"
-        },
-        {   
-            "DiamondCode" :"DDDDW000923",
-            "Origin": "LAB GROWN",
-            "Color": "E",
-            "Clarity": "IF",
-            "Cut": "GOOD",
-            "Carat": "112.3",
-            "Image": "uploads/undefined_ceritificate_2"
-        }
-    ]
+   
+        //     getDownloadURL(
+        //         ref(imageStorage,"uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_1")
+        // ).then(url => {
+        //    setImageDataProduct(url);
+        // });
+      
+        
+        let imagesProduct = [];
+        
+        
+        product.ImagesProduct.map((item) => {
+            const imageRef = ref(imageStorage,item);
+            getDownloadURL(imageRef).then((url) => {
+                imagesProduct = [...imagesProduct,url];
+                setImageDataProduct(imagesProduct);
+            })
+        })
+
+        setCertificateDiamond(product.DiamondsProduct.map((item) => {return item.Image}));
+
+
+
+        
+        setFileImageProduct(product.ImagesProduct);
+        setFileCertificateDiamond(product.DiamondsProduct.map((item) => {return item.Image}));
+        setName(product.Name);
+        setCode(product.Code);
+        setCategoryProduct(product.Category);
+        setProductionCost(product.ProductionCost);
+        setSecondaryDiamondCost(product.SecondaryDiamondCost);
+        setSecondaryMaterialCost(product.SecondaryMaterialCost);
+        setProductSize(product.ProductSize);
+        setDiamondProducts(product.DiamondsProduct);
+        setMaterialProducts(product.Material);
+        setDiamondCount(product.DiamondsProduct.length);
+        setMaterialCount(product.Material.length);
+
+    },[])
+
+if(!imageDataProduct || 
+    !fileImageProduct ||
+    !certificateDiamond ||
+    !fileCertificateDiamond ||
+    !name || !code || !categoryProduct || !productionCost ||
+    !secondaryDiamondCost || !SecondaryMaterialCost || !productSize
+    || !diamondProducts || !diamondCount || !materialProducts || !materiaCount
+){
+    return <div> Loadinggg...................</div>
 }
+ 
 
 const size =[{name : '6'},{name : '7'},{name : '8'},
 {name : '9'},{name : '10'},{name : '11'},
@@ -88,42 +162,6 @@ const material = [{name : "14K White Gold"},  {name : "18K White Gold"}, {name :
 
 
 
-  const [imageDataProduct,setImageDataProduct] = useState(product.ImagesProduct);
-  
-  const [fileImageProduct,setFileImageProduct] = useState(product.ImagesProduct);
-
-  const [certificateDiamond,setCertificateDiamond] = useState(product.DiamondsProduct.map((item) => {
-    return item.Image;
-  }));
-
-  const [fileCertificateDiamond,setFileCertificateDiamond] = useState(product.DiamondsProduct.map((item) => {
-    return item.Image;
-  }));
-
-
-  const [name,setName] = useState(product.Name);
-  const [code,setCode] = useState(product.Code);
-  const [categoryProduct,setCategoryProduct] = useState(product.Category);
-  const [productionCost,setProductionCost] = useState(product.ProductionCost);
-  const [secondaryDiamondCost,setSecondaryDiamondCost] = useState(product.SecondaryDiamondCost);
-  const [SecondaryMaterialCost,setSecondaryMaterialCost] = useState(product.SecondaryMaterialCost);
-  const [productSize,setProductSize] = useState(product.ProductSize);
-
-  const [diamondProducts,setDiamondProducts] = useState(product.DiamondsProduct.map((item) => {
-    return item;
-  }));
-
-  const [diamondCount, setDiamondCount] = useState(product.DiamondsProduct.length);
-
-
-  const [materialProducts,setMaterialProducts] = useState(product.Material.map((item) => {
-    return item;
-  }));
- 
-  console.log(materialProducts);
-
-  const [materiaCount, setMaterialCount] = useState(product.Material.length);
-
 
   const handleAddMaterial = () => {
     setMaterialProducts([...materialProducts, {
@@ -142,8 +180,18 @@ const material = [{name : "14K White Gold"},  {name : "18K White Gold"}, {name :
     return prevCount; 
   });
 };
-
+console.log(materialProducts);
 const handleAddDiamond = () => {
+    setDiamondProducts([...diamondProducts,{
+        
+            "DiamondCode" :null ,
+            "Origin" :null ,
+            "Color" : null,
+            "Clarity" : null,
+            "Cut" : null,
+            "Carat" : null  ,
+            "Image" : ""
+    }])
     setDiamondCount((prevCount) => prevCount + 1);
   };
 
@@ -173,18 +221,53 @@ console.log(
         "ImagesProduct" : imageDataProduct,
         "DiamondsProduct" : diamondProducts
     }
-)
+)   
+
+    const handleEdit = () => {
+        setIsEdit(true);
+    }
+
+    const handleDelete = () => {
+        setIsEdit(true);
+    }
+    const handleBreadCump = () => {
+        navigate("/admin/products");
+    }
 
   return (
     <div className='detail-product-container'>
+      
         <h1>
             Product
         </h1>
         <p>
-          Admin / <span>Products</span>
+          Admin / <span onClick={handleBreadCump} >Products</span> / <span> {code}</span>
         </p>
+
+        <div className='button-back' onClick={handleBreadCump}>
+            <img src={ICONS.icon_drop_down} />
+           <span>
+                Previous
+           </span>
+        </div>
         <div className='detail-product-content'>
+
+            <div className='detail-prodcuct-edit-delete'>
+                    <div className='detail-prodcuct-edit' 
+                        onClick={handleEdit}
+                    >
+                        <span>Edit</span>
+                    </div>
+                    <div className='detail-prodcuct-delete'
+                        onClick={handleDelete}
+                    >
+                        <span>Delete</span>
+                    </div>
+            </div>
+            <h2>Information Product</h2>
             <div className='detail-product-card'>
+
+                
                 <div className='main-information-product'
                 
                     style={isEdit ? {"display" : 'flex',
@@ -394,7 +477,7 @@ console.log(
                                 ) : <>
                                     
                                         <div>
-
+                                            {imageDataProduct[0] && <img src={imageDataProduct[0]} alt='' />}
                                         </div>
                                         <label>images-1</label>
                                   
@@ -428,7 +511,7 @@ console.log(
                                 ) : <>
                                     
                                         <div>
-
+                                        {imageDataProduct[1] && <img src={imageDataProduct[1]} alt='' />}
                                         </div>
                                         <label>images-2</label>
                                    
@@ -459,7 +542,7 @@ console.log(
                                 ) : <>
                                     
                                         <div>
-
+                                        {imageDataProduct[2] && <img src={imageDataProduct[2]} alt='' />}
                                         </div>
                                         <label>images-3</label>
                                  
@@ -493,7 +576,7 @@ console.log(
                                         diamondProducts={diamondProducts}
                                         setFileImage={setFileCertificateDiamond}
                                         fileImage={fileCertificateDiamond}
-                                    
+                                        
                                     />
 
 
@@ -581,7 +664,13 @@ console.log(
                    
 
                 </div>
-
+                
+                {
+                    isEdit ? 
+                    <div className='button-update-product'>
+                    <span>Update</span>
+                </div> : ""
+                }
 
             </div>
         </div>

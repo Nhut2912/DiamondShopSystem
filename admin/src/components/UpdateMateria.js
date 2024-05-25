@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { ICONS } from '../constants'
 import InputSelectBox from './InputSelectBox'
 import InputDoubleBox from './InputDoubleBox'
@@ -13,21 +13,26 @@ function UpdateMaterial({index,
 
   const [type, setType] = useState(materialProducts[index].Type !== null ?materialProducts[index].Type : null );
   const [weight, setWeight] = useState(materialProducts[index].Weight !== null ?materialProducts[index].Weight : null);
- 
+
   const materialProduct = useMemo(() => (
     {
         "Type" : type === null ? material[0].name : type,
         "Weight" : weight
      }
     ),[type,weight]);
-
     const updatedMaterial = useMemo(() => {
         const _updateMaterialProduct = [...materialProducts];
         _updateMaterialProduct[index] = materialProduct;
         return _updateMaterialProduct;
-    },[materialProduct]);
+    },[materialProduct,materialProducts]);
 
-    setMaterialProducts(updatedMaterial);
+    useEffect(() => {
+      setMaterialProducts(updatedMaterial)
+    },[type,weight]);
+
+
+
+
   return (
     <ul>
             <li>

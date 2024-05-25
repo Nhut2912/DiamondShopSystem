@@ -25,7 +25,9 @@ const Navigation = () => {
     useEffect(() => {
         const uri = window.location.pathname;
         contentItems.map((element) => {
-            if(uri.endsWith(element.path)){
+            if(uri.endsWith("/admin")){
+                setActiveItem('Dashboard')
+            }else if(uri.includes(element.path)){
                 setActiveItem(element.name)
             }
         })

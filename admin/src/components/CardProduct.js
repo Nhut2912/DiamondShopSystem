@@ -7,8 +7,11 @@ function CardProduct() {
   const navigate = useNavigate();
   const productId = 123;
   const handClick = (event) => {  
+   
     console.log(".....");
     navigate(""+productId);
+
+
   }
   return (
     <div className='content-table-container' onClick={handClick} style={{'cursor': 'pointer'}} >

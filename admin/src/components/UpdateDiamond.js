@@ -1,4 +1,4 @@
-import React, {  useMemo, useState } from 'react'
+import React, {  useEffect, useMemo, useState } from 'react'
 import InputBox from './InputBox'
 import RadioInput from './RadioInput'
 import InputFile from './InputFile'
@@ -39,9 +39,14 @@ function UpdateDiamond({origin, color, clarity,cut ,imageData,index,setImageData
      const _updateDiamondProducts = [...diamondProducts];
      _updateDiamondProducts[index] = diamond;
      return _updateDiamondProducts;
- },[diamond]);
+ },[diamond,diamondProducts]);
 
- setDiamondProducts(updatedDiamondProucts);
+ useEffect(() => {
+  setDiamondProducts(updatedDiamondProucts);
+}, [code,originDiamond,colorDiamond,clarityDiamond,cutDiamond,caratDiamond]);
+
+
+ 
 
   return (
     <div className='add-diamond-container' style={{display: 'grid', rowGap: '20px'}}>
