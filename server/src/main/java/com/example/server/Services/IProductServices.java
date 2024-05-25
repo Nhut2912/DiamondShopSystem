@@ -1,6 +1,7 @@
 package com.example.server.Services;
 
 import com.example.server.Pojo.Product;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -13,8 +14,11 @@ import java.util.List;
 
 
 public interface IProductServices {
-
-    public void save(Product product);
+    /*
+     * Author: Pham Trong Hieu
+     * Date: 24/5/2024
+     */
+    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID);
 
     public void delete(Long ProductID);
 

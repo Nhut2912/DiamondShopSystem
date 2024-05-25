@@ -19,23 +19,23 @@ public class Color {
     private Set<Diamond> diamondColors;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondColor")
-    private Set<DiamondPriceList> diamondColorss;
+    private Set<DiamondPriceList> diamondPriceColors;
 
     public Color() {
     }
 
-    public Color(Long id, String color, Set<Diamond> diamondColors, Set<DiamondPriceList> diamondColorss) {
+    public Color(Long id, String color, Set<Diamond> diamondColors, Set<DiamondPriceList> diamondPriceColors) {
         Id = id;
         this.color = color;
         this.diamondColors = diamondColors;
-        this.diamondColorss = diamondColorss;
+        this.diamondPriceColors = diamondPriceColors;
     }
 
     public Color(Color c) {
         Id = c.Id;
         this.color = c.color;
         this.diamondColors = c.diamondColors;
-        this.diamondColorss = c.diamondColorss;
+        this.diamondPriceColors = c.diamondPriceColors;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Color {
                 "Id=" + Id +
                 ", color='" + color + '\'' +
                 ", diamondColors=" + diamondColors +
-                ", diamondColorss=" + diamondColorss +
+                ", diamondPriceColors=" + diamondPriceColors +
                 '}';
     }
 }
