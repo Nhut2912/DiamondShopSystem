@@ -4,6 +4,8 @@ package com.example.server.Pojo;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 @Data
@@ -103,6 +105,12 @@ public class Product {
         DiamondProducts = diamondProducts;
     }
 
+    public void addProductMaterial(Material m, int quantity){
+
+        ProductMaterial pm = new ProductMaterial(this,m,quantity);
+        productMaterialSet.add(pm);
+        m.getMaterialSet().add(pm);
+    }
     public Product() {
 
     }
