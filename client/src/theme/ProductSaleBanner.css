@@ -1,0 +1,19 @@
+.product-banner-sale-container{
+    height: 580px;
+    display: flex;
+    width: 1180px;
+    margin: 50px auto;
+    overflow: hidden;
+    justify-content: space-between;
+    
+}
+.product-banner-sale-container > div {
+    height: 560px;
+    width: 383px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.product-banner-sale-container > div > img{
+    max-width: 100%;
+    min-height: 100%;
+}

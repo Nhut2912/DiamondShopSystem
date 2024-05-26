@@ -1,0 +1,17 @@
+.product-page-container{
+    width: 1180px;
+    margin: 0 auto;
+}
+.product-page-container > .on-sale{
+    display: grid;
+    grid-template-columns: repeat(4,280px);
+    column-gap: 20px;
+}
+.product-page-container > .on-sale > h3{
+    grid-column: span 4;
+}
+.product-page-container > .all-product{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    column-gap: 20px;
+}

@@ -104,7 +104,7 @@ function DetailProduct() {
 
 
 
-        
+
         setFileImageProduct(product.ImagesProduct);
         setFileCertificateDiamond(product.DiamondsProduct.map((item) => {return item.Image}));
         setName(product.Name);
