@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "api/product")
@@ -27,8 +28,8 @@ public class ProductController {
      * Date: 24/5/2024
      */
         @PostMapping("/save")
-        public ResponseEntity<Product> save(@RequestBody Product product, @RequestParam Long categoryID, @RequestParam Long sizeID, @RequestParam Long warrantyID){
-            Product addedProduct = productServices.save(product, categoryID, sizeID, warrantyID).getBody();
+        public ResponseEntity<Product> save(@RequestBody Product product, @RequestParam Long categoryID, @RequestParam Long sizeID, @RequestParam Long warrantyID, @RequestParam Long imageID, @RequestParam Set<Long> materialID, List<Integer> quantities){
+            Product addedProduct = productServices.save(product, categoryID, sizeID, warrantyID, imageID, materialID, quantities).getBody();
             return ResponseEntity.status(HttpStatus.CREATED).body(addedProduct);
         }
 

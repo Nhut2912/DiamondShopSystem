@@ -4,6 +4,7 @@ import com.example.server.Pojo.Product;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Set;
 
 /*
  * author : TRAN MINH NHUT
@@ -18,7 +19,7 @@ public interface IProductServices {
      * Author: Pham Trong Hieu
      * Date: 24/5/2024
      */
-    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID);
+    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID, Long imagesID, Set<Long> materialID, List<Integer> quantities);
 
     public void delete(Long ProductID);
 

@@ -38,4 +38,5 @@ public class Material {
         this.materialPrice = m.materialPrice;
         this.materialSet = m.materialSet;
     }
+
 }
