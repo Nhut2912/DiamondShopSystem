@@ -48,4 +48,28 @@ public class ProductMaterial {
                 ", weight=" + weight +
                 '}';
     }
+
+    public Product getProducts() {
+        return products;
+    }
+
+    public void setProducts(Product products) {
+        this.products = products;
+    }
+
+    public Material getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(Material materials) {
+        this.materials = materials;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
 }

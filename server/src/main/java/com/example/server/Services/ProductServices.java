@@ -63,8 +63,10 @@ public class ProductServices implements IProductServices{
             d.setDiamondClarity(clarity);
             d.setDiamondCut(cut);
             d.setDiamondOrigin(o);
-            product.addProductDiamond(d);
+            d.setDiamondProduct(product);
         }
+        product.setDiamondProducts(diamonds);
+
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
