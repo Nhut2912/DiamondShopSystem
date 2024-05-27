@@ -17,10 +17,10 @@ public class Clarity {
 
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
-    private Set<Diamond> diamondClaritys;
+    private Set<Diamond> diamondClarity;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
-    private Set<DiamondPriceList> diamondClarityss;
+    private Set<DiamondPriceList> diamondPriceListClarity;
 
     public Clarity() {
     }
@@ -28,15 +28,15 @@ public class Clarity {
     public Clarity(Long id, String clarity, Set<Diamond> diamondClaritys, Set<DiamondPriceList> diamondClarityss) {
         Id = id;
         this.clarity = clarity;
-        this.diamondClaritys = diamondClaritys;
-        this.diamondClarityss = diamondClarityss;
+        this.diamondClarity = diamondClaritys;
+        this.diamondPriceListClarity = diamondClarityss;
     }
 
     public Clarity(Clarity cla) {
         Id = cla.Id;
         this.clarity = cla.clarity;
-        this.diamondClaritys = cla.diamondClaritys;
-        this.diamondClarityss = cla.diamondClarityss;
+        this.diamondClarity = cla.diamondClarity;
+        this.diamondPriceListClarity = cla.diamondPriceListClarity;
     }
 
     @Override
@@ -44,8 +44,8 @@ public class Clarity {
         return "Clarity{" +
                 "Id=" + Id +
                 ", clarity='" + clarity + '\'' +
-                ", diamondClaritys=" + diamondClaritys +
-                ", diamondClarityss=" + diamondClarityss +
+                ", diamondClarity=" + diamondClarity +
+                ", diamondPriceListClarity=" + diamondPriceListClarity +
                 '}';
     }
 }

@@ -40,34 +40,48 @@ public class ProductServices implements IProductServices{
      * Date: 24/5/2024
      */
     @Override
-    public ResponseEntity<Product> save(Product product, Category category, Size size, WarrantyPolicy wp, Warranty warranty, Set<Image> img, Set<Long> materialID, List<Double> weights, Set<Diamond> diamonds, Origin o, Color color, Cut cut, Clarity clarity) {
+    public Product save(Product product) {
 
-        product.setProductCategory(category);
+        System.out.println("Services: "+product.getName());
+        Product p = new Product();
+        p.setName(product.getName());
+        p.setCode(product.getCode());
+        p.setProductionCost(product.getProductionCost());
+        p.setSecondaryDiamondCost(product.getSecondaryDiamondCost());
+        p.setSecondaryMaterialCost(product.getSecondaryMaterialCost());
 
-        product.setProductSizes(size);
+        p.setProductCategory(product.getProductCategory());
 
-        warranty.setWarrantyPolicy(wp);
-        product.setWarranty(warranty);
+        p.setProductSizes(product.getProductSizes());
 
-        product.setImages(img);
+        p.setImages(product.getImages());
 
-        List<Material> materials = MaterialRepository.findAllById(materialID);
-        for(int i = 0; i < materials.size(); i++){
-            Material m = materials.get(i);
-            double weight = weights.get(i);
-            product.addProductMaterial(m,weight);
-        }
+//        for(Image img : product.getImages()){
+//            Image i = new Image();
+//            i.setId(img.getId());
+//            i.setUri(img.getUri());
+//            i.setProducts(img.getProducts());
+//            ImagesRepository.save(i);
+//        }
 
-        for(Diamond d: diamonds){
-            d.setDiamondColor(color);
-            d.setDiamondClarity(clarity);
-            d.setDiamondCut(cut);
-            d.setDiamondOrigin(o);
-            d.setDiamondProduct(product);
-        }
-        product.setDiamondProducts(diamonds);
+        p.setDiamondProducts(product.getDiamondProducts());
 
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+//        for(Diamond diamond : product.getDiamondProducts()){
+//            Diamond d = new Diamond();
+//            d.setId(diamond.getId());
+//            d.setDiamondOrigin(diamond.getDiamondOrigin());
+//            d.setDiamondCut(diamond.getDiamondCut());
+//            d.setDiamondClarity(diamond.getDiamondClarity());
+//            d.setDiamondColor(diamond.getDiamondColor());
+//            d.setCarat(diamond.getCarat());
+//            d.setCode(diamond.getCode());
+//            d.setCertificate(diamond.getCertificate());
+//            d.setDiamondProduct(diamond.getDiamondProduct());
+//            DiamondRepository.save(d);
+//        }
+
+
+        return ProductRepository.save(p);
     }
 
 
