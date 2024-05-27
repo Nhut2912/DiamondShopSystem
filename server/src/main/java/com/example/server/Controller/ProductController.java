@@ -27,9 +27,10 @@ public class ProductController {
      * Date: 24/5/2024
      */
     @PostMapping("/save")
-    public ResponseEntity<Product> save(@RequestBody Product product, @RequestBody Category category, @RequestBody Size size, @RequestBody WarrantyPolicy wp, @RequestBody Warranty warranty, @RequestBody Set<Image> img, @RequestParam Set<Long> materialID, @RequestParam List<Double> weights, @RequestBody Set<Diamond> diamonds, @RequestBody Origin origin, @RequestBody Color color, @RequestBody Cut cut, @RequestBody Clarity clarity) {
-        Product addedProduct = productServices.save(product, category, size, wp, warranty, img, materialID, weights, diamonds, origin, color, cut, clarity).getBody();
-        return ResponseEntity.status(HttpStatus.CREATED).body(addedProduct);
+    public ResponseEntity<Product> save(@RequestBody Product product) {
+
+        Product addedProduct = productServices.save(product);
+        return new ResponseEntity<>(addedProduct,HttpStatus.CREATED);
     }
 
     @GetMapping("/getProducts")

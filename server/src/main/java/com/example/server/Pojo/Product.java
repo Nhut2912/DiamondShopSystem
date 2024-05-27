@@ -75,6 +75,11 @@ public class Product {
         m.getMaterialSet().add(pm);
     }
 
+    public void addProductDiamond(Diamond d){
+        DiamondProducts.add(d);
+        d.setDiamondProduct(this);
+    }
+
     public Product(Long id, String name, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images, Category productCategory, Set<ProductMaterial> productMaterialSet, Warranty warranty, Set<OrderDetail> productDetailSet, Set<Promotions_Product> products, Set<Diamond> diamondProducts) {
         Id = id;
         Name = name;
@@ -274,7 +279,7 @@ public class Product {
         return products;
     }
 
-    public void setProducts(Set<Promotions_Product> products) {
+    public void setProductsPromotion(Set<Promotions_Product> products) {
         this.products = products;
     }
 
