@@ -3,11 +3,18 @@ import ICONS from '../constants/icons'
 
 import '../theme/ProductCard.css';
 import IMAGES from '../constants/images';
+import { useNavigate } from 'react-router-dom';
 
 function ProductCard() {
-
+  const navigate = useNavigate();
+  const idProduct = 123;
+  const viewDetailProduct = () => {
+     navigate("/products/"+idProduct);
+  }
   return (
-    <div className='product-card-container'>
+    <div className='product-card-container'
+      onClick={viewDetailProduct}
+    >
         <h3>Nhẫn Kim cương Vàng trắng  14K PNJ DDDDW003910</h3>
 
         {true &&
@@ -22,7 +29,7 @@ function ProductCard() {
         
       
         <div className='product-card-img'>
-            <img src={IMAGES.test_image} alt='' />
+            <img src={IMAGES.image_product_2} alt='' />
         </div>
         <div className='product-card-price'>
           {true && 

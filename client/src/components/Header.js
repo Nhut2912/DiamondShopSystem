@@ -11,9 +11,9 @@ function Header() {
  
  const navigation = [
     {name : 'HOME', path : "/home"},
-    {name : 'PRODUCTS', path : "products"},
-    {name : 'BLOG', path : "blog"},
-    {name : 'CONTACT', path : "contact"},
+    {name : 'PRODUCTS', path : "/products"},
+    {name : 'BLOG', path : "/blog"},
+    {name : 'CONTACT', path : "/contact"},
  ]
 
  useEffect(() => {

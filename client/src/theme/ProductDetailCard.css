@@ -1,0 +1,154 @@
+.product-detail-card-container{
+    display: grid;
+    width: 1180px;
+    margin: 0 auto;
+    grid-template-columns: 6fr 6fr;
+    column-gap: 20px;
+}
+.product-detail-card-container > .image-product-container{
+    display:grid;
+    grid-template-columns: 4fr 4fr 4fr;
+    gap: 20px;
+}
+.product-detail-card-container > .image-product-container > div:nth-child(1){
+    grid-column: 1/4;
+    width: 580px;
+    height: 480px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(180deg, #FFF 0%, #F7F7F7 100%);
+}
+.product-detail-card-container > .image-product-container > div > img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.product-detail-card-container > .image-product-container > div:nth-child(n+2) {
+    width: 180px;
+    height: 180px;
+    overflow: hidden;background: #F7F7F7;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.product-detail-card-container > .image-product-container > div:nth-child(n+2).isActive{
+    border:2px solid #D9B384 ;
+    box-sizing: border-box;
+}
+.product-detail-card-container > .information-product-container{
+    margin-left: 30px;
+}
+.product-detail-card-container > .information-product-container > h1{
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Roboto Serif";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 117.135%; 
+    margin: 0;
+}
+.product-detail-card-container > .information-product-container >  p{
+    color: rgba(0, 0, 0, 0.50);
+    font-family: "Times New Roman";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 11px 0 10px 0;
+}
+.product-detail-card-container > .information-product-container >  h2{
+    color: #D9B384;
+    font-family: "Times New Roman";
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 20px 0 30px 0;
+}   
+.product-detail-card-container > .information-product-container > .choose-size > h5{
+    color: rgba(0, 0, 0, 0.50);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+     margin: 0 0 15px 0;
+}
+.product-detail-card-container > .information-product-container > .choose-size > .questions-size{
+    display: flex;
+    column-gap: 10px;
+    margin-top: 5px;
+}
+.product-detail-card-container > .information-product-container > .choose-size > .questions-size > span{
+    color: #D9B384;
+    font-family: "Roboto Serif";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.product-detail-card-container > .information-product-container > .brief-about-the-product > h5{
+    color: rgba(0, 0, 0, 0.50);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 25px 0 15px 0;
+}
+.product-detail-card-container > .information-product-container > .brief-about-the-product > ul{
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    row-gap: 10px;
+}
+.product-detail-card-container > .information-product-container > .brief-about-the-product > ul > li{
+    display: flex;
+    column-gap: 20px;
+}
+.product-detail-card-container > .information-product-container > .brief-about-the-product > ul > li > span{
+    width: 140px;
+    color: rgba(0, 0, 0, 0.70);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.product-detail-card-container > .information-product-container > .brief-about-the-product > ul > li > span:last-child{
+    color: #D9B384;
+    font-size: 15px;
+}
+.product-detail-card-container > .information-product-container > .button-on-product{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: 20px;
+    margin-top: 50px;
+}
+.product-detail-card-container > .information-product-container > .button-on-product > div{
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.product-detail-card-container > .information-product-container > .button-on-product > div > span{
+    text-align: center;
+    font-family: "Roboto Serif";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.18px;
+}
+.product-detail-card-container > .information-product-container > .button-on-product > div:first-child{
+    background: #D9B384;
+}
+.product-detail-card-container > .information-product-container > .button-on-product > div:last-child{
+    background: rgba(217, 179, 132, 0.50);
+}
+.product-detail-card-container > .information-product-container > .button-on-product > div:last-child > span{
+    color: rgba(0, 0, 0, 0.70);
+}
+.product-detail-card-container > .information-product-container > .button-on-product > div:first-child > span{
+    color: #FFF;
+}
