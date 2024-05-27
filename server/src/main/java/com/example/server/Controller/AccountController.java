@@ -38,7 +38,7 @@ public class AccountController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody Account account) {
-        List<Account> accounts = accountRepository.findByEmail(account.getEmail(),account.getPhone());
+        List<Account> accounts = accountRepository.findAllByEmailAndPhone(account.getEmail(),account.getPhone());
         return new ResponseEntity(accounts, HttpStatus.OK);
     }
 }
