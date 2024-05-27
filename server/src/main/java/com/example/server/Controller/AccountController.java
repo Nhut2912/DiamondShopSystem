@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 /*
  * author : Tran Viet Hoang
  * date : 23/5/2024
@@ -30,13 +31,14 @@ public class AccountController {
     private IRegistrationServices userService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegistrationRequest registerRequest){
+    public ResponseEntity<?> register(@RequestBody RegistrationRequest registerRequest) {
         return userService.register(registerRequest);
 
     }
+
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody Account account){
-         List<Account> accounts = accountRepository.findByEmail(account.getEmail());
-         return new ResponseEntity(accounts, HttpStatus.OK);
+    public ResponseEntity login(@RequestBody Account account) {
+        List<Account> accounts = accountRepository.findByEmail(account.getEmail());
+        return new ResponseEntity(accounts, HttpStatus.OK);
     }
 }

@@ -21,15 +21,18 @@ public class ProductServices implements IProductServices{
     private final IImagesRepository ImagesRepository;
     private final IMaterialRepository MaterialRepository;
 
+    private final IDiamondRepository DiamondRepository;
+
 
     @Autowired
-    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository, ISizeRepository sizeRepository, IWarrantyRepository warrantyRepository, IImagesRepository imagesRepository, IMaterialRepository materialRepository) {
+    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository, ISizeRepository sizeRepository, IWarrantyRepository warrantyRepository, IImagesRepository imagesRepository, IMaterialRepository materialRepository, IDiamondRepository diamondRepository) {
         this.ProductRepository = productRepository;
         CategoryRepository = categoryRepository;
         SizeRepository = sizeRepository;
         WarrantyRepository = warrantyRepository;
         ImagesRepository = imagesRepository;
         MaterialRepository = materialRepository;
+        DiamondRepository = diamondRepository;
     }
 
     /*
@@ -37,27 +40,33 @@ public class ProductServices implements IProductServices{
      * Date: 24/5/2024
      */
     @Override
-    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID, Long imagesID, Set<Long> materialID, List<Integer> quantities) {
+    public ResponseEntity<Product> save(Product product, Category category, Size size, WarrantyPolicy wp, Warranty warranty, Set<Image> img, Set<Long> materialID, List<Double> weights, Set<Diamond> diamonds, Origin o, Color color, Cut cut, Clarity clarity) {
 
-        Category category = CategoryRepository.findById(categoryID)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
         product.setProductCategory(category);
 
-        Size size = SizeRepository.findById(sizeID).orElseThrow(() -> new RuntimeException("Size not found"));
         product.setProductSizes(size);
 
-        Warranty warranty = WarrantyRepository.findById(warrantyID).orElseThrow(() -> new RuntimeException("Warranty not found"));
+        warranty.setWarrantyPolicy(wp);
         product.setWarranty(warranty);
 
-        Image img = ImagesRepository.findById(imagesID).orElseThrow(() -> new RuntimeException("Image not found"));
-        product.setImages((Set<Image>) img);
+        product.setImages(img);
 
         List<Material> materials = MaterialRepository.findAllById(materialID);
         for(int i = 0; i < materials.size(); i++){
             Material m = materials.get(i);
-            int quantity = quantities.get(i);
-            product.addProductMaterial(m,quantity);
+            double weight = weights.get(i);
+            product.addProductMaterial(m,weight);
         }
+
+        for(Diamond d: diamonds){
+            d.setDiamondColor(color);
+            d.setDiamondClarity(clarity);
+            d.setDiamondCut(cut);
+            d.setDiamondOrigin(o);
+            d.setDiamondProduct(product);
+        }
+        product.setDiamondProducts(diamonds);
+
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
