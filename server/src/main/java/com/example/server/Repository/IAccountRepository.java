@@ -16,5 +16,9 @@ import java.util.Optional;
  */
 @Repository
 public interface IAccountRepository extends JpaRepository<Account, Long> {
-    List<Account> findAllByEmailAndPhone(String email,String phone);
+    Account findAllByEmailAndPhone(String email,String phone);
+
+    Account findByEmail(String email);
+
+    Account findByPhone(String phone);
 }
