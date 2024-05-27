@@ -4,10 +4,8 @@ package com.example.server.Pojo;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+
 @Data
 @Entity
 @Table(name = "PRODUCTS")
@@ -44,7 +42,7 @@ public class Product {
     private Size ProductSizes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Products")
-    private Set<Image> Images;
+    private Set<Image> images;
 
     //Pham Trong Hieu
     @ManyToOne() //many to one khong nen dung cascade(Tran Viet Hoang)
@@ -66,7 +64,7 @@ public class Product {
     private Set<Promotions_Product> products;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "DiamondProduct")
-    private Set<Diamond> DiamondProducts;
+    private Set<Diamond> diamondProducts;
 
     public void addProductMaterial(Material m, double weight){
 
@@ -76,11 +74,11 @@ public class Product {
     }
 
     public void addProductDiamond(Diamond d){
-        DiamondProducts.add(d);
+        diamondProducts.add(d);
         d.setDiamondProduct(this);
     }
 
-    public Product(Long id, String name, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images, Category productCategory, Set<ProductMaterial> productMaterialSet, Warranty warranty, Set<OrderDetail> productDetailSet, Set<Promotions_Product> products, Set<Diamond> diamondProducts) {
+    public Product(Long id, String name, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> imagess, Category productCategory, Set<ProductMaterial> productMaterialSet, Warranty warranty, Set<OrderDetail> productDetailSet, Set<Promotions_Product> products, Set<Diamond> diamondProductss) {
         Id = id;
         Name = name;
         Code = code;
@@ -90,31 +88,13 @@ public class Product {
         ProductionCost = productionCost;
         PriceRate = priceRate;
         ProductSizes = productSizes;
-        Images = images;
+        images = imagess;
         ProductCategory = productCategory;
         this.productMaterialSet = productMaterialSet;
         this.warranty = warranty;
         this.productDetailSet = productDetailSet;
         this.products = products;
-        DiamondProducts = diamondProducts;
-    }
-
-    public Product(String name, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> images, Category productCategory, Set<ProductMaterial> productMaterialSet, Warranty warranty, Set<OrderDetail> productDetailSet, Set<Promotions_Product> products, Set<Diamond> diamondProducts) {
-        Name = name;
-        Code = code;
-        Active = active;
-        SecondaryDiamondCost = secondaryDiamondCost;
-        SecondaryMaterialCost = secondaryMaterialCost;
-        ProductionCost = productionCost;
-        PriceRate = priceRate;
-        ProductSizes = productSizes;
-        Images = images;
-        ProductCategory = productCategory;
-        this.productMaterialSet = productMaterialSet;
-        this.warranty = warranty;
-        this.productDetailSet = productDetailSet;
-        this.products = products;
-        DiamondProducts = diamondProducts;
+        diamondProducts = diamondProductss;
     }
 
 
@@ -132,13 +112,13 @@ public class Product {
         ProductionCost = p.ProductionCost;
         PriceRate = p.PriceRate;
         ProductSizes = p.ProductSizes;
-        Images = p.Images;
+        images = p.images;
         ProductCategory = p.ProductCategory;
         this.productMaterialSet = p.productMaterialSet;
         this.warranty = p.warranty;
         this.productDetailSet = p.productDetailSet;
         this.products = p.products;
-        DiamondProducts = p.DiamondProducts;
+        diamondProducts = p.diamondProducts;
     }
 
     @Override
@@ -153,13 +133,13 @@ public class Product {
                 ", ProductionCost=" + ProductionCost +
                 ", PriceRate=" + PriceRate +
                 ", ProductSizes=" + ProductSizes +
-                ", Images=" + Images +
+                ", Images=" + images +
                 ", ProductCategory=" + ProductCategory +
                 ", productMaterialSet=" + productMaterialSet +
                 ", warranty=" + warranty +
                 ", productDetailSet=" + productDetailSet +
                 ", products=" + products +
-                ", DiamondProducts=" + DiamondProducts +
+                ", DiamondProducts=" + diamondProducts +
                 '}';
     }
 
@@ -236,11 +216,11 @@ public class Product {
     }
 
     public Set<Image> getImages() {
-        return Images;
+        return images;
     }
 
-    public void setImages(Set<Image> images) {
-        Images = images;
+    public void setImages(Set<Image> imageSet) {
+        images = imageSet;
     }
 
     public Category getProductCategory() {
@@ -284,10 +264,10 @@ public class Product {
     }
 
     public Set<Diamond> getDiamondProducts() {
-        return DiamondProducts;
+        return diamondProducts;
     }
 
-    public void setDiamondProducts(Set<Diamond> diamondProducts) {
-        DiamondProducts = diamondProducts;
+    public void setDiamondProducts(Set<Diamond> diamondProductsSet) {
+        diamondProducts = diamondProductsSet;
     }
 }

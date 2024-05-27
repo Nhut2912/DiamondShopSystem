@@ -1,6 +1,7 @@
 package com.example.server.Controller;
 
 import com.example.server.Pojo.*;
+import com.example.server.Requests.ProductDTO;
 import com.example.server.Services.IProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping(path = "api/product")
@@ -27,7 +27,7 @@ public class ProductController {
      * Date: 24/5/2024
      */
     @PostMapping("/save")
-    public ResponseEntity<Product> save(@RequestBody Product product) {
+    public ResponseEntity<Product> save(@RequestBody ProductDTO product) throws Exception{
 
         Product addedProduct = productServices.save(product);
         return new ResponseEntity<>(addedProduct,HttpStatus.CREATED);

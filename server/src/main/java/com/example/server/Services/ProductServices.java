@@ -2,11 +2,13 @@ package com.example.server.Services;
 
 import com.example.server.Pojo.*;
 import com.example.server.Repository.*;
+import com.example.server.Requests.ImageDTO;
+import com.example.server.Requests.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,13 +16,18 @@ import java.util.Set;
 @Service
 public class ProductServices implements IProductServices{
 
+    @Autowired
     private final IProductRepository ProductRepository;
+    @Autowired
     private final ICategoryRepository CategoryRepository;
+    @Autowired
     private final ISizeRepository SizeRepository;
     private final IWarrantyRepository WarrantyRepository;
+//    @Autowired
     private final IImagesRepository ImagesRepository;
     private final IMaterialRepository MaterialRepository;
 
+//    @Autowired
     private final IDiamondRepository DiamondRepository;
 
 
@@ -40,9 +47,8 @@ public class ProductServices implements IProductServices{
      * Date: 24/5/2024
      */
     @Override
-    public Product save(Product product) {
+    public Product save(ProductDTO product)  throws Exception{
 
-        System.out.println("Services: "+product.getName());
         Product p = new Product();
         p.setName(product.getName());
         p.setCode(product.getCode());
@@ -50,36 +56,23 @@ public class ProductServices implements IProductServices{
         p.setSecondaryDiamondCost(product.getSecondaryDiamondCost());
         p.setSecondaryMaterialCost(product.getSecondaryMaterialCost());
 
-        p.setProductCategory(product.getProductCategory());
+        //Category, Size, Diamond, Img
+        Category category = CategoryRepository.findById(product.getCategoryID())
+                .orElseThrow(() -> new IllegalArgumentException("Category not found with id: " + product.getCategoryID()));
+        p.setProductCategory(category);
 
-        p.setProductSizes(product.getProductSizes());
+        Size size = SizeRepository.findById(product.getSizeID())
+                .orElseThrow(() -> new IllegalArgumentException("Size not found with id: "+ product.getSizeID()));
+        p.setProductSizes(size);
 
-        p.setImages(product.getImages());
-
-//        for(Image img : product.getImages()){
-//            Image i = new Image();
-//            i.setId(img.getId());
-//            i.setUri(img.getUri());
-//            i.setProducts(img.getProducts());
-//            ImagesRepository.save(i);
+//        Set<Image> images = new HashSet<>();
+//        for(ImageDTO img : product.getImages()){
+//            Image image = new Image();
+//            image.setUri(img.getUri());
+//            image.setProducts(p);
+//            images.add(image);
 //        }
-
-        p.setDiamondProducts(product.getDiamondProducts());
-
-//        for(Diamond diamond : product.getDiamondProducts()){
-//            Diamond d = new Diamond();
-//            d.setId(diamond.getId());
-//            d.setDiamondOrigin(diamond.getDiamondOrigin());
-//            d.setDiamondCut(diamond.getDiamondCut());
-//            d.setDiamondClarity(diamond.getDiamondClarity());
-//            d.setDiamondColor(diamond.getDiamondColor());
-//            d.setCarat(diamond.getCarat());
-//            d.setCode(diamond.getCode());
-//            d.setCertificate(diamond.getCertificate());
-//            d.setDiamondProduct(diamond.getDiamondProduct());
-//            DiamondRepository.save(d);
-//        }
-
+//        p.setImages(images);
 
         return ProductRepository.save(p);
     }
