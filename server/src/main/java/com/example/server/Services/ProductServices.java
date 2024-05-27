@@ -21,15 +21,18 @@ public class ProductServices implements IProductServices{
     private final IImagesRepository ImagesRepository;
     private final IMaterialRepository MaterialRepository;
 
+    private final IDiamondRepository DiamondRepository;
+
 
     @Autowired
-    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository, ISizeRepository sizeRepository, IWarrantyRepository warrantyRepository, IImagesRepository imagesRepository, IMaterialRepository materialRepository) {
+    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository, ISizeRepository sizeRepository, IWarrantyRepository warrantyRepository, IImagesRepository imagesRepository, IMaterialRepository materialRepository, IDiamondRepository diamondRepository) {
         this.ProductRepository = productRepository;
         CategoryRepository = categoryRepository;
         SizeRepository = sizeRepository;
         WarrantyRepository = warrantyRepository;
         ImagesRepository = imagesRepository;
         MaterialRepository = materialRepository;
+        DiamondRepository = diamondRepository;
     }
 
     /*
@@ -37,7 +40,7 @@ public class ProductServices implements IProductServices{
      * Date: 24/5/2024
      */
     @Override
-    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID, Long imagesID, Set<Long> materialID, List<Integer> quantities) {
+    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID, Long imagesID, Set<Long> materialID, List<Integer> quantities, Set<Long> diamondID) {
 
         Category category = CategoryRepository.findById(categoryID)
                 .orElseThrow(() -> new RuntimeException("Category not found"));
@@ -58,6 +61,8 @@ public class ProductServices implements IProductServices{
             int quantity = quantities.get(i);
             product.addProductMaterial(m,quantity);
         }
+
+        List<Diamond> diamonds = DiamondRepository.findAllById(diamondID);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 

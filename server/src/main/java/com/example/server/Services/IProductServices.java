@@ -19,7 +19,7 @@ public interface IProductServices {
      * Author: Pham Trong Hieu
      * Date: 24/5/2024
      */
-    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID, Long imagesID, Set<Long> materialID, List<Integer> quantities);
+    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID, Long imagesID, Set<Long> materialID, List<Integer> quantities, Set<Long> diamond);
 
     public void delete(Long ProductID);
 
