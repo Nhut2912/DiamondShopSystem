@@ -49,10 +49,36 @@ public class ProductServices implements IProductServices{
         p.setProductionCost(product.getProductionCost());
         p.setSecondaryDiamondCost(product.getSecondaryDiamondCost());
         p.setSecondaryMaterialCost(product.getSecondaryMaterialCost());
-        p.setProductSizes(product.getProductSizes());
-        p.setImages(product.getImages());
-        p.setDiamondProducts(product.getDiamondProducts());
+
         p.setProductCategory(product.getProductCategory());
+
+        p.setProductSizes(product.getProductSizes());
+
+        p.setImages(product.getImages());
+
+//        for(Image img : product.getImages()){
+//            Image i = new Image();
+//            i.setId(img.getId());
+//            i.setUri(img.getUri());
+//            i.setProducts(img.getProducts());
+//            ImagesRepository.save(i);
+//        }
+
+        p.setDiamondProducts(product.getDiamondProducts());
+
+//        for(Diamond diamond : product.getDiamondProducts()){
+//            Diamond d = new Diamond();
+//            d.setId(diamond.getId());
+//            d.setDiamondOrigin(diamond.getDiamondOrigin());
+//            d.setDiamondCut(diamond.getDiamondCut());
+//            d.setDiamondClarity(diamond.getDiamondClarity());
+//            d.setDiamondColor(diamond.getDiamondColor());
+//            d.setCarat(diamond.getCarat());
+//            d.setCode(diamond.getCode());
+//            d.setCertificate(diamond.getCertificate());
+//            d.setDiamondProduct(diamond.getDiamondProduct());
+//            DiamondRepository.save(d);
+//        }
 
 
         return ProductRepository.save(p);
