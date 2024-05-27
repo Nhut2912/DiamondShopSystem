@@ -51,4 +51,36 @@ public class Warranty {
                 ", product=" + product +
                 '}';
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public WarrantyPolicy getWarrantyPolicy() {
+        return warrantyPolicy;
+    }
+
+    public void setWarrantyPolicy(WarrantyPolicy warrantyPolicy) {
+        this.warrantyPolicy = warrantyPolicy;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

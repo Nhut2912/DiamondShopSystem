@@ -40,29 +40,31 @@ public class ProductServices implements IProductServices{
      * Date: 24/5/2024
      */
     @Override
-    public ResponseEntity<Product> save(Product product, Long categoryID, Long sizeID, Long warrantyID, Long imagesID, Set<Long> materialID, List<Integer> quantities, Set<Long> diamondID) {
+    public ResponseEntity<Product> save(Product product, Category category, Size size, WarrantyPolicy wp, Warranty warranty, Set<Image> img, Set<Long> materialID, List<Double> weights, Set<Diamond> diamonds, Origin o, Color color, Cut cut, Clarity clarity) {
 
-        Category category = CategoryRepository.findById(categoryID)
-                .orElseThrow(() -> new RuntimeException("Category not found"));
         product.setProductCategory(category);
 
-        Size size = SizeRepository.findById(sizeID).orElseThrow(() -> new RuntimeException("Size not found"));
         product.setProductSizes(size);
 
-        Warranty warranty = WarrantyRepository.findById(warrantyID).orElseThrow(() -> new RuntimeException("Warranty not found"));
+        warranty.setWarrantyPolicy(wp);
         product.setWarranty(warranty);
 
-        Image img = ImagesRepository.findById(imagesID).orElseThrow(() -> new RuntimeException("Image not found"));
-        product.setImages((Set<Image>) img);
+        product.setImages(img);
 
         List<Material> materials = MaterialRepository.findAllById(materialID);
         for(int i = 0; i < materials.size(); i++){
             Material m = materials.get(i);
-            int quantity = quantities.get(i);
-            product.addProductMaterial(m,quantity);
+            double weight = weights.get(i);
+            product.addProductMaterial(m,weight);
         }
 
-        List<Diamond> diamonds = DiamondRepository.findAllById(diamondID);
+        for(Diamond d: diamonds){
+            d.setDiamondColor(color);
+            d.setDiamondClarity(clarity);
+            d.setDiamondCut(cut);
+            d.setDiamondOrigin(o);
+            product.addProductDiamond(d);
+        }
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 

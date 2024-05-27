@@ -68,9 +68,9 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "DiamondProduct")
     private Set<Diamond> DiamondProducts;
 
-    public void addProductMaterial(Material m, int quantity){
+    public void addProductMaterial(Material m, double weight){
 
-        ProductMaterial pm = new ProductMaterial(this,m,quantity);
+        ProductMaterial pm = new ProductMaterial(this,m,weight);
         productMaterialSet.add(pm);
         m.getMaterialSet().add(pm);
     }
