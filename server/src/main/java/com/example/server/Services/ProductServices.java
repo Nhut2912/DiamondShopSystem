@@ -66,12 +66,19 @@ public class ProductServices implements IProductServices{
         p.setProductSizes(size);
 
         Set<Image> images = new HashSet<>();
+        System.out.println("Chuan bi vao");
+        System.out.println(product.getImages());
         for(ImageDTO img : product.getImages()){
+            System.out.println("Vao vong lap");
+            System.out.println("Img uri: "+img.getUri());
             Image image = new Image();
             image.setUri(img.getUri());
+            System.out.println("Image uri: "+image.getUri());
             image.setProducts(p);
+            System.out.println("Product p: "+ p.getName());
             images.add(image);
         }
+        System.out.println("Ra vong lap");
         p.setImages(images);
 
         return ProductRepository.save(p);
