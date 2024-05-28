@@ -13,6 +13,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class DiamondServices {
+
     @Autowired
     private IDiamondRepository diamondRepository;
 
