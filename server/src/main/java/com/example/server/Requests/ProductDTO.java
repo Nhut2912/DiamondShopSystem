@@ -1,6 +1,7 @@
 package com.example.server.Requests;
 
 import java.util.List;
+import java.util.Set;
 
 public class ProductDTO {
     private String name;
@@ -14,7 +15,7 @@ public class ProductDTO {
     private Long sizeID;
     private Long warrantyID;
 
-    private List<ImageDTO> images;
+    private Set<ImageDTO> images;
 
     public String getName() {
         return name;
@@ -96,11 +97,11 @@ public class ProductDTO {
         this.warrantyID = warrantyID;
     }
 
-    public List<ImageDTO> getImages() {
+    public Set<ImageDTO> getImages() {
         return images;
     }
 
-    public void setImages(List<ImageDTO> images) {
+    public void setImages(Set<ImageDTO> images) {
         this.images = images;
     }
 }

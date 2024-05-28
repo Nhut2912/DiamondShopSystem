@@ -23,7 +23,7 @@ public class ProductServices implements IProductServices{
     @Autowired
     private final ISizeRepository SizeRepository;
     private final IWarrantyRepository WarrantyRepository;
-//    @Autowired
+    @Autowired
     private final IImagesRepository ImagesRepository;
     private final IMaterialRepository MaterialRepository;
 
@@ -56,7 +56,7 @@ public class ProductServices implements IProductServices{
         p.setSecondaryDiamondCost(product.getSecondaryDiamondCost());
         p.setSecondaryMaterialCost(product.getSecondaryMaterialCost());
 
-        //Category, Size, Diamond, Img
+        //Category, Size, Diamond, Img, Material
         Category category = CategoryRepository.findById(product.getCategoryID())
                 .orElseThrow(() -> new IllegalArgumentException("Category not found with id: " + product.getCategoryID()));
         p.setProductCategory(category);
@@ -65,18 +65,17 @@ public class ProductServices implements IProductServices{
                 .orElseThrow(() -> new IllegalArgumentException("Size not found with id: "+ product.getSizeID()));
         p.setProductSizes(size);
 
-//        Set<Image> images = new HashSet<>();
-//        for(ImageDTO img : product.getImages()){
-//            Image image = new Image();
-//            image.setUri(img.getUri());
-//            image.setProducts(p);
-//            images.add(image);
-//        }
-//        p.setImages(images);
+        Set<Image> images = new HashSet<>();
+        for(ImageDTO img : product.getImages()){
+            Image image = new Image();
+            image.setUri(img.getUri());
+            image.setProducts(p);
+            images.add(image);
+        }
+        p.setImages(images);
 
         return ProductRepository.save(p);
     }
-
 
 
     @Override
