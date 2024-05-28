@@ -1,10 +1,9 @@
 package com.example.server.Services;
 
 import com.example.server.Pojo.*;
-import org.springframework.http.ResponseEntity;
+import com.example.server.Requests.ProductDTO;
 
 import java.util.List;
-import java.util.Set;
 
 /*
  * author : TRAN MINH NHUT
@@ -19,7 +18,7 @@ public interface IProductServices {
      * Author: Pham Trong Hieu
      * Date: 24/5/2024
      */
-    public Product save(Product product);
+    public Product save(ProductDTO product) throws Exception;
 
     public void delete(Long ProductID);
 
