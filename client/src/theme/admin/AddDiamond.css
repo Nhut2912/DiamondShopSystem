@@ -1,0 +1,14 @@
+.add-diamond-container >  .Certificate > .image-certificate {
+    width: 500px;
+    height: 386.16px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.add-diamond-container >  .Certificate > .image-certificate  > img{
+    max-width:100%;
+    max-height: 100%;
+}
