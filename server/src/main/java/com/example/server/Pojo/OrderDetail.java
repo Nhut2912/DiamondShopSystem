@@ -1,7 +1,9 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "OrderDetail")
 public class OrderDetail {
@@ -44,14 +46,4 @@ public class OrderDetail {
         this.size = o.size;
     }
 
-    @Override
-    public String toString() {
-        return "OrderDetail{" +
-                "orderId=" + orderId +
-                ", productId=" + productId +
-                ", priceBeforeSizeAdjustment=" + priceBeforeSizeAdjustment +
-                ", priceAfterSizeAdjustment=" + priceAfterSizeAdjustment +
-                ", size=" + size +
-                '}';
-    }
 }

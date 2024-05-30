@@ -1,7 +1,9 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "Promotions_Product")
 public class Promotions_Product {

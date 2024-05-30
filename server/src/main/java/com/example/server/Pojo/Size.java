@@ -36,13 +36,4 @@ public class Size {
         this.products = s.products;
     }
 
-    @Override
-    public String toString() {
-        return "Size{" +
-                "id=" + id +
-                ", size=" + size +
-                ", products=" + products +
-                '}';
-    }
-
 }

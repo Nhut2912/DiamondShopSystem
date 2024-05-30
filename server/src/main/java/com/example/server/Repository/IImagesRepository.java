@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.Set;
 
 public interface IImagesRepository extends JpaRepository<Image,Long> {
-
+    Image findByUri(String uri);
 }
