@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,18 +9,19 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "Warranty")
+@Table(name = "warranty")
 public class Warranty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Status", nullable = false)
+    @Column(name = "status", nullable = false)
     private boolean status;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "WarrantyPolicyId")
+    @JoinColumn(name = "warrantyPolicyId")
+    @JsonBackReference
     private WarrantyPolicy warrantyPolicy;
 
     @OneToOne(mappedBy = "warranty")

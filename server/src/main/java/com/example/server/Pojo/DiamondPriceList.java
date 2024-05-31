@@ -6,36 +6,37 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "DIAMONDPRICELIST")
+@Table(name = "diamondPriceList")
 public class DiamondPriceList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "diamondPriceListId")
     private Long Id;
 
-    @Column(name = "Price")
+    @Column(name = "price")
     private Double price;
 
-    @Column(name = "EffDate")
+    @Column(name = "effDate")
     private Date effDate;
 
-    @Column(name = "Carat")
+    @Column(name = "carat")
     private Double carat;
 
     @ManyToOne()
-    @JoinColumn(name = "CutID")
+    @JoinColumn(name = "cutID")
     private Cut DiamondCut;
 
     @ManyToOne()
-    @JoinColumn(name = "OriginID")
+    @JoinColumn(name = "originID")
     private Origin DiamondOrigin;
 
     @ManyToOne()
-    @JoinColumn(name = "ColorID")
+    @JoinColumn(name = "colorID")
     private Color DiamondColor;
 
     @ManyToOne()
-    @JoinColumn(name = "ClarityID")
+    @JoinColumn(name = "clarityID")
     private Clarity DiamondClarity;
 
     public DiamondPriceList(Long id, Double price, Date effDate, Double carat, Cut diamondCut, Origin diamondOrigin, Color diamondColor, Clarity diamondClarity) {

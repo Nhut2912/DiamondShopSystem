@@ -1,12 +1,13 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "Promotion")
+@Table(name = "promotion")
 public class Promotion {
 
     @Id
@@ -16,13 +17,14 @@ public class Promotion {
     @Column(name = "DateStart")
     private Date dateStart;
 
-    @Column(name = "DateEnd")
+    @Column(name = "dateEnd")
     private Date dateEnd;
 
-    @Column(name = "Active")
+    @Column(name = "active")
     private boolean active;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "promotionId")
+    @JsonIgnore
     private Set<Promotions_Customer> promotions;
 
     public Promotion(Long id, Date dateStart, Date dateEnd, boolean active, Set<Promotions_Customer> promotions) {

@@ -15,6 +15,10 @@ import java.util.Set;
 
 @Service
 public class ProductServices implements IProductServices{
+<<<<<<< HEAD
+    @Autowired
+    private IProductRepository ProductRepository;
+=======
 
     @Autowired
     private final IProductRepository ProductRepository;
@@ -30,22 +34,35 @@ public class ProductServices implements IProductServices{
 //    @Autowired
     private final IDiamondRepository DiamondRepository;
 
+>>>>>>> 66cd59eec7390c32ee0e12456e935defed9dec98
 
     @Autowired
-    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository, ISizeRepository sizeRepository, IWarrantyRepository warrantyRepository, IImagesRepository imagesRepository, IMaterialRepository materialRepository, IDiamondRepository diamondRepository) {
-        this.ProductRepository = productRepository;
-        CategoryRepository = categoryRepository;
-        SizeRepository = sizeRepository;
-        WarrantyRepository = warrantyRepository;
-        ImagesRepository = imagesRepository;
-        MaterialRepository = materialRepository;
-        DiamondRepository = diamondRepository;
-    }
+    private ICategoryRepository categoryRepository;
+
+    @Autowired
+    private IMaterialRepository materialRepository;
+
+    @Autowired
+    private ISizeRepository sizeRepository;
+
+    @Autowired
+    private IImagesRepository imageRepository;
 
     /*
      * Author: Pham Trong Hieu
      * Date: 24/5/2024
      */
+<<<<<<< HEAD
+
+    public ResponseEntity<?> saveProduct(Product product) {
+
+        System.out.println(product.getProductMaterialSet().get(0).getMaterials() == null);
+        System.out.println(product.getProductMaterialSet().get(0).getProducts() == null);
+        System.out.println(product.getProductMaterialSet().get(0).getWeight());
+        Product productAfterAdd = ProductRepository.save(product);
+
+        return new ResponseEntity<>(productAfterAdd, HttpStatus.OK);
+=======
     @Override
     public Product save(ProductDTO product)  throws Exception{
 
@@ -82,6 +99,7 @@ public class ProductServices implements IProductServices{
         p.setImages(images);
 
         return ProductRepository.save(p);
+>>>>>>> 66cd59eec7390c32ee0e12456e935defed9dec98
     }
 
 
@@ -100,3 +118,4 @@ public class ProductServices implements IProductServices{
         return ProductRepository.findAll();
     }
 }
+

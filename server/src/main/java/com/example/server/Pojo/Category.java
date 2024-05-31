@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,18 +17,20 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "categoryId")
     private Long id;
 
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "Active", nullable = false)
+    @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Column(name = "CategoryType")
-    private int CategoryType;
+    @Column(name = "categoryType")
+    private int categoryType;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductCategory")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productCategory")
+    @JsonIgnore
     private Set<Product> products;
 
     public Category() {
@@ -37,7 +40,7 @@ public class Category {
         this.id = id;
         this.name = name;
         this.active = active;
-        CategoryType = categoryType;
+        this.categoryType = categoryType;
         this.products = products;
     }
 
@@ -45,7 +48,7 @@ public class Category {
         this.id = cate.id;
         this.name = cate.name;
         this.active = cate.active;
-        this.CategoryType = cate.CategoryType;
+        this.categoryType = cate.categoryType;
         this.products = cate.products;
     }
 
@@ -55,7 +58,7 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active=" + active +
-                ", CategoryType=" + CategoryType +
+                ", CategoryType=" + categoryType +
                 ", products=" + products +
                 '}';
     }

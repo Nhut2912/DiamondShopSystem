@@ -1,61 +1,44 @@
 package com.example.server.Pojo;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "Payment")
+@Data
+@Table(name = "payment")
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "PayTime")
-    private Date PayTime;
+    @Column(name = "payTime")
+    private Date payTime;
 
-    @Column(name = "Amount")
-    private Long Amount;
+    @Column(name = "amount")
+    private Long amount;
 
-    @Column(name = "TransactionCode")
-    private String TransactionCode;
+    @Column(name = "transactionCode")
+    private String transactionCode;
 
     @ManyToOne()
-    @JoinColumn(name = "OrderID")
+    @JoinColumn(name = "orderID")
     private Order orderPayment;
 
     @ManyToOne
-    @JoinColumn(name = "PaymentModeID")
+    @JoinColumn(name = "paymentModeId")
     private PaymentMethod paymentMethod;
 
-    public Payment(Long id, Date payTime, Long amount, String transactionCode, Order orderPayment, PaymentMethod paymentMethod) {
-        this.id = id;
-        PayTime = payTime;
-        Amount = amount;
-        TransactionCode = transactionCode;
-        this.orderPayment = orderPayment;
-        this.paymentMethod = paymentMethod;
-    }
 
-    public Payment() {
-    }
-
-    public Payment(Payment p) {
-        this.id = p.id;
-        PayTime = p.PayTime;
-        Amount = p.Amount;
-        TransactionCode = p.TransactionCode;
-        this.orderPayment = p.orderPayment;
-        this.paymentMethod = p.paymentMethod;
-    }
 
     @Override
     public String toString() {
         return "Payment{" +
                 "id=" + id +
-                ", PayTime=" + PayTime +
-                ", Amount=" + Amount +
-                ", TransactionCode='" + TransactionCode + '\'' +
+                ", PayTime=" + payTime +
+                ", Amount=" + amount +
+                ", TransactionCode='" + transactionCode + '\'' +
                 ", orderPayment=" + orderPayment +
                 ", paymentMethod=" + paymentMethod +
                 '}';
