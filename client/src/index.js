@@ -10,6 +10,7 @@ import Product from './pages/Product';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import App from './pages/App';
+import ProductDetail from './pages/ProductDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,7 +24,7 @@ root.render(
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
             </Route>
-
+            <Route path="/products/:id" element={<ProductDetail />}  />
         </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -35,6 +35,27 @@ public class Image {
         Products = i.Products;
     }
 
+    public Long getId() {
+        return Id;
+    }
 
+    public void setId(Long id) {
+        Id = id;
+    }
 
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public Product getProducts() {
+        return Products;
+    }
+
+    public void setProducts(Product products) {
+        Products = products;
+    }
 }

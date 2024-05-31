@@ -2,11 +2,13 @@ package com.example.server.Services;
 
 import com.example.server.Pojo.*;
 import com.example.server.Repository.*;
+import com.example.server.Requests.ImageDTO;
+import com.example.server.Requests.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,13 +16,18 @@ import java.util.Set;
 @Service
 public class ProductServices implements IProductServices{
 
+    @Autowired
     private final IProductRepository ProductRepository;
+    @Autowired
     private final ICategoryRepository CategoryRepository;
+    @Autowired
     private final ISizeRepository SizeRepository;
     private final IWarrantyRepository WarrantyRepository;
+    @Autowired
     private final IImagesRepository ImagesRepository;
     private final IMaterialRepository MaterialRepository;
 
+//    @Autowired
     private final IDiamondRepository DiamondRepository;
 
 
@@ -40,36 +47,35 @@ public class ProductServices implements IProductServices{
      * Date: 24/5/2024
      */
     @Override
-    public ResponseEntity<Product> save(Product product, Category category, Size size, WarrantyPolicy wp, Warranty warranty, Set<Image> img, Set<Long> materialID, List<Double> weights, Set<Diamond> diamonds, Origin o, Color color, Cut cut, Clarity clarity) {
+    public Product save(ProductDTO product)  throws Exception{
 
-        product.setProductCategory(category);
+        Product p = new Product();
+        p.setName(product.getName());
+        p.setCode(product.getCode());
+        p.setProductionCost(product.getProductionCost());
+        p.setSecondaryDiamondCost(product.getSecondaryDiamondCost());
+        p.setSecondaryMaterialCost(product.getSecondaryMaterialCost());
 
-        product.setProductSizes(size);
+        //Category, Size, Diamond, Img, Material
+        Category category = CategoryRepository.findById(product.getCategoryID())
+                .orElseThrow(() -> new IllegalArgumentException("Category not found with id: " + product.getCategoryID()));
+        p.setProductCategory(category);
 
-        warranty.setWarrantyPolicy(wp);
-        product.setWarranty(warranty);
+        Size size = SizeRepository.findById(product.getSizeID())
+                .orElseThrow(() -> new IllegalArgumentException("Size not found with id: "+ product.getSizeID()));
+        p.setProductSizes(size);
 
-        product.setImages(img);
-
-        List<Material> materials = MaterialRepository.findAllById(materialID);
-        for(int i = 0; i < materials.size(); i++){
-            Material m = materials.get(i);
-            double weight = weights.get(i);
-            product.addProductMaterial(m,weight);
+        Set<Image> images = new HashSet<>();
+        for(ImageDTO img : product.getImages()){
+            Image image = new Image();
+            image.setUri(img.getUri());
+            image.setProducts(p);
+            images.add(image);
         }
+        p.setImages(images);
 
-        for(Diamond d: diamonds){
-            d.setDiamondColor(color);
-            d.setDiamondClarity(clarity);
-            d.setDiamondCut(cut);
-            d.setDiamondOrigin(o);
-            d.setDiamondProduct(product);
-        }
-        product.setDiamondProducts(diamonds);
-
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+        return ProductRepository.save(p);
     }
-
 
 
     @Override
