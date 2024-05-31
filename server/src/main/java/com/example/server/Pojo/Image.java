@@ -1,10 +1,11 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Collection;
-@Data
+//@Data
 @Entity
 @Table(name = "IMAGES")
 public class Image {
@@ -18,6 +19,7 @@ public class Image {
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "ProductID")
+    @JsonBackReference
     private Product Products;
 
     public Image(Long id, String uri, Product products) {
@@ -50,6 +52,7 @@ public class Image {
     public void setUri(String uri) {
         this.uri = uri;
     }
+
 
     public Product getProducts() {
         return Products;

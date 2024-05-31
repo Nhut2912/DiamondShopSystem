@@ -1,0 +1,21 @@
+.input-box-container{
+    display: grid;
+}
+.input-box-container > label{
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 400;
+}
+.input-box-container >  input{
+    font-family: "Roboto Serif";
+    height: 50px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 0 15px;
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 15px;
+    font-weight: 400;
+}

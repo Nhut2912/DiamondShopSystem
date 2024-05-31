@@ -1,12 +1,13 @@
 package com.example.server.Pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.*;
 
-@Data
+//@Data
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
@@ -42,6 +43,7 @@ public class Product {
     private Size ProductSizes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "Products")
+    @JsonManagedReference
     private Set<Image> images;
 
     //Pham Trong Hieu
@@ -214,6 +216,7 @@ public class Product {
     public void setProductSizes(Size productSizes) {
         ProductSizes = productSizes;
     }
+
 
     public Set<Image> getImages() {
         return images;
