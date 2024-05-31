@@ -1,42 +1,32 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
-
+@Data
 @Entity
-@Table(name = "CUT")
+@Table(name = "Cut")
 public class Cut {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cutId")
     private Long Id;
 
-    @Column(name = "Cut")
+    @Column(name = "cut")
     private String cut;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondCut")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondCut")
+    @JsonIgnore
     private Set<Diamond> diamondCuts;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondCut")
-    private Set<DiamondPriceList> diamondCutss;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondCut")
+    @JsonIgnore
+    private Set<DiamondPriceList> diamondPriceList;
 
-    public Cut(Long id, String cut, Set<Diamond> diamondCuts, Set<DiamondPriceList> diamondCutss) {
-        Id = id;
-        this.cut = cut;
-        this.diamondCuts = diamondCuts;
-        this.diamondCutss = diamondCutss;
-    }
 
-    public Cut() {
-    }
-
-    public Cut(Cut c) {
-        Id = c.Id;
-        this.cut = c.cut;
-        this.diamondCuts = c.diamondCuts;
-        this.diamondCutss = c.diamondCutss;
-    }
 
     @Override
     public String toString() {
@@ -44,7 +34,7 @@ public class Cut {
                 "Id=" + Id +
                 ", cut='" + cut + '\'' +
                 ", diamondCuts=" + diamondCuts +
-                ", diamondCutss=" + diamondCutss +
+                ", diamondCutss=" + diamondPriceList +
                 '}';
     }
 }

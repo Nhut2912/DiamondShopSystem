@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,15 +12,17 @@ public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "materialId")
     private Long id;
 
     @Column(name = "Name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "materials")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "material")
     private Set<MaterialPriceList> materialPrice;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "materials")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "material")
+    @JsonIgnore
     private Set<ProductMaterial> materialSet;
 
     public Material(Long id, String name, Set<MaterialPriceList> materialPrice, Set<ProductMaterial> materialSet) {

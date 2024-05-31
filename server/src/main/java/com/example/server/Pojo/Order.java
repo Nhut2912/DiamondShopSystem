@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.aspectj.weaver.ast.Or;
@@ -12,33 +13,34 @@ import java.util.Set;
  */
 @Data
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "orderId")
     private Long id;
 
-    @Column(name = "TotalPrice")
+    @Column(name = "totalPrice")
     private String totalPrice;
 
-    @Column(name = "Date")
-    private String Date;
+    @Column(name = "date")
+    private String date;
 
-    @Column(name = "Address")
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "DeliveryStatus")
+    @Column(name = "deliveryStatus")
     private boolean deliveryStatus;
 
 
     @ManyToOne()
-    @JoinColumn(name = "CustomerId")
+    @JoinColumn(name = "customerId")
     private Customer customerOrder;
 
-    @Column(name = "OrderStatus")
+    @Column(name = "orderStatus")
     private int orderStatus;
 
-    @Column(name = "CancelReason")
+    @Column(name = "cancelReason")
     private String cancelReason;
 
 
@@ -46,6 +48,7 @@ public class Order {
     private Set<Payment> orderPaymentSet;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
 
     public Order() {
@@ -54,7 +57,7 @@ public class Order {
     public Order(Long id, String totalPrice, String date, String address, boolean deliveryStatus, Customer customerOrder, int orderStatus, String cancelReason, Set<Payment> orderPaymentSet, Set<OrderDetail> orderDetailSet) {
         this.id = id;
         this.totalPrice = totalPrice;
-        Date = date;
+        date = date;
         this.address = address;
         this.deliveryStatus = deliveryStatus;
         this.customerOrder = customerOrder;
@@ -67,7 +70,7 @@ public class Order {
     public Order(Order o) {
         this.id = o.id;
         this.totalPrice = o.totalPrice;
-        Date = o.Date;
+        date = o.date;
         this.address = o.address;
         this.deliveryStatus = o.deliveryStatus;
         this.customerOrder = o.customerOrder;
@@ -82,7 +85,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", totalPrice='" + totalPrice + '\'' +
-                ", Date='" + Date + '\'' +
+                ", Date='" + date + '\'' +
                 ", address='" + address + '\'' +
                 ", deliveryStatus=" + deliveryStatus +
                 ", customerOrder=" + customerOrder +

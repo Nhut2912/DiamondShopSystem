@@ -15,6 +15,7 @@ import java.util.Set;
 @RequestMapping(path = "api/product")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
+    @Autowired
     private final IProductServices productServices;
 
     @Autowired
@@ -27,9 +28,9 @@ public class ProductController {
      * Date: 24/5/2024
      */
     @PostMapping("/save")
-    public ResponseEntity<Product> save(@RequestBody Product product, @RequestBody Category category, @RequestBody Size size, @RequestBody WarrantyPolicy wp, @RequestBody Warranty warranty, @RequestBody Set<Image> img, @RequestParam Set<Long> materialID, @RequestParam List<Double> weights, @RequestBody Set<Diamond> diamonds, @RequestBody Origin origin, @RequestBody Color color, @RequestBody Cut cut, @RequestBody Clarity clarity) {
-        Product addedProduct = productServices.save(product, category, size, wp, warranty, img, materialID, weights, diamonds, origin, color, cut, clarity).getBody();
-        return ResponseEntity.status(HttpStatus.CREATED).body(addedProduct);
+    public ResponseEntity<?> save(@RequestBody Product product) {
+
+        return productServices.saveProduct(product);
     }
 
     @GetMapping("/getProducts")

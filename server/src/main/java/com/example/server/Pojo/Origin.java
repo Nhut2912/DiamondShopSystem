@@ -1,50 +1,39 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
-
+@Data
 @Entity
-@Table(name = "ORIGIN")
+@Table(name = "origin")
 public class Origin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    @Column(name = "Origin",nullable = false)
+    @Column(name = "origin",nullable = false)
     private boolean origin;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondOrigin")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondOrigin")
+    @JsonIgnore
     private Set<Diamond> diamondOrigins;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondOrigin")
-    private Set<DiamondPriceList> diamondOriginss;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondOrigin")
+    @JsonIgnore
+    private Set<DiamondPriceList> diamondPriceList;
 
-    public Origin(Long id, boolean origin, Set<Diamond> diamondOrigins, Set<DiamondPriceList> diamondOriginss) {
-        Id = id;
-        this.origin = origin;
-        this.diamondOrigins = diamondOrigins;
-        this.diamondOriginss = diamondOriginss;
-    }
 
-    public Origin() {
-    }
-
-    public Origin(Origin o) {
-        Id = o.Id;
-        this.origin = o.origin;
-        this.diamondOrigins = o.diamondOrigins;
-        this.diamondOriginss = o.diamondOriginss;
-    }
 
     @Override
     public String toString() {
         return "Origin{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", origin=" + origin +
                 ", diamondOrigins=" + diamondOrigins +
-                ", diamondOriginss=" + diamondOriginss +
+                ", diamondOriginss=" + diamondPriceList +
                 '}';
     }
 }

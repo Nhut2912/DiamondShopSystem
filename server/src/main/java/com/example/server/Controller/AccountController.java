@@ -8,10 +8,7 @@ import com.example.server.Services.IRegistrationServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,8 +34,10 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody Account account) {
-        List<Account> accounts = accountRepository.findByEmail(account.getEmail());
-        return new ResponseEntity(accounts, HttpStatus.OK);
+    public ResponseEntity<?> login(@RequestBody Account account) {
+        Account accounts = accountRepository.findByEmail(account.getEmail());
+        return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
+
+
 }

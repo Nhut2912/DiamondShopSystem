@@ -3,11 +3,14 @@ package com.example.server.Services;
 import com.example.server.Pojo.Account;
 import com.example.server.Repository.IAccountRepository;
 import com.example.server.Requests.RegistrationRequest;
+import com.example.server.Responses.RegistrationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 /*
@@ -25,19 +28,23 @@ public class RegistrationServices implements IRegistrationServices {
     //verify!!!
     @Override
     public ResponseEntity<?> register(RegistrationRequest registrationRequest) {
-        Account accountNeedToCheck =  (Account) accountRepository.findByEmail(registrationRequest.getEmail());
+        Account accountNeedToCheck = accountRepository.findByEmail(registrationRequest.getEmail());
+
         if(accountNeedToCheck != null){
             return new ResponseEntity<>("Account Exist", HttpStatus.BAD_REQUEST);
         }
         else if(registrationRequest.isVerify()){
-            Account account = Account.builder().email(registrationRequest.getEmail()).name(registrationRequest.getName()).address(registrationRequest.getAddress())
+            Account account = Account.builder().email(registrationRequest.getEmail()).password(registrationRequest.getPassword()).name(registrationRequest.getName()).address(registrationRequest.getAddress())
                     .active(true).birthday(registrationRequest.getBirthday()).phone(registrationRequest.getPhone()).gender(registrationRequest.isGender())
                     .role("customer").build();
             return new ResponseEntity<>(accountRepository.save(account), HttpStatus.CREATED);
         }else{
             String otp = generateOTP();
             sendVerificationEmail(registrationRequest.getEmail(), otp);
-            return new ResponseEntity<>("Require verify", HttpStatus.OK);
+            RegistrationResponse registrationResponse = RegistrationResponse.builder().email(registrationRequest.getEmail()).password(registrationRequest.getPassword()).name(registrationRequest.getName()).address(registrationRequest.getAddress())
+                    .active(true).birthday(registrationRequest.getBirthday()).phone(registrationRequest.getPhone()).gender(registrationRequest.isGender())
+                    .role("customer").otp(otp).build();
+            return new ResponseEntity<>(registrationResponse, HttpStatus.OK);
         }
     }
 

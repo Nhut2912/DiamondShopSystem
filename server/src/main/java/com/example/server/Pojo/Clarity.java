@@ -1,26 +1,31 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
-
+@Data
 @Entity
-@Table(name = "CLARITY")
+@Table(name = "clarity")
 public class Clarity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clarityId")
     private Long Id;
 
-    @Column(name = "Clarity")
+    @Column(name = "clarity")
     private String clarity;
 
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
-    private Set<Diamond> diamondClaritys;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondClarity")
+    @JsonIgnore
+    private Set<Diamond> diamondClarity;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
-    private Set<DiamondPriceList> diamondClarityss;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondClarity")
+    @JsonIgnore
+    private Set<DiamondPriceList> diamondPriceListClarity;
 
     public Clarity() {
     }
@@ -28,15 +33,15 @@ public class Clarity {
     public Clarity(Long id, String clarity, Set<Diamond> diamondClaritys, Set<DiamondPriceList> diamondClarityss) {
         Id = id;
         this.clarity = clarity;
-        this.diamondClaritys = diamondClaritys;
-        this.diamondClarityss = diamondClarityss;
+        this.diamondClarity = diamondClaritys;
+        this.diamondPriceListClarity = diamondClarityss;
     }
 
     public Clarity(Clarity cla) {
         Id = cla.Id;
         this.clarity = cla.clarity;
-        this.diamondClaritys = cla.diamondClaritys;
-        this.diamondClarityss = cla.diamondClarityss;
+        this.diamondClarity = cla.diamondClarity;
+        this.diamondPriceListClarity = cla.diamondPriceListClarity;
     }
 
     @Override
@@ -44,8 +49,8 @@ public class Clarity {
         return "Clarity{" +
                 "Id=" + Id +
                 ", clarity='" + clarity + '\'' +
-                ", diamondClaritys=" + diamondClaritys +
-                ", diamondClarityss=" + diamondClarityss +
+                ", diamondClarity=" + diamondClarity +
+                ", diamondPriceListClarity=" + diamondPriceListClarity +
                 '}';
     }
 }

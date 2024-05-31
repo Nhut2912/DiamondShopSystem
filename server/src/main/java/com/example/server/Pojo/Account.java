@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -15,40 +16,42 @@ import lombok.Data;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "accountId")
     private Long id;
 
-    @Column(name = "Email", unique = true, length = 50)
+    @Column(name = "email", unique = true, length = 50)
     private String email;
 
-    @Column(name = "Password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "Phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column(name = "Address")
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "Birthday")
+    @Column(name = "birthday")
     private String birthday;
 
-    @Column(name = "Role")
+    @Column(name = "role")
     private String role;
 
-    @Column(name = "Active")
+    @Column(name = "active")
     private boolean active;
 
-    @Column(name = "Gender")
+    @Column(name = "gender")
     private boolean gender;
 
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "account")
+    @JsonIgnore
     private Customer customer;
 
 
-   
+
     public Account(String password, Long id, String email, String phone, boolean gender, String role, String address, String birthday, boolean active, String name) {
         this.password = password;
         this.id = id;

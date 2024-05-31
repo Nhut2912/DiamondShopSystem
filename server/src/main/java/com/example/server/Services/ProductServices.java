@@ -13,61 +13,34 @@ import java.util.Set;
 
 @Service
 public class ProductServices implements IProductServices{
-
-    private final IProductRepository ProductRepository;
-    private final ICategoryRepository CategoryRepository;
-    private final ISizeRepository SizeRepository;
-    private final IWarrantyRepository WarrantyRepository;
-    private final IImagesRepository ImagesRepository;
-    private final IMaterialRepository MaterialRepository;
-
-    private final IDiamondRepository DiamondRepository;
-
+    @Autowired
+    private IProductRepository ProductRepository;
 
     @Autowired
-    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository, ISizeRepository sizeRepository, IWarrantyRepository warrantyRepository, IImagesRepository imagesRepository, IMaterialRepository materialRepository, IDiamondRepository diamondRepository) {
-        this.ProductRepository = productRepository;
-        CategoryRepository = categoryRepository;
-        SizeRepository = sizeRepository;
-        WarrantyRepository = warrantyRepository;
-        ImagesRepository = imagesRepository;
-        MaterialRepository = materialRepository;
-        DiamondRepository = diamondRepository;
-    }
+    private ICategoryRepository categoryRepository;
+
+    @Autowired
+    private IMaterialRepository materialRepository;
+
+    @Autowired
+    private ISizeRepository sizeRepository;
+
+    @Autowired
+    private IImagesRepository imageRepository;
 
     /*
      * Author: Pham Trong Hieu
      * Date: 24/5/2024
      */
-    @Override
-    public ResponseEntity<Product> save(Product product, Category category, Size size, WarrantyPolicy wp, Warranty warranty, Set<Image> img, Set<Long> materialID, List<Double> weights, Set<Diamond> diamonds, Origin o, Color color, Cut cut, Clarity clarity) {
 
-        product.setProductCategory(category);
+    public ResponseEntity<?> saveProduct(Product product) {
 
-        product.setProductSizes(size);
+        System.out.println(product.getProductMaterialSet().get(0).getMaterials() == null);
+        System.out.println(product.getProductMaterialSet().get(0).getProducts() == null);
+        System.out.println(product.getProductMaterialSet().get(0).getWeight());
+        Product productAfterAdd = ProductRepository.save(product);
 
-        warranty.setWarrantyPolicy(wp);
-        product.setWarranty(warranty);
-
-        product.setImages(img);
-
-        List<Material> materials = MaterialRepository.findAllById(materialID);
-        for(int i = 0; i < materials.size(); i++){
-            Material m = materials.get(i);
-            double weight = weights.get(i);
-            product.addProductMaterial(m,weight);
-        }
-
-        for(Diamond d: diamonds){
-            d.setDiamondColor(color);
-            d.setDiamondClarity(clarity);
-            d.setDiamondCut(cut);
-            d.setDiamondOrigin(o);
-            d.setDiamondProduct(product);
-        }
-        product.setDiamondProducts(diamonds);
-
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+        return new ResponseEntity<>(productAfterAdd, HttpStatus.OK);
     }
 
 
@@ -87,3 +60,4 @@ public class ProductServices implements IProductServices{
         return ProductRepository.findAll();
     }
 }
+

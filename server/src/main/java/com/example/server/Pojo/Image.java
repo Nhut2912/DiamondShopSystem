@@ -1,39 +1,27 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Collection;
 @Data
 @Entity
-@Table(name = "IMAGES")
+@Table(name = "images")
 public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    @Column(name = "URI", nullable = false)
+    @Column(name = "uri", nullable = false)
     private String uri;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "ProductID")
-    private Product Products;
+    @JoinColumn(name = "productId")
+    @JsonBackReference
+    private Product product;
 
-    public Image(Long id, String uri, Product products) {
-        Id = id;
-        this.uri = uri;
-        Products = products;
-    }
-
-    public Image() {
-    }
-
-    public Image(Image i) {
-        Id = i.Id;
-        this.uri = uri;
-        Products = i.Products;
-    }
 
 
 
