@@ -19,19 +19,12 @@ public class Clarity {
     private String clarity;
 
 
-<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondClarity")
     @JsonIgnore
     private Set<Diamond> diamondClarity;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondClarity")
     @JsonIgnore
-=======
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
-    private Set<Diamond> diamondClarity;
-
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
->>>>>>> 66cd59eec7390c32ee0e12456e935defed9dec98
     private Set<DiamondPriceList> diamondPriceListClarity;
 
     public Clarity() {
