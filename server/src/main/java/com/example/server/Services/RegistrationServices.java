@@ -28,8 +28,12 @@ public class RegistrationServices implements IRegistrationServices {
     //verify!!!
     @Override
     public ResponseEntity<?> register(RegistrationRequest registrationRequest) {
+<<<<<<< HEAD
         Account accountNeedToCheck = accountRepository.findByEmail(registrationRequest.getEmail());
 
+=======
+        Account accountNeedToCheck =  (Account) accountRepository.findAllByEmailAndPhone(registrationRequest.getEmail(),registrationRequest.getPhone());
+>>>>>>> 66cd59eec7390c32ee0e12456e935defed9dec98
         if(accountNeedToCheck != null){
             return new ResponseEntity<>("Account Exist", HttpStatus.BAD_REQUEST);
         }

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function CardProduct() {
   const navigate = useNavigate();
   const productId = 123;
-  const handClick = (event) => {  
+  const handClick = () => {  
    
     console.log(".....");
     navigate(""+productId);

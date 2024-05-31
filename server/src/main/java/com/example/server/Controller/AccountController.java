@@ -34,10 +34,29 @@ public class AccountController {
     }
 
     @PostMapping("/login")
+<<<<<<< HEAD
     public ResponseEntity<?> login(@RequestBody Account account) {
         Account accounts = accountRepository.findByEmail(account.getEmail());
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 
+=======
+    public ResponseEntity login(@RequestBody Account account) {
+        Account accounts = accountRepository.findAllByEmailAndPhone(account.getEmail(),account.getPhone());
+        return new ResponseEntity(accounts, HttpStatus.OK);
+    }
+
+    @GetMapping ("/ForgetByEmail")
+    public ResponseEntity<?> findPasswordByEmail(@RequestBody String email) {
+        Account accounts = accountRepository.findByEmail(email);
+        return new ResponseEntity (accounts.getPassword(), HttpStatus.OK);
+    }
+
+    @GetMapping ("/ForgetByPhone")
+    public ResponseEntity<?> findPasswordByPhone(@RequestBody String phone) {
+        Account accounts = accountRepository.findByPhone(phone);
+        return new ResponseEntity (accounts.getPhone(), HttpStatus.OK);
+    }
+>>>>>>> 66cd59eec7390c32ee0e12456e935defed9dec98
 
 }

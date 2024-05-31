@@ -1,0 +1,198 @@
+.add-product-container{
+    margin: 40px 42px;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+  
+}
+.add-product-container::-webkit-scrollbar{
+    width: 0 !important;
+    display: none;
+}
+.add-product-container > h3{
+    grid-column: span 12;
+}
+.add-product-container .code-name{
+   display: flex;
+   column-gap: 50px;
+   margin-bottom: 20px;
+   flex-wrap: wrap;
+}
+
+.add-product-container .production-diamond-material-cost{
+    display: flex;
+    margin-top: 20px;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+.add-product-container .product-material{
+    margin-top: 20px;
+}
+.add-product-container .product-material > label{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+}
+.add-product-container .product-material .content-material{
+    display: block;
+    margin-left: 50px;
+}
+.add-product-container .product-material .content-material > ul{
+    display: flex;
+    list-style: none;
+    column-gap: 25px;
+    padding-inline-start: 0;
+    margin-block-start: 10px;
+    margin-block-end: 1em;
+    align-items: center;
+}
+.add-product-container .product-material .content-material > ul > li{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+}
+.add-product-container .product-material .content-material > ul > li:nth-child(1){
+    width: 50px;
+}
+.add-product-container .product-material .content-material > ul > li:nth-child(2){
+    width: 200px;
+} 
+.add-product-container .product-material .content-material > ul > li:nth-child(3){
+    width: 100px;
+} 
+.add-product-container .product-material .content-material > ul > li:nth-child(4){
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+.add-product-container .product-material .content-material > ul > li:nth-child(4) > .delete-material-in-product{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+.add-product-container .product-material .content-material > ul > li:nth-child(4) > .delete-material-in-product > img{
+    width: 70%;
+}
+.add-product-container .product-material .content-material > .button-add-material-product{
+    margin-top: 20px;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.1);cursor: pointer;
+}
+.add-product-container  .product-size{
+    margin-top: 20px;
+}
+
+.add-product-container .image-product{
+    margin-top: 20px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 4fr 4fr 4fr;
+}
+.add-product-container .image-product > label{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+    grid-column: span 12;
+    margin-bottom: 20px;
+}
+.add-product-container .image-product > div > .image-card{
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.1);
+    object-fit: cover;
+}
+.add-product-container .image-product > div > .image-card > img{
+    width: 100%;
+}
+.add-product-container > .diamond-information-product{
+    position: relative;
+   
+}
+.add-product-container > .diamond-information-product > .container-input-diamond{
+    margin: 30px ;
+}
+.add-product-container > .diamond-information-product > .container-input-diamond > .diamond-information-add{
+    display: flex;
+    column-gap: 40px;
+    position: relative;
+}
+.add-product-container > .diamond-information-product > .container-input-diamond > .diamond-information-add > span{
+    font-family: 'Poppins';
+    font-size: 16;
+    font-weight: 400;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0px;
+}
+.add-product-container > .diamond-information-product > h4{
+    font-family: 'Poppins';
+    font-size: 16;
+    font-weight: 400;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0px;
+}
+.add-product-container > 
+.diamond-information-product > 
+.container-input-diamond > 
+.add-diamond-in-product{
+    margin-top: 40px;
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+.add-product-container > 
+.diamond-information-product > 
+.container-input-diamond > 
+.diamond-information-add{
+    margin-bottom: 40px;
+}
+.add-product-container > .diamond-information-product > .container-input-diamond > .diamond-information-add > .delete-diamond-in-product{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right:-30px;
+    top: 3px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+.add-product-container > .diamond-information-product > .container-input-diamond > .diamond-information-add > .delete-diamond-in-product > img{
+    width: 70%;
+}
+.add-product-container > .submit-button-add-product{
+    width: 250px;
+    background-color: rgba(255,255,255,0.05);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid rgba(217, 179, 132, 0.1);
+}
+.add-product-container > .submit-button-add-product > span{
+    font-family: 'Poppins';
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+    letter-spacing: 0.25px;
+}
