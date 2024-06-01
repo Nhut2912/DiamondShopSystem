@@ -1,0 +1,47 @@
+.container-navigate-account{
+    border-radius: 20px;
+    width: 235px;
+    height: 100vh;
+    position: fixed;
+    box-sizing: border-box;
+    padding:30px;
+    background-color: #FFFFFF;
+}
+.container-navigate-account > .head-navigation{
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 20px;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.container-navigate-account > .head-navigation > img{
+    width: 35%;
+}
+.container-navigate-account > ul {
+    padding-inline-start: 0;
+    margin: 30px -10px 0 -10px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+.container-navigate-account > ul > li {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+.container-navigate-account > ul > li.isActive{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container-navigate-account > ul > li > span{
+    font-family: 'Roboto Serif';
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,116 @@
+.account-profile-container{
+    padding-left: 255px;
+    box-sizing: border-box;
+}
+.account-profile-container > p {
+    font-family: "Roboto Serif";
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 30px 0;
+}
+.account-profile-container  > p > span {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+}
+
+.account-profile-container >  .account-information{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 20px 0 0;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    padding-bottom: 50px;
+    position: relative;
+} 
+.account-profile-container > .account-information > h3{
+    font-family: "Roboto Serif";
+    font-weight: 600;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.75);
+    letter-spacing: 0.24px;
+    margin: 20px;
+}
+.account-profile-container >  .account-information > ul {
+    list-style: none;
+    padding-inline-start: 0;
+    display: grid;
+    gap: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    padding: 60px 20px 20px 20px;
+}
+.account-profile-container >  .account-information > ul > li > h3{
+    font-family: 'Roboto Serif';
+    margin: 0 0 5px 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.5);
+}
+.account-profile-container >  .account-information > ul > li > div{
+    width: 330px;
+    height: 40px;
+    border-radius: 5px;
+    overflow: hidden;
+    border:1px solid rgba(0, 0, 0, 0.1);
+}
+.account-profile-container >  .account-information > ul > li > div > input{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    font-family: 'Roboto Serif';
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.9);
+    appearance: none;
+}
+.account-profile-container >  .account-information > ul > li > div > input::-webkit-outer-spin-button,
+.account-profile-container >  .account-information > ul > li > div > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.account-profile-container >  .account-information > ul > li:nth-child(3) > div{
+    border: none ;
+    display: flex;
+    column-gap: 40px;
+    border-radius: 0;
+}
+.account-profile-container >  .account-information > ul > li:nth-child(3) > div > div {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.account-profile-container >  .account-information > ul > li:nth-child(3) > div > div > span{
+    font-family: 'Roboto Serif';
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.9);
+}
+.account-profile-container >  .account-information > ul > li:nth-child(3) > div > div > div{
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+.account-profile-container >  .account-information > ul > li:nth-child(3) > div > div.isActive > div{
+    background-color: #36E339;
+}
+.account-profile-container >  .account-information > ul > li:last-child > div{
+    width: 500px;
+}
+.account-profile-container >  .account-information > .change-profile{
+    position: absolute;
+    top:100px;
+    right: 20px;
+}
+.account-profile-container >  .account-information > .change-profile > span{
+    font-family: 'Roboto Serif';
+    font-size: 14px;
+    font-weight: 500;
+    color: #2f80ed;
+    cursor: pointer;
+}

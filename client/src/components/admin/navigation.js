@@ -4,6 +4,7 @@ import '../../theme/admin/Navigation.css';
 import { ICONS } from "../../constants/admin/index";
 import {  useNavigate } from "react-router-dom";
 
+
 const Navigation = () => {
 
     const [activeItem, setActiveItem] = useState('Dashboard'); // Initial active item
@@ -12,7 +13,7 @@ const Navigation = () => {
     const [notificationsActive, setNotificationsActive] = useState(false);
 
     const contentItems = [
-        { name: 'Dashboard', path : "dashboard"},
+        { name: 'Dashboard', path : "/admin/overview"},
         { name: 'Product', path : "products" },
         { name: 'Order',  path : "order"},
         { name: 'Account',  path : "account"},
@@ -25,7 +26,7 @@ const Navigation = () => {
     useEffect(() => {
         const uri = window.location.pathname;
         contentItems.map((element) => {
-            if(uri.endsWith("/admin")){
+            if(uri.endsWith("/admin/")){
                 setActiveItem('Dashboard')
             }else if(uri.includes(element.path)){
                 setActiveItem(element.name)
@@ -49,6 +50,7 @@ const Navigation = () => {
         navigate("notifications")
         setNotificationsActive(true);
     }
+
 
     const navigationItems = [
         { name: 'Dashboard', icon: ICONS.icon_dashboard, icon_active : ICONS.icon_dashboard_active },

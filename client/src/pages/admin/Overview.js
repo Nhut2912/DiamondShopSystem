@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 
 const Overview = () => {
     return(
-        <div className="container-admin">
+        <div className="container-admin-overview">
             <Navigation />
             <div className="overview-container">
                 <div className="scroll-view">

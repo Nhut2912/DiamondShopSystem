@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,7 +9,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "SIZES")
+@Table(name = "sizeProduct")
 public class Size {
 
     @Id
@@ -18,7 +19,8 @@ public class Size {
     @Column(name = "size", nullable = false)
     private int size;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductSizes")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productSize")
+    @JsonIgnore
     private Set<Product> products;
 
     public Size(Long id, int size, Set<Product> products) {

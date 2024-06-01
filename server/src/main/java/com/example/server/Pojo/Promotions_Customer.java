@@ -5,17 +5,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Promotions_Customer")
+@Table(name = "promotions_Customer")
 public class Promotions_Customer {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "PromotionID")
+    @JoinColumn(name = "promotionID")
     private Promotion promotionId;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "CustomerID")
+    @JoinColumn(name = "customerID")
     private Customer customerId;
 
     public Promotions_Customer(Promotion promotionId, Customer customerId) {

@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom';
 function Header() {
  const navigate = useNavigate();
 
+
+ const [login,setLogin] = useState(false);
+
  const [activeItem,setActiveItem] = useState(null);
  
  const navigation = [
@@ -56,9 +59,19 @@ function Header() {
                         <img src={ICONS.icon_logo} alt=''/>
                 </div>
                 <div>
-                    <div >
+                    <div onClick={
+                        () => {
+                            if(login){
+                                navigate("/account")
+                            }else{
+                                navigate("/login")
+                            }
+                        }
+                    }>
                         <img src={ICONS.icon_user} />
-                        <span>Login</span>
+                        <span>
+                            {login ? 'nhutminhtran05' : "Login"}
+                        </span>
                     </div>
                     <div>
                         <div   

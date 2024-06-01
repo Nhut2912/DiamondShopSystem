@@ -6,45 +6,29 @@ import lombok.Data;
 import java.util.Date;
 
 /*
-* Author: Pham Trong Hieu
-*/
+ * Author: Pham Trong Hieu
+ */
 @Data
 @Entity
-@Table(name = "MaterialPriceList")
+@Table(name = "materialPriceList")
 public class MaterialPriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "materialPriceListId")
     private Long id;
 
-    @Column(name = "EffDate")
-    private Date EffDate;
+    @Column(name = "effDate")
+    private Date effDate;
 
-    @Column(name = "SellPrice")
-    private double SellPrice;
+    @Column(name = "sellPrice")
+    private double sellPrice;
 
-    @Column(name = "BuyPrice")
-    private double BuyPrice;
+    @Column(name = "buyPrice")
+    private double buyPrice;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MaterialID")
-    private Material materials;
+    @JoinColumn(name = "materialId")
+    private Material material;
 
-    public MaterialPriceList(Long id, Date effDate, double sellPrice, double buyPrice, Material materials) {
-        this.id = id;
-        EffDate = effDate;
-        SellPrice = sellPrice;
-        BuyPrice = buyPrice;
-        this.materials = materials;
-    }
 
-    public MaterialPriceList() {
-    }
-
-    public MaterialPriceList(MaterialPriceList m) {
-        this.id = m.id;
-        EffDate = m.EffDate;
-        SellPrice = m.SellPrice;
-        BuyPrice = m.BuyPrice;
-        this.materials = m.materials;
-    }
 }

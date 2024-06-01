@@ -2,31 +2,49 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 import lombok.Data;
+<<<<<<< HEAD
+=======
+
+import java.io.Serializable;
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 
 @Data
 @Entity
-@Table(name = "OrderDetail")
+@Table(name = "orderDetail")
+@Data
 public class OrderDetail {
+    @Data
+    @Embeddable
+    public static class OrderDetailId implements Serializable {
+        @Column(name = "productId")
+        protected long productId;
+        @Column(name = "orderId")
+        protected long orderId;
+    }
+    @EmbeddedId
+    OrderDetailId orderDetailId;
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "OrderID")
+    @MapsId("orderId")
+    @JoinColumn(name = "orderId", insertable = false, updatable = false)
     private Order orderId;
 
-    @Id
+
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @MapsId("productId")
+    @JoinColumn(name = "productId", insertable = false, updatable = false)
     private Product productId;
 
-    @Column(name = "PriceBeforeSizeAdjustment")
+    @Column(name = "priceBeforeSizeAdjustment")
     private double priceBeforeSizeAdjustment;
 
-    @Column(name = "PriceAfterSizeAdjustment")
+    @Column(name = "priceAfterSizeAdjustment")
     private double priceAfterSizeAdjustment;
 
     @Column(name = "Size")
     private int size;
 
+<<<<<<< HEAD
     public OrderDetail(Order orderId, Product productId, double priceBeforeSizeAdjustment, double priceAfterSizeAdjustment, int size) {
         this.orderId = orderId;
         this.productId = productId;
@@ -46,4 +64,16 @@ public class OrderDetail {
         this.size = o.size;
     }
 
+=======
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "orderId=" + orderId +
+                ", productId=" + productId +
+                ", priceBeforeSizeAdjustment=" + priceBeforeSizeAdjustment +
+                ", priceAfterSizeAdjustment=" + priceAfterSizeAdjustment +
+                ", size=" + size +
+                '}';
+    }
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 }

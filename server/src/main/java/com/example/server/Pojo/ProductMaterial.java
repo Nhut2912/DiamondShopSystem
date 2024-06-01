@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
+import java.io.Serializable;
+
 /*
  * Author: Pham Trong Hieu
  */
@@ -11,65 +13,41 @@ import org.hibernate.annotations.Cascade;
 @Entity
 @Table(name = "ProductMaterial")
 public class ProductMaterial {
-
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ProductID")
-    private Product products;
-
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MaterialID")
-    private Material materials;
-
-    @Column(name = "Weight")
-    private double weight;
-
-    public ProductMaterial(Product products, Material materials, double weight) {
-        this.products = products;
-        this.materials = materials;
-        this.weight = weight;
+    @Data
+    @Embeddable
+    public static class ProductMaterialId implements Serializable {
+        @Column(name = "productId")
+        protected long productId;
+        @Column(name = "materialId")
+        protected long materialId;
     }
+    @EmbeddedId
+    protected ProductMaterialId id;
 
-    public ProductMaterial() {
-    }
 
-    public ProductMaterial(ProductMaterial p) {
-        this.products = p.products;
-        this.materials = p.materials;
-        this.weight = p.weight;
-    }
+    @ManyToOne
+    @MapsId("productId")
+    @JoinColumn(name = "productId", insertable = false, updatable = false)
+    protected Product product;
+
+
+    @ManyToOne
+    @MapsId("materialId")
+    @JoinColumn(name = "materialId", insertable = false, updatable = false)
+    protected Material material;
+
+    @Column(name = "weight")
+    protected double weight;
+
 
     @Override
     public String toString() {
         return "ProductMaterial{" +
-                "products=" + products +
-                ", materials=" + materials +
+                "products=" + product +
+                ", materials=" + material +
                 ", weight=" + weight +
                 '}';
     }
 
-    public Product getProducts() {
-        return products;
-    }
 
-    public void setProducts(Product products) {
-        this.products = products;
-    }
-
-    public Material getMaterials() {
-        return materials;
-    }
-
-    public void setMaterials(Material materials) {
-        this.materials = materials;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
 }

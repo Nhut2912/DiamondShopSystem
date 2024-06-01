@@ -33,7 +33,7 @@ function Product() {
 
   return (
     <div className='product-container'>
-        <h1>Product</h1>
+        <h1>Products</h1>
         <p>
           Admin / <span>Products</span>
         </p>

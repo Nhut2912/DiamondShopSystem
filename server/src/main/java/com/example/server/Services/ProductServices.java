@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class ProductServices implements IProductServices{
 
     @Autowired
+<<<<<<< HEAD
     private final IProductRepository ProductRepository;
     @Autowired
     private final ICategoryRepository CategoryRepository;
@@ -31,14 +32,24 @@ public class ProductServices implements IProductServices{
         this.ProductRepository = productRepository;
         CategoryRepository = categoryRepository;
     }
+=======
+    private IProductRepository ProductRepository;
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 
     /*
      * Author: Pham Trong Hieu
      * Date: 24/5/2024
      */
+<<<<<<< HEAD
     @Override
     public ResponseEntity<Product> saveProduct(Product product){
         return new ResponseEntity<>(ProductRepository.save(product), HttpStatus.CREATED);
+=======
+
+    public ResponseEntity<?> saveProduct(Product product) {
+        Product productAfterAdd = ProductRepository.save(product);
+        return new ResponseEntity<>(productAfterAdd, HttpStatus.OK);
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
     }
 
 
@@ -47,13 +58,10 @@ public class ProductServices implements IProductServices{
         ProductRepository.deleteById(ProductID);
     }
 
-//    @Override
-//    public void update(Product product) {
-//
-//    }
 
     @Override
     public Iterable<Product> getProducts() {
         return ProductRepository.findAll();
     }
 }
+

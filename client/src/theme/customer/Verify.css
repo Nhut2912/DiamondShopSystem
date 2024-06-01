@@ -1,0 +1,101 @@
+
+.verify-container{
+    background-color: #F7F7F7;
+    display: flex;
+    justify-content: center;
+}
+.verify-container > .verify-content{
+    background-color: #FFFFFF;
+    width: 450px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.verify-container > .verify-content > div:first-child{
+    position: absolute;
+    top:10vh;
+}
+.verify-container > .verify-content > div:nth-child(2){
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+.verify-container > .verify-content > div:nth-child(2) > h2{
+    text-align: center;
+    margin: 0 0 20px 0;
+    font-family: 'Roboto Serif';
+    font-size: 34px;
+    letter-spacing: 0.4px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+}
+.verify-container > .verify-content > div:nth-child(2) > p{
+    text-align: center;
+    margin: 0;
+    font-family: 'Roboto Serif';
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
+}
+.verify-container > .verify-content > div:nth-child(2) > p > span{
+    font-size: 15px;
+    color: #D9B384;
+    line-height: 30px;
+}
+.verify-container > .verify-content > div:nth-child(2) > div:nth-child(3){
+    display: grid;
+    margin-top: 30px;
+}
+.verify-container > .verify-content > div:nth-child(2) > div:nth-child(3) > input{
+    box-sizing: border-box;
+    height: 50px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding-left: 10px;
+    border-radius: 5px;
+    font-family: 'Roboto Serif';
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+}
+.verify-container > .verify-content > div:nth-child(2) > div:nth-child(3) > input:focus{
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.7);
+}
+.verify-container > .verify-content > div:nth-child(2) > div:nth-child(3) > label{
+    font-family: 'Roboto Serif';
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+}
+.verify-container > .verify-content > div:nth-child(2) > .button-verify{
+    height: 50px;
+    background-color: #D9B384;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-family: 'Roboto Serif';
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+.verify-container > .verify-content > div:nth-child(2) > .button-send-again{
+    height: 50px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-family: 'Roboto Serif';
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.5);
+    cursor: pointer;
+    border: 1px solid #D9B384;
+}

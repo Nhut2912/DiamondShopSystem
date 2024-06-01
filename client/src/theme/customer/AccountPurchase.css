@@ -1,0 +1,48 @@
+.account-purchase-container{
+    box-sizing: border-box;
+    padding-left: 255px;
+    padding-bottom: 100px;
+}
+.account-purchase-container > p {
+    font-family: "Roboto Serif";
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 30px 0;
+}
+.account-purchase-container > p > span {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+}
+.account-purchase-container > h3{
+    font-family: "Roboto Serif";
+    font-weight: 600;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.75);
+    letter-spacing: 0.24px;
+    margin: 40px 0 0 0;
+}
+.account-purchase-container > .status-purchase{
+    padding-inline-start: 0;
+    list-style: none;
+    display: flex;
+    column-gap: 20px;
+}
+.account-purchase-container > .status-purchase > li{
+    width: 135px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Serif';
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.account-purchase-container > .status-purchase > li.isActive{
+    background-color: #D9B384;
+    color: rgba(255, 255, 255, 1);
+    border: none;
+}

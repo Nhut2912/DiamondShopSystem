@@ -1,6 +1,10 @@
 package com.example.server.Pojo;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,20 +22,43 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "categoryId")
     private Long id;
 
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "Active", nullable = false)
+    @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Column(name = "CategoryType")
-    private int CategoryType;
+    @Column(name = "categoryType")
+    private int categoryType;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ProductCategory")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productCategory")
+    @JsonIgnore
     private Set<Product> products;
 
+<<<<<<< HEAD
+=======
+    public Category() {
+    }
+
+    public Category(Long id, String name, boolean active, int categoryType, Set<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.active = active;
+        this.categoryType = categoryType;
+        this.products = products;
+    }
+
+    public Category(Category cate) {
+        this.id = cate.id;
+        this.name = cate.name;
+        this.active = cate.active;
+        this.categoryType = cate.categoryType;
+        this.products = cate.products;
+    }
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 
     @Override
     public String toString() {
@@ -39,7 +66,7 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active=" + active +
-                ", CategoryType=" + CategoryType +
+                ", CategoryType=" + categoryType +
                 ", products=" + products +
                 '}';
     }

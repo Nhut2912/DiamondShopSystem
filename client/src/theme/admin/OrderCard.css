@@ -1,0 +1,6 @@
+.order-card-container{
+    height: 200px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: rgba(26, 27, 29, 1);
+}

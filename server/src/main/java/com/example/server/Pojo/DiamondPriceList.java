@@ -6,62 +6,45 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "DIAMONDPRICELIST")
+@Table(name = "diamondPriceList")
 public class DiamondPriceList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "diamondPriceListId")
     private Long Id;
 
-    @Column(name = "Price")
+    @Column(name = "price")
     private Double price;
 
-    @Column(name = "EffDate")
+    @Column(name = "effDate")
     private Date effDate;
 
-    @Column(name = "Carat")
+    @Column(name = "carat")
     private Double carat;
 
     @ManyToOne()
-    @JoinColumn(name = "CutID")
-    private Cut DiamondCut;
+    @JoinColumn(name = "cutID")
+    private Cut diamondCut;
 
     @ManyToOne()
-    @JoinColumn(name = "OriginID")
-    private Origin DiamondOrigin;
+    @JoinColumn(name = "originID")
+    private Origin diamondOrigin;
 
     @ManyToOne()
-    @JoinColumn(name = "ColorID")
-    private Color DiamondColor;
+    @JoinColumn(name = "colorID")
+    private Color diamondColor;
 
     @ManyToOne()
-    @JoinColumn(name = "ClarityID")
-    private Clarity DiamondClarity;
+    @JoinColumn(name = "clarityID")
+    private Clarity diamondClarity;
 
-    public DiamondPriceList(Long id, Double price, Date effDate, Double carat, Cut diamondCut, Origin diamondOrigin, Color diamondColor, Clarity diamondClarity) {
-        Id = id;
-        this.price = price;
-        this.effDate = effDate;
-        this.carat = carat;
-        DiamondCut = diamondCut;
-        DiamondOrigin = diamondOrigin;
-        DiamondColor = diamondColor;
-        DiamondClarity = diamondClarity;
-    }
+
 
     public DiamondPriceList() {
     }
 
-    public DiamondPriceList(DiamondPriceList dl) {
-        Id = dl.Id;
-        this.price = dl.price;
-        this.effDate = dl.effDate;
-        this.carat = dl.carat;
-        DiamondCut = dl.DiamondCut;
-        DiamondOrigin = dl.DiamondOrigin;
-        DiamondColor = dl.DiamondColor;
-        DiamondClarity = dl.DiamondClarity;
-    }
+
 
     @Override
     public String toString() {
@@ -70,10 +53,10 @@ public class DiamondPriceList {
                 ", price=" + price +
                 ", effDate=" + effDate +
                 ", carat=" + carat +
-                ", DiamondCut=" + DiamondCut +
-                ", DiamondOrigin=" + DiamondOrigin +
-                ", DiamondColor=" + DiamondColor +
-                ", DiamondClarity=" + DiamondClarity +
+                ", DiamondCut=" + diamondCut +
+                ", DiamondOrigin=" + diamondOrigin +
+                ", DiamondColor=" + diamondColor +
+                ", DiamondClarity=" + diamondClarity +
                 '}';
     }
 }

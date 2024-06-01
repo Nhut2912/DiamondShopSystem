@@ -7,7 +7,12 @@ import icon_instagram from '../../assets/icons/customer/instagram.svg';
 import icon_twitter from '../../assets/icons/customer/twitter.svg';
 import icon_back from '../../assets/icons/customer/back.svg';
 import icon_delete from '../../assets/icons/customer/delete.svg';
-
+import icon_back_white from '../../assets/icons/customer/back-white.svg'
+import icon_logo_no_text from '../../assets/icons/customer/logo-nojewelry.svg'
+import icon_purchase from '../../assets/icons/customer/purchase.svg'
+import icon_logout from '../../assets/icons/customer/log_out.svg'
+import icon_notification from '../../assets/icons/customer/notification.svg'
+import icon_back_arrow from '../../assets/icons/customer/back-arrow.svg'
 
 const ICONS = {
     icon_logo : icon_logo,
@@ -18,7 +23,13 @@ const ICONS = {
     icon_instagram:icon_instagram,
     icon_twitter:icon_twitter,
     icon_back:icon_back,
-    icon_delete:icon_delete
+    icon_delete:icon_delete,
+    icon_back_white:icon_back_white,
+    icon_logo_no_text:icon_logo_no_text,
+    icon_purchase:icon_purchase,
+    icon_logout:icon_logout,
+    icon_notification:icon_notification,
+    icon_back_arrow: icon_back_arrow
 }
 
 export default ICONS;

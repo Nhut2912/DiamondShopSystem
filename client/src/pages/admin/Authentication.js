@@ -63,7 +63,7 @@ const Authentication = () => {
 
 
   return (
-    <div className='container'>
+    <div className='container-admin'>
         <div className='login-form'>
             <div className='welcome'> 
                 <img src={ICONS.icon_logo} className='logo' alt="" width='50%' height='50%'/>
