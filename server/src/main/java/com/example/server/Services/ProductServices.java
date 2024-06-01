@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-
 
 @Service
 public class ProductServices implements IProductServices{
@@ -17,26 +15,21 @@ public class ProductServices implements IProductServices{
     private final IProductRepository ProductRepository;
     @Autowired
     private final ICategoryRepository CategoryRepository;
-    @Autowired
-    private final ISizeRepository SizeRepository;
-    private final IWarrantyRepository WarrantyRepository;
-    @Autowired
-    private final IImagesRepository ImagesRepository;
-    private final IMaterialRepository MaterialRepository;
-
 //    @Autowired
-    private final IDiamondRepository DiamondRepository;
+//    private final ISizeRepository SizeRepository;
+//    private final IWarrantyRepository WarrantyRepository;
+//    @Autowired
+//    private final IImagesRepository ImagesRepository;
+//    private final IMaterialRepository MaterialRepository;
+//
+////    @Autowired
+//    private final IDiamondRepository DiamondRepository;
 
 
     @Autowired
-    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository, ISizeRepository sizeRepository, IWarrantyRepository warrantyRepository, IImagesRepository imagesRepository, IMaterialRepository materialRepository, IDiamondRepository diamondRepository) {
+    public ProductServices(IProductRepository productRepository, ICategoryRepository categoryRepository) {
         this.ProductRepository = productRepository;
         CategoryRepository = categoryRepository;
-        SizeRepository = sizeRepository;
-        WarrantyRepository = warrantyRepository;
-        ImagesRepository = imagesRepository;
-        MaterialRepository = materialRepository;
-        DiamondRepository = diamondRepository;
     }
 
     /*
@@ -45,7 +38,6 @@ public class ProductServices implements IProductServices{
      */
     @Override
     public ResponseEntity<Product> saveProduct(Product product){
-
         return new ResponseEntity<>(ProductRepository.save(product), HttpStatus.CREATED);
     }
 
@@ -61,7 +53,7 @@ public class ProductServices implements IProductServices{
 //    }
 
     @Override
-    public List<Product> getProducts() {
+    public Iterable<Product> getProducts() {
         return ProductRepository.findAll();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.server.Pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.*;
 
 @Data
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Table(name = "PRODUCTS")
 public class Product {
 
@@ -50,7 +52,8 @@ public class Product {
 
     //Pham Trong Hieu
 
-    @ManyToOne() //many to one khong nen dung cascade(Tran Viet Hoang)
+    @Getter
+    @ManyToOne(fetch = FetchType.LAZY) //many to one khong nen dung cascade(Tran Viet Hoang)
     @JoinColumn(name = "CategoryID")
     private Category ProductCategory;
 
@@ -77,6 +80,7 @@ public class Product {
                 "Id=" + Id +
                 ", Name='" + Name + '\'' +
                 ", Code='" + Code + '\'' +
+                ", ProductCategory=" + ProductCategory +
                 ", Active=" + Active +
                 ", SecondaryDiamondCost=" + SecondaryDiamondCost +
                 ", SecondaryMaterialCost=" + SecondaryMaterialCost +
@@ -84,7 +88,7 @@ public class Product {
                 ", PriceRate=" + PriceRate +
                 ", ProductSizes=" + ProductSizes +
                 ", images=" + images +
-                ", ProductCategory=" + ProductCategory +
+
                 ", productMaterialSet=" + productMaterialSet +
                 ", warranty=" + warranty +
                 ", productDetailSet=" + productDetailSet +

@@ -27,12 +27,12 @@ public class ProductController {
      * Date: 24/5/2024
      */
     @PostMapping("/save")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product) throws Exception{
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
         return productServices.saveProduct(product);
     }
 
     @GetMapping("/getProducts")
-    public List<Product> getProducts() {
+    public Iterable<Product> getProducts() {
         return productServices.getProducts();
     }
 

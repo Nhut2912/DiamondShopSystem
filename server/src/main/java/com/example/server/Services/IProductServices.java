@@ -22,7 +22,7 @@ public interface IProductServices {
 
     public void delete(Long ProductID);
 
-    public List<Product> getProducts();
+    public Iterable<Product> getProducts();
 
 
 }
