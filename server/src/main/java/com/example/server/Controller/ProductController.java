@@ -1,7 +1,6 @@
 package com.example.server.Controller;
 
 import com.example.server.Pojo.*;
-import com.example.server.Requests.ProductDTO;
 import com.example.server.Services.IProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/product")
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
     @Autowired
     private final IProductServices productServices;
@@ -29,19 +28,16 @@ public class ProductController {
      */
     @PostMapping("/save")
 <<<<<<< HEAD
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+=======
     public ResponseEntity<?> save(@RequestBody Product product) {
 
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
         return productServices.saveProduct(product);
-=======
-    public ResponseEntity<Product> save(@RequestBody ProductDTO product) throws Exception{
-
-        Product addedProduct = productServices.save(product);
-        return new ResponseEntity<>(addedProduct,HttpStatus.CREATED);
->>>>>>> 66cd59eec7390c32ee0e12456e935defed9dec98
     }
 
     @GetMapping("/getProducts")
-    public List<Product> getProducts() {
+    public Iterable<Product> getProducts() {
         return productServices.getProducts();
     }
 

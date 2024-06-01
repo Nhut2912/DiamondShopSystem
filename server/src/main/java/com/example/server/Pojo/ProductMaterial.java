@@ -27,13 +27,13 @@ public class ProductMaterial {
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "productID", insertable = false, updatable = false)
+    @JoinColumn(name = "productId", insertable = false, updatable = false)
     protected Product product;
 
 
     @ManyToOne
-    @MapsId("materialID")
-    @JoinColumn(name = "materialID", insertable = false, updatable = false)
+    @MapsId("materialId")
+    @JoinColumn(name = "materialId", insertable = false, updatable = false)
     protected Material material;
 
     @Column(name = "weight")

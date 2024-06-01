@@ -28,7 +28,7 @@ public class MaterialPriceList {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "materialId")
-    private Material materials;
+    private Material material;
 
 
 }

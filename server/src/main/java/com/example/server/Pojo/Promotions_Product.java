@@ -1,7 +1,14 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+<<<<<<< HEAD
+@Data
+@Entity
+@Table(name = "Promotions_Product")
+public class Promotions_Product {
+=======
 import java.io.Serializable;
 
 @Entity
@@ -15,6 +22,7 @@ public class Promotions_Product {
     }
     @EmbeddedId
     protected Promotions_ProductId promotionsProductId;
+>>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 
     @ManyToOne
     @JoinColumn(name = "promotionId", insertable = false, updatable = false)
