@@ -2,7 +2,7 @@
     display: grid;
 }
 .input-box-container > label{
-    color: rgba(0, 0, 0, 0.60);
+    color: rgba(0, 0, 0, 0.50);
     font-family: "Roboto Serif";
     font-size: 15px;
     font-weight: 400;
@@ -13,9 +13,8 @@
     background-color: transparent;
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
     padding: 0 15px;
-    color: rgba(0, 0, 0, 0.60);
+    color: rgba(0, 0, 0, 0.85);
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
 }

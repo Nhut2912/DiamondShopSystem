@@ -5,9 +5,12 @@ import ProductCheckOut from '../../components/customer/ProductCheckOut';
 import InputBox from '../../components/customer/InputBox';
 import InputSelectBox from '../../components/customer/InputSelectBox';
 import { ICONS } from '../../constants/customer';
+import { useNavigate } from 'react-router-dom';
 
 
 function CheckOutCart() {
+ const navigate = useNavigate();
+
   return (
     <div className='check-out-cart'>
 
@@ -100,7 +103,7 @@ function CheckOutCart() {
                               <h2>Form of receipt</h2>
                         </div>
                         <div> 
-                            <div>
+                            <div className='isActive'>
                                <span>Delivery</span>
                             </div>
                             <div>
@@ -108,41 +111,32 @@ function CheckOutCart() {
                             </div>
                         </div>
                         <div>
-                              <div>
-                                  <InputSelectBox title={"Province/City"} />
-                                  <InputSelectBox title={"District"} />
-                                  <InputSelectBox title={"Ward/Commune"} />
-                                  <InputBox  title={"Detail Address"}/>
-                                  <InputBox title={"Notes"}/>
-                              </div>
-                              <div>
-                                <InputSelectBox title={"Province/City"} />
-                                <InputSelectBox title={"District"} />
-                                <InputSelectBox title={"Store"} />
-                                <InputBox title={"Notes"}/>
-                              </div>
+                             {true ? 
+                                
+                                     <div>
+                                        <InputSelectBox title={"Province/City"} />
+                                        <InputSelectBox title={"District"} />
+                                        <InputSelectBox title={"Ward/Commune"} />
+                                        <InputBox  title={"Detail Address"}/>
+                                        <InputBox title={"Notes"}/>
+                                    </div>
+                                : 
+                               
+                                    <div>
+                                        <InputSelectBox title={"Province/City"} />
+                                        <InputSelectBox title={"District"} />
+                                        <InputSelectBox title={"Store"} />
+                                        <InputBox title={"Notes"}/>
+                                    </div>
+                                
+                            }
+                         
                         </div>
-                        <div className='button-continue'>
-                              <span>Continue</span>
-                        </div>
-                  </div>
-                  <div className='payment-method'>
-                        <div className='head-payment-method'>
-                              <div>
-                                 <span>3</span>
-                              </div>
-                              <h2>Payment method</h2>
-                        </div>
-                         <div>
-                          <div>
-                                <span>{"Cash payment upon delivery (COD)"}</span>
-                            </div>
-                            <div>
-                                <div></div>
-                                <span>{"( Pay with momo wallet )"}</span>
-                            </div>
-                         </div>
-                          <div className='button-continue'>
+                        <div className='button-continue'
+                            onClick={() => 
+                                navigate("order")
+                            }
+                        >
                               <span>Continue</span>
                         </div>
                   </div>

@@ -1,0 +1,88 @@
+.login-container{
+    background-color: #F7F7F7;
+    display: flex;
+    justify-content: center;
+}
+.login-container > .login-content{
+    background-color: #FFFFFF;
+    width: 450px;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.login-container > .login-content > div:nth-child(1){
+    position: absolute;
+    left:20px;
+    top:20px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+}
+.login-container > .login-content > div:nth-child(1) > span{
+    font-family: 'Roboto Serif';
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+}
+.login-container > .login-content > div:nth-child(2){
+    position: absolute;
+    top:10vh;
+}
+.login-container > .login-content > div:nth-child(3){
+    width: 100%;
+    padding: 0 20px;
+}
+.login-container > .login-content > div:nth-child(3) > h2{
+    text-align: center;
+    margin: 0 0 40px 0;
+    font-family: 'Roboto Serif';
+    font-size: 34px;
+    letter-spacing: 0.4px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+}
+.login-container > .login-content > div:nth-child(3) > div:nth-child(2){
+    display: grid;
+
+}
+.login-container > .login-content > div:nth-child(3) > div:nth-child(2) >  label{
+    font-family: 'Roboto Serif';
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+}
+.login-container > .login-content > div:nth-child(3) > div:nth-child(2) > input{
+    box-sizing: border-box;
+    height: 50px;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding-left: 10px;
+    border-radius: 5px;
+    font-family: 'Roboto Serif';
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+}
+.login-container > .login-content > div:nth-child(3) > div:nth-child(2) > input:focus{
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.7);
+}
+.login-container > .login-content > div:nth-child(3) > .button-login{
+    height: 50px;
+    background-color: #D9B384;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-family: 'Roboto Serif';
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}

@@ -12,6 +12,9 @@ import ProductDetail from './pages/customers/ProductDetail'
 import Blog from './pages/customers/Blog'
 import Contact from './pages/customers/Contact'
 import CheckOutCart from './pages/customers/CheckOutCart'
+import Order from './pages/customers/Order';
+import Login from './pages/customers/Login';
+import Verify from './pages/customers/Verify';
 
 import Authentication from './pages/admin/Authentication';
 import Overview from './pages/admin/Overview';
@@ -25,6 +28,13 @@ import GoldPriceAdmin from './pages/admin/GoldPrice';
 import DiamondPriceAdmin from './pages/admin/DiamondPrice';
 import NotificationsAdmin from './pages/admin/Notifications';
 import DetailProductAdmin from './components/admin/DetailProduct';
+import OrderComplete from './pages/customers/OrderComplete';
+import Account from './pages/customers/Account';
+import AccountProfile from './components/customer/AccountProfile';
+import AccountPurchase from './components/customer/AccountPurchase';
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -36,13 +46,29 @@ root.render(
               <Route path='/home' element={<Home />} />
               <Route path="/products" element={<Product />}/>
               <Route path="/products/:id" element={<ProductDetail />}  />
-              <Route path="/checkout-cart" element={<CheckOutCart />}/>
+              <Route path="/checkout-cart">
+                <Route index element={<CheckOutCart />} />
+                  <Route path="order" element={<Order />} />
+                  <Route path="complete" element={<OrderComplete />} />
+              </Route>
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
             </Route>
+
+            <Route path='/login'  >
+              <Route index element={<Login />} />
+              <Route path='verify' element={<Verify />} />
+            </Route>
+
+            <Route path='/account' element={<Account />} >
+                <Route index element={<AccountProfile />}/>
+                <Route path="purchase" element={<AccountPurchase />} />
+            </Route>
+
+
             <Route  path='/admin' element={<Authentication />}/>
             <Route path='/admin/overview' element={<Overview />}> 
-                    <Route path='dashboard' element={<Dashboard />} />
+                    <Route index element={<Dashboard />} />
                     <Route path="products" element={<ProductAdmin />} />
                     <Route path="products/:id" element={<DetailProductAdmin />} />
                     <Route path="order" element={<OrderAdmin />}/>

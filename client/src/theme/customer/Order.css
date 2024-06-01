@@ -1,0 +1,504 @@
+.order-container-customer{
+    width: 1180px;
+    margin: 0 auto 100px auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+.order-container-customer > .continue-shopping{
+    width: 280px;
+    height: 50px;
+    border: 1px solid #D9B384;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 60px;
+    cursor: pointer;
+}
+.order-container-customer  > .continue-shopping > span{
+    color: #D9B384;
+    font-family: "Roboto Serif";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.36px;
+    padding-left: 15px;
+}
+.order-container-customer  > .continue-shopping >  img{
+    position: absolute;
+    left: 15px;
+}
+.order-container-customer  > .status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 70px 0;
+}
+.order-container-customer  > .status > div:nth-child(odd){
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.40);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.order-container-customer  > .status > div:nth-child(odd).isActive{
+    border:2px solid rgba(54, 227, 57, 0.60);
+}
+.order-container-customer  > .status > div:nth-child(odd).isActive::before{
+    color: rgba(54, 227, 57, 0.60);
+}
+.order-container-customer  > .status > div:nth-child(odd)::before {
+    content: "";
+    position: absolute;
+    width: 162px;
+    left:50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    top:100%;
+    margin-top: 10px;
+
+    color: rgba(0, 0, 0, 0.60);
+    text-align: center;
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.order-container-customer  >  .status > div:nth-child(1)::before{
+    content: "Buyer Information";
+}
+.order-container-customer  >  .status > div:nth-child(3)::before{
+    content: "Form Of Receipt";
+}
+.order-container-customer  >  .status > div:nth-child(5)::before{
+    content: "Order Information";
+}
+.order-container-customer  >  .status > div:nth-child(7)::before{
+    content: "Payment";
+}
+.order-container-customer > .status > div:nth-child(odd) > span{
+    color: rgba(0, 0, 0, 0.40);
+    font-family: "Roboto Serif";
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.48px;
+}
+.order-container-customer > .status > div:nth-child(odd).isActive > span{
+    color: rgba(54, 227, 57, 0.60);
+}
+.order-container-customer  > .status > div:nth-child(even){
+    background: rgba(0, 0, 0, 0.50);
+    height: 2px;
+    width: 130px;
+}
+.order-container-customer  > .status > div:nth-child(even).isActive{
+    background-color: rgba(54, 227, 57, 0.60);
+}
+.order-container-customer > .information-order{
+        box-sizing: border-box;
+        padding: 70px 80px;
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        position: relative;
+}
+.order-container-customer > .information-order > .type-order{
+    position: absolute;
+    right: 80px;
+    top:70px;
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 8px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+}
+.order-container-customer > .information-order > h3{
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin: 0 0 50px 0;
+}
+.order-container-customer > .information-order >  .customer-information{
+    display: flex;
+    justify-content: center;
+}
+.order-container-customer > .information-order >  .customer-information > ul{
+    padding-inline-start: 0;
+    list-style: none;
+}
+.order-container-customer > .information-order >  .customer-information > ul > li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 560px;
+}
+.order-container-customer > .information-order >  .customer-information > ul > li > h5{
+    width: 160px;
+    color: rgba(0, 0, 0, 0.9);
+    font-family: "Roboto Serif";
+    font-size: 14px;
+    font-weight: 700;
+    margin: 15px;
+}
+.order-container-customer > .information-order >  .customer-information > ul > li > span{
+    width: 380px;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 500;
+    margin: 15px;
+}
+.order-container-customer > .information-order > .products-information{
+    display: grid;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    padding: 20px ;
+    margin-top: 50px;
+}
+.order-container-customer > .information-order > .products-information > ul {
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr 2fr ;
+    box-sizing: border-box;
+    column-gap: 20px;
+}
+.order-container-customer > .information-order > .products-information > ul > li{
+    color: rgba(0, 0, 0, 0.7);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}
+.order-container-customer > .information-order > .products-information > ul:first-child > li{
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+}
+.order-container-customer > .information-order > .products-information > ul:first-child{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    padding-bottom: 20px;
+}
+.order-container-customer > .information-order > .products-information > ul > li:nth-child(2){
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+.order-container-customer > .information-order > .products-information > ul > li:nth-child(1){
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+.order-container-customer > .information-order > .products-information > ul:nth-child(n+2){
+    align-items: center;
+}
+.order-container-customer > .information-order > .products-information > ul:nth-child(n+2) > li:first-child > div{
+    height: 120px;
+    width: 100%;
+}
+.order-container-customer > .information-order > .products-information > ul:nth-child(n+2) > li:nth-child(2) > div > h4{
+    color: rgba(0, 0, 0, 0.9);
+    font-family: "Roboto Serif";
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+.order-container-customer > .information-order > .products-information > ul:nth-child(n+2) > li:nth-child(2) > div > p{
+    color: rgba(0, 0, 0, 0.4);
+    font-family: "Roboto Serif";
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.order-container-customer > .information-order > .products-information > ul:nth-child(n+2) > li:nth-child(2) > div > span{
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 14px;
+}
+.order-container-customer > .information-order > .products-information > .line{
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.10);
+}
+.order-container-customer > .information-order > .products-information > .total{
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+}
+.order-container-customer > .information-order > .products-information > .total > div:first-child{
+    border-right: 1px solid rgba(0, 0, 0, 0.10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order-container-customer > .information-order > .products-information > .total > div:first-child > p{
+    margin: 0 50px ;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0.25px;
+}
+.order-container-customer > .information-order > .products-information > .total > ul {
+    display: block;
+}
+.order-container-customer > .information-order > .products-information > .total > ul > li{
+    display: flex;
+    justify-content: space-between;
+}
+.order-container-customer > .information-order > .products-information > .total > ul > li > h5{
+    margin: 15px 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 600;
+}
+.order-container-customer > .information-order > .products-information > .total > ul > li:last-child > h5{
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+}
+.order-container-customer > .information-order > .products-information > .total > ul > li > h4{
+    margin: 15px 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 600;
+}
+.order-container-customer > .information-order > .products-information > .total > ul > li:last-child  > h4{
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+}
+.order-container-customer >  .button-payment{
+    width: 380px;
+    height: 50px ;
+    background-color: #D9B384;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto 50px auto;
+    cursor: pointer;
+}
+
+.order-container-customer >  .button-payment > span{
+    color: rgba(255, 255, 255, 1);
+    font-family: "Roboto Serif";
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+   
+}
+
+
+.order-container-customer > .head-order-information{
+    height: 60px;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    margin-bottom: 40px;
+}
+.order-container-customer > .head-order-information> div{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #D9B384;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+.order-container-customer > .head-order-information > div > span{
+    color: #D9B384;
+    text-align: center;
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.48px;
+}
+.order-container-customer > .head-order-information  > h2{
+    color: #D9B384;
+    font-family: "Roboto Serif";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.4px;
+}
+
+.order-container-customer > .payment-method{
+    width: 100%;
+}
+.order-container-customer > .payment-method > .head-payment-information{
+    height: 60px;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    margin-bottom: 40px;
+}
+.order-container-customer > .payment-method > .head-payment-information > div{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #D9B384;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+.order-container-customer > .payment-method > .head-payment-information > div > span{
+    color: #D9B384;
+    text-align: center;
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.48px;
+}
+.order-container-customer > .payment-method > .head-payment-information  > h2{
+    color: #D9B384;
+    font-family: "Roboto Serif";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.4px;
+}
+.order-container-customer > .payment-method > .deposit{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 80px;
+  
+}
+.order-container-customer > .payment-method > .deposit > h4{
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin: 0 0 50px 0;
+    
+}
+.order-container-customer > .payment-method > .deposit > div:nth-child(2){
+    padding: 20px;
+    display: grid;
+    row-gap: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul{
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr 2fr 2fr;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+    column-gap: 30px;
+}
+.order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul > li{
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 500;
+}
+.order-container-customer > .payment-method > .deposit > div:nth-child(2) > .line{
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul:first-child{
+    margin-bottom: 10px;
+}
+.order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul:first-child > li{
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+}
+
+.order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul:last-child > li{
+    grid-column:  4/6;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: 30px;
+}
+.order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul:last-child > li > h5{
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+.order-container-customer > .payment-method > .deposit  > .choose-payment-method{
+    margin-top: 50px;
+}
+.order-container-customer > .payment-method > .deposit  > .choose-payment-method > h4{
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin-bottom: 50px;
+}
+.order-container-customer > .payment-method > .deposit  > .choose-payment-method > div{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    gap: 20px;
+   
+}
+.order-container-customer > .payment-method > .deposit  > .choose-payment-method > div > div{
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5px;
+    background: #F7F7F7;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.order-container-customer > .payment-method > .deposit  > .choose-payment-method > div > div.isActive{
+    border: 1px solid #D9B384;
+    background: #F7F7F7;
+}
+.order-container-customer > .payment-method > .deposit  > .choose-payment-method > div > div > span{
+    color: rgba(0, 0, 0, 0.60);
+    text-align: center;
+    font-family: "Roboto Serif";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.26px;
+}
+.order-container-customer > .payment-method > .deposit  > .choose-payment-method > div > div:first-child > span{
+    color: rgba(0, 0, 0, 0.80);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.26px;
+}
+.order-container-customer > .payment-method > .deposit  > .button-order{
+    width: 380px;
+    height: 50px ;
+    background-color: #D9B384;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto 50px auto;
+    cursor: pointer;
+}
+.order-container-customer > .payment-method > .deposit  > .button-order > span{
+    color: rgba(255, 255, 255, 1);
+    font-family: "Roboto Serif";
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+   
+}

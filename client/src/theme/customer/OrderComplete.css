@@ -1,0 +1,63 @@
+.order-complete-container{
+    width: 1180px;
+    margin: 0 auto;
+}
+.order-complete-container > .continue-shopping{
+    width: 280px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 60px;
+    cursor: pointer;
+    background-color: #D9B384;
+
+}
+.order-complete-container > .continue-shopping > span{
+    color: rgba(255, 255, 255, 1);
+    font-family: "Roboto Serif";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.36px;
+    padding-left: 15px;
+}
+.order-complete-container > .continue-shopping >  img{
+    position: absolute;
+    left: 15px;
+}
+.order-complete-container > div:nth-child(2){
+    background-color: rgba(217, 179, 132, 0.2);
+    padding: 100px 0;
+    margin-top: 50px;
+}
+.order-complete-container > div > .thank-you-container{
+    width: 780px;
+    margin:0 auto;
+}
+
+.order-complete-container > div > .thank-you-container > h1{
+    text-align: center;
+    font-family: 'Roboto Serif';
+    font-size: 80px;
+    font-style: italic;
+    font-weight: 500;
+    margin: 0;
+}
+.order-complete-container > div > .thank-you-container  > h4{
+    text-align: center;
+    font-family: 'Roboto Serif';
+    font-size: 26px;
+    font-weight: 400;
+    margin: 20px 0 0 0;
+    color: rgba(0,0,0,0.6);
+}.order-complete-container > div > .thank-you-container  > p{
+    margin-top: 50px;
+    font-family: 'Roboto Serif';
+    font-size: 18px;
+    line-height: 29px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.9);
+}

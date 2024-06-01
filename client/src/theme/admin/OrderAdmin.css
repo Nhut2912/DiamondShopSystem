@@ -1,0 +1,27 @@
+
+.order-admin-manage > ul{
+    padding-inline-start: 0;
+    display: flex;
+    list-style: none;
+    column-gap: 20px;
+    box-sizing: border-box;
+    margin: 40px 0 30px 0;
+}
+.order-admin-manage > ul > li{
+    box-sizing: border-box;
+    height: 40px;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Roboto Serif';
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 400;
+    cursor: pointer;
+}
+.order-admin-manage > ul > li.isActive{
+    background-color: #D9B384;
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid #D9B384;
+}

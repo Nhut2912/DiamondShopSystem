@@ -12,7 +12,9 @@ import images_banner_in_product from '../../assets/images/customer/banner-sale-i
 import image_product_1 from '../../assets/images/customer/gnddddw003910-nhan-kim-cuong-vang-trang-14k-pn-01.png';
 import image_product_2 from '../../assets/images/customer/gnddddw003910-nhan-kim-cuong-vang-trang-14k-pn-02.png';
 import image_product_3 from '../../assets/images/customer/gnddddw003910-nhan-kim-cuong-vang-trang-14k-pnj.png';
-
+import image_vnpay from '../../assets/images/customer/vnpay.png';
+import image_momo from '../../assets/images/customer/momo.png';
+import image_paypal from '../../assets/images/customer/paypal.png'
 const IMAGES = {
     image_banner: image_banner,
     image_the_momment_set: image_the_momment_set,
@@ -27,7 +29,10 @@ const IMAGES = {
     images_banner_in_product:images_banner_in_product,
     image_product_1: image_product_1,
     image_product_2 : image_product_2,
-    image_product_3: image_product_3
+    image_product_3: image_product_3,
+    image_vnpay: image_vnpay,
+    image_momo : image_momo,
+    image_paypal:image_paypal
 }   
 
 export default IMAGES;
