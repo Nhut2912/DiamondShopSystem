@@ -12,10 +12,10 @@ public class OrderDetail {
     @Data
     @Embeddable
     public static class OrderDetailId implements Serializable {
-        @Column(name = "orderId")
-        protected long productId;
         @Column(name = "productId")
-        protected long materialId;
+        protected long productId;
+        @Column(name = "orderId")
+        protected long orderId;
     }
     @EmbeddedId
     OrderDetailId orderDetailId;

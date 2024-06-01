@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/product")
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
     @Autowired
     private final IProductServices productServices;
@@ -28,16 +28,9 @@ public class ProductController {
      * Date: 24/5/2024
      */
     @PostMapping("/save")
-<<<<<<< HEAD
     public ResponseEntity<?> save(@RequestBody Product product) {
 
         return productServices.saveProduct(product);
-=======
-    public ResponseEntity<Product> save(@RequestBody ProductDTO product) throws Exception{
-
-        Product addedProduct = productServices.save(product);
-        return new ResponseEntity<>(addedProduct,HttpStatus.CREATED);
->>>>>>> 66cd59eec7390c32ee0e12456e935defed9dec98
     }
 
     @GetMapping("/getProducts")

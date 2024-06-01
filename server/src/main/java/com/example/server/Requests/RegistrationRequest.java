@@ -19,6 +19,6 @@ public class RegistrationRequest {
     private boolean active;
     private boolean gender;
 
-    private boolean verify;
+    private String otp;
 
 }

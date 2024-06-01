@@ -25,44 +25,26 @@ public class DiamondPriceList {
 
     @ManyToOne()
     @JoinColumn(name = "cutID")
-    private Cut DiamondCut;
+    private Cut diamondCut;
 
     @ManyToOne()
     @JoinColumn(name = "originID")
-    private Origin DiamondOrigin;
+    private Origin diamondOrigin;
 
     @ManyToOne()
     @JoinColumn(name = "colorID")
-    private Color DiamondColor;
+    private Color diamondColor;
 
     @ManyToOne()
     @JoinColumn(name = "clarityID")
-    private Clarity DiamondClarity;
+    private Clarity diamondClarity;
 
-    public DiamondPriceList(Long id, Double price, Date effDate, Double carat, Cut diamondCut, Origin diamondOrigin, Color diamondColor, Clarity diamondClarity) {
-        Id = id;
-        this.price = price;
-        this.effDate = effDate;
-        this.carat = carat;
-        DiamondCut = diamondCut;
-        DiamondOrigin = diamondOrigin;
-        DiamondColor = diamondColor;
-        DiamondClarity = diamondClarity;
-    }
+
 
     public DiamondPriceList() {
     }
 
-    public DiamondPriceList(DiamondPriceList dl) {
-        Id = dl.Id;
-        this.price = dl.price;
-        this.effDate = dl.effDate;
-        this.carat = dl.carat;
-        DiamondCut = dl.DiamondCut;
-        DiamondOrigin = dl.DiamondOrigin;
-        DiamondColor = dl.DiamondColor;
-        DiamondClarity = dl.DiamondClarity;
-    }
+
 
     @Override
     public String toString() {
@@ -71,10 +53,10 @@ public class DiamondPriceList {
                 ", price=" + price +
                 ", effDate=" + effDate +
                 ", carat=" + carat +
-                ", DiamondCut=" + DiamondCut +
-                ", DiamondOrigin=" + DiamondOrigin +
-                ", DiamondColor=" + DiamondColor +
-                ", DiamondClarity=" + DiamondClarity +
+                ", DiamondCut=" + diamondCut +
+                ", DiamondOrigin=" + diamondOrigin +
+                ", DiamondColor=" + diamondColor +
+                ", DiamondClarity=" + diamondClarity +
                 '}';
     }
 }
