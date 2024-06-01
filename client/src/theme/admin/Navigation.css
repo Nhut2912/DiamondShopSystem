@@ -70,6 +70,15 @@
     display: flex;
     column-gap: 10px;
 }
+.navigation > .account::before{
+    position: absolute;
+    width: 140%;
+    height: 100px;
+    left: 0;
+    bottom:0;
+    z-index: 100;
+    content: "";
+}
 .navigation > .account > .account-img{
     width: 40px;
     height: 40px;
@@ -92,4 +101,33 @@
     position: absolute;
     right: 0;
     top: 0;
+    z-index: 100;
+}
+.navigation > .account > .option-account > .logout-setting{
+    position: absolute;
+    padding-inline-start: 0;
+    list-style: none;
+    right: 0;
+    bottom:100%;
+    background-color: rgba(255, 255, 255,0.01);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 10px;
+    border-radius: 5px;
+}
+.navigation > .account > .option-account > .logout-setting.isActive{
+    display: flex;
+}
+.navigation > .account > .option-account > .logout-setting > li{
+    padding: 10px 40px; 
+    font-family: 'Poppins';
+    font-size: 14px;
+    color: rgba(255, 255, 255,0.5);
+}
+
+.navigation > .account > .option-account > .logout-setting > li:hover{
+    background-color: #1a1b1d;
+    border-radius: 3px;
+    cursor: pointer;
 }

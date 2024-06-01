@@ -1,0 +1,88 @@
+.deposit-payment{
+    margin-top: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    padding: 70px 80px;
+    border-radius: 10px ;
+ }
+.deposit-payment > h3{
+    margin-top: 70px;
+    color: rgba(255, 255, 255, 0.40);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin: 0;
+}
+ .deposit-payment > h3 > span{
+    margin-left: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid rgba(217, 179, 132, 0.5);
+    color: rgba(217, 179, 132, 0.5);
+    padding: 10px 20px;
+}
+
+.deposit-payment > .method-payment-deposit {
+    margin-top: 100px;
+    list-style: none;
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    row-gap: 50px;
+    column-gap: 30px;
+}
+ .deposit-payment > .method-payment-deposit > li{
+    display: grid;
+    align-items: start;
+    grid-template-columns: 4fr 8fr;
+    column-gap: 20px;
+ }
+.deposit-payment > .method-payment-deposit > li.invoice-customer{
+    grid-column: span 2;
+ }
+.deposit-payment > .method-payment-deposit > li > h4{
+    font-family: "Roboto Serif";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.20);
+    margin: 0;
+ }
+.deposit-payment > .method-payment-deposit > li > span{
+    font-family: 'Roboto Serif';
+    font-weight: 400;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.50);
+ }
+.deposit-payment > .method-payment-deposit > li > div.invoice{
+    height: 500px;
+    width: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+ }
+.deposit-payment > .button-accept-payment{
+    margin-top: 80px;
+    display: flex;
+    column-gap: 40px;
+ }
+.deposit-payment > .button-accept-payment > div{
+    width: 255px;
+    height: 50px;
+    background-color: rgba(217, 179, 132, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Serif';
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    cursor: pointer;
+ }
+.deposit-payment > .button-accept-payment > div:nth-child(2){
+    background-color: transparent;
+    border: 1px solid rgba(217, 179, 132, 0.5);
+ }

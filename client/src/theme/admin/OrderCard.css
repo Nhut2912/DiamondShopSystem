@@ -1,6 +1,140 @@
-.order-card-container{
-    height: 200px;
-    width: 500px;
+.order-card-content{
+    padding: 20px;
     border-radius: 10px;
     background-color: rgba(26, 27, 29, 1);
+    cursor: pointer;
+}
+.order-card-content > div:first-child{
+    display: flex;
+    justify-content: space-between;
+}
+.order-card-content > div:first-child > span{
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+}
+.order-card-content > div:first-child > div {
+    padding: 5px 15px;
+    border: 1px solid rgba(217, 179, 132, 0.5);
+    border-radius: 5px;
+}
+.order-card-content > div:first-child > div > span{
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(217, 179, 132, 0.5);
+}
+.order-card-content > div:nth-child(2) > ul{
+    padding-inline-start: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    margin: 30px 20px 0 20px;
+}
+.order-card-content > div:nth-child(2) > ul > li{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    column-gap: 20px;
+}
+
+.order-card-content > div:nth-child(2) > ul > li > h4{
+    margin: 0;
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.2);
+}
+.order-card-content > div:nth-child(2) > ul > li > span{
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.24px;
+}
+.order-card-content > div:nth-child(2) > ul > li.deposit{
+    display: flex;
+    align-items: center;
+}
+.order-card-content > div:nth-child(2) > ul > li.deposit > div{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+
+}
+.order-card-content > div:nth-child(2) > ul > li.deposit > div > b{
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.24px;
+}
+.order-card-content > div:nth-child(2) > ul > li.deposit > div > span{
+    font-family: 'Poppins';
+    font-size: 16px;
+    color: rgba(217, 179, 132, 0.2);
+}
+.order-card-content > div:nth-child(2) > ul > li:last-child {
+    align-items: center;
+}
+.order-card-content > div:nth-child(2) > ul > li:last-child > div {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.order-card-content > div:nth-child(2) > ul > li:last-child > div > b{
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.24px;
+}
+.order-card-content > div:nth-child(2) > ul > li:last-child > div > span{
+    font-family: 'Poppins';
+    font-size: 16px;
+   color: rgba(217, 179, 132, 0.2);
+}
+
+.order-card-content > div:nth-child(3){
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0 0 0;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+}
+.order-card-content > div:nth-child(3) > div:nth-child(1){
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.order-card-content > div:nth-child(3) > div:nth-child(1) > h4{
+    margin: 0;
+    font-family: 'Poppins';
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 24px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.24px;
+}
+.order-card-content > div:nth-child(3) > div:nth-child(1) > span{
+    font-family: 'Poppins';
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 24px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.24px;
+}
+.order-card-content > div:nth-child(3) > p{
+    font-family: 'Poppins';
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 24px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.24px;
+    margin: 0;
 }

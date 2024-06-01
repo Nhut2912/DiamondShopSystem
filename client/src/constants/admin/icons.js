@@ -23,6 +23,8 @@ import icon_drop_down from '../../assets/icons/admin/drop-down-sorted.svg'
 import icon_add from '../../assets/icons/admin/add.svg';
 import icon_upload_file from '../../assets/icons/admin/upload-file.svg'
 import icon_delete from '../../assets/icons/admin/delete.svg'
+import icon_back_arrow from '../../assets/icons/admin/back-arrow.svg'
+
 const ICONS = {
     icon_logo : icon_logo,
     icon_logo_no_jewelry_text : icon_logo_no_jewelry_text,
@@ -48,7 +50,8 @@ const ICONS = {
     icon_drop_down: icon_drop_down,
     icon_add: icon_add,
     icon_upload_file: icon_upload_file,
-    icon_delete: icon_delete
+    icon_delete: icon_delete,
+    icon_back_arrow:icon_back_arrow
 }
 
 export default ICONS;

@@ -1,0 +1,6 @@
+const STATUS_ORDER = [
+    "PENDING","PREPARING","PREPARED","DELIVERING",
+    "COMPLETED","CANCELED"
+]
+
+export default STATUS_ORDER;

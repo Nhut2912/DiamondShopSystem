@@ -15,6 +15,9 @@ import CheckOutCart from './pages/customers/CheckOutCart'
 import Order from './pages/customers/Order';
 import Login from './pages/customers/Login';
 import Verify from './pages/customers/Verify';
+import Account from './pages/customers/Account';
+import AccountProfile from './components/customer/AccountProfile';
+import AccountPurchase from './components/customer/AccountPurchase';
 
 import Authentication from './pages/admin/Authentication';
 import Overview from './pages/admin/Overview';
@@ -29,9 +32,7 @@ import DiamondPriceAdmin from './pages/admin/DiamondPrice';
 import NotificationsAdmin from './pages/admin/Notifications';
 import DetailProductAdmin from './components/admin/DetailProduct';
 import OrderComplete from './pages/customers/OrderComplete';
-import Account from './pages/customers/Account';
-import AccountProfile from './components/customer/AccountProfile';
-import AccountPurchase from './components/customer/AccountPurchase';
+import OrderCarddetailAdmin from './pages/admin/OrderCarddetail';
 
 
 
@@ -72,6 +73,7 @@ root.render(
                     <Route path="products" element={<ProductAdmin />} />
                     <Route path="products/:id" element={<DetailProductAdmin />} />
                     <Route path="order" element={<OrderAdmin />}/>
+                    <Route path="order/:id" element={<OrderCarddetailAdmin />}/>
                     <Route path="account" element={<AccountAdmin />}/>
                     <Route path="warranty" element={<WarrantyAdmin />}/>
                     <Route path="promotions" element={<PromotionsAdmin />}/>

@@ -3,10 +3,21 @@ import React, { useState } from 'react'
 
 import '../../theme/admin/Authentication.css'
 import { ICONS } from '../../constants/admin/index';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Authentication = () => {
+
+  const navigate = useNavigate();
+
+  const userVirtual = [
+    {username : "delivery_staff", password : "1234" , role: "DELIVERY STAFF"},
+    {username : "sale_staff", password : "1234" , role: "SALE STAFF"},
+    {username : "admin", password : "1234" , role: "ADMIN"},
+  ]
+
+
 
   // const [data,setData] = useState("");
 
@@ -38,7 +49,16 @@ const Authentication = () => {
     //     window.location.href ="/admin"
     //   }
 
-    window.location.href ="/admin/overview"
+
+    userVirtual.map((item) => {
+        if(item.username === userName && item.password === password){
+          localStorage.setItem('account', JSON.stringify(item));
+          if(item.role === "DELIVERY STAFF" || item.role === "SALE STAFF" ){
+            navigate("/admin/overview/order")
+          }else    navigate("/admin/overview")
+       
+        }
+    })
   }
 
   /**
@@ -53,7 +73,6 @@ const Authentication = () => {
    const getUserNameHandle = ( event ) => {
         let value = event.target.value;
         setUserName(value);
-        console.log(value);
    }
 
    const getPasswordHandle = ( event ) => {
