@@ -1,25 +1,30 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
-
+@Data
 @Entity
-@Table(name = "CLARITY")
+@Table(name = "clarity")
 public class Clarity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clarityId")
     private Long Id;
 
-    @Column(name = "Clarity")
+    @Column(name = "clarity")
     private String clarity;
 
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondClarity")
+    @JsonIgnore
     private Set<Diamond> diamondClarity;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondClarity")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondClarity")
+    @JsonIgnore
     private Set<DiamondPriceList> diamondPriceListClarity;
 
     public Clarity() {

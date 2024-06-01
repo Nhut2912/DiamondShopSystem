@@ -1,48 +1,44 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
+import java.io.Serializable;
 
 @Entity
-@Table(name = "OrderDetail")
+@Table(name = "orderDetail")
+@Data
 public class OrderDetail {
+    @Data
+    @Embeddable
+    public static class OrderDetailId implements Serializable {
+        @Column(name = "orderId")
+        protected long productId;
+        @Column(name = "productId")
+        protected long materialId;
+    }
+    @EmbeddedId
+    OrderDetailId orderDetailId;
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "OrderID")
+    @MapsId("orderId")
+    @JoinColumn(name = "orderId", insertable = false, updatable = false)
     private Order orderId;
 
-    @Id
+
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @MapsId("productId")
+    @JoinColumn(name = "productId", insertable = false, updatable = false)
     private Product productId;
 
-    @Column(name = "PriceBeforeSizeAdjustment")
+    @Column(name = "priceBeforeSizeAdjustment")
     private double priceBeforeSizeAdjustment;
 
-    @Column(name = "PriceAfterSizeAdjustment")
+    @Column(name = "priceAfterSizeAdjustment")
     private double priceAfterSizeAdjustment;
 
     @Column(name = "Size")
     private int size;
-
-    public OrderDetail(Order orderId, Product productId, double priceBeforeSizeAdjustment, double priceAfterSizeAdjustment, int size) {
-        this.orderId = orderId;
-        this.productId = productId;
-        this.priceBeforeSizeAdjustment = priceBeforeSizeAdjustment;
-        this.priceAfterSizeAdjustment = priceAfterSizeAdjustment;
-        this.size = size;
-    }
-
-    public OrderDetail() {
-    }
-
-    public OrderDetail(OrderDetail o) {
-        this.orderId = o.orderId;
-        this.productId = o.productId;
-        this.priceBeforeSizeAdjustment = o.priceBeforeSizeAdjustment;
-        this.priceAfterSizeAdjustment = o.priceAfterSizeAdjustment;
-        this.size = o.size;
-    }
 
     @Override
     public String toString() {

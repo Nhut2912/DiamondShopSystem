@@ -5,60 +5,22 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Collection;
-//@Data
+@Data
 @Entity
-@Table(name = "IMAGES")
+@Table(name = "images")
 public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
-    @Column(name = "URI", nullable = false)
+    @Column(name = "uri", nullable = false)
     private String uri;
 
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "productId")
     @JsonBackReference
-    private Product Products;
-
-    public Image(Long id, String uri, Product products) {
-        Id = id;
-        this.uri = uri;
-        Products = products;
-    }
-
-    public Image() {
-    }
-
-    public Image(Image i) {
-        Id = i.Id;
-        this.uri = uri;
-        Products = i.Products;
-    }
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
+    private Product product;
 
 
-    public Product getProducts() {
-        return Products;
-    }
-
-    public void setProducts(Product products) {
-        Products = products;
-    }
 }

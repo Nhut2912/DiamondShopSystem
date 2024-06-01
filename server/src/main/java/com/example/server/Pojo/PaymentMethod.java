@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "PaymentMethod")
+@Table(name = "paymentMethod")
 public class PaymentMethod {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "paymentMethod")

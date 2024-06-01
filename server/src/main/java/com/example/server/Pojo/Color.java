@@ -1,11 +1,13 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Set;
-
+@Data
 @Entity
-@Table(name = "COLOR")
+@Table(name = "color")
 public class Color {
 
     @Id
@@ -15,10 +17,12 @@ public class Color {
     @Column(name = "Color")
     private String color;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondColor")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondColor")
+    @JsonIgnore
     private Set<Diamond> diamondColors;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "DiamondColor")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "diamondColor")
+    @JsonIgnore
     private Set<DiamondPriceList> diamondPriceColors;
 
     public Color() {

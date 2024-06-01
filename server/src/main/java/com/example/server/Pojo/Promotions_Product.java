@@ -2,18 +2,29 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "Promotions_Product")
-public class Promotions_Product {
+import java.io.Serializable;
 
-    @Id
+@Entity
+@Table(name = "promotions_Product")
+public class Promotions_Product {
+    public static class Promotions_ProductId implements Serializable{
+        @Column(name = "promotionId")
+        protected long promotionId;
+        @Column(name = "productId")
+        protected long productId;
+    }
+    @EmbeddedId
+    protected Promotions_ProductId promotionsProductId;
+
     @ManyToOne
-    @JoinColumn(name = "PromotionID")
+    @JoinColumn(name = "promotionId", insertable = false, updatable = false)
+    @MapsId("promotionId")
     private Promotion promotionId;
 
-    @Id
+
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "productId", insertable = false, updatable = false)
+    @MapsId("productId")
     private Product productId;
 
     public Promotions_Product(Promotion promotionId, Product productId) {

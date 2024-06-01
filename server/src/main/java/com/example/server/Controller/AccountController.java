@@ -5,11 +5,17 @@ import com.example.server.Pojo.Account;
 import com.example.server.Repository.IAccountRepository;
 import com.example.server.Requests.RegistrationRequest;
 import com.example.server.Services.IRegistrationServices;
+import com.example.server.Services.ProfileService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.boot.autoconfigure.pulsar.PulsarProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.sasl.AuthenticationException;
 import java.util.List;
 
 /*
@@ -26,6 +32,9 @@ public class AccountController {
 
     @Autowired
     private IRegistrationServices userService;
+
+    @Autowired
+    private ProfileService profileService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegistrationRequest registerRequest) {
@@ -49,6 +58,17 @@ public class AccountController {
     public ResponseEntity<?> findPasswordByPhone(@RequestBody String phone) {
         Account accounts = accountRepository.findByPhone(phone);
         return new ResponseEntity (accounts.getPhone(), HttpStatus.OK);
+    }
+
+    @GetMapping("/Profile")
+    public ResponseEntity<Account> getProfile(@PathVariable Long id, HttpServletRequest request){
+        //lay dia chi Ip cua nguoi dung tu Request
+        String ipAddress = request.getRemoteAddr();
+        //Luu thong tin khach hang
+        profileService.saveCustomer(ipAddress);
+        //lay profile tu service va tra ve
+        Account profile = profileService.getProfileById(id);
+        return ResponseEntity.ok().body(profile);
     }
 
 }

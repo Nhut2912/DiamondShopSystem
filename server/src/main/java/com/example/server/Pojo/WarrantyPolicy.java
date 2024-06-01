@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,20 +10,22 @@ import java.util.Set;
  */
 @Data
 @Entity
-@Table(name = "WarrantyPolicy")
+@Table(name = "warrantyPolicy")
 public class WarrantyPolicy {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(name = "warrantyPolicyId")
     private Long id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "WarrantyPeriod", nullable = false)
+    @Column(name = "warrantyPeriod", nullable = false)
     private int warrantyPeriod;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "warrantyPolicy")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Warranty> warrantySet;
 
     public WarrantyPolicy(Long id, String name, int warrantyPeriod, Set<Warranty> warrantySet) {
