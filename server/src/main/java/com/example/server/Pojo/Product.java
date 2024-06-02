@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+
 
 import java.util.*;
 
@@ -114,30 +112,6 @@ public class Product {
     public Product() {
 
     }
-
-
-
-//    @Override
-//    public String toString() {
-//        return "Product{" +
-//                "Id=" + id +
-//                ", Name='" + name + '\'' +
-//                ", Code='" + code + '\'' +
-//                ", Active=" + active +
-//                ", SecondaryDiamondCost=" + secondaryDiamondCost +
-//                ", SecondaryMaterialCost=" + secondaryMaterialCost +
-//                ", ProductionCost=" + productionCost +
-//                ", PriceRate=" + priceRate +
-//                ", ProductSizes=" + productSize +
-//                ", Images=" + images +
-//                ", ProductCategory=" + productCategory +
-//                ", productMaterialSet=" + productMaterialSet +
-//                ", warranty=" + warranty +
-//                ", productDetailSet=" + productDetailSet +
-//                ", products=" + products +
-//                ", DiamondProducts=" + diamondProducts +
-//                '}';
-//    }
 
 
 

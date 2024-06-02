@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import '../../theme/customer/Login.css'
 import { ICONS } from '../../constants/customer';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
- 
+  
+  const userVirtual = [
+    {numberPhone : "0384463039",name :"TranMinhNhut",role : "CUSTOMER"
+
+    },
+    {numberPhone : "0125426890",name :"TranMinhNhut",role : "CUSTOMER"},
+  ]
+
+
   const navigate = useNavigate();  
 
+  const [phoneNumber,setPhoneNumber] = useState();
 
   const handleBack = () => {
     navigate("/");
   }  
 
   const handleVerify = () => {
-    navigate("verify")
+    userVirtual.map((item) => {
+      if(item.numberPhone === phoneNumber){
+        localStorage.setItem('phone_verify',item.numberPhone);
+        navigate("verify")
+      }
+    })
+  
   }
 
   return (
@@ -30,8 +45,10 @@ function Login() {
             <div>
                 <h2>Welcome</h2>
                 <div>
-                    <label>Number Phone or Email </label>
-                    <input type='text' />
+                    <label>Number Phone </label>
+                    <input 
+                      onChange={(event) => setPhoneNumber(event.target.value)}
+                    type='text' />
                 </div>
                 <div 
                 onClick={handleVerify}

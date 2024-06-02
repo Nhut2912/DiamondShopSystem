@@ -8,7 +8,9 @@ function Header() {
  const navigate = useNavigate();
 
 
+
  const [login,setLogin] = useState(false);
+ const [user,setUser] = useState();
 
  const [activeItem,setActiveItem] = useState(null);
  
@@ -30,6 +32,15 @@ function Header() {
     })
  },[])
 
+ 
+
+ useEffect(() => {
+    const accountStorage = localStorage.getItem("account");
+    if(accountStorage){
+        setUser(JSON.parse(accountStorage));
+        setLogin(true);   
+    }
+ },[])
 
 
 
@@ -70,14 +81,19 @@ function Header() {
                     }>
                         <img src={ICONS.icon_user} />
                         <span>
-                            {login ? 'nhutminhtran05' : "Login"}
+                            {login ? user.name : "Login"}
                         </span>
                     </div>
                     <div>
                         <div   
                             onClick={() => {
-                                navigate("/checkout-cart");
-                                setActiveItem(null);
+                                if(login){
+                                    navigate("/checkout-cart");
+                                    setActiveItem(null);
+                                }else{
+                                    navigate("/login")
+                                }
+                                
                             }}
                         >
                             <img  src={ICONS.icon_cart} />
