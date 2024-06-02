@@ -1,6 +1,7 @@
 package com.example.server.Services;
 
 import com.example.server.Pojo.Material;
+import com.example.server.Repository.IMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +9,12 @@ import org.springframework.stereotype.Service;
 public class MaterialService implements IMaterialService{
 
     @Autowired
-    private IMaterialService materialService;
+    private IMaterialRepository materialService;
 
     @Override
     public boolean saveMaterial(Material material) {
         try{
-            materialService.saveMaterial(material);
+            materialService.save(material);
             return true;
         }catch (Exception e){
             System.out.println(e.getMessage());

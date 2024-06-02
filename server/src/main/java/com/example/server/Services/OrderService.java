@@ -1,6 +1,7 @@
 package com.example.server.Services;
 
 import com.example.server.Pojo.Order;
+import com.example.server.Repository.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +9,12 @@ import org.springframework.stereotype.Service;
 public class OrderService implements IOrderService{
 
     @Autowired
-    private IOrderService orderService;
+    private IOrderRepository orderService;
 
     @Override
     public boolean saveOrder(Order order) {
         try{
-            orderService.saveOrder(order);
+            orderService.save(order);
             return true;
         }catch (Exception e){
             System.out.println(e.getMessage());
