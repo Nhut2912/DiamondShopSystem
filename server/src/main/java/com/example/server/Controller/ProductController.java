@@ -27,12 +27,9 @@ public class ProductController {
      * Date: 24/5/2024
      */
     @PostMapping("/save")
-<<<<<<< HEAD
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
-=======
+
     public ResponseEntity<?> save(@RequestBody Product product) {
 
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
         return productServices.saveProduct(product);
     }
 

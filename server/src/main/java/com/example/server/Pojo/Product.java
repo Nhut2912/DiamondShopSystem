@@ -1,11 +1,8 @@
 package com.example.server.Pojo;
 
 
-<<<<<<< HEAD
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-=======
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,7 +14,7 @@ import java.util.*;
 
 @Data
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+
 @Table(name = "PRODUCTS")
 public class Product {
 
@@ -47,12 +44,6 @@ public class Product {
     @Column(name = "priceRate", nullable = false)
     private int priceRate;
 
-<<<<<<< HEAD
-    @ManyToOne() //many to one khong nen dung cascade(Tran Viet Hoang)
-    @JoinColumn(name = "SizeID")
-    private Size ProductSizes;
-
-=======
     //add category truoc
     @ManyToOne()
     @JoinColumn(name = "categoryId")
@@ -65,20 +56,9 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "productId", referencedColumnName = "productId")
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Products")
     private Set<Image> images;
 
-<<<<<<< HEAD
-    //Pham Trong Hieu
-
-    @Getter
-    @ManyToOne(fetch = FetchType.LAZY) //many to one khong nen dung cascade(Tran Viet Hoang)
-    @JoinColumn(name = "CategoryID")
-    private Category ProductCategory;
-=======
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
 
 
     //material embedd
@@ -90,10 +70,9 @@ public class Product {
     @JoinColumn(name = "productId", referencedColumnName = "productId")
     private Warranty warranty;
 
-<<<<<<< HEAD
-=======
+
     //order detail embedd
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     @JsonIgnore
     private Set<OrderDetail> productDetailSet;
@@ -103,34 +82,7 @@ public class Product {
     @JsonIgnore
     private Set<Promotions_Product> products;
 
-<<<<<<< HEAD
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "DiamondProduct")
-    private Set<Diamond> diamondProducts;
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "Id=" + Id +
-                ", Name='" + Name + '\'' +
-                ", Code='" + Code + '\'' +
-                ", ProductCategory=" + ProductCategory +
-                ", Active=" + Active +
-                ", SecondaryDiamondCost=" + SecondaryDiamondCost +
-                ", SecondaryMaterialCost=" + SecondaryMaterialCost +
-                ", ProductionCost=" + ProductionCost +
-                ", PriceRate=" + PriceRate +
-                ", ProductSizes=" + ProductSizes +
-                ", images=" + images +
-
-                ", productMaterialSet=" + productMaterialSet +
-                ", warranty=" + warranty +
-                ", productDetailSet=" + productDetailSet +
-                ", products=" + products +
-                ", diamondProducts=" + diamondProducts +
-                '}';
-    }
-=======
     //diamond: 4 thang origin, color, clarity, cut phai? co truoc, sau do khi them product moi them duoc kim cuong
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "diamondProduct")
     @JsonIgnore
@@ -191,5 +143,5 @@ public class Product {
 
 
 
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
+
 }
