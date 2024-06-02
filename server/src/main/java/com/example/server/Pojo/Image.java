@@ -18,10 +18,42 @@ public class Image {
     @Column(name = "uri", nullable = false)
     private String uri;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> de00207f0eb36de96027be985ffdd0cfe4ed49b3
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "productId")
     @JsonBackReference
     private Product product;
+<<<<<<< HEAD
 
 }
+=======
+
+    public Image(Long id, String uri, Product products) {
+        id = id;
+        this.uri = uri;
+        product = products;
+    }
+
+    public Image() {
+    }
+
+    public Image(Image i) {
+        id = i.id;
+        this.uri = uri;
+        product = i.product;
+    }
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "Id=" + id +
+                ", uri='" + uri + '\''+
+                '}';
+    }
+
+
+}
+>>>>>>> de00207f0eb36de96027be985ffdd0cfe4ed49b3

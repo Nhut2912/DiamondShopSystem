@@ -22,13 +22,13 @@ public class OrderDetail {
     OrderDetailId orderDetailId;
 
     @ManyToOne
-    @MapsId("orderId")
+   // @MapsId("orderId")
     @JoinColumn(name = "orderId", insertable = false, updatable = false)
     private Order orderId;
 
 
     @ManyToOne
-    @MapsId("productId")
+   // @MapsId("productId")
     @JoinColumn(name = "productId", insertable = false, updatable = false)
     private Product productId;
 

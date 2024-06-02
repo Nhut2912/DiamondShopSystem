@@ -64,7 +64,7 @@ public class Product {
     private Set<ProductMaterial> productMaterialSet;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "productId", referencedColumnName = "productId")
+    @JoinColumn(name = "warrantyId", referencedColumnName = "warrantyId")
     private Warranty warranty;
 
 
@@ -85,9 +85,8 @@ public class Product {
     @JsonIgnore
     private Set<Diamond> diamondProducts;
 
-
-
-
+    @Column(name = "promotionPrice")
+    private int promotionPrice;
 
     public Product(Long id, String name, String code, boolean active, double secondaryDiamondCost, double secondaryMaterialCost, double productionCost, int priceRate, Size productSizes, Set<Image> imagess, Category productCategory, Set<ProductMaterial> productMaterialSet, Warranty warranty, Set<OrderDetail> productDetailSet, Set<Promotions_Product> products, Set<Diamond> diamondProductss) {
         this.id = id;

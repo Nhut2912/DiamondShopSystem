@@ -23,16 +23,12 @@ public class Promotion {
     @Column(name = "active")
     private boolean active;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "promotionId")
-    @JsonIgnore
-    private Set<Promotions_Customer> promotions;
 
-    public Promotion(Long id, Date dateStart, Date dateEnd, boolean active, Set<Promotions_Customer> promotions) {
+    public Promotion(Long id, Date dateStart, Date dateEnd, boolean active) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.active = active;
-        this.promotions = promotions;
     }
 
     public Promotion() {
@@ -43,7 +39,6 @@ public class Promotion {
         this.dateStart = p.dateStart;
         this.dateEnd = p.dateEnd;
         this.active = p.active;
-        this.promotions = p.promotions;
     }
 
     @Override
@@ -53,7 +48,6 @@ public class Promotion {
                 ", dateStart=" + dateStart +
                 ", dateEnd=" + dateEnd +
                 ", active=" + active +
-                ", promotions=" + promotions +
                 '}';
     }
 }

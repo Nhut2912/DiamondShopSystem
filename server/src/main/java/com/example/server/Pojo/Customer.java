@@ -30,26 +30,16 @@ public class Customer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
     private Set<Order> orders;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "customerId")
-    private Set<Promotions_Customer> customers;
 
     public Customer() {
     }
-
-
 
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-
                 ", account=" + account +
                 ", orders=" + orders +
-                ", customers=" + customers +
                 '}';
     }
-
-
-
-
 }
