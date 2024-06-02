@@ -21,13 +21,13 @@ public class Promotions_Product {
 
     @ManyToOne
     @JoinColumn(name = "promotionId", insertable = false, updatable = false)
-    @MapsId("promotionId")
+    //@MapsId("promotionId")
     private Promotion promotionId;
 
 
     @ManyToOne
     @JoinColumn(name = "productId", insertable = false, updatable = false)
-    @MapsId("productId")
+    //@MapsId("productId")
     private Product productId;
 
     public Promotions_Product(Promotion promotionId, Product productId) {

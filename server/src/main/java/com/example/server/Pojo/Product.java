@@ -66,7 +66,7 @@ public class Product {
     private Set<ProductMaterial> productMaterialSet;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "productId", referencedColumnName = "productId")
+    @JoinColumn(name = "warrantyId", referencedColumnName = "warrantyId")
     private Warranty warranty;
 
 
@@ -86,8 +86,6 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "diamondProduct")
     @JsonIgnore
     private Set<Diamond> diamondProducts;
-
-
 
 
 

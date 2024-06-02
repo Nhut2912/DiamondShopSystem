@@ -24,7 +24,7 @@ public class WarrantyPolicy {
     @Column(name = "warrantyPeriod", nullable = false)
     private int warrantyPeriod;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "warrantyPolicy")
     @JsonManagedReference
     private Set<Warranty> warrantySet;
 

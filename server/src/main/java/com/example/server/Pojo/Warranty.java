@@ -14,6 +14,7 @@ public class Warranty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "warrantyID")
     private Long id;
 
     @Column(name = "status", nullable = false)

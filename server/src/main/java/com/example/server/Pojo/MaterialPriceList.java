@@ -23,9 +23,6 @@ public class MaterialPriceList {
     @Column(name = "sellPrice")
     private double sellPrice;
 
-    @Column(name = "buyPrice")
-    private double buyPrice;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "materialId")
     private Material material;
