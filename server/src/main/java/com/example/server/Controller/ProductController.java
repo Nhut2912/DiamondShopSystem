@@ -19,16 +19,10 @@ public class ProductController {
     private IProductServices productServices;
 
     @PostMapping("/save")
-<<<<<<< HEAD
 
-    public ResponseEntity<?> save(@RequestBody Product product) {
-
-        return productServices.saveProduct(product);
-=======
     public ResponseEntity<Product> saveProduct(@RequestBody Product product){
         System.out.println(product.toString());
         return null;
->>>>>>> 308af14b9d231cd737fe4c3dd64cb555c9abde74
     }
 
     @GetMapping("/getProducts")
