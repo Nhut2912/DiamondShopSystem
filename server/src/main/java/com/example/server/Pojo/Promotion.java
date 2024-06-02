@@ -23,16 +23,12 @@ public class Promotion {
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "promotionPrice")
-    private int promotionPrice;
 
-
-    public Promotion(Long id, Date dateStart, Date dateEnd, boolean active, int promotionPrice) {
+    public Promotion(Long id, Date dateStart, Date dateEnd, boolean active) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.active = active;
-        this.promotionPrice = promotionPrice;
     }
 
     public Promotion() {
@@ -52,7 +48,6 @@ public class Promotion {
                 ", dateStart=" + dateStart +
                 ", dateEnd=" + dateEnd +
                 ", active=" + active +
-                ", promotionPrice=" + promotionPrice +
                 '}';
     }
 }
