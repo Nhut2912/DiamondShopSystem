@@ -20,6 +20,10 @@ public class Promotion {
     @Column(name = "dateEnd")
     private Date dateEnd;
 
+
+    @Column(name = "promotionRate")
+    private int promotionRate;
+
     @Column(name = "active")
     private boolean active;
 

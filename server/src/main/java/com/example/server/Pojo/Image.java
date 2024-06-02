@@ -18,18 +18,12 @@ public class Image {
     @Column(name = "uri", nullable = false)
     private String uri;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> de00207f0eb36de96027be985ffdd0cfe4ed49b3
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "productId")
     @JsonBackReference
     private Product product;
-<<<<<<< HEAD
 
-}
-=======
 
     public Image(Long id, String uri, Product products) {
         id = id;
@@ -56,4 +50,4 @@ public class Image {
 
 
 }
->>>>>>> de00207f0eb36de96027be985ffdd0cfe4ed49b3
+

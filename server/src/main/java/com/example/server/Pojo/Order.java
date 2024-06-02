@@ -34,8 +34,8 @@ public class Order {
 
 
     @ManyToOne()
-    @JoinColumn(name = "customerId")
-    private Customer customerOrder;
+    @JoinColumn(name = "accountID")
+    private Account accountOrder;
 
     @Column(name = "orderStatus")
     private int orderStatus;
@@ -54,46 +54,14 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, String totalPrice, String date, String address, boolean deliveryStatus, Customer customerOrder, int orderStatus, String cancelReason, Set<Payment> orderPaymentSet, Set<OrderDetail> orderDetailSet) {
+    public Order(Long id, String totalPrice, String date, String address, boolean deliveryStatus, Account accountOrder, int orderStatus, String cancelReason) {
         this.id = id;
         this.totalPrice = totalPrice;
-        date = date;
+        this.date = date;
         this.address = address;
         this.deliveryStatus = deliveryStatus;
-        this.customerOrder = customerOrder;
+        this.accountOrder = accountOrder;
         this.orderStatus = orderStatus;
         this.cancelReason = cancelReason;
-        this.orderPaymentSet = orderPaymentSet;
-        this.orderDetailSet = orderDetailSet;
     }
-
-    public Order(Order o) {
-        this.id = o.id;
-        this.totalPrice = o.totalPrice;
-        date = o.date;
-        this.address = o.address;
-        this.deliveryStatus = o.deliveryStatus;
-        this.customerOrder = o.customerOrder;
-        this.orderStatus = o.orderStatus;
-        this.cancelReason = o.cancelReason;
-        this.orderPaymentSet = o.orderPaymentSet;
-        this.orderDetailSet = o.orderDetailSet;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", totalPrice='" + totalPrice + '\'' +
-                ", Date='" + date + '\'' +
-                ", address='" + address + '\'' +
-                ", deliveryStatus=" + deliveryStatus +
-                ", customerOrder=" + customerOrder +
-                ", orderStatus=" + orderStatus +
-                ", cancelReason='" + cancelReason + '\'' +
-                ", orderPaymentSet=" + orderPaymentSet +
-                ", orderDetailSet=" + orderDetailSet +
-                '}';
-    }
-
 }
