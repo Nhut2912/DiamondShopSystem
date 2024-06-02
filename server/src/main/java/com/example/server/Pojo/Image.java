@@ -25,9 +25,6 @@ public class Image {
     @Column(name = "uri", nullable = false)
     private String uri;
 
-<<<<<<< HEAD
-
-=======
 
     @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
@@ -35,7 +32,7 @@ public class Image {
     private Product Products;
 
     public Image(Long id, String uri, Product products) {
-        Id = id;
+        id = id;
         this.uri = uri;
         Products = products;
     }
@@ -44,7 +41,7 @@ public class Image {
     }
 
     public Image(Image i) {
-        Id = i.Id;
+        id = i.id;
         this.uri = uri;
         Products = i.Products;
     }
@@ -52,20 +49,15 @@ public class Image {
     @Override
     public String toString() {
         return "Image{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", uri='" + uri + '\''+
                 '}';
     }
 
->>>>>>> 308af14b9d231cd737fe4c3dd64cb555c9abde74
+
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "productId")
     @JsonBackReference
     private Product product;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 308af14b9d231cd737fe4c3dd64cb555c9abde74
 }
