@@ -60,7 +60,16 @@ function OrderAdmin() {
                         if(item.status === activeItem){
                             return item;
                         }
-                    }else return item;
+                    }else if(activeItem === "ALL" && account.role === "DELIVERY STAFF"){
+                        if(item.status === "PREPARED" ||  item.status === "DELIVERING"
+                        ||  item.status === "COMPLETED" ||  item.status === "CANCELED"
+                         ){
+                            return item;
+                         }
+                    }else{
+                        return item;
+                    }
+                    
                 }).map((item) => (
                     <OrderCard 
                      role={account.role}
