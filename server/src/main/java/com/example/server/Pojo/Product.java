@@ -1,11 +1,7 @@
 package com.example.server.Pojo;
 
 
-<<<<<<< HEAD
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-=======
-import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;

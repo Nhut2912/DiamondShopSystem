@@ -1,10 +1,10 @@
 package com.example.server.Pojo;
 
-<<<<<<< HEAD
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-=======
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -38,8 +38,7 @@ public class Category {
     @JsonIgnore
     private Set<Product> products;
 
-<<<<<<< HEAD
-=======
+
     public Category() {
     }
 
@@ -58,7 +57,7 @@ public class Category {
         this.categoryType = cate.categoryType;
         this.products = cate.products;
     }
->>>>>>> 7ecfc1bd0c699532b8f9d339266719ce099652fc
+
 
     @Override
     public String toString() {
