@@ -25,16 +25,15 @@ public class Image {
     @Column(name = "uri", nullable = false)
     private String uri;
 
-
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "productId")
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ProductID")
-    private Product Products;
+    private Product product;
 
     public Image(Long id, String uri, Product products) {
         id = id;
         this.uri = uri;
-        Products = products;
+        product = products;
     }
 
     public Image() {
@@ -43,7 +42,7 @@ public class Image {
     public Image(Image i) {
         id = i.id;
         this.uri = uri;
-        Products = i.Products;
+        product = i.product;
     }
 
     @Override
@@ -54,10 +53,5 @@ public class Image {
                 '}';
     }
 
-
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "productId")
-    @JsonBackReference
-    private Product product;
 
 }
