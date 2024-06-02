@@ -22,11 +22,6 @@ function AddProduct() {
 
   const [fileCertificateDiamond,setFileCertificateDiamond] = useState([]);
 
-
-  /**
-   * 
-   * 
-   */
   const [name,setName] = useState(null);
   const [code,setCode] = useState(null);
   const [categoryProduct,setCategoryProduct] = useState(null);
@@ -112,40 +107,38 @@ function AddProduct() {
 
 
   const handleAddProduct = () =>{
-    let imageCount = 1;
-    fileImageProduct.forEach(file => {
-        if(file){
-          const url = `uploads/${code+"_image_" + imageCount }`;
-          const imageRef = ref(imageStorage,url);
-          uploadBytes(imageRef,file);
-          fileImageProduct[imageCount-1] = url;
-          imageCount++;
-        }
-    });
+    // let imageCount = 1;
+    // fileImageProduct.forEach(file => {
+    //     if(file){
+    //       const url = `uploads/${code+"_image_" + imageCount }`;
+    //       const imageRef = ref(imageStorage,url);
+    //       uploadBytes(imageRef,file);
+    //       fileImageProduct[imageCount-1] = url;
+    //       imageCount++;
+    //     }
+    // });
 
-    let certificateCount = 1; 
-    console.log(diamondProducts[certificateCount-1]);
-    fileCertificateDiamond.forEach(file => {
-      if(file){
-          const url = `uploads/${diamondProducts[certificateCount-1].DiamondCode+"_ceritificate_" + certificateCount }`;
-          const imageRef = ref(imageStorage,url);
-          uploadBytes(imageRef,file);
+    // let certificateCount = 1; 
+    // fileCertificateDiamond.forEach(file => {
+    //   if(file){
+    //       const url = `uploads/${diamondProducts[certificateCount-1].DiamondCode+"_ceritificate_" + certificateCount }`;
+    //       const imageRef = ref(imageStorage,url);
+    //       uploadBytes(imageRef,file);
           
-          const diamondInfor = {
-            DiamondCode :diamondProducts[certificateCount-1].DiamondCode ,
-            Origin : diamondProducts[certificateCount-1].Origin  ,
-            Color : diamondProducts[certificateCount-1].Color ,
-            Clarity : diamondProducts[certificateCount-1].Clarity ,
-            Cut : diamondProducts[certificateCount-1].Cut ,
-            Carat : diamondProducts[certificateCount-1].Carat ,
-            Image : url
-          }
+    //       const diamondInfor = {
+    //         DiamondCode :diamondProducts[certificateCount-1].DiamondCode ,
+    //         Origin : diamondProducts[certificateCount-1].Origin  ,
+    //         Color : diamondProducts[certificateCount-1].Color ,
+    //         Clarity : diamondProducts[certificateCount-1].Clarity ,
+    //         Cut : diamondProducts[certificateCount-1].Cut ,
+    //         Carat : diamondProducts[certificateCount-1].Carat ,
+    //         Image : url
+    //       }
 
-          diamondProducts[certificateCount-1] = diamondInfor;
-          certificateCount++;
-      }
-    })
-
+    //       diamondProducts[certificateCount-1] = diamondInfor;
+    //       certificateCount++;
+    //   }
+    // })
 
       const product = {
         "Name" : name,

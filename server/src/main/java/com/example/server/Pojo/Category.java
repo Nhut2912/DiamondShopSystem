@@ -1,5 +1,5 @@
 package com.example.server.Pojo;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
