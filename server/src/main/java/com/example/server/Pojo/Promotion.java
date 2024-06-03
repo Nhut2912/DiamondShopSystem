@@ -1,57 +1,34 @@
 package com.example.server.Pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "promotion")
+@Data
 public class Promotion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "DateStart")
-    private Date dateStart;
-
-    @Column(name = "dateEnd")
-    private Date dateEnd;
-
-
-    @Column(name = "promotionRate")
     private int promotionRate;
 
-    @Column(name = "active")
     private boolean active;
 
+    private Date dateStart;
 
-    public Promotion(Long id, Date dateStart, Date dateEnd, boolean active) {
-        this.id = id;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.active = active;
-    }
+    private Date dateEnd;
 
-    public Promotion() {
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name ="promotions_products",
+        joinColumns = @JoinColumn(name = "promotion_id"),
+            inverseJoinColumns = @JoinColumn(name ="product_id")
+    )
+    private Set<Product> products = new HashSet<Product>();
 
-    public Promotion(Promotion p) {
-        this.id = p.id;
-        this.dateStart = p.dateStart;
-        this.dateEnd = p.dateEnd;
-        this.active = p.active;
-    }
-
-    @Override
-    public String toString() {
-        return "Promotion{" +
-                "id=" + id +
-                ", dateStart=" + dateStart +
-                ", dateEnd=" + dateEnd +
-                ", active=" + active +
-                '}';
-    }
 }

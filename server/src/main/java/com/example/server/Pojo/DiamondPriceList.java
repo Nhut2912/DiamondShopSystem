@@ -1,62 +1,38 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
-import java.util.Date;
-
+import java.sql.Date;
 
 @Entity
-@Table(name = "diamondPriceList")
+@Table(name = "diamond_price_list")
+@Data
 public class DiamondPriceList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "diamondPriceListId")
-    private Long Id;
+    private Long id;
 
-    @Column(name = "price")
-    private Double price;
+    private double carat;
 
-    @Column(name = "effDate")
     private Date effDate;
 
-    @Column(name = "carat")
-    private Double carat;
+    private double price;
 
-    @ManyToOne()
-    @JoinColumn(name = "cutID")
-    private Cut diamondCut;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="color_id")
+    private Color color;
 
-    @ManyToOne()
-    @JoinColumn(name = "originID")
-    private Origin diamondOrigin;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="clarity_id")
+    private Clarity clarity;
 
-    @ManyToOne()
-    @JoinColumn(name = "colorID")
-    private Color diamondColor;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="cut_id")
+    private Cut cut;
 
-    @ManyToOne()
-    @JoinColumn(name = "clarityID")
-    private Clarity diamondClarity;
-
-
-
-    public DiamondPriceList() {
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "DiamondPriceList{" +
-                "Id=" + Id +
-                ", price=" + price +
-                ", effDate=" + effDate +
-                ", carat=" + carat +
-                ", DiamondCut=" + diamondCut +
-                ", DiamondOrigin=" + diamondOrigin +
-                ", DiamondColor=" + diamondColor +
-                ", DiamondClarity=" + diamondClarity +
-                '}';
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="origin_id")
+    private Origin origin;
 }

@@ -1,75 +1,43 @@
 package com.example.server.Pojo;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
 
 @Entity
-@Table(name="DIAMOND")
+@Table(name = "diamond")
+@Data
 public class Diamond {
 
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "diamondId")
-    private Long Id;
+    private Long id;
 
-    @Getter
-    @Column(name = "code", unique = true, length =50)
     private String code;
 
-    @Getter
-    @Column(name ="certificate")
     private String certificate;
 
-    @Getter
-    @Column(name ="active",nullable = false)
+    private double carat;
+
     private boolean active;
 
-    @Getter
-    @Column(name = "carat")
-    private Double carat;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    @Getter
-    @ManyToOne()
-    @JoinColumn(name = "productId")
-    private Product diamondProduct;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "color_id")
+    private Color color;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cut_id")
+    private Cut cut;
 
-    @Getter
-    @ManyToOne()
-    @JoinColumn(name = "cutID")
-    private Cut diamondCut;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clarity_id")
+    private Clarity clarity;
 
-    @Getter
-    @ManyToOne()
-    @JoinColumn(name = "originID")
-    private Origin diamondOrigin;
-
-    @ManyToOne()
-    @JoinColumn(name = "colorID")
-    private Color diamondColor;
-
-    @ManyToOne()
-    @JoinColumn(name = "clarityID")
-    private Clarity diamondClarity;
-
-
-
-    @Override
-    public String toString() {
-        return "Diamond{" +
-                "Id=" + Id +
-                ", code='" + code + '\'' +
-                ", certificate='" + certificate + '\'' +
-                ", active=" + active +
-                ", carat=" + carat +
-                ", DiamondProduct=" + diamondProduct +
-                ", DiamondCut=" + diamondCut +
-                ", DiamondOrigin=" + diamondOrigin +
-                ", DiamondColor=" + diamondColor +
-                ", DiamondClarity=" + diamondClarity +
-                '}';
-    }
-
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "origin_id")
+    private Origin origin;
 }

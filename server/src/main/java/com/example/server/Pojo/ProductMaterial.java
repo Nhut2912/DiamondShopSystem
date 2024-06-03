@@ -1,53 +1,27 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Cascade;
 
-import java.io.Serializable;
-
-/*
- * Author: Pham Trong Hieu
- */
-@Data
 @Entity
-@Table(name = "ProductMaterial")
+@Table(name = "material_product")
+@Data
 public class ProductMaterial {
-    @Data
-    @Embeddable
-    public static class ProductMaterialId implements Serializable {
-        @Column(name = "productId")
-        protected long productId;
-        @Column(name = "materialId")
-        protected long materialId;
-    }
-    @EmbeddedId
-    protected ProductMaterialId id;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @ManyToOne
-    //@MapsId("productId")
-    @JoinColumn(name = "productId", insertable = false, updatable = false)
-    protected Product product;
+    private double weight;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    @ManyToOne
-    //@MapsId("materialId")
-    @JoinColumn(name = "materialId", insertable = false, updatable = false)
-    protected Material material;
-
-    @Column(name = "weight")
-    protected double weight;
-
-
-    @Override
-    public String toString() {
-        return "ProductMaterial{" +
-                "products=" + product +
-                ", materials=" + material +
-                ", weight=" + weight +
-                '}';
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "material_id")
+    private Material material;
 
 
 }

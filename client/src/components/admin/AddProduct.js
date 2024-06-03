@@ -11,6 +11,7 @@ import AddMaterial from './AddMaterial';
 
 import { imageStorage } from '../../config/FirebaseConfig';
 import { ref, uploadBytes } from 'firebase/storage';
+import { json } from 'react-router-dom';
 
 function AddProduct() {
 
@@ -104,7 +105,7 @@ function AddProduct() {
 
 
 
-
+ const [data,setData] = useState("");
 
   const handleAddProduct = () =>{
     // let imageCount = 1;
@@ -140,20 +141,44 @@ function AddProduct() {
     //   }
     // })
 
-      const product = {
-        "Name" : name,
-        "Code" : code,
-        "Category" : categoryProduct,
-        "ProductionCost" : productionCost,
-        "SecondaryDiamondCost" : secondaryDiamondCost,
-        "SecondaryMaterialCost" : SecondaryMaterialCost,
-        "Material" : materialProducts,
-        "ProductSize" : productSize,
-        "ImagesProduct" : fileImageProduct,
-        "DiamondsProduct" : diamondProducts
-    };
+      const raw = JSON.stringify(
+        {
+          "name": name,
+          "code": code,
+          "active": true,
+          "secondaryDiamondCost": secondaryDiamondCost,
+          "secondaryMaterialCost": SecondaryMaterialCost,
+          "productionCost": productionCost,
+          "priceRate": "10",
+          "productCategory": {
+            "name": categoryProduct,
+            "active": true,
+            "categoryType": 0
+          },
+          "productSize": {
+            "size": productSize
+          },
+          "sizeUnitPrice": 12
+        }
+      );
 
-    console.log(product);
+
+
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+      fetch("http://localhost:8080/api/product/save", requestOptions)
+      .then((response) => response.text())
+      .then(data =>  setData(data))
+      .catch((error) => console.error(error));
+      console.log(data);
+
+    console.log(raw);
 
   }
 

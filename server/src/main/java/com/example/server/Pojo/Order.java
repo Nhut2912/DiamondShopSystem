@@ -1,67 +1,43 @@
 package com.example.server.Pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.aspectj.weaver.ast.Or;
 
+import java.sql.Date;
 import java.util.Set;
 
-/*
- *Author: Tran Viet Hoang
- * Date: 21/5/2024
- */
-@Data
 @Entity
 @Table(name = "orders")
+@Data
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderId")
     private Long id;
 
-    @Column(name = "totalPrice")
-    private String totalPrice;
-
-    @Column(name = "date")
-    private String date;
-
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "deliveryStatus")
-    private boolean deliveryStatus;
+    private Date date;
 
+    private boolean isDelivery;
 
-    @ManyToOne()
-    @JoinColumn(name = "accountID")
-    private Account accountOrder;
+    private String orderStatus;
 
-    @Column(name = "orderStatus")
-    private int orderStatus;
+    private double totalPrice;
 
-    @Column(name = "cancelReason")
     private String cancelReason;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderPayment")
-    private Set<Payment> orderPaymentSet;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="order_id")
+    private Set<OrderDetail> orderDetails;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    @JsonIgnore
-    private Set<OrderDetail> orderDetailSet;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="order_id")
+    private Set<Payment> payments;
 
-    public Order() {
-    }
 
-    public Order(Long id, String totalPrice, String date, String address, boolean deliveryStatus, Account accountOrder, int orderStatus, String cancelReason) {
-        this.id = id;
-        this.totalPrice = totalPrice;
-        this.date = date;
-        this.address = address;
-        this.deliveryStatus = deliveryStatus;
-        this.accountOrder = accountOrder;
-        this.orderStatus = orderStatus;
-        this.cancelReason = cancelReason;
-    }
 }

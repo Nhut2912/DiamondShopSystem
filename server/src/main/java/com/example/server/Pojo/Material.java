@@ -1,45 +1,28 @@
 package com.example.server.Pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 import java.util.Set;
-@Data
+
 @Entity
-@Table(name = "Material")
+@Table(name = "material")
+@Data
 public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "materialId")
     private Long id;
 
-    @Column(name = "Name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "material")
-    private Set<MaterialPriceList> materialPrice;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "material")
-    @JsonIgnore
-    private Set<ProductMaterial> materialSet;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "material_id")
+    private Set<ProductMaterial> productMaterials;
 
-    public Material(Long id, String name, Set<MaterialPriceList> materialPrice, Set<ProductMaterial> materialSet) {
-        this.id = id;
-        this.name = name;
-        this.materialPrice = materialPrice;
-        this.materialSet = materialSet;
-    }
-
-    public Material() {
-    }
-
-    public Material(Material m) {
-        this.id = m.id;
-        this.name = m.name;
-        this.materialPrice = m.materialPrice;
-        this.materialSet = m.materialSet;
-    }
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "material_id")
+    private Set<MaterialPriceList> materialPriceLists;
 }

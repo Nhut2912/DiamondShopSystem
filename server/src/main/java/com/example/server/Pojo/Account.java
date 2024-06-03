@@ -1,44 +1,40 @@
 package com.example.server.Pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 
+import java.sql.Date;
 import java.util.Set;
 
-/*
- *Author: Tran Viet Hoang
- * Date: 21/5/2024
- */
-@Data
 @Entity
-@Table(name = "ACCOUNT")
+@Table(name ="account")
+@Data
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "accountId")
     private Long id;
 
-    @Column(name = "email", unique = true)
+    private String name;
+
     private String email;
 
     private String password;
-    private String name;
-    private String phone;
+
+    private String numberPhone;
+
     private String address;
-    private String birthday;
+
+    private Date birthDay;
+
     private String role;
-    private boolean active;
+
     private boolean gender;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "accountOrder")
+    private boolean active;
+
+
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
     private Set<Order> orders;
-
-
-    public Account() {
-    }
-
 
 }

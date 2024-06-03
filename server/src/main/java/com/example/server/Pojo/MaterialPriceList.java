@@ -3,29 +3,24 @@ package com.example.server.Pojo;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
+import java.util.Set;
 
-/*
- * Author: Pham Trong Hieu
- */
-@Data
 @Entity
-@Table(name = "materialPriceList")
+@Table(name = "material_price_list")
+@Data
 public class MaterialPriceList {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "materialPriceListId")
     private Long id;
 
-    @Column(name = "effDate")
     private Date effDate;
 
-    @Column(name = "sellPrice")
     private double sellPrice;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "materialId")
+    @JoinColumn(name ="material_id")
     private Material material;
-
 
 }

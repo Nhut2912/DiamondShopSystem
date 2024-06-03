@@ -1,46 +1,31 @@
 package com.example.server.Pojo;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
-@Data
 @Table(name = "payment")
+@Data
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "payTime")
+    private double amount;
+
     private Date payTime;
 
-    @Column(name = "amount")
-    private Long amount;
-
-    @Column(name = "transactionCode")
     private String transactionCode;
 
-    @ManyToOne()
-    @JoinColumn(name = "orderID")
-    private Order orderPayment;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "paymentModeId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="payment_method_id")
     private PaymentMethod paymentMethod;
 
-
-
-    @Override
-    public String toString() {
-        return "Payment{" +
-                "id=" + id +
-                ", PayTime=" + payTime +
-                ", Amount=" + amount +
-                ", TransactionCode='" + transactionCode + '\'' +
-                ", orderPayment=" + orderPayment +
-                ", paymentMethod=" + paymentMethod +
-                '}';
-    }
 }
