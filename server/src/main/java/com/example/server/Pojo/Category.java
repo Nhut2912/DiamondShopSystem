@@ -17,7 +17,7 @@ public class Category {
 
     private String name;
 
-    private boolean active;
+    private boolean active = true;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")

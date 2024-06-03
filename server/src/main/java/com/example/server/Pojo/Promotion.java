@@ -18,7 +18,7 @@ public class Promotion {
 
     private int promotionRate;
 
-    private boolean active;
+    private boolean active = true;
 
     private Date dateStart;
 

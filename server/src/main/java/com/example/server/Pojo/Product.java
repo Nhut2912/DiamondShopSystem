@@ -19,7 +19,7 @@ public class Product {
 
     private String name;
 
-    private boolean active;
+    private boolean active = true;
 
     private int priceRate;
 

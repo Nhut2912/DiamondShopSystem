@@ -14,7 +14,7 @@ public class Warranty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean status;
+    private boolean status ;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")

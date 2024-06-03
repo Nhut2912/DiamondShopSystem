@@ -19,7 +19,7 @@ public class Diamond {
 
     private double carat;
 
-    private boolean active;
+    private boolean active = true;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

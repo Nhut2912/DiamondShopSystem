@@ -31,7 +31,7 @@ public class Account {
 
     private boolean gender;
 
-    private boolean active;
+    private boolean active = true;
 
 
     @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
