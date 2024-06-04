@@ -25,7 +25,7 @@ function CheckOutCart() {
  const [discount,setDiscount] = useState(0);
  const [cart,setCart] = useState();
  const [account,setAccount] = useLocalStorage("account",localStorage.getItem("account"));
-
+ 
  const [name,setName] = useState();
  const [phone,setPhone] = useState();
  const [email,setEmail] = useState();
@@ -49,6 +49,9 @@ function CheckOutCart() {
     {name : "TANG NHON PHU A"},{name : "TANG NHON PHU B"},{name : "LONG THANH MY"}
  ]
 
+ const gender = [
+    "Male","Female"
+ ]
 
  useEffect(()=> {
     if(account === undefined || account === null){
