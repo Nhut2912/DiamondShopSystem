@@ -128,7 +128,9 @@ public class ProductService implements IProductService{
               productDTO.setName(product.get().getName());
               productDTO.setCode(product.get().getCode());
               productDTO.setSize(product.get().getSize().getSize());
-              productDTO.setSizeUnitPrice(productDTO.getSizeUnitPrice());
+
+              productDTO.setSizeUnitPrice(product.get().getSizeUnitPrice());
+
               Set<String> images = new HashSet<>();
               product.get().getImages().forEach((image -> images.add(image.getUrl())));
               productDTO.setImages(images);

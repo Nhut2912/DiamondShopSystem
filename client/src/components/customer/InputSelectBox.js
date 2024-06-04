@@ -5,9 +5,13 @@ import { ICONS } from '../../constants/customer';
 
 
 export default function InputSelectBox({ title,
-     options
+     options,setParams,
+     getParams
     }) {
-
+        const handleChange = (event) => {
+            const selectedValue = event.target.value;
+            setParams(selectedValue);
+        };
   return (
 
    <div className='input-select-box-container'>
@@ -15,7 +19,7 @@ export default function InputSelectBox({ title,
         <div className='content-select'>
             <img src={ICONS.icon_drop_down} className='img-select-box' alt=''/>
             <select 
-            className='content-option'>
+            className='content-option'  onChange={(event) => handleChange(event)} >
                 {
                     options && options.map((item) => (
                         <option  key={item.name} >

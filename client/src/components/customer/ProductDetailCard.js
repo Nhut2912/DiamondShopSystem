@@ -9,8 +9,21 @@ import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../../hook/useLocalStorage';
 import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react';
+import { ProductCart } from '../../constants/customer/ProductCart';
 
+const numberFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumSignificantDigits: 2
+});
 
+const getPriceBySize = (userSize,productSize,unitPrice,productPrice) =>{
+    if(userSize > productSize){
+        return productPrice + (userSize - productSize)*unitPrice;
+    }else{
+      return productPrice - (userSize - productSize)*unitPrice;
+    }
+}
 
 
 function ProductDetailCard({data}) {
@@ -19,6 +32,11 @@ function ProductDetailCard({data}) {
   const navigate = useNavigate();
   const cart = useContext(CartContext);
   const [account,setAccount] = useLocalStorage("account",localStorage.getItem("account"));
+
+  let size = data.size;
+  const sizesProduct = [{value : size-2}, {value : size-1 }, {value :  size}, {value:  size+1}, {value :  size+2}]
+  const [userSize,setUserSize] = useState(size-2);
+
 
   useEffect(() => {
     const getImageUrls = async () => {
@@ -40,8 +58,7 @@ function ProductDetailCard({data}) {
   }, [data.images, imageStorage]);
   if(imagesProduct === undefined) return <div>Loading</div>;
 
-  let size = data.size;
-  const sizesProduct = [{value : size-2}, {value : size-1 }, {value :  size}, {value:  size+1}, {value :  size+2}]
+ 
 
   const handleViewImage = (image) => {
       setImageActive(image)
@@ -58,13 +75,33 @@ function ProductDetailCard({data}) {
 
   const hanleAddTocard  = () => {
      if(account !== null){
-       let cartSetCart = [...account.cart,data];
-       let cartUpdate = new Set(cartSetCart);
-       let cartUpdated = [...new Set(cartUpdate)];
-       console.log(cartUpdated);
-       account.cart = cartUpdated;
-       setAccount(account);
-       cart.addToCart();
+        let beAdded = true;
+
+        ProductCart.code = data.code;
+        ProductCart.id = data.id;
+        ProductCart.name = data.name;
+        ProductCart.sizeUser = userSize;
+        ProductCart.price =  getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price);
+        ProductCart.images = data.images;
+
+        account.cart.map((item) => {
+            if(item.id === ProductCart.id){
+                if(item.sizeUser !== ProductCart.sizeUser){
+                    item.sizeUser = ProductCart.sizeUser;
+                    item.price = ProductCart.price;
+                }else{
+                  beAdded = false;
+                }
+            }
+        })
+
+        
+        if(beAdded){
+          let cartUpdated = [...account.cart,ProductCart];
+          account.cart = cartUpdated;    
+        }
+        setAccount(account);
+        cart.addToCart();
      }else navigate("/login")
   }
 
@@ -72,7 +109,6 @@ function ProductDetailCard({data}) {
 
   }
 
-  console.log(data);
   return (
     <div className='product-detail-card-container'>
         <div className='image-product-container'>
@@ -92,12 +128,15 @@ function ProductDetailCard({data}) {
         <div className='information-product-container'>
               <h1>{data.name}</h1>
               <p>CODE : {data.code}</p>
-              <h2>$1,003.87</h2>
+              <h2>{numberFormatter.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price))}
+                </h2>
               <div className='choose-size'>
                  {data.category === "Ring" ? 
                   <>
                     <h5>Choose size</h5>
-                    <RadioInput items={sizesProduct} _width={"60px"} />
+                    <RadioInput items={sizesProduct}
+                      setParams={setUserSize}
+                    _width={"60px"} />
                     <div className='questions-size'>
                       <span>How to find out the size ?</span>
                       <span>Don’t have the right size ?</span>
