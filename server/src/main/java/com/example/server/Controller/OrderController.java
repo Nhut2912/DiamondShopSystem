@@ -35,15 +35,15 @@ public class OrderController {
     @Autowired
     private IOrderDetailService iorderDetailService;
     @PostMapping("/buy")
-<<<<<<< HEAD
-    public ResponseEntity<?> buyProduct(@RequestBody OrderDTO order) {
 
-        if (iAccountService.isAccountExist(order.getAccountDTO().getId()) && iAccountService.isSamePhone(order.getAccountDTO().getNumberPhone())) {
-=======
+
 
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
+
         if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId()) && iAccountService.isSamePhone(orderDto.getAccountDTO().getNumberPhone())) {
->>>>>>> f1b42e660127ef193a06f7a7e8295995e20b5132
+
+
+
             try{
                 
                 if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){

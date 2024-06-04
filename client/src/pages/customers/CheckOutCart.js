@@ -81,6 +81,7 @@ const [gender,setGender] = useState("Male");
  },[cart,subTotal])
 
 
+
  const handleOrder = () =>{
    
     let productsOrder = [];
@@ -99,7 +100,7 @@ const [gender,setGender] = useState("Male");
         "address": province +", " +district +", " + ward +", "+address,
         "totalPrice": total,
         "accountDTO": {
-                  "id": 0,
+                  "id": 2,
                   "name": name,
                   "email": email,
                   "numberPhone": phone,
@@ -110,7 +111,27 @@ const [gender,setGender] = useState("Male");
         "orderDetailDTOS" :productsOrder,
         "delivery" : true
     }
-    console.log(order);
+
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(order),
+        redirect: "follow"
+      };
+      
+      fetch("http://localhost:8080/api/order/buy", requestOptions)
+        .then((response) => response.text())
+        .then( (result) => {
+            if(result === "true"){
+                navigate("order")
+            }
+        }
+        )
+        .catch((error) => console.error(error));
  } 
 
 
