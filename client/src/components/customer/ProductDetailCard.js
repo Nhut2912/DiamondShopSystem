@@ -85,13 +85,15 @@ function ProductDetailCard({data}) {
         ProductCart.images = data.images;
 
         account.cart.map((item) => {
+          console.log(account.cart);
+          console.log(item.id +"- " + ProductCart.id);
+          console.log(item.sizeUser+"- " +ProductCart.sizeUser);
             if(item.id === ProductCart.id){
                 if(item.sizeUser !== ProductCart.sizeUser){
                     item.sizeUser = ProductCart.sizeUser;
                     item.price = ProductCart.price;
-                }else{
-                  beAdded = false;
                 }
+                beAdded = false;
             }
         })
 

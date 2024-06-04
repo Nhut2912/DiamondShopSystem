@@ -19,6 +19,6 @@ public class AccountDTO {
 
     private String address;
 
-    private Date birthDay;
+    private String birthDay;
 
 }

@@ -14,7 +14,7 @@ const numberFormatter = new Intl.NumberFormat('en-US', {
 
   
 
-function ProductCheckOut({data}) {
+function ProductCheckOut({data,handleDeleteProduct}) {
 
 
  const [imagesProduct,setImagesProduct] = useState();
@@ -59,9 +59,16 @@ function ProductCheckOut({data}) {
                     {data.sizeUser}
                 </span>
             </li>
-         
+            <li>
+                <span>
+                    Quantity
+                </span>
+                <span>
+                    1
+                </span>
+            </li>
         </ul>
-        <div>
+        <div onClick={() => handleDeleteProduct(data.id)}>
              <img src={ICONS.icon_delete} alt=''/>
         </div>
     </div>
