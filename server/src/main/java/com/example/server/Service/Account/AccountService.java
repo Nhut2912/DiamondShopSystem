@@ -14,7 +14,9 @@ public class AccountService implements IAccountService{
     IAccountRepository iAccountRepository;
     @Override
     public boolean isAccountExist(Long id) {
+        System.out.println(id);
         Optional<Account> accountNeedToCheck = iAccountRepository.findById(id);
+        System.out.println(accountNeedToCheck.isPresent());
         return accountNeedToCheck.isPresent();
     }
     public boolean isSamePhone(String phone){

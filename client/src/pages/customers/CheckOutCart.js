@@ -76,19 +76,45 @@ function CheckOutCart() {
 
 
  const handleOrder = () =>{
-    const order = {
+   
+    let productsOrder = [];
+    cart.map((item) => {
+        const productOrder =  {
+            "priceAfterSizeAdjustment": item.price,
+            "size":item.sizeUser ,
+            "productID": item.id
+        }
+        let productsOrderUpdate = [...productsOrder,productOrder];
+        productsOrder = productsOrderUpdate;
+    })
 
-        "customer" :{
-            "name" : name,
-            "phone" : phone,
-            "email" : email,
-            "birthday" :birthday,
-            "address" : address + ", " + ward +", " +district +", " +province
+
+    const order = {
+        "address": province +", " +district +", " + ward +", "+address,
+        "totalPrice": total,
+        "accountDTO": {
+                  "id": 0,
+                  "name": name,
+                  "email": email,
+                  "numberPhone": phone,
+                  "address": province +", " +district +", " + ward +", "+address,
+                  "birthDay": birthday
+           
         },
-        "cart" : cart
+        "orderDetailDTOS" :productsOrder,
+        "delivery" : true
     }
     console.log(order);
  } 
+
+
+ const handleDeleteProduct = (id) => {
+    const cartUpdate = cart.filter(item => item.id !== id);
+    setCart(cartUpdate);
+    let accountUpdate = account;
+    accountUpdate.cart = cart;
+    setAccount(accountUpdate);
+ }
 
 
   return (
@@ -110,6 +136,7 @@ function CheckOutCart() {
                                     <ProductCheckOut
                                         data={item}
                                         cart={setCart}
+                                        handleDeleteProduct={handleDeleteProduct}
                                     />
                                     <div className='line'></div>
                                 </>
@@ -121,7 +148,9 @@ function CheckOutCart() {
                     {
                        cart && cart !== null && cart.length > 0 &&
                        <>
-                         <ProductCheckOut data={cart[cart.length-1]} />
+                         <ProductCheckOut
+                               handleDeleteProduct={handleDeleteProduct}
+                         data={cart[cart.length-1]} />
                          <div className='sub-total'>
                                 <ul>
                                     <li>

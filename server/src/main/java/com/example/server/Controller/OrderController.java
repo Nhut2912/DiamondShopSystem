@@ -35,14 +35,18 @@ public class OrderController {
     @Autowired
     private IOrderDetailService iorderDetailService;
     @PostMapping("/buy")
+
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
         if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId()) && iAccountService.isSamePhone(orderDto.getAccountDTO().getNumberPhone())) {
             try{
+                
                 if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){
                     orderDto.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
                         Order order = iorderService.saveOrder(orderDto);
+
                     if(order != null){
                         iorderDetailService.saveOrderDetail(orderDto, order);
+
                     }
                 }
                 return new ResponseEntity<>(true, HttpStatus.OK);
@@ -51,6 +55,7 @@ public class OrderController {
             }
         }
         return new ResponseEntity<>(false, HttpStatus.OK);
+
     }
 
 
