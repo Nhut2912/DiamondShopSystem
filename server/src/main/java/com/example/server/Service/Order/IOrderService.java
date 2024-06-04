@@ -5,5 +5,6 @@ import com.example.server.Pojo.Order;
 public interface IOrderService {
     public Order getAllOrders();
     public Order getOrderByStatus();
-    public Order updateOrderStatus();
+
+    boolean updateOrderStatus(Long id, String status);
 }
