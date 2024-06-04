@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Model.AccountDTO;
 import com.example.server.Model.OrderDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Pojo.Order;
@@ -29,6 +30,7 @@ public class OrderController {
     IProductService iProductService;
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO order) {
+<<<<<<< HEAD
 //        if (iAccountService.isAccountExist(account.getId())) {
 //            try {
 //                List<Product> product = new ArrayList<>();
@@ -46,6 +48,19 @@ public class OrderController {
         System.out.println(order);
 
     return null;
+=======
+        if (iAccountService.isAccountExist(order.getAccountDTO().getId()) && iAccountService.isSamePhone(order.getAccountDTO().getNumberPhone())) {
+            try{
+                if(iAccountService.updateNewestInfoForAccount(order.getAccountDTO())){
+                    order.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
+                }
+                return new ResponseEntity<>(true, HttpStatus.OK);
+            }catch (Exception ex){
+                return new ResponseEntity<>(false, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(false, HttpStatus.OK);
+>>>>>>> 6e9905f4a621cf7aee81242df67b0e841cf7ae57
     }
 
     @Autowired
