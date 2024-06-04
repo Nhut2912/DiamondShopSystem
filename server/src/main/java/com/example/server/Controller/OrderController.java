@@ -7,7 +7,9 @@ import com.example.server.Pojo.Order;
 import com.example.server.Pojo.Product;
 
 import com.example.server.Service.Account.IAccountService;
+import com.example.server.Service.Order.IOrderService;
 import com.example.server.Service.Order.OrderService;
+import com.example.server.Service.OrderDetail.IOrderDetailService;
 import com.example.server.Service.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,16 +27,33 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    IAccountService iAccountService;
+    private IAccountService iAccountService;
     @Autowired
-    IProductService iProductService;
+    private IProductService iProductService;
+    @Autowired
+    private IOrderService iorderService;
+    @Autowired
+    private IOrderDetailService iorderDetailService;
     @PostMapping("/buy")
+<<<<<<< HEAD
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO order) {
 
         if (iAccountService.isAccountExist(order.getAccountDTO().getId()) && iAccountService.isSamePhone(order.getAccountDTO().getNumberPhone())) {
+=======
+
+    public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
+        if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId()) && iAccountService.isSamePhone(orderDto.getAccountDTO().getNumberPhone())) {
+>>>>>>> f1b42e660127ef193a06f7a7e8295995e20b5132
             try{
-                if(iAccountService.updateNewestInfoForAccount(order.getAccountDTO())){
-                    order.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
+                
+                if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){
+                    orderDto.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
+                        Order order = iorderService.saveOrder(orderDto);
+
+                    if(order != null){
+                        iorderDetailService.saveOrderDetail(orderDto, order);
+
+                    }
                 }
                 return new ResponseEntity<>(true, HttpStatus.OK);
             }catch (Exception ex){
@@ -45,23 +64,25 @@ public class OrderController {
 
     }
 
-    @Autowired
-    private OrderService orderService;
+
+
+
+
 
 
     @GetMapping("/getAll")
     public List<Order> getAll(){
-        return orderService.getAllOrders();
+        return iorderService.getAllOrders();
     }
 
     @GetMapping("/getOrderByStatus")
     public List<Order> getOrderByStatus(String orderStatus){
-        return orderService.getOrderByStatus(orderStatus);
+        return iorderService.getOrderByStatus(orderStatus);
     }
 
     @PostMapping("/Pending")
     public ResponseEntity<String> pendingOrder(@PathVariable Long id){
-        boolean updated = orderService.updateOrderStatus(id, "Pending");
+        boolean updated = iorderService.updateOrderStatus(id, "Pending");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Pending Orders'.");
         }else{
@@ -72,7 +93,7 @@ public class OrderController {
 
     @PostMapping("/Preparing")
     public ResponseEntity<String> prepareOrder(@PathVariable Long id){
-        boolean updated = orderService.updateOrderStatus(id, "Preparing");
+        boolean updated = iorderService.updateOrderStatus(id, "Preparing");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Preparing Orders'.");
         }else{
@@ -83,7 +104,7 @@ public class OrderController {
 
     @PostMapping("/Delivering")
     public ResponseEntity<String> deliveringOrder(@PathVariable Long id){
-        boolean updated = orderService.updateOrderStatus(id, "Delivering");
+        boolean updated = iorderService.updateOrderStatus(id, "Delivering");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Delivering Orders'.");
         }else{
@@ -93,7 +114,7 @@ public class OrderController {
 
     @PostMapping("/Completed")
     public ResponseEntity<String> completedOrder(@PathVariable Long id){
-        boolean updated = orderService.updateOrderStatus(id, "Completed !!!");
+        boolean updated = iorderService.updateOrderStatus(id, "Completed !!!");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Completed Orders'.");
         }else{
@@ -103,7 +124,7 @@ public class OrderController {
 
     @PostMapping("/Canceled")
     public ResponseEntity<String> canceledOrder(@PathVariable Long id){
-        boolean updated = orderService.updateOrderStatus(id, "Canceled");
+        boolean updated = iorderService.updateOrderStatus(id, "Canceled");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Canceled Orders'.");
         }else{

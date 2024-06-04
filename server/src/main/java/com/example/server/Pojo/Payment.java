@@ -20,6 +20,7 @@ public class Payment {
 
     private String transactionCode;
 
+    private String image;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;

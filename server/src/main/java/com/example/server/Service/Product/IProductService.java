@@ -15,4 +15,5 @@ public interface IProductService {
     public ProductDTO getProduct(Long id);
 
     public Product getProductToSetStatus(Long id);
+    public Product getProductF(Long id);
 }

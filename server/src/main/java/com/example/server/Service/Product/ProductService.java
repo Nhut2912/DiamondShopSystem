@@ -160,6 +160,11 @@ public class ProductService implements IProductService{
         }else return null;
     }
 
+    public Product getProductF(Long id){
+        Optional<Product> product = productRepository.findById(id);
+        return product.orElse(null);
+    }
+
     @Override
     public Product getProductToSetStatus(Long id) {
         Optional<Product> product = productRepository.findById(id);
