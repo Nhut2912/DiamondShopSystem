@@ -1,23 +1,25 @@
 package com.example.server.Service;
 
 
+import com.example.server.Model.DiamondDTO;
+import com.example.server.Model.MaterialDTO;
 import com.example.server.Model.ProductDTO;
 import com.example.server.Pojo.*;
+import com.example.server.Repository.IProductMaterialRepository;
 import com.example.server.Repository.IProductRepository;
 import com.example.server.Service.Category.ICategoryService;
 import com.example.server.Service.Clarity.IClarityService;
 import com.example.server.Service.Color.IColorService;
 import com.example.server.Service.Cut.ICutService;
+import com.example.server.Service.Diamond.IDiamondService;
 import com.example.server.Service.Material.IMaterialService;
 import com.example.server.Service.Origin.IOriginService;
+import com.example.server.Service.ProductMaterial.IProductMaterialService;
 import com.example.server.Service.Size.ISizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Service
@@ -47,6 +49,11 @@ public class ProductService implements IProductService{
     @Autowired
     private IOriginService originService;
 
+    @Autowired
+    private IProductMaterialService productMaterialService;
+
+    @Autowired
+    private IDiamondService diamondService;
 
     @Override
     public boolean save(Product product) {
@@ -109,9 +116,47 @@ public class ProductService implements IProductService{
 
             productDTOS.add(productDTO);
         });
-
-
         return productDTOS;
+    }
+
+    @Override
+    public ProductDTO getProduct(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        ProductDTO productDTO = new ProductDTO();
+        if(product.isPresent()){
+              productDTO.setId(product.get().getId());
+              productDTO.setName(product.get().getName());
+              productDTO.setCode(product.get().getCode());
+              productDTO.setSize(product.get().getSize().getSize());
+              productDTO.setSizeUnitPrice(productDTO.getSizeUnitPrice());
+              Set<String> images = new HashSet<>();
+              product.get().getImages().forEach((image -> images.add(image.getUrl())));
+              productDTO.setImages(images);
+              productDTO.setCategory(product.get().getCategory().getName());
+
+
+              Set<ProductMaterial> productMaterials = productMaterialService.getProductMaterials(id);
+              Set<MaterialDTO> materialDTOS = new HashSet<>();
+              productMaterials.forEach((item) -> {
+                  MaterialDTO materialDTO = new MaterialDTO();
+                  materialDTO.setWeight(item.getWeight());
+                  materialDTO.setName(item.getMaterial().getName());
+                  materialDTOS.add(materialDTO);
+              });
+              productDTO.setMaterials(materialDTOS);
+
+              List<Diamond> diamonds = diamondService.getDiamondByProductID(id);
+              List<DiamondDTO> diamondDTOS = new ArrayList<>();
+              diamonds.forEach((item) -> {
+                  DiamondDTO diamondDTO = new DiamondDTO();
+                  diamondDTO.setCarat(item.getCarat());
+                  diamondDTO.setId(item.getId());
+                  diamondDTOS.add(diamondDTO);
+              });
+              productDTO.setDiamonds(diamondDTOS);
+
+              return productDTO;
+        }else return null;
     }
 
 }

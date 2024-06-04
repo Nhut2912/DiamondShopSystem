@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../theme/customer/ProductDetail.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ProductDetailCard from '../../components/customer/ProductDetailCard';
 import ProductDescription from '../../components/customer/ProductDescription';
 import Question from '../../components/customer/Question';
@@ -9,6 +9,21 @@ import ProductCard from '../../components/customer/ProductCard';
 
 function ProductDetail() {
   const navigate = useNavigate();
+  const param = useParams();
+  const [data,setData] = useState();
+
+  console.log(param);
+  useEffect(() => {
+      fetch('http://localhost:8080/api/product/getProduct/'+param.id)
+        .then(response => response.json())
+        .then(data => setData(data))
+        .catch((error) => console.error(error));
+  },[])
+ 
+  if(data === undefined) return <div>Loading</div>
+  console.log(data);
+  
+
   return (
     <div>
  
@@ -18,9 +33,9 @@ function ProductDetail() {
           >Home</span> / <span
             onClick={() => navigate("/products")}
           >Product</span> / <span
-          >123</span></p>
+          >{data.id}</span></p>
 
-          <ProductDetailCard />
+          <ProductDetailCard data = {data} />
           <ProductDescription />
           <Question />
 

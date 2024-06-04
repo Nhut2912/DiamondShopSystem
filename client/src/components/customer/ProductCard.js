@@ -7,15 +7,18 @@ import { useNavigate } from 'react-router-dom';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { imageStorage } from '../../config/FirebaseConfig';
 
-function ProductCard({name,images}) {
+function ProductCard({name,images,id}) {
 
   const [imagesProduct,setImagesProduct] = useState();
   const navigate = useNavigate();
-  const idProduct = 123;
   const viewDetailProduct = () => {
-     navigate("/products/"+idProduct);
+      if(id !== undefined){
+        navigate("/products/"+id);
+      }
   }
   
+
+
   useEffect(() => {
     const getImageUrls = async () => {
       const imageTmpProduct = [];

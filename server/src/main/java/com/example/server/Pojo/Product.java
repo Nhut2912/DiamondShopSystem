@@ -39,7 +39,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    private Set<Diamond> diamonds;
+    private Set<Diamond> diamonds = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
@@ -51,7 +51,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    private Set<ProductMaterial> productMaterials;
+    private Set<ProductMaterial> productMaterials = new HashSet<>();
 
     @ManyToMany(mappedBy = "products")
     private Set<Promotion> promotions = new HashSet<Promotion>();

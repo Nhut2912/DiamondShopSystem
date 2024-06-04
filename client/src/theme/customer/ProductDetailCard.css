@@ -105,7 +105,7 @@
     display: flex;
     column-gap: 20px;
 }
-.product-detail-card-container > .information-product-container > .brief-about-the-product > ul > li > span{
+.product-detail-card-container > .information-product-container > .brief-about-the-product > ul > li > span:first-child{
     width: 140px;
     color: rgba(0, 0, 0, 0.70);
     font-family: "Roboto Serif";

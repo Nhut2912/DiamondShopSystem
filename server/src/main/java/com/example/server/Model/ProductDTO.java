@@ -2,6 +2,7 @@ package com.example.server.Model;
 
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -13,6 +14,9 @@ public class ProductDTO {
     private double price;
     private double sizeUnitPrice;
     private int size;
+    private String category;
     private Set<String> images;
+    private Set<MaterialDTO> materials;
+    private List<DiamondDTO> diamonds;
 
 }

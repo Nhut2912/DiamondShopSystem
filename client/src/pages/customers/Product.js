@@ -37,13 +37,15 @@ function Product() {
                 </h3>
                 <div className='slider'>
                    <div className='slider-container' id="slider-container">
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
+                    {
+                            data.map((product) => (
+                              <ProductCard 
+                              name={product.name}
+                              images={product.images}
+                              id={product.id}
+                              />
+                            ))
+                          }
                    </div>
                 
                 </div>
@@ -106,7 +108,7 @@ function Product() {
                               <ProductCard 
                               name={product.name}
                               images={product.images}
-
+                              id={product.id}
                               />
                             ))
                           }
