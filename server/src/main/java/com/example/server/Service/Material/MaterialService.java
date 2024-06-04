@@ -5,6 +5,8 @@ import com.example.server.Repository.IMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class MaterialService implements IMaterialService{
 
@@ -26,5 +28,10 @@ public class MaterialService implements IMaterialService{
             save(newMaterial);
             return materialRepository.getMaterialByName(name);
         }return material;
+    }
+
+    @Override
+    public Set<Material> getMaterialByIDProduct(Long id) {
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../theme/customer/Home.css'
 import { IMAGES } from '../../constants/customer';
@@ -11,7 +11,6 @@ function Home() {
 
   const [itemActive,setItemActive] = useState("New Arrivals");
 
-  const [product,setProduct] = useState(8);
 
   const navigation = [
     {name : "New Arrivals" },
@@ -28,8 +27,14 @@ function Home() {
   const [data,setData] = useState(null);
   
 
-
-
+  useEffect(() => {
+        fetch('http://localhost:8080/api/product/getProducts')
+          .then(response => response.json())
+          .then(data => setData(data))
+          .catch((error) => console.error(error));
+  },[])
+  if(data === null) return <div>Loading...</div>
+  
 
   return (
     <div className='container-home-pages'>
@@ -107,10 +112,16 @@ function Home() {
                         <span>See More</span>
                     </div>
                     <div className='home-product-container-card'>
-                        {Array(product).fill(0).map((item) => (
-                            <ProductCard />
-                        ))}
-                          
+                        {
+                           data.slice(0,8).map((item) => (
+                    
+                                <ProductCard 
+                                    id={item.id}
+                                    name={item.name}
+                                    images={item.images}
+                                />
+                           ))
+                        }
                     </div>
             </div>
 

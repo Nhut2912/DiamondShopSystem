@@ -4,6 +4,7 @@ package com.example.server.Controller;
 import com.example.server.Model.ProductDTO;
 import com.example.server.Pojo.Product;
 import com.example.server.Service.IProductService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,8 @@ public class ProductController {
         return ResponseEntity.status(200).body(productService.getProducts());
     }
 
-
+    @GetMapping("/getProduct/{id}")
+    public ResponseEntity<ProductDTO> getProduct( @PathVariable Long id){
+       return ResponseEntity.status(200).body(productService.getProduct(id));
+    }
 }

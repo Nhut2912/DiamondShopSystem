@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 import '../../theme/customer/Header.css';
 import { ICONS } from '../../constants/customer';
 import { useNavigate } from 'react-router-dom';
+import useLocalStorage from '../../hook/useLocalStorage';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 
 function Header() {
  const navigate = useNavigate();
 
+ const [account,setAccount] = useLocalStorage("account",localStorage.getItem("account"));
 
 
  const [login,setLogin] = useState(false);
- const [user,setUser] = useState();
 
  const [activeItem,setActiveItem] = useState(null);
+
+ const cart = useContext(CartContext);
  
  const navigation = [
     {name : 'HOME', path : "/home"},
@@ -20,6 +25,8 @@ function Header() {
     {name : 'BLOG', path : "/blog"},
     {name : 'CONTACT', path : "/contact"},
  ]
+
+
 
  useEffect(() => {
     const currentURL = window.location.href;
@@ -32,17 +39,11 @@ function Header() {
     })
  },[])
 
- 
-
  useEffect(() => {
-    const accountStorage = localStorage.getItem("account");
-    if(accountStorage){
-        setUser(JSON.parse(accountStorage));
-        setLogin(true);   
+    if(account !== null){
+        setLogin(true);
     }
  },[])
-
-
 
  const handleClickNavigate = (item) => {
     navigation.map((element) => {
@@ -51,10 +52,13 @@ function Header() {
         }
     })
     setActiveItem(item)
- }
+ }  
+
+
+
 
   return (
-    <div class="container-header-page">
+    <div class="container-header-page" id="header-customer">
         <div className='information-header'>
                 <div>
                     <div>
@@ -81,7 +85,7 @@ function Header() {
                     }>
                         <img src={ICONS.icon_user} />
                         <span>
-                            {login ? user.name : "Login"}
+                            {login ? account.name : "Login"}
                         </span>
                     </div>
                     <div>
@@ -98,7 +102,14 @@ function Header() {
                         >
                             <img  src={ICONS.icon_cart} />
                         </div>
-                        <span>0</span>
+                        <span>
+                            {
+                               account !== undefined && account !== null && cart.cart !== undefined
+                               ?
+                               cart.cart : 0
+                            }
+
+                        </span>
                     </div>        
                 </div>
         </div>

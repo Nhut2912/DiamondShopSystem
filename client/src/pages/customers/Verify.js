@@ -2,24 +2,33 @@ import React, { useState } from 'react'
 
 import '../../theme/customer/Verify.css';
 import { ICONS } from '../../constants/customer';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams  } from 'react-router-dom';
+import useLocalStorage from '../../hook/useLocalStorage';
+
+
 
 function Verify() {
+
+  const [account,setAccount] = useLocalStorage("account",null);
+  
+  
     const userVirtual = [
-        {numberPhone : "0384463039",name :"TranMinhNhut",role : "CUSTOMER"},
-        {numberPhone : "0125426890",name :"TranMinhNhut",role : "CUSTOMER"},
+        {numberPhone : "0384463039",name :"TranMinhNhut",role : "CUSTOMER",cart :[]},
+        {numberPhone : "0125426890",name :"TranMinhNhut",role : "CUSTOMER",cart :[]},
       ]
       
   const phoneVerify = localStorage.getItem('phone_verify');
   const verifyCode = "1234";
   const navigate = useNavigate();
 
+
+
  const [OTP,SETOTP] = useState();
 
   const handleVerify = () => {
         if(OTP === verifyCode){
-            localStorage.setItem("account",JSON.stringify(userVirtual[0]));
-            navigate("/products");
+            setAccount(userVirtual[0]);
+            navigate(-2);
         }
   }
 
