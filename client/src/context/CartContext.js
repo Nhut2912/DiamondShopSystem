@@ -8,7 +8,8 @@ function CartProvider({ children }){
     const [cart,setCart] = useState(account === null ? 0 : account.cart.length);
 
     const addToCart = () => {
-        setCart(prev => prev +1);
+        const number = JSON.parse(localStorage.getItem("account")).cart.length;
+        setCart(number);
     }
 
     const value = {

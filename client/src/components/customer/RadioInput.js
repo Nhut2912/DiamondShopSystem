@@ -6,7 +6,7 @@ function RadioInput({ _width, items, setParams, getParams}) {
   const [active,setActive] = useState(getParams !== undefined && getParams !== null ? getParams : items[0].value) 
 
   const handleClick = (item) => {
-      
+    setParams(item)
       setActive(item);
   }
 
