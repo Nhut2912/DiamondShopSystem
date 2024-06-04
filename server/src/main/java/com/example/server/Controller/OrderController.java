@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Model.AccountDTO;
 import com.example.server.Model.OrderDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Pojo.Order;
@@ -29,23 +30,17 @@ public class OrderController {
     IProductService iProductService;
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO order) {
-//        if (iAccountService.isAccountExist(account.getId())) {
-//            try {
-//                List<Product> product = new ArrayList<>();
-//                account.getOrders().forEach(orderDetail -> orderDetail.getOrderDetails().forEach((findProduct) ->
-//                        product.add(iProductService.getProductToSetStatus(findProduct.getProduct().getId()))));
-//                return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
-//            } catch (Exception ex) {
-//                System.out.println(ex.getMessage());
-//                return new ResponseEntity<>(ex.getMessage(), HttpStatus.ACCEPTED);
-//            }
-//        }
-//        return new ResponseEntity<>("Account not exist", HttpStatus.ACCEPTED);
-
-
-
-
-    return null;
+        if (iAccountService.isAccountExist(order.getAccountDTO().getId()) && iAccountService.isSamePhone(order.getAccountDTO().getNumberPhone())) {
+            try{
+                if(iAccountService.updateNewestInfoForAccount(order.getAccountDTO())){
+                    order.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
+                }
+                return new ResponseEntity<>(true, HttpStatus.OK);
+            }catch (Exception ex){
+                return new ResponseEntity<>(false, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(false, HttpStatus.OK);
     }
 
     @Autowired
