@@ -21,7 +21,8 @@
 .add-product-container .production-diamond-material-cost{
     display: flex;
     margin-top: 20px;
-    column-gap: 20px;
+    gap: 20px;
+
     flex-wrap: wrap;
 }
 .add-product-container .product-material{

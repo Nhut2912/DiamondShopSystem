@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../theme/customer/Product.css'
 import ProductCard from '../../components/customer/ProductCard'
@@ -6,6 +6,19 @@ import InputSelectBox from '../../components/customer/InputSelectBox'
 import { IMAGES } from '../../constants/customer'
 
 function Product() {
+
+
+  const [data,setData] = useState();
+
+  useEffect(() => {
+        fetch('http://localhost:8080/api/product/getProducts')
+          .then(response => response.json())
+          .then(data => setData(data))
+          .catch((error) => console.error(error));
+  },[])
+  console.log(data);
+  if(data === undefined) return <div>Loading</div>
+
   const itemsSorted = [
     {name : "Default Sorted"},
     {name : "Ascending Price"},
@@ -88,18 +101,15 @@ function Product() {
                   </div>
                   <div className='container-all-product'>
                       <div className='products'>
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
-                            <ProductCard />
+                          {
+                            data.map((product) => (
+                              <ProductCard 
+                              name={product.name}
+                              images={product.images}
+
+                              />
+                            ))
+                          }
                       </div>
                       <div>
                             <div className='isActive'><span>01</span></div>

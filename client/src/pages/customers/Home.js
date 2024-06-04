@@ -24,6 +24,13 @@ function Home() {
 
 
 
+
+  const [data,setData] = useState(null);
+  
+
+
+
+
   return (
     <div className='container-home-pages'>
         <div className='banner-shop'>

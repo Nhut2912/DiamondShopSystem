@@ -11,7 +11,7 @@ import AddMaterial from './AddMaterial';
 
 import { imageStorage } from '../../config/FirebaseConfig';
 import { ref, uploadBytes } from 'firebase/storage';
-import { json } from 'react-router-dom';
+
 
 function AddProduct() {
 
@@ -30,9 +30,11 @@ function AddProduct() {
   const [secondaryDiamondCost,setSecondaryDiamondCost] = useState(null);
   const [SecondaryMaterialCost,setSecondaryMaterialCost] = useState(null);
   const [productSize,setProductSize] = useState(null);
+  const [priceRate,setPriceRate] = useState(null);
+  const [sizeUnitPrice,setSizeUnitPrice] = useState(null);
   /** */
 
- 
+  
 
  
   /** Thong tin diamond trong product */
@@ -98,7 +100,10 @@ function AddProduct() {
   const cut = [ {value : "FAIR"},  {value : "GOOD"}, {value : "V.GOOD"}, {value : "EX."},
   ]
 
-  const material = [{name : "14K White Gold"},  {name : "18K White Gold"}, {name : "24K Gold"}]
+  const material = [{name : "14K White Gold"}, 
+   {name : "18K White Gold"},
+   {name : "18K Yellow Gold"}, {name : "18K Rose Gold"},
+   {name : "24K Gold"}]
 
 
 
@@ -108,61 +113,101 @@ function AddProduct() {
  const [data,setData] = useState("");
 
   const handleAddProduct = () =>{
-    // let imageCount = 1;
-    // fileImageProduct.forEach(file => {
-    //     if(file){
-    //       const url = `uploads/${code+"_image_" + imageCount }`;
-    //       const imageRef = ref(imageStorage,url);
-    //       uploadBytes(imageRef,file);
-    //       fileImageProduct[imageCount-1] = url;
-    //       imageCount++;
-    //     }
-    // });
+    let imageCount = 1;
+    fileImageProduct.forEach(file => {
+        if(file){
+          const url = `uploads/${code+"_image_" + imageCount }`;
+          const imageRef = ref(imageStorage,url);
+          uploadBytes(imageRef,file);
+          fileImageProduct[imageCount-1] = url;
+          imageCount++;
+        }
+    });
 
-    // let certificateCount = 1; 
-    // fileCertificateDiamond.forEach(file => {
-    //   if(file){
-    //       const url = `uploads/${diamondProducts[certificateCount-1].DiamondCode+"_ceritificate_" + certificateCount }`;
-    //       const imageRef = ref(imageStorage,url);
-    //       uploadBytes(imageRef,file);
+    let certificateCount = 1; 
+    fileCertificateDiamond.forEach(file => {
+      if(file){
+          const url = `uploads/${diamondProducts[certificateCount-1].DiamondCode+"_ceritificate_" + certificateCount }`;
+          const imageRef = ref(imageStorage,url);
+          uploadBytes(imageRef,file);
           
-    //       const diamondInfor = {
-    //         DiamondCode :diamondProducts[certificateCount-1].DiamondCode ,
-    //         Origin : diamondProducts[certificateCount-1].Origin  ,
-    //         Color : diamondProducts[certificateCount-1].Color ,
-    //         Clarity : diamondProducts[certificateCount-1].Clarity ,
-    //         Cut : diamondProducts[certificateCount-1].Cut ,
-    //         Carat : diamondProducts[certificateCount-1].Carat ,
-    //         Image : url
-    //       }
+          const diamondInfor = {
+            DiamondCode :diamondProducts[certificateCount-1].DiamondCode ,
+            Origin : diamondProducts[certificateCount-1].Origin  ,
+            Color : diamondProducts[certificateCount-1].Color ,
+            Clarity : diamondProducts[certificateCount-1].Clarity ,
+            Cut : diamondProducts[certificateCount-1].Cut ,
+            Carat : diamondProducts[certificateCount-1].Carat ,
+            Image : url
+          }
 
-    //       diamondProducts[certificateCount-1] = diamondInfor;
-    //       certificateCount++;
-    //   }
-    // })
+          diamondProducts[certificateCount-1] = diamondInfor;
+          certificateCount++;
+      }
+    })
+
+    let diamonsProduct = [];
+    diamondProducts.map((item) => {
+      diamonsProduct = [...diamonsProduct,
+        {
+            "code": item.DiamondCode,
+            "certificate": item.Image,
+            "carat": item.Carat,
+            "cut": {
+                "cut": item.Cut
+            },
+            "origin": {
+                "origin": item.Origin
+            },
+            "color": {
+                "color": item.Color
+            },
+            "clarity": {
+                "clarity": item.Clarity
+            }
+        }
+      ]
+    })
+
+    console.log(diamonsProduct);
+
+    let imagesProduct = [];
+    fileImageProduct.map((item) => {
+        imagesProduct = [...imagesProduct,{
+          "url" : item
+        }]
+    })
+
+    let materialsProduct = [];
+    materialProducts.map((item) => {
+      materialsProduct = [...materialsProduct, {
+        "material" : {"name" :item.Type},
+        "weight" :item.Weight
+      }]
+    })
 
       const raw = JSON.stringify(
         {
           "name": name,
           "code": code,
-          "active": true,
           "secondaryDiamondCost": secondaryDiamondCost,
           "secondaryMaterialCost": SecondaryMaterialCost,
           "productionCost": productionCost,
-          "priceRate": "10",
-          "productCategory": {
-            "name": categoryProduct,
-            "active": true,
-            "categoryType": 0
+          "priceRate": priceRate,
+          "category": {
+            "name": categoryProduct
           },
-          "productSize": {
+          "size": {
             "size": productSize
           },
-          "sizeUnitPrice": 12
+          "images":imagesProduct,
+          "sizeUnitPrice": sizeUnitPrice,
+          "productMaterials" :materialsProduct,
+          "diamonds" :diamonsProduct
         }
       );
 
-
+      console.log(raw);
 
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -176,11 +221,15 @@ function AddProduct() {
       .then((response) => response.text())
       .then(data =>  setData(data))
       .catch((error) => console.error(error));
+
       console.log(data);
 
-    console.log(raw);
-
   }
+
+
+
+
+
 
   return (
     <div className='add-product-container'>
@@ -203,15 +252,24 @@ function AddProduct() {
                   setParams={setProductionCost}
                   
                 />
-                <InputDoubleBox title={"Secondary Diamond Cost"}  _width="150px"
+                <InputDoubleBox title={"Secondary Diamond Cost"}  _width="200px"
                 setParams={setSecondaryDiamondCost}
                
                 />
-                <InputDoubleBox title={"Material Cost"}  _width="150px" 
+                <InputDoubleBox title={" Secondary Material Cost"}  _width="200px" 
                   setParams={setSecondaryMaterialCost}
                  
                 />
+                <InputDoubleBox title={"Price Rate (%)"}  _width="170px" 
+                  setParams={setPriceRate}
+                 
+                />
+                <InputDoubleBox title={"Size Unit Price"}  _width="150px" 
+                  setParams={setSizeUnitPrice}
+                 
+                />
             </div>
+       
             <div className='product-material'>
                 <label>Material</label>
                 <div className='content-material'>

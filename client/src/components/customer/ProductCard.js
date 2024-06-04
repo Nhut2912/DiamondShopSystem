@@ -1,23 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../theme/customer/ProductCard.css';
 import { ICONS } from '../../constants/customer';
 import { useNavigate } from 'react-router-dom';
-import {IMAGES} from '../../constants/customer';
 
-function ProductCard() {
+import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { imageStorage } from '../../config/FirebaseConfig';
+
+function ProductCard({name,images}) {
+
+  const [imagesProduct,setImagesProduct] = useState();
   const navigate = useNavigate();
   const idProduct = 123;
   const viewDetailProduct = () => {
      navigate("/products/"+idProduct);
   }
+  
+  useEffect(() => {
+    const getImageUrls = async () => {
+      const imageTmpProduct = [];
+      try {
+        for (const image of images) {
+          const imageRef = ref(imageStorage, image);
+          const url = await getDownloadURL(imageRef);
+          imageTmpProduct.push(url);
+        }
+        setImagesProduct(imageTmpProduct);
+      } catch (error) {
+        console.error('Error fetching image URLs:', error);
+      }
+    };
+  
+    getImageUrls(); 
+  }, [images, imageStorage]);
+
+  if(imagesProduct === undefined) return <div>Loading</div>;
+
+  
   return (
     <div className='product-card-container'
       onClick={viewDetailProduct}
     >
-        <h3>Nhẫn Kim cương Vàng trắng  14K PNJ DDDDW003910</h3>
+        <h3>{name === undefined ? "" : name}</h3>
 
-        {true &&
+        {false &&
           (
             <div className='tag-product-card'>
                 <h4>On sale</h4>
@@ -29,7 +55,7 @@ function ProductCard() {
         
       
         <div className='product-card-img'>
-            <img src={IMAGES.image_product_2} alt='' />
+            <img src={imagesProduct[0] === null ? "" : imagesProduct[0]} alt='' />
         </div>
         <div className='product-card-price'>
           {true && 

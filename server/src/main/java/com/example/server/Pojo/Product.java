@@ -2,6 +2,7 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +43,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    private Set<Image> images;
+    private Set<Image> images = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")

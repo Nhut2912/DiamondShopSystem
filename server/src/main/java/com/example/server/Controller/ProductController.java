@@ -1,5 +1,7 @@
 package com.example.server.Controller;
 
+
+import com.example.server.Model.ProductDTO;
 import com.example.server.Pojo.Product;
 import com.example.server.Service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping(path = "api/product")
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
     @Autowired
@@ -23,8 +26,9 @@ public class ProductController {
     }
 
     @GetMapping("/getProducts")
-    public List<Product> getProducts() {
-        return productService.getProducts();
+    public ResponseEntity<List<ProductDTO>> getProducts() {
+        return ResponseEntity.status(200).body(productService.getProducts());
     }
+
 
 }
