@@ -88,17 +88,19 @@ function Header() {
                             {login ? account.name : "Login"}
                         </span>
                     </div>
-                    <div>
+                    <div 
+                        onClick={() => {
+                            if(login){
+                                navigate("/checkout-cart");
+                                setActiveItem(null);
+                            }else{
+                                navigate("/login")
+                            }
+                            
+                        }}
+                    >
                         <div   
-                            onClick={() => {
-                                if(login){
-                                    navigate("/checkout-cart");
-                                    setActiveItem(null);
-                                }else{
-                                    navigate("/login")
-                                }
-                                
-                            }}
+                            
                         >
                             <img  src={ICONS.icon_cart} />
                         </div>
