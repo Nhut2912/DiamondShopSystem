@@ -30,25 +30,7 @@ public class OrderController {
     IProductService iProductService;
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO order) {
-<<<<<<< HEAD
-//        if (iAccountService.isAccountExist(account.getId())) {
-//            try {
-//                List<Product> product = new ArrayList<>();
-//                account.getOrders().forEach(orderDetail -> orderDetail.getOrderDetails().forEach((findProduct) ->
-//                        product.add(iProductService.getProductToSetStatus(findProduct.getProduct().getId()))));
-//                return new ResponseEntity<>(product, HttpStatus.ACCEPTED);
-//            } catch (Exception ex) {
-//                System.out.println(ex.getMessage());
-//                return new ResponseEntity<>(ex.getMessage(), HttpStatus.ACCEPTED);
-//            }
-//        }
-//        return new ResponseEntity<>("Account not exist", HttpStatus.ACCEPTED);
 
-
-        System.out.println(order);
-
-    return null;
-=======
         if (iAccountService.isAccountExist(order.getAccountDTO().getId()) && iAccountService.isSamePhone(order.getAccountDTO().getNumberPhone())) {
             try{
                 if(iAccountService.updateNewestInfoForAccount(order.getAccountDTO())){
@@ -60,7 +42,7 @@ public class OrderController {
             }
         }
         return new ResponseEntity<>(false, HttpStatus.OK);
->>>>>>> 6e9905f4a621cf7aee81242df67b0e841cf7ae57
+
     }
 
     @Autowired
