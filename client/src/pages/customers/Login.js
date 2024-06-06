@@ -8,7 +8,6 @@ function Login() {
   
   const userVirtual = [
     {numberPhone : "0384463039",name :"TranMinhNhut",role : "CUSTOMER"
-
     },
     {numberPhone : "0125426890",name :"TranMinhNhut",role : "CUSTOMER"},
   ]

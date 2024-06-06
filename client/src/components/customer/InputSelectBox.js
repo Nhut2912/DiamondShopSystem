@@ -19,6 +19,7 @@ export default function InputSelectBox({ title,
         <div className='content-select'>
             <img src={ICONS.icon_drop_down} className='img-select-box' alt=''/>
             <select 
+            value={getParams}
             className='content-option'  onChange={(event) => handleChange(event)} >
                 {
                     options && options.map((item) => (

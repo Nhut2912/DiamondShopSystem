@@ -143,6 +143,9 @@
     justify-content: space-between;
     width: 560px;
 }
+.order-container-customer > .information-order >  .customer-information > ul > li:last-child{
+    align-items: start;
+}
 .order-container-customer > .information-order >  .customer-information > ul > li > h5{
     width: 160px;
     color: rgba(0, 0, 0, 0.9);
@@ -203,6 +206,15 @@
 .order-container-customer > .information-order > .products-information > ul:nth-child(n+2) > li:first-child > div{
     height: 120px;
     width: 100%;
+    display: flex;
+    justify-self:stretch;
+    align-items: stretch;
+    overflow: hidden;
+}
+.order-container-customer > .information-order > .products-information > ul:nth-child(n+2) > li:first-child > div > img{
+    max-width:100% ;
+    max-height: 100%;
+    object-fit: contain;
 }
 .order-container-customer > .information-order > .products-information > ul:nth-child(n+2) > li:nth-child(2) > div > h4{
     color: rgba(0, 0, 0, 0.9);
@@ -399,7 +411,7 @@
 }
 .order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul{
     display: grid;
-    grid-template-columns: 2fr 3fr 2fr 2fr 2fr;
+    grid-template-columns: 3fr 3fr 3fr 2fr;
     list-style: none;
     padding-inline-start: 0;
     margin: 0;
@@ -424,9 +436,9 @@
 }
 
 .order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul:last-child > li{
-    grid-column:  4/6;
+    grid-column:  3/5;
     display: grid;
-    grid-template-columns: 6fr 6fr;
+    grid-template-columns: 7.2fr 4.8fr;
     column-gap: 30px;
 }
 .order-container-customer > .payment-method > .deposit > div:nth-child(2) > ul:last-child > li > h5{
@@ -493,6 +505,7 @@
     align-items: center;
     margin: 50px auto 50px auto;
     cursor: pointer;
+    position: relative;
 }
 .order-container-customer > .payment-method > .deposit  > .button-order > span{
     color: rgba(255, 255, 255, 1);
@@ -501,4 +514,16 @@
     font-weight: 600;
     letter-spacing: 0.5px;
    
+}
+.order-container-customer > .payment-method > .deposit  > .button-order > p{
+    color: rgba(0, 0, 0, 1);
+    font-family: "Roboto Serif";
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    position: absolute;
+    font-style: italic;
+    width: 120%;
+    top: 100%;
+    text-align: center;
 }

@@ -1,11 +1,13 @@
 package com.example.server.Model;
 
+
 import lombok.Data;
 
 @Data
-public class DiamondDTO {
+public class PaymentMethodDTO {
 
     private Long id;
 
-    private double carat;
+    private String method;
+
 }

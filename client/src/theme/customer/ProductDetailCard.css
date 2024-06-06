@@ -117,6 +117,7 @@
 .product-detail-card-container > .information-product-container > .brief-about-the-product > ul > li > span:last-child{
     color: #D9B384;
     font-size: 15px;
+    font-family: "Roboto Serif";
 }
 .product-detail-card-container > .information-product-container > .button-on-product{
     display: grid;

@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../theme/customer/Order.css';
 import { ICONS, IMAGES } from '../../constants/customer';
 import { useNavigate } from 'react-router-dom';
+import { imageStorage } from '../../config/FirebaseConfig';
+import { getDownloadURL, ref } from 'firebase/storage';
 
+
+const numberFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumSignificantDigits: 2
+  });
 
 function Order() {
   const [isPayment,setIsPayment] = useState(false); 
   const navigate = useNavigate();
+  
 
-
+  
+  const [order,setOrder] = useState();
+  
+  const [cart,setCart] = useState();
   const [paymentMethod,setPaymentMethod] = useState("MoMo");
+ 
+ const [imagesProduct,setImagesProduct] = useState();
 
  const paymentMethodList = [
     {name : "Bank Transfer", img : '',description  : "Bank Transfer"},
@@ -19,13 +33,74 @@ function Order() {
     {name : "PayPal", img : IMAGES.image_paypal, description : "( Pay with PAYPAL )" },
  ]
 
+
+ useEffect(() => {
+    const order = localStorage.getItem("order");
+    if(order !== undefined && order !== null){
+        const orderObject = JSON.parse(order);
+        setOrder(orderObject);
+    }else navigate("/products");
+ },[]);
+
+ useEffect(() => {
+    const cart = localStorage.getItem("account");
+    if(cart !== undefined && cart !== null){
+        const cartObject = JSON.parse(cart);
+        setCart(cartObject.cart);
+    }
+ },[])
+
+ useEffect(()=> {
+   if(cart !== null && cart !== undefined){
+        const getImageUrls = async () => {
+            const imageTmpProduct = [];
+            const imagesFirebase  = [];
+            cart.map((item) => {
+                imagesFirebase.push(item.images[0]);
+            })
+            try {
+              for (const image of imagesFirebase) {
+                const imageRef = ref(imageStorage, image);
+                const url = await getDownloadURL(imageRef);
+                imageTmpProduct.push(url);
+              }
+              setImagesProduct(imageTmpProduct);
+            } catch (error) {
+              console.error('Error fetching image URLs:', error);
+            }
+          };
+          getImageUrls(); 
+   }
+ },[cart])
+
+
+
+ 
+ if((order === undefined && order === null) || (cart === undefined
+    && cart !== undefined) || (imagesProduct === undefined && imagesProduct === null)
+ ) return <div>Loading</div>
+
+
+
+
+
  const choosePaymentMethod = (item) => {
     setPaymentMethod(item);
  }
   
+ const handlePrevious = () => {
+    navigate("/checkout-cart");
+ }
+
+ 
+
+
+ 
   return (
     <div className='order-container-customer'>
-        <div className='continue-shopping'>
+        <div className='continue-shopping' 
+            onClick={handlePrevious}
+        >
             <img src={ICONS.icon_back} alt=''/>
             <span>Previous</span>
         </div>
@@ -56,24 +131,51 @@ function Order() {
 
         <div className='information-order'>
               <h3>ORDER INFORMATION</h3>
-              <span className='type-order'>PICK UP IN STORE</span>
+              <span className='type-order'>{order !== undefined && order !== null &&
+                                            order.delivery ? "DELIVERY" :"PICK UP IN STORE"
+                
+              }</span>
               <div className='customer-information'>
                   <ul>
                       <li>
                           <h5>Full Name</h5>
-                          <span>Tran Minh Nhut</span>
+                          <span>
+                            {   
+                                order !== undefined && order !== null 
+                                && order.accountDTO.name !== undefined && order.accountDTO.name !== "" ? 
+                                order.accountDTO.name : ""
+                            }
+                          </span>
                       </li>
                       <li>
                         <h5>Phone Number</h5>
-                        <span>0384463039</span>
+                        <span>
+                        {
+                                order !== undefined && order !== null 
+                                && order.accountDTO.numberPhone !== undefined && order.accountDTO.numberPhone !== "" ? 
+                                order.accountDTO.numberPhone : ""
+                            }
+                        </span>
                       </li>
                       <li>
                           <h5>Email</h5>
-                          <span>nhutminhtran05@gmail.com</span>
+                          <span>
+                          {
+                                order !== undefined && order !== null 
+                                && order.accountDTO.email !== undefined && order.accountDTO.email !== "" ? 
+                                order.accountDTO.email : ""
+                            }
+                          </span>
                       </li>
                       <li>
                           <h5>Address</h5>
-                          <span>Lot E2a-7, Street D1, D. D1, Long Thanh My, Thu Duc City, Ho Chi Minh City 700000</span>
+                          <span>
+                          {
+                                order !== undefined && order !== null 
+                                && order.address !== undefined && order.address !== "" ? 
+                                order.address : ""
+                            }
+                          </span>
                       </li>
                   </ul>
               </div>
@@ -90,28 +192,35 @@ function Order() {
                         </li>
                         <li>Price</li>
                     </ul>
-
-                    <ul>
-                      <li>
-                          <div>
-
-                          </div>
-                      </li>
-                      <li>
-                          <div>
-                              <h4>Diamond rings white gold Disney JEWELRY</h4>
-                              <p>CODE : P01C01D0102 </p>
-                              <span> x1 </span>
-                          </div>
-                      </li>
-                      <li>
-                          17
-                      </li>
-                      <li>
-                          $1,003.87
-                      </li>
-                    </ul>
-
+                    {   imagesProduct !== undefined &&
+                         cart !== undefined && cart !== null 
+                         && cart !== "" && cart.length > 0 ?
+                         cart.map((item,index) => (
+                            <ul>
+                
+                                <li>
+                                    <div>
+                                        <img src={imagesProduct[index]}  alt='' /> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <h4>{item.name}</h4>
+                                        <p>CODE : {item.code} </p>
+                                        <span> x1 </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    {item.sizeUser}
+                                </li>
+                                <li>{numberFormatter.format(item.price)}
+                                </li>
+                          </ul>
+      
+                         ))
+                         :""
+                    }
+                 
 
                     <div className='line'></div>
                     <div className='total'>
@@ -124,20 +233,28 @@ function Order() {
                                   </p>
                             </div>
                             
-                            <ul>
+                            <ul>    
+                                {console.log(order)}
                                       <li>
                                           <h5>Sub total</h5>
-                                          <h4>$1092</h4>
+                                          <h4>{numberFormatter.format( order !== undefined &&
+                                            order !== null ? 
+                                            order.subTotal :"" )}</h4>
                                       </li>
                                       <li>
                                           <h5>
                                             Discount
                                           </h5>
-                                          <h4>$103</h4>
+                                          <h4>{numberFormatter.format(
+                                            order !== undefined &&
+                                            order !== null ? 
+                                            order.discount : "")}</h4>
                                       </li>
                                       <li>
                                           <h5>Total</h5>
-                                          <h4>$989</h4>
+                                          <h4>{numberFormatter.format( order !== undefined &&
+                                            order !== null ? 
+                                            order.totalPrice : "")}</h4>
                                       </li>
                             </ul>
                             
@@ -146,7 +263,7 @@ function Order() {
               </div>
         </div>
         <div className='button-payment' onClick={() => setIsPayment(true)}>
-            <span>Payment</span>
+            <span>Confirm</span>
         </div>
 
 
@@ -166,18 +283,25 @@ function Order() {
                         </h4>
                       <div>
                         <ul>
-                                <li>Order ID</li>
-                                <li>Orderer</li>
+                                <li>Name</li>
                                 <li>Number Phone</li>
                                 <li>Quantity Of Goods</li>
                                 <li>Total Price</li>
                             </ul>
                             <ul>
-                                <li>1234587</li>
-                                <li>Tran Minh Nhut</li>
-                                <li>0384463039</li>
-                                <li>1</li>
-                                <li>$989</li>
+                               
+                                <li> {   
+                                order !== undefined && order !== null 
+                                && order.accountDTO.name !== undefined && order.accountDTO.name !== "" ? 
+                                order.accountDTO.name : ""
+                            }</li>
+                                <li>{   
+                                order !== undefined && order !== null 
+                                && order.accountDTO.numberPhone !== undefined && order.accountDTO.numberPhone !== "" ? 
+                                order.accountDTO.numberPhone : ""
+                            }</li>
+                                <li>{cart.length}</li>
+                                <li>{numberFormatter.format(order.totalPrice)}</li>
                             </ul>
                             <div className='line'></div>
                                 <ul>
@@ -186,7 +310,7 @@ function Order() {
                                             Deposit Fee
                                         </h5>
                                         <h5>
-                                            $100
+                                        {numberFormatter.format(order.totalPrice*10/100)}
                                         </h5>
                                     </li>
                                 </ul>
@@ -195,7 +319,7 @@ function Order() {
 
                       <div className='choose-payment-method'>
                             <h4>
-                                PAYMENT METHOD
+                               DEPOSIT PAYMENT
                             </h4>
                             <div>
                                 {paymentMethodList.map((item) => (
@@ -208,9 +332,10 @@ function Order() {
                                 ))}
                             </div>
                       </div>
-
+                            
                       <div className='button-order'>
-                            <span>Order</span>
+                           <p>{"( Please select a payment method and pay to complete your order )"}</p>
+                            <span>Payment</span>
                       </div>
                 </div>
             </div>  
