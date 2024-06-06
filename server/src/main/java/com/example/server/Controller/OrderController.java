@@ -10,6 +10,7 @@ import com.example.server.Service.Account.IAccountService;
 import com.example.server.Service.Order.IOrderService;
 import com.example.server.Service.Order.OrderService;
 import com.example.server.Service.OrderDetail.IOrderDetailService;
+import com.example.server.Service.Payment.IPaymentService;
 import com.example.server.Service.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,18 +29,24 @@ public class OrderController {
 
     @Autowired
     private IAccountService iAccountService;
+
     @Autowired
     private IProductService iProductService;
+
     @Autowired
     private IOrderService iorderService;
+
     @Autowired
     private IOrderDetailService iorderDetailService;
-    @PostMapping("/buy")
 
+    @Autowired
+    private IPaymentService iPaymentService;
+
+    @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
         if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId()) && iAccountService.isSamePhone(orderDto.getAccountDTO().getNumberPhone())) {
             try{
-                
+
                 if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){
                     orderDto.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
                         Order order = iorderService.saveOrder(orderDto);

@@ -66,7 +66,7 @@ public class OrderService implements  IOrderService{
     }
 
     @Override
-    public Order getOrderF(Long id) {
+    public Order getOrderById(Long id) {
         Optional<Order> order = iOrderRepository.findById(id);
         return order.orElse(null);
     }

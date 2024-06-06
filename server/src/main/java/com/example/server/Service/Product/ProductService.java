@@ -160,7 +160,7 @@ public class ProductService implements IProductService{
         }else return null;
     }
 
-    public Product getProductF(Long id){
+    public Product getProductById(Long id){
         Optional<Product> product = productRepository.findById(id);
         return product.orElse(null);
     }

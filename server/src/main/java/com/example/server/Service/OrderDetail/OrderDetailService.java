@@ -32,10 +32,9 @@ public class OrderDetailService implements IOrderDetailService{
                     OrderDetail orderDetail = new OrderDetail();
                     orderDetail.setPriceAfterSizeAdjustment(orderDe.getPriceAfterSizeAdjustment());
                     orderDetail.setSize(orderDe.getSize());
-                    Product product = iProductService.getProductF(orderDe.getProductID());
+                    Product product = iProductService.getProductById(orderDe.getProductID());
                     orderDetail.setProduct(product);
-                    orderDetail.setOrder(iOrderService.getOrderF(order.getId()));
-
+                    orderDetail.setOrder(iOrderService.getOrderById(order.getId()));
                     iOrderDetailRepository.save(orderDetail);
                         }
                     );

@@ -11,6 +11,6 @@ public interface IOrderService {
     public List<Order> getAllOrders();
     public List<Order> getOrderByStatus(String orderStatus);
     public boolean updateOrderStatus(Long id, String status);
-    public Order getOrderF(Long id);
+    public Order getOrderById(Long id);
 
 }
