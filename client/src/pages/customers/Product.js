@@ -9,7 +9,7 @@ function Product() {
 
 
   const [data,setData] = useState();
-
+  const [categoryActive,setCategoryActive] = useState([]);
   useEffect(() => {
         fetch('http://localhost:8080/api/product/getProducts')
           .then(response => response.json())
@@ -25,6 +25,29 @@ function Product() {
     {name : "Descending Price"},
     {name : "Newest products"}
   ]
+
+  const CATEGORY = ["Ring","Earring","Pendant","Shake","Jewelry Set"];
+  
+
+
+  const handleFillterCategory = (value) => {
+    let isValid = false;
+    categoryActive.map((item) => {
+        if(item === value) {
+            isValid = true;
+        }
+    })
+    if(isValid){
+      let categoryActiveUpdate = categoryActive.filter((item) => 
+        item !== value
+      )
+      setCategoryActive(categoryActiveUpdate);
+    }else{
+      let categoryActiveUpdate = [...categoryActive,value];
+    setCategoryActive(categoryActiveUpdate);
+    }
+  }
+  console.log(categoryActive);
   return (
     <div className='product-page'>
             <div className='product-page-container'>
@@ -64,40 +87,23 @@ function Product() {
                   <div className='category'>
                       <h3>Category</h3>
                       <ul>
-                        <li className='isActive'>
-                      
-                          <span>
-                              Ring
-                          </span>
-                        </li>
+                        {
+                          CATEGORY.map((item) => (
+                            <li 
+                              onClick={() => handleFillterCategory(item)}
+                            className={categoryActive.includes(item) ? "isActive" : ""}>
+                              <div>
 
-                        <li>
+                              </div>
+                              <span>
+                                  {item}
+                              </span>
+                            </li>
+
+                          ))
+                        }
                         
-                          <span>
-                              Earring
-                          </span>
-                        </li>
-
-                        <li>
-                          
-                          <span>
-                            Pendant
-                          </span>
-                        </li>
-
-                        <li>
-                          
-                          <span>
-                              Shake
-                          </span>
-                        </li>
-
-                        <li>
-                       
-                          <span>
-                              Jewelry Set
-                          </span>
-                        </li>
+                   
 
                       </ul>
                   </div>

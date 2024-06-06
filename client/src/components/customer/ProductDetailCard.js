@@ -70,45 +70,47 @@ function ProductDetailCard({data}) {
   })
 
 
+  const handleAddProduct = () => {
+    let beAdded = true;
+    ProductCart.code = data.code;
+    ProductCart.id = data.id;
+    ProductCart.name = data.name;
+    ProductCart.sizeUser = userSize;
+    ProductCart.price =  getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price);
+    ProductCart.images = data.images;
 
+    account.cart.map((item) => {
+      console.log(account.cart);
+      console.log(item.id +"- " + ProductCart.id);
+      console.log(item.sizeUser+"- " +ProductCart.sizeUser);
+        if(item.id === ProductCart.id){
+            if(item.sizeUser !== ProductCart.sizeUser){
+                item.sizeUser = ProductCart.sizeUser;
+                item.price = ProductCart.price;
+            }
+            beAdded = false;
+        }
+    })
+    if(beAdded){
+      let cartUpdated = [...account.cart,ProductCart];
+      account.cart = cartUpdated;    
+    }
+    setAccount(account);
+    cart.addToCart();
+  }
 
 
   const hanleAddTocard  = () => {
      if(account !== null){
-        let beAdded = true;
-
-        ProductCart.code = data.code;
-        ProductCart.id = data.id;
-        ProductCart.name = data.name;
-        ProductCart.sizeUser = userSize;
-        ProductCart.price =  getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price);
-        ProductCart.images = data.images;
-
-        account.cart.map((item) => {
-          console.log(account.cart);
-          console.log(item.id +"- " + ProductCart.id);
-          console.log(item.sizeUser+"- " +ProductCart.sizeUser);
-            if(item.id === ProductCart.id){
-                if(item.sizeUser !== ProductCart.sizeUser){
-                    item.sizeUser = ProductCart.sizeUser;
-                    item.price = ProductCart.price;
-                }
-                beAdded = false;
-            }
-        })
-
-        
-        if(beAdded){
-          let cartUpdated = [...account.cart,ProductCart];
-          account.cart = cartUpdated;    
-        }
-        setAccount(account);
-        cart.addToCart();
+      handleAddProduct();
      }else navigate("/login")
   }
 
   const hanleBuyNow = () => {
-
+    if(account !== null){
+      handleAddProduct();
+      navigate("/checkout-cart")
+     }else navigate("/login")
   }
 
   return (
@@ -182,7 +184,7 @@ function ProductDetailCard({data}) {
                     <div onClick={hanleAddTocard}>
                           <span >Add To Cart</span>
                     </div>
-                    <div>
+                    <div onClick={hanleBuyNow}>
                         <span>Buy Now</span>
                     </div>
               </div>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import '../../theme/admin/OrderAdmin.css';
 import OrderCard from './OrderCard';
 import { useNavigate } from 'react-router-dom';
+
 
 function OrderAdmin() {
     const navigate = useNavigate();
@@ -29,16 +30,16 @@ function OrderAdmin() {
 
      if(account === null) return <div>Loading.......</div>
 
- const orderItems = [
-    {OrderId: "ID0001",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "PENDING", total: "1034", date: "8:32pm 01/06/2024" },
-    {OrderId: "ID0002",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "PREPARING", total: "1034", date: "8:32pm 01/06/2024" },
-    {OrderId: "ID0003",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "PREPARED", total: "1034", date: "8:32pm 01/06/2024" },
-    {OrderId: "ID0004",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "DELIVERING", total: "1034", date: "8:32pm 01/06/2024" },
-    {OrderId: "ID0005",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "COMPLETED", total: "1034", date: "8:32pm 01/06/2024" },
-    { OrderId: "ID0006",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "CANCELED", total: "1034", date: "8:32pm 01/06/2024" },
-]
 
-
+     
+     const orderItems = [
+        {OrderId: "ID0001",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "PENDING", total: "1034", date: "8:32pm 01/06/2024" },
+        {OrderId: "ID0002",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "PREPARING", total: "1034", date: "8:32pm 01/06/2024" },
+        {OrderId: "ID0003",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "PREPARED", total: "1034", date: "8:32pm 01/06/2024" },
+        {OrderId: "ID0004",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "DELIVERING", total: "1034", date: "8:32pm 01/06/2024" },
+        {OrderId: "ID0005",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "COMPLETED", total: "1034", date: "8:32pm 01/06/2024" },
+        { OrderId: "ID0006",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "CANCELED", total: "1034", date: "8:32pm 01/06/2024" },
+    ];
  
  const handleClick = (item) => {
     setActiveItem(item);

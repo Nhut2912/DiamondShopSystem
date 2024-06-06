@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2493b70b-f929-4726-8949-d04e6b76e593" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/OrderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/OrderDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/OrderDetail/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/OrderDetail/OrderDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Model/OrderDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Model/OrderDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/OrderDetail/OrderDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/OrderDetail/OrderDetailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/IProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/IProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2hPIztpFuqSdz3TkMzww5N1sQf0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ServerApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Spring_Boot_App/momodemo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.server.Service.Product" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.server.ServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2493b70b-f929-4726-8949-d04e6b76e593" name="Changes" comment="" />
+      <created>1717489551570</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717489551570</updated>
+      <workItem from="1717489552608" duration="5601000" />
+      <workItem from="1717509255658" duration="18977000" />
+      <workItem from="1717652984486" duration="4345000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
