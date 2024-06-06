@@ -19,35 +19,9 @@ const Authentication = () => {
 
 
 
-  // const [data,setData] = useState("");
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8080/api/product/getProducts')
-  //     .then(response => response.json())
-  //     .then(data => setData(data));
-  // }, []); 
-
-
   const handleLogin = () => {
     
-    // const myHeaders = new Headers();
-    // myHeaders.append("Content-Type","application/json")
-    // const raw = JSON.stringify({
-    //   "name": "Add your name in the body"
-    // });
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: raw,
-    //   redirect: "follow"
-    // };
-    //   fetch('http://localhost:8080/api/product/save', requestOptions)
-    //   .then(response => response.text())
-    //   .then( data => setData(data));
-    //   console.log(data);
-    //   if(data === "true"){
-    //     window.location.href ="/admin"
-    //   }
+
 
 
     userVirtual.map((item) => {
