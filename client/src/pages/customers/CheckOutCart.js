@@ -20,9 +20,8 @@ const numberFormatter = new Intl.NumberFormat('en-US', {
 
 function CheckOutCart() {
  const navigate = useNavigate();
+ 
  const cartContext = useContext(CartContext);
-
-
 
  const [order,setOrder] = useState();
 
@@ -122,7 +121,7 @@ function CheckOutCart() {
     }
  },[cart,subTotal])
 
- if(order === undefined) return <div>Loading</div>;
+
 
  const handleOrder = () =>{
    
@@ -148,13 +147,12 @@ function CheckOutCart() {
             "email": email,
             "gender" :gender,
             "numberPhone": phone,
-            "address": province +", " +district +", " + ward +", "+address,
+            "address": address +", "+ ward  +", " +district +", "  + province,
             "birthDay": birthday
         },
         "orderDetailDTOS": productsOrder,
         "paymentDTO": {
             "amount": 0,
-            "transactionCode": "",
             "image": "",
             "paymentMethodDTO": {
                 "method": ""
@@ -163,7 +161,7 @@ function CheckOutCart() {
         "delivery": true
     }
     localStorage.setItem("order",JSON.stringify(cartItem));
-    navigate("order");
+    navigate("order", {});
  } 
 
 
@@ -299,19 +297,19 @@ function CheckOutCart() {
                             <div>
                                 <InputBox
                                     setParams={setName}
-                                    getParams={ order !== null && order.accountDTO.name !== null ? order.accountDTO.name :"" }
+                                    getParams={ order !== undefined && order !== null && order.accountDTO.name !== null ? order.accountDTO.name :null }
                                 title={"Fullname"} />
                                 <InputBox 
                                     setParams={setPhone}
-                                    getParams={order !== null && order.accountDTO.numberPhone !== null ? order.accountDTO.numberPhone :"" }
+                                    getParams={order !== undefined && order !== null && order.accountDTO.numberPhone !== null ? order.accountDTO.numberPhone : null }
                                 title={"Number phone"} />
                                 <InputBox 
                                     setParams={setEmail}
-                                    getParams={order !== null && order.accountDTO.email !== null ? order.accountDTO.email :"" }
+                                    getParams={order !== undefined && order !== null && order.accountDTO.email !== null ? order.accountDTO.email : null }
                                 title={"Email"} />
                                 <InputBox 
                                     setParams={setBirthay}
-                                    getParams={order !== null && order.accountDTO.birthDay !== null ? order.accountDTO.birthDay :"" }
+                                    getParams={order !== undefined && order !== null && order.accountDTO.birthDay !== null ? order.accountDTO.birthDay :null}
                                 title={"Birthday"} />
                             </div>
                             <div className='button-continue'
@@ -356,21 +354,21 @@ function CheckOutCart() {
                                         <InputSelectBox 
                                             options={Province}
                                             setParams={setProvince}
-                                            getParams={province !== undefined && province !== null ? province : ""}
+                                            getParams={province !== undefined && province !== null ? province : null}
                                         title={"Province/City"} />
                                         <InputSelectBox
                                             options={District}
-                                            getParams={district !== undefined && district !== null ? district : ""}
+                                            getParams={district !== undefined && district !== null ? district : null}
                                             setParams={setDistrict}
                                         title={"District"} />
                                         <InputSelectBox
                                             options={Ward}
                                             setParams={setWard}
-                                            getParams={ward !== undefined && ward !== null ? ward : ""}
+                                            getParams={ward !== undefined && ward !== null ? ward : null}
                                         title={"Ward/Commune"} />
                                         <InputBox
                                             setParams={setAddress}
-                                            getParams={address !== undefined && address !== null && address !== "undefined" ? address : ""}
+                                            getParams={address !== undefined && address !== null && address !== "undefined" ? address : null}
                                         title={"Detail Address"}/>
                                         <InputBox title={"Notes"}/>
                                     </div>

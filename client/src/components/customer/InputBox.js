@@ -10,7 +10,6 @@ function InputBox({title,
 
   const handleChange = (event) => {
     const value = event.target.value;
-    console.log(value);
     setParams(value);
   }
 
