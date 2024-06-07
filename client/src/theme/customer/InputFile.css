@@ -1,0 +1,50 @@
+.input-file-customer-container{
+    display: grid;
+}
+.input-file-customer-container > label{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+}
+.input-file-customer-container > .input-file-card > input{
+    appearance: none;
+    height: 50px;
+    position: relative;
+    padding: 0;
+    padding-block: 0px;
+    padding-inline: 0px;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto serif';
+    color: #D9B384;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+   
+}
+.input-file-customer-container  > .input-file-card  > input::after{
+    content: "Upload File";
+    width: 100%;
+    height:100%;
+    position: absolute;
+    left: 0;
+    background-color: #FFFFFF;
+    padding-left: 20px;
+    box-sizing: border-box;
+    align-content: center;
+    z-index: 100;
+    border: 1px solid #D9B384;
+    
+}
+.input-file-customer-container  > .input-file-card  > input::before{
+    content: "";
+    background-image: url('../../assets/icons/customer/upload.svg');
+    right: 20px;
+    z-index: 101;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top:50%;
+    transform: translateY(-50%);
+}

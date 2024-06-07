@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import '../../theme/customer/Order.css';
 import { ICONS, IMAGES } from '../../constants/customer';
 import { useNavigate } from 'react-router-dom';
 import { imageStorage } from '../../config/FirebaseConfig';
 import { getDownloadURL, ref } from 'firebase/storage';
+import InputFile from '../../components/customer/InputFile';
 
 
 const numberFormatter = new Intl.NumberFormat('en-US', {
@@ -14,13 +15,20 @@ const numberFormatter = new Intl.NumberFormat('en-US', {
   });
 
 function Order() {
+
+  
+
+
+
+
   const [isPayment,setIsPayment] = useState(false); 
   const navigate = useNavigate();
   
-
+  const [imagePayment,setImagePayment] = useState();
+  const [filePayment,setFilePayment] = useState();
   
   const [order,setOrder] = useState();
-  
+  const [isBankTransfer,setBankTransfer]  = useState(false);
   const [cart,setCart] = useState();
   const [paymentMethod,setPaymentMethod] = useState("MoMo");
  
@@ -32,7 +40,21 @@ function Order() {
     {name : "VN PAY", img : IMAGES.image_vnpay, description : "( Pay with VNPAY wallet )" },
     {name : "PayPal", img : IMAGES.image_paypal, description : "( Pay with PAYPAL )" },
  ]
-
+ const topRef = useRef(null);
+ useEffect(() => {
+    
+    if(isBankTransfer){
+            const paymentELement = document.getElementById("order-payment-page");
+            topRef.current = paymentELement;
+            topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }else{
+        const paymentELement = document.getElementById("order-container-customer");
+        topRef.current = paymentELement;
+        topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+     
+    
+  }, [isBankTransfer]);
 
  useEffect(() => {
     const order = localStorage.getItem("order");
@@ -93,254 +115,438 @@ function Order() {
  }
 
  
+ const handleOrder = () => {
+
+    const cartItem = {
+        "address": order.address,
+        "totalPrice": order.totalPrice,
+        "accountDTO": {
+            "id": 2,
+            "name": order.accountDTO.name,
+            "email": order.accountDTO.email,
+            "gender" :order.accountDTO.gender === "Male" ? true : false,
+            "numberPhone": order.accountDTO.numberPhone,
+            "address": order.accountDTO.address,
+            "birthDay": order.accountDTO.birthDay
+        },
+        "orderDetailDTOS": order.orderDetailDTOS,
+        "paymentDTO": {
+            "amount": order.totalPrice*10/100,
+            "image": "",
+            "paymentMethodDTO": {
+                "method": paymentMethod
+            }
+        },
+        "delivery": true
+    }
+
+    if(paymentMethod === "Bank Transfer"){
+        setBankTransfer(true);
+       
+        
+    }else{
 
 
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        
+        const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify(cartItem),
+            redirect: "follow"
+          };
+          
+          fetch("http://localhost:8080/api/order/buy", requestOptions)
+            .then((response) => response.text())
+            .then((result) => {
+                if(result){
+                    navigate("/checkout-cart/complete")
+                }
+            }).catch((error) => console.error(error));
+    }
+    console.log(cartItem);
+ }
+
+ const handleCompleteOrder = () => {
+
+
+
+    
+    const cartItem = {
+        "address": order.address,
+        "totalPrice": order.totalPrice,
+        "accountDTO": {
+            "id": 2,
+            "name": order.accountDTO.name,
+            "email": order.accountDTO.email,
+            "gender" :order.accountDTO.gender,
+            "numberPhone": order.accountDTO.numberPhone,
+            "address": order.accountDTO.address,
+            "birthDay": order.accountDTO.birthDay
+        },
+        "orderDetailDTOS": order.orderDetailDTOS,
+        "paymentDTO": {
+            "amount": order.totalPrice*10/100,
+            "image": "",
+            "paymentMethodDTO": {
+                "method": paymentMethod
+            }
+        },
+        "delivery": true
+    }
+
+    navigate("/checkout-cart/complete");
+ }
  
   return (
-    <div className='order-container-customer'>
-        <div className='continue-shopping' 
-            onClick={handlePrevious}
-        >
-            <img src={ICONS.icon_back} alt=''/>
-            <span>Previous</span>
-        </div>
-        <div className='status'>
-            <div className='isActive'>
-                <span>1</span>
-            </div>
-            <div className='isActive'></div>
-            <div className='isActive' >
-                <span>2</span>
-            </div>
-            <div className='isActive' ></div>
-            <div className={isPayment ? 'isActive' : ''}>
-                <span>3</span>
-            </div>
-            <div className={isPayment ? 'isActive' : ''} ></div>
-            <div>
-                <span>4</span>
-            </div>    
-        </div>
-
-        <div className='head-order-information'>
-            <div>
-                <span>3</span>
-            </div>
-            <h2>Order Information</h2>
-        </div>
-
-        <div className='information-order'>
-              <h3>ORDER INFORMATION</h3>
-              <span className='type-order'>{order !== undefined && order !== null &&
-                                            order.delivery ? "DELIVERY" :"PICK UP IN STORE"
-                
-              }</span>
-              <div className='customer-information'>
-                  <ul>
-                      <li>
-                          <h5>Full Name</h5>
-                          <span>
-                            {   
-                                order !== undefined && order !== null 
-                                && order.accountDTO.name !== undefined && order.accountDTO.name !== "" ? 
-                                order.accountDTO.name : ""
-                            }
-                          </span>
-                      </li>
-                      <li>
-                        <h5>Phone Number</h5>
-                        <span>
-                        {
-                                order !== undefined && order !== null 
-                                && order.accountDTO.numberPhone !== undefined && order.accountDTO.numberPhone !== "" ? 
-                                order.accountDTO.numberPhone : ""
-                            }
-                        </span>
-                      </li>
-                      <li>
-                          <h5>Email</h5>
-                          <span>
-                          {
-                                order !== undefined && order !== null 
-                                && order.accountDTO.email !== undefined && order.accountDTO.email !== "" ? 
-                                order.accountDTO.email : ""
-                            }
-                          </span>
-                      </li>
-                      <li>
-                          <h5>Address</h5>
-                          <span>
-                          {
-                                order !== undefined && order !== null 
-                                && order.address !== undefined && order.address !== "" ? 
-                                order.address : ""
-                            }
-                          </span>
-                      </li>
-                  </ul>
-              </div>
-              <div className='products-information'>
-                    <ul>
-                        <li>
-                            Image
-                        </li>
-                        <li>
-                            Product
-                        </li>
-                        <li>
-                            Size
-                        </li>
-                        <li>Price</li>
-                    </ul>
-                    {   imagesProduct !== undefined &&
-                         cart !== undefined && cart !== null 
-                         && cart !== "" && cart.length > 0 ?
-                         cart.map((item,index) => (
-                            <ul>
-                
-                                <li>
-                                    <div>
-                                        <img src={imagesProduct[index]}  alt='' /> 
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <h4>{item.name}</h4>
-                                        <p>CODE : {item.code} </p>
-                                        <span> x1 </span>
-                                    </div>
-                                </li>
-                                <li>
-                                    {item.sizeUser}
-                                </li>
-                                <li>{numberFormatter.format(item.price)}
-                                </li>
-                          </ul>
-      
-                         ))
-                         :""
-                    }
+    <>
+        {!isBankTransfer ?
+         <div className='order-container-customer'  id="order-container-customer">
+         <div className='continue-shopping' 
+             onClick={handlePrevious}
+         >
+             <img src={ICONS.icon_back} alt=''/>
+             <span>Previous</span>
+         </div>
+         <div className='status'>
+             <div className='isActive'>
+                 <span>1</span>
+             </div>
+             <div className='isActive'></div>
+             <div className='isActive' >
+                 <span>2</span>
+             </div>
+             <div className='isActive' ></div>
+             <div className={isPayment ? 'isActive' : ''}>
+                 <span>3</span>
+             </div>
+             <div className={isPayment ? 'isActive' : ''} ></div>
+             <div>
+                 <span>4</span>
+             </div>    
+         </div>
+ 
+         <div className='head-order-information'>
+             <div>
+                 <span>3</span>
+             </div>
+             <h2>Order Information</h2>
+         </div>
+ 
+         <div className='information-order'>
+               <h3>ORDER INFORMATION</h3>
+               <span className='type-order'>{order !== undefined && order !== null &&
+                                             order.delivery ? "DELIVERY" :"PICK UP IN STORE"
                  
-
-                    <div className='line'></div>
-                    <div className='total'>
-                            <div className=''>
-                                  <p>
-                                  Thank you for trusting our store's service. 
-                                  Due to the high value of the goods, we would like to collect
-                                   a <b>10% deposit fee on order</b>. You will be provided
-                                    with detailed information when you click through to the payment section
-                                  </p>
+               }</span>
+               <div className='customer-information'>
+                   <ul>
+                       <li>
+                           <h5>Full Name</h5>
+                           <span>
+                             {   
+                                 order !== undefined && order !== null 
+                                 && order.accountDTO.name !== undefined && order.accountDTO.name !== "" ? 
+                                 order.accountDTO.name : ""
+                             }
+                           </span>
+                       </li>
+                       <li>
+                         <h5>Phone Number</h5>
+                         <span>
+                         {
+                                 order !== undefined && order !== null 
+                                 && order.accountDTO.numberPhone !== undefined && order.accountDTO.numberPhone !== "" ? 
+                                 order.accountDTO.numberPhone : ""
+                             }
+                         </span>
+                       </li>
+                       <li>
+                           <h5>Email</h5>
+                           <span>
+                           {
+                                 order !== undefined && order !== null 
+                                 && order.accountDTO.email !== undefined && order.accountDTO.email !== "" ? 
+                                 order.accountDTO.email : ""
+                             }
+                           </span>
+                       </li>
+                       <li>
+                           <h5>Address</h5>
+                           <span>
+                           {
+                                 order !== undefined && order !== null 
+                                 && order.address !== undefined && order.address !== "" ? 
+                                 order.address : ""
+                             }
+                           </span>
+                       </li>
+                   </ul>
+               </div>
+               <div className='products-information'>
+                     <ul>
+                         <li>
+                             Image
+                         </li>
+                         <li>
+                             Product
+                         </li>
+                         <li>
+                             Size
+                         </li>
+                         <li>Price</li>
+                     </ul>
+                     {   imagesProduct !== undefined &&
+                          cart !== undefined && cart !== null 
+                          && cart !== "" && cart.length > 0 ?
+                          cart.map((item,index) => (
+                             <ul>
+                 
+                                 <li>
+                                     <div>
+                                         <img src={imagesProduct[index]}  alt='' /> 
+                                     </div>
+                                 </li>
+                                 <li>
+                                     <div>
+                                         <h4>{item.name}</h4>
+                                         <p>CODE : {item.code} </p>
+                                         <span> x1 </span>
+                                     </div>
+                                 </li>
+                                 <li>
+                                     {item.sizeUser}
+                                 </li>
+                                 <li>{numberFormatter.format(item.price)}
+                                 </li>
+                           </ul>
+       
+                          ))
+                          :""
+                     }
+                  
+ 
+                     <div className='line'></div>
+                     <div className='total'>
+                             <div className=''>
+                                   <p>
+                                   Thank you for trusting our store's service. 
+                                   Due to the high value of the goods, we would like to collect
+                                    a <b>10% deposit fee on order</b>. You will be provided
+                                     with detailed information when you click through to the payment section
+                                   </p>
+                             </div>
+                             
+                             <ul>    
+                     
+                                       <li>
+                                           <h5>Sub total</h5>
+                                           <h4>{numberFormatter.format( order !== undefined &&
+                                             order !== null ? 
+                                             order.subTotal :"" )}</h4>
+                                       </li>
+                                       <li>
+                                           <h5>
+                                             Discount
+                                           </h5>
+                                           <h4>{numberFormatter.format(
+                                             order !== undefined &&
+                                             order !== null ? 
+                                             order.discount : "")}</h4>
+                                       </li>
+                                       <li>
+                                           <h5>Total</h5>
+                                           <h4>{numberFormatter.format( order !== undefined &&
+                                             order !== null ? 
+                                             order.totalPrice : "")}</h4>
+                                       </li>
+                             </ul>
+                             
+                     </div>
+ 
+               </div>
+         </div>
+         <div className='button-payment' onClick={() => setIsPayment(true)}>
+             <span>Confirm</span>
+         </div>
+ 
+ 
+ 
+         {
+             isPayment && 
+             <div className='payment-method'>
+                  <div className='head-payment-information'>
+                     <div>
+                         <span>4</span>
+                     </div>
+                     <h2>Payment</h2>
+                 </div>
+                 <div className='deposit'>
+                         <h4>
+                             DEPOSIT FEE
+                         </h4>
+                       <div>
+                         <ul>
+                                 <li>Name</li>
+                                 <li>Number Phone</li>
+                                 <li>Quantity Of Goods</li>
+                                 <li>Total Price</li>
+                             </ul>
+                             <ul>
+                                
+                                 <li> {   
+                                 order !== undefined && order !== null 
+                                 && order.accountDTO.name !== undefined && order.accountDTO.name !== "" ? 
+                                 order.accountDTO.name : ""
+                             }</li>
+                                 <li>{   
+                                 order !== undefined && order !== null 
+                                 && order.accountDTO.numberPhone !== undefined && order.accountDTO.numberPhone !== "" ? 
+                                 order.accountDTO.numberPhone : ""
+                             }</li>
+                                 <li>{cart !== undefined && cart !== null ? cart.length : 0}</li>
+                                 <li>{numberFormatter.format(order !== undefined && order !== null ? order.totalPrice : 0)}</li>
+                             </ul>
+                             <div className='line'></div>
+                                 <ul>
+                                     <li>
+                                         <h5>
+                                             Deposit Fee
+                                         </h5>
+                                         <h5>
+                                         {numberFormatter.format(order !== undefined && order !== null ?  order.totalPrice*10/100 : 0)}
+                                         </h5>
+                                     </li>
+                                 </ul>
+                             
+                       </div>
+ 
+                       <div className='choose-payment-method'>
+                             <h4>
+                                DEPOSIT PAYMENT
+                             </h4>
+                             <div>
+                                 {paymentMethodList.map((item) => (
+                                         <div
+                                         onClick={() => choosePaymentMethod(item.name)}
+                                         className={paymentMethod === item.name ? 'isActive' : ''} >
+                                             <img src={item.img} alt=''/>
+                                             <span>{item.description}</span>
+                                         </div>
+                                 ))}
+                             </div>
+                       </div>
+                             
+                       <div className='button-order'
+                         onClick={handleOrder}
+                       >
+                            <p>{"( Please select a payment method and pay to complete your order )"}</p>
+                             <span>Payment</span>
+                       </div>
+                 </div>
+             </div>  
+         }
+     </div> :
+     
+     <div className='order-payment-page'  id="order-payment-page">
+            <div className='order-payment-container'>
+            <div className='deposit'>
+                         <h4>
+                             DEPOSIT FEE
+                         </h4>
+                       <div>
+                         <ul>
+                                 <li>Name</li>
+                                 <li>Number Phone</li>
+                                 <li>Quantity Of Goods</li>
+                                 <li>Total Price</li>
+                             </ul>
+                             <ul>
+                                
+                                 <li> {   
+                                 order !== undefined && order !== null 
+                                 && order.accountDTO.name !== undefined && order.accountDTO.name !== "" ? 
+                                 order.accountDTO.name : ""
+                             }</li>
+                                 <li>{   
+                                 order !== undefined && order !== null 
+                                 && order.accountDTO.numberPhone !== undefined && order.accountDTO.numberPhone !== "" ? 
+                                 order.accountDTO.numberPhone : ""
+                             }</li>
+                                 <li>{cart !== undefined && cart !== null ? cart.length : 0}</li>
+                                 <li>{numberFormatter.format( order !== undefined && order !== null ? order.totalPrice : 0)}</li>
+                             </ul>
+                             <div className='line'></div>
+                                 <ul>
+                                     <li>
+                                         <h5>
+                                             Deposit Fee
+                                         </h5>
+                                         <h5>
+                                         {numberFormatter.format(order !== undefined && order !== null ?  order.totalPrice*10/100 : 0)}
+                                         </h5>
+                                     </li>
+                                 </ul>
+                       </div>
+ 
+                      <h4>
+                        PAYMENT
+                      </h4>
+                     
+                      <div className='payment-qr-bank-container'>
+                            <div className='qr-bank'>
+                                <div className='qr-bank-img'>
+                                    <img src={IMAGES.image_qr_bank_pay} alt='' />
+                                </div>
+                                <div className='information-bank'>
+                                    <ul>
+                                        <li>
+                                            <h4>BANK NAME</h4>
+                                            <h3>TPBANK</h3>
+                                        </li>
+                                        <li>
+                                            <h4>ACCOUNT OWNER</h4>
+                                            <h3>Tran Minh Nhut</h3>
+                                        </li>
+                                        
+                                        <li>
+                                            <h4>ACCOUNT NUMBER</h4>
+                                            <h3>10384463039</h3>
+                                        </li>
+                                    </ul>
+                                    <p>
+                                    {"( After payment, please take a photo of the transaction and post it on the button below )"}
+                                    </p>
+                                </div>
                             </div>
-                            
-                            <ul>    
-                                {console.log(order)}
-                                      <li>
-                                          <h5>Sub total</h5>
-                                          <h4>{numberFormatter.format( order !== undefined &&
-                                            order !== null ? 
-                                            order.subTotal :"" )}</h4>
-                                      </li>
-                                      <li>
-                                          <h5>
-                                            Discount
-                                          </h5>
-                                          <h4>{numberFormatter.format(
-                                            order !== undefined &&
-                                            order !== null ? 
-                                            order.discount : "")}</h4>
-                                      </li>
-                                      <li>
-                                          <h5>Total</h5>
-                                          <h4>{numberFormatter.format( order !== undefined &&
-                                            order !== null ? 
-                                            order.totalPrice : "")}</h4>
-                                      </li>
-                            </ul>
-                            
-                    </div>
 
-              </div>
-        </div>
-        <div className='button-payment' onClick={() => setIsPayment(true)}>
-            <span>Confirm</span>
-        </div>
-
-
-
-        {
-            isPayment && 
-            <div className='payment-method'>
-                 <div className='head-payment-information'>
-                    <div>
-                        <span>4</span>
-                    </div>
-                    <h2>Payment</h2>
-                </div>
-                <div className='deposit'>
-                        <h4>
-                            DEPOSIT FEE
-                        </h4>
-                      <div>
-                        <ul>
-                                <li>Name</li>
-                                <li>Number Phone</li>
-                                <li>Quantity Of Goods</li>
-                                <li>Total Price</li>
-                            </ul>
-                            <ul>
-                               
-                                <li> {   
-                                order !== undefined && order !== null 
-                                && order.accountDTO.name !== undefined && order.accountDTO.name !== "" ? 
-                                order.accountDTO.name : ""
-                            }</li>
-                                <li>{   
-                                order !== undefined && order !== null 
-                                && order.accountDTO.numberPhone !== undefined && order.accountDTO.numberPhone !== "" ? 
-                                order.accountDTO.numberPhone : ""
-                            }</li>
-                                <li>{cart.length}</li>
-                                <li>{numberFormatter.format(order.totalPrice)}</li>
-                            </ul>
-                            <div className='line'></div>
-                                <ul>
-                                    <li>
-                                        <h5>
-                                            Deposit Fee
-                                        </h5>
-                                        <h5>
-                                        {numberFormatter.format(order.totalPrice*10/100)}
-                                        </h5>
-                                    </li>
-                                </ul>
-                            
-                      </div>
-
-                      <div className='choose-payment-method'>
-                            <h4>
-                               DEPOSIT PAYMENT
-                            </h4>
-                            <div>
-                                {paymentMethodList.map((item) => (
-                                        <div
-                                        onClick={() => choosePaymentMethod(item.name)}
-                                        className={paymentMethod === item.name ? 'isActive' : ''} >
-                                            <img src={item.img} alt=''/>
-                                            <span>{item.description}</span>
-                                        </div>
-                                ))}
+                            <div className='upload-payment'>
+                                <div>
+                                    <InputFile
+                                        setImageData={setImagePayment}
+                                        setFileImage={setFilePayment}
+                                    _width="200px" />
+                                    <p>Please upload your reciept here</p>
+                                </div>
+                                <div className='receipt'>
+                                    <img src={imagePayment} alt=''/>
+                                </div>
                             </div>
                       </div>
-                            
-                      <div className='button-order'>
-                           <p>{"( Please select a payment method and pay to complete your order )"}</p>
-                            <span>Payment</span>
-                      </div>
-                </div>
-            </div>  
+                     
+
+                     <div
+                        onClick={handleCompleteOrder}
+                     className='button-complete-your-order'>
+                             <span>Complete Order</span>
+                     </div>
+                    
+                 </div>
+            </div>
+     </div>
         }
-    </div>
+    </>
   )
 }
 
