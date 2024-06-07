@@ -1,11 +1,10 @@
-package com.example.server.Service;
+package com.example.server.Service.Product;
 
 
 import com.example.server.Model.DiamondDTO;
 import com.example.server.Model.MaterialDTO;
 import com.example.server.Model.ProductDTO;
 import com.example.server.Pojo.*;
-import com.example.server.Repository.IProductMaterialRepository;
 import com.example.server.Repository.IProductRepository;
 import com.example.server.Service.Category.ICategoryService;
 import com.example.server.Service.Clarity.IClarityService;
@@ -128,7 +127,9 @@ public class ProductService implements IProductService{
               productDTO.setName(product.get().getName());
               productDTO.setCode(product.get().getCode());
               productDTO.setSize(product.get().getSize().getSize());
-              productDTO.setSizeUnitPrice(productDTO.getSizeUnitPrice());
+
+              productDTO.setSizeUnitPrice(product.get().getSizeUnitPrice());
+
               Set<String> images = new HashSet<>();
               product.get().getImages().forEach((image -> images.add(image.getUrl())));
               productDTO.setImages(images);
@@ -157,6 +158,25 @@ public class ProductService implements IProductService{
 
               return productDTO;
         }else return null;
+    }
+
+    public Product getProductF(Long id){
+        Optional<Product> product = productRepository.findById(id);
+        return product.orElse(null);
+    }
+
+    @Override
+    public Product getProductToSetStatus(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isPresent()){
+            product.get().setActive(false);
+            try{
+                return productRepository.save(product.get());
+            }catch (Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        return null;
     }
 
 }

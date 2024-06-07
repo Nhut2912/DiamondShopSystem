@@ -88,7 +88,7 @@
 
 .product-page-container > .all-product > .category > h3{
     font-family: "Roboto Serif";
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     color: rgba(0, 0, 0, 0.8);
     width: fit-content;
@@ -103,23 +103,32 @@
     row-gap: 15px;
 }
 .product-page-container > .all-product > .category > ul > li{
-    margin-left: 20px;
     cursor: pointer;
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
 }
-
+.product-page-container > .all-product > .category > ul > li > div{
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
 .product-page-container > .all-product > .category > ul > li >  span{
     font-family: "Roboto Serif";
-    font-size: 14px;
+    font-size: 15px;
     color: rgba(0, 0, 0, 0.7);
     font-weight: 500;
     letter-spacing: 0.0125rem;
 }
 .product-page-container > .all-product > .category > ul > li.isActive > span{
-   color: rgba(0, 0, 0, 0.9);
+   color:rgba(217, 179, 132, 1);
    font-weight: 600;
    width: 200px;
-   border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-   padding: 0  10px 5px 0;
+}
+.product-page-container > .all-product > .category > ul > li.isActive  > div{
+    background-color: rgba(217, 179, 132, 1);
+    border: none;
 }
 .product-page-container > .all-product > .container-all-product > .products{
     display: grid;

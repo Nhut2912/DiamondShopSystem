@@ -3,8 +3,7 @@ package com.example.server.Controller;
 
 import com.example.server.Model.ProductDTO;
 import com.example.server.Pojo.Product;
-import com.example.server.Service.IProductService;
-import jakarta.websocket.server.PathParam;
+import com.example.server.Service.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
