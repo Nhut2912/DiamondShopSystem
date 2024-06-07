@@ -7,13 +7,15 @@ import { CartProvider } from '../../context/CartContext'
 
 function App() {
   return (
-    <CartProvider>
-       <div style={{"width": "100%"}}>
-          <Header />
-          <Outlet />
-          <Footer />
-      </div>
-    </CartProvider>
+
+      <CartProvider>
+        <div style={{"width": "100%"}}>
+            <Header />
+            <Outlet />
+            <Footer />
+        </div>
+      </CartProvider>
+  
    
   )
 }

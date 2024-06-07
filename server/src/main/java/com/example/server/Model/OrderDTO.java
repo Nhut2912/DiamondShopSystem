@@ -1,5 +1,7 @@
 package com.example.server.Model;
 
+import com.example.server.Pojo.Payment;
+import com.example.server.Pojo.PaymentMethod;
 import lombok.Data;
 
 import java.sql.Date;
@@ -25,4 +27,6 @@ public class OrderDTO {
     private AccountDTO accountDTO;
 
     private Set<OrderDetailDTO> orderDetailDTOS;
+
+    private Set<PaymentDTO> paymentDTOS;
 }

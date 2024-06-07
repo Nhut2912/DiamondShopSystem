@@ -19,7 +19,7 @@ function RadioInput({ _width, items, setParams, getParams}) {
                 key={item.value} 
                 className={active === item.value ? 'isActive' : ''}
                 onClick={() => handleClick(item.value)}
-              
+
               > 
                 <span>{item.value}</span>
               </div>

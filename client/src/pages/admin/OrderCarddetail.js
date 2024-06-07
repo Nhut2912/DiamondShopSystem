@@ -10,7 +10,7 @@ function OrderCarddetail() {
  const orderID = order.id;
 
  const userRole = "SALE STAFF"
- const statusOrder = "PENDING";
+ const statusOrder = "PREPARED";
 
 
  const navigate = useNavigate();

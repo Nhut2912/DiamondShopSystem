@@ -35,7 +35,7 @@ function ProductDetailCard({data}) {
 
   let size = data.size;
   const sizesProduct = [{value : size-2}, {value : size-1 }, {value :  size}, {value:  size+1}, {value :  size+2}]
-  const [userSize,setUserSize] = useState(size-2);
+  const [userSize,setUserSize] = useState(size);
 
 
   useEffect(() => {
@@ -140,6 +140,7 @@ function ProductDetailCard({data}) {
                     <h5>Choose size</h5>
                     <RadioInput items={sizesProduct}
                       setParams={setUserSize}
+                      getParams={userSize}
                     _width={"60px"} />
                     <div className='questions-size'>
                       <span>How to find out the size ?</span>

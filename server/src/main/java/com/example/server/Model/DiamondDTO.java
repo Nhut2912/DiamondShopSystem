@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class DiamondDTO {
+
     private Long id;
+
     private double carat;
 }
