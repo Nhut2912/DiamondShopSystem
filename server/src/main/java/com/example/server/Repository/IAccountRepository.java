@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface IAccountRepository extends CrudRepository<Account, Long> {
     public Optional<Account> findByNumberPhone(String phone);
+    public Optional<Account> findByEmail(String email);
 }
 

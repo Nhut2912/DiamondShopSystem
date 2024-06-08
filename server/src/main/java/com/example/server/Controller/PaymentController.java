@@ -34,7 +34,7 @@ public class PaymentController {
         LogUtils.init();
         String requestId = orderDTO.getId().toString();
         String orderId = orderDTO.getId().toString();
-        double amount = orderDTO.getPaymentDTOS().stream().mapToDouble(PaymentDTO::getAmount).sum();
+        double amount = orderDTO.getPaymentDTOS().getAmount();
         
 
         String orderInfo = "Pay With MoMo";
