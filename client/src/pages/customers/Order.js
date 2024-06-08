@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import '../../theme/customer/Order.css';
 import { ICONS, IMAGES } from '../../constants/customer';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { imageStorage } from '../../config/FirebaseConfig';
 import { getDownloadURL, ref } from 'firebase/storage';
 import InputFile from '../../components/customer/InputFile';
+
+
 
 
 const numberFormatter = new Intl.NumberFormat('en-US', {
@@ -14,11 +16,16 @@ const numberFormatter = new Intl.NumberFormat('en-US', {
     maximumSignificantDigits: 2
   });
 
+
+const convertUSDToVnd = (usd) => {
+    const usdPrice = 25430;
+    return Math.ceil(usd*usdPrice);
+}  
+
+
+
 function Order() {
-
-  
-
-
+ 
 
 
   const [isPayment,setIsPayment] = useState(false); 
@@ -95,7 +102,7 @@ function Order() {
    }
  },[cart])
 
-
+ 
 
  
  if((order === undefined && order === null) || (cart === undefined
@@ -133,6 +140,8 @@ function Order() {
         "paymentDTO": {
             "amount": order.totalPrice*10/100,
             "image": "",
+            "transactionCode" : "",
+            "payTime" : "",
             "paymentMethodDTO": {
                 "method": paymentMethod
             }
@@ -142,37 +151,20 @@ function Order() {
 
     if(paymentMethod === "Bank Transfer"){
         setBankTransfer(true);
-       
-        
     }else{
-
-
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
         
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: JSON.stringify(cartItem),
-            redirect: "follow"
-          };
-          
-          fetch("http://localhost:8080/api/order/buy", requestOptions)
-            .then((response) => response.text())
-            .then((result) => {
-                if(result){
-                    navigate("/checkout-cart/complete")
-                }
-            }).catch((error) => console.error(error));
+        localStorage.setItem("order",JSON.stringify(cartItem));
+        fetch("http://localhost:8080/api/payment/"+convertUSDToVnd(order.totalPrice*10/100))
+        .then((response) => response.text())
+        .then((result) => 
+            window.location.assign(JSON.parse(result).payUrl)
+        )
+        .catch((error) => console.error(error));
     }
     console.log(cartItem);
  }
 
  const handleCompleteOrder = () => {
-
-
-
-    
     const cartItem = {
         "address": order.address,
         "totalPrice": order.totalPrice,
