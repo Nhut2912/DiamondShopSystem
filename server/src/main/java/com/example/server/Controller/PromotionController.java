@@ -15,9 +15,9 @@ public class PromotionController {
     @Autowired
     private PromotionService promotionService;
 
-    @PostMapping("/createPromo")
-    public ResponseEntity<Promotion> createPromotion(@RequestBody PromotionDTO promotionDTO) {
-        Promotion promotion = promotionService.createPromotion(promotionDTO);
-        return ResponseEntity.ok(promotion);
+    @PostMapping("create")
+    public ResponseEntity<?> createPromotion(@RequestBody PromotionDTO promotionDTO){
+
+        return ResponseEntity.ok(promotionService.createPromotion(promotionDTO));
     }
 }

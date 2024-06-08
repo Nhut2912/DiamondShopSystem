@@ -8,10 +8,7 @@ import com.example.server.Repository.IPromotionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,9 +21,9 @@ public class PromotionService {
     private IPromotionRepository iPromotionRepository;
 
 
-    public Promotion createPromotion(PromotionDTO promotionDTO){
+    public boolean createPromotion(PromotionDTO promotionDTO){
         //kiem tra product co ton tai trong DB
-        Set<Product> products = new HashSet<>();
+        List<Product> products = new ArrayList<>();
         for (Long productId : promotionDTO.getProductIds()) {
             Optional<Product> productOptional = iProductRepository.findById(productId);
             if (productOptional.isPresent()) {
@@ -36,13 +33,22 @@ public class PromotionService {
             }
         }
 
-        Promotion promotion = new Promotion();
-        promotion.setPromotionRate(promotionDTO.getPromotionRate());
-        promotion.setActive(promotionDTO.isActive());
-        promotion.setDateStart(promotionDTO.getDateStart());
-        promotion.setDateEnd(promotionDTO.getDateEnd());
-        promotion.setProducts((Set<Product>) products);
 
-        return iPromotionRepository.save(promotion);
+        try{
+            Promotion promotion = new Promotion();
+            promotion.setPromotionRate(promotionDTO.getPromotionRate());
+            promotion.setActive(promotionDTO.isActive());
+            promotion.setDateStart(promotionDTO.getDateStart());
+            promotion.setDateEnd(promotionDTO.getDateEnd());
+            promotion.setNamePromotion(promotionDTO.getNamePromotion());
+            for(int i = 0; i < products.size(); i++){
+                promotion.getProducts().add(products.get(i));
+            }
+            iPromotionRepository.save(promotion);
+            return true;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }
