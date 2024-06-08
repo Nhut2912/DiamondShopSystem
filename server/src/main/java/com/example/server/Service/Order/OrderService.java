@@ -29,7 +29,9 @@ public class OrderService implements  IOrderService{
             Order order = new Order();
             order.setAddress(orderDTO.getAccountDTO().getAddress());
             order.setDate(Date.valueOf("2024-06-05"));
-            order.setOrderStatus("PENDING");
+            if(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getMethod().equals("BANKTRANSFER")){
+                order.setOrderStatus("PENDING");
+            }else order.setOrderStatus("PREPARING");
             order.setDelivery(orderDTO.isDelivery());
             order.setTotalPrice(orderDTO.getTotalPrice());
             Optional<Account> account = accountRepository.findById(orderDTO.getAccountDTO().getId());

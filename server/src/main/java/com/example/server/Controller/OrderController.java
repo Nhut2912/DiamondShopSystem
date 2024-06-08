@@ -51,7 +51,7 @@ public class OrderController {
 
                     if(order != null){
                         iorderDetailService.saveOrderDetail(orderDto, order);
-
+                        iPaymentService.createPayment(orderDto, order);
                     }
                 }
                 return new ResponseEntity<>(true, HttpStatus.OK);

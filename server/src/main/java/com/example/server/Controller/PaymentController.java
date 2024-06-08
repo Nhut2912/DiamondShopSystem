@@ -31,8 +31,14 @@ public class PaymentController {
     @GetMapping("payment/{amount}")
     public PaymentResponse payment(@PathVariable Long amount) throws MoMoException {
         LogUtils.init();
+<<<<<<< HEAD
         String requestId = String.valueOf(System.currentTimeMillis());
         String orderId = String.valueOf(System.currentTimeMillis());
+=======
+        String requestId = orderDTO.getId().toString();
+        String orderId = orderDTO.getId().toString();
+        double amount = orderDTO.getPaymentDTOS().getAmount();
+>>>>>>> f84b72779a591cd3d151251d9243a1de88234869
         
 
         String orderInfo = "Pay With MoMo";
