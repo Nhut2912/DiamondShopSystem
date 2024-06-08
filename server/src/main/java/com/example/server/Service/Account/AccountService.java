@@ -47,7 +47,7 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public String loginAccount(AccountDTO accountDTO) {
+    public String registerAccount(AccountDTO accountDTO) {
         Optional<Account> accountNeedToCheck = iAccountRepository.findByEmail(accountDTO.getEmail());
         if(accountNeedToCheck.isPresent()){
             return "Account Exist";
@@ -57,6 +57,13 @@ public class AccountService implements IAccountService{
             httpSession.setAttribute(otp, accountDTO);
             return "OTP: " + otp;
         }
+    }
+
+    @Override
+    public String loginAccount(AccountDTO accountDTO) {
+        Optional<Account> account = iAccountRepository.findByEmail(accountDTO.getEmail());
+        if(account.isPresent()) return account.get().getRole();
+        return "Account does not exsit!!";
     }
 
     @Override
@@ -82,8 +89,8 @@ public class AccountService implements IAccountService{
         if(checkAccountExist.isPresent()) return "Account Exist";
         account.setEmail(accountDTO.getEmail());
             try {
-                iAccountRepository.save(account);
-                return "Create Success";
+                Account accountValid = iAccountRepository.save(account);
+                return accountValid.getRole();
             }catch (Exception e){
                 return "Create Fail";
             }

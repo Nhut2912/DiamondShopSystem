@@ -16,10 +16,15 @@ public class AccountController {
     @Autowired
     private IAccountService accountService;
 
-    @PostMapping("/login")
+    @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AccountDTO accountDTO) {
+        return new ResponseEntity<>(accountService.registerAccount(accountDTO), HttpStatus.ACCEPTED);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody AccountDTO accountDTO){
         return new ResponseEntity<>(accountService.loginAccount(accountDTO), HttpStatus.ACCEPTED);
     }
+
     @PostMapping("/verifyOtp")
     public ResponseEntity<?>verifyOtp(@RequestParam String otp) {
         return new ResponseEntity<>(accountService.verifyOtp(otp), HttpStatus.OK);
