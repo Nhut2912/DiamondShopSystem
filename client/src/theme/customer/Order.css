@@ -527,3 +527,196 @@
     top: 100%;
     text-align: center;
 }
+
+.order-payment-page{
+    background-color: #ffffff;
+    min-height: 100vh;
+    position: absolute;
+    z-index: 1010;
+    left:0;
+    top:0;
+    right: 0;
+}
+.order-payment-page > .order-payment-container{
+    width: 1180px;
+    margin: 0 auto;
+    height: 120vh;
+}
+
+.order-payment-page > .order-payment-container > .deposit{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px 80px 100px 80px;
+}
+.order-payment-page > .order-payment-container > .deposit > h4{
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin: 0 0 30px 0;
+    
+}
+.order-payment-page > .order-payment-container > .deposit > div:nth-child(2){
+    padding: 20px;
+    display: grid;
+    row-gap: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.order-payment-page > .order-payment-container > .deposit > div:nth-child(2) > ul{
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 2fr;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+    column-gap: 30px;
+}
+.order-payment-page > .order-payment-container > .deposit > div:nth-child(2) > ul > li{
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 500;
+}
+.order-payment-page > .order-payment-container > .deposit > div:nth-child(2) > .line{
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.order-payment-page > .order-payment-container > .deposit > div:nth-child(2) > ul:first-child{
+    margin-bottom: 10px;
+}
+.order-payment-page > .order-payment-container > .deposit > div:nth-child(2) > ul:first-child > li{
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+}
+
+.order-payment-page > .order-payment-container >.deposit > div:nth-child(2) > ul:last-child > li{
+    grid-column:  3/5;
+    display: grid;
+    grid-template-columns: 7.2fr 4.8fr;
+    column-gap: 30px;
+}
+.order-payment-page > .order-payment-container > .deposit > div:nth-child(2) > ul:last-child > li > h5{
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+.order-payment-page > .order-payment-container > .deposit > h4:nth-child(3){
+    margin-top: 50px;
+}
+
+
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank {
+    margin-top: 40px;
+    display: flex;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank > .qr-bank-img {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank > .qr-bank-img > img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank  > .information-bank > ul {
+    padding-inline-start: 0;
+    list-style: none;
+    margin-top: 35px;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank  > .information-bank > ul > li{
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank > .information-bank > ul > li > h4{
+    font-family: 'Roboto Serif';
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 15px;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank  > .information-bank > ul > li > h3{
+    font-family: 'Roboto Serif';
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+}
+
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .qr-bank  > .information-bank > p{
+    font-family: 'Roboto Serif';
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.1px;
+    margin-top: 100px;
+    width: 480px;
+    text-align: center;
+    font-style: italic;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .upload-payment{
+    margin-top: 100px;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .upload-payment > div:nth-child(1){
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+    justify-content: flex-start;
+
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .upload-payment > div:nth-child(1) > p{
+    font-family: 'Roboto Serif';
+    font-size: 15px;
+    font-weight: 500;
+    color: #D9B384;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .upload-payment > div:nth-child(1) > div > p{
+    font-family: 'Roboto Serif';
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .upload-payment > .receipt{
+    height: 500px;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.order-payment-page > .order-payment-container > .deposit >
+.payment-qr-bank-container > .upload-payment > .receipt > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.order-payment-page > .order-payment-container > .deposit > .button-complete-your-order{
+    margin-top: 40px;
+    width: 250px;
+    height: 50px;
+    background-color: #D9B384;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+} 
+.order-payment-page > .order-payment-container > .deposit > .button-complete-your-order > span{
+    font-family: 'Roboto Serif';
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+   
+}

@@ -18,6 +18,8 @@ public class Promotion {
 
     private int promotionRate;
 
+    private String namePromotion;
+
     private boolean active = true;
 
     private Date dateStart;

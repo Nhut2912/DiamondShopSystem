@@ -9,6 +9,8 @@ import com.example.server.MoMo.MoMoModel.PaymentNotificationDTO;
 import com.example.server.MoMo.MoMoModel.PaymentResponse;
 import com.example.server.MoMo.MoMoUtil.LogUtils;
 import com.example.server.MoMo.Processor.CreateOrderMoMo;
+import com.example.server.Model.OrderDTO;
+import com.example.server.Model.PaymentDTO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mservice.shared.exception.MoMoException;
@@ -28,11 +30,12 @@ public class PaymentController {
     }
 
     @GetMapping("payment")
-    public PaymentResponse payment() throws MoMoException {
+    public PaymentResponse payment(OrderDTO orderDTO) throws MoMoException {
         LogUtils.init();
-        String requestId = String.valueOf(System.currentTimeMillis());// orderDTO.getId()
-        String orderId = String.valueOf(System.currentTimeMillis()); //orderDTO.getId()
-        long amount = 50000; //50k
+        String requestId = orderDTO.getId().toString();
+        String orderId = orderDTO.getId().toString();
+        double amount = orderDTO.getPaymentDTOS().stream().mapToDouble(PaymentDTO::getAmount).sum();
+        
 
         String orderInfo = "Pay With MoMo";
         String returnURL = "https://google.com.vn";
@@ -44,7 +47,7 @@ public class PaymentController {
         /*
          * create payment with capture momo wallet
          */
-        PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
+        PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Double.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
         return captureWalletMoMoResponse;
     }
 
