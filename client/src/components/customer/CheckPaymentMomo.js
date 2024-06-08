@@ -36,30 +36,26 @@ function CheckPaymentMomo() {
         order.paymentDTOS.transactionCode = transactionCode;
 
 
-         console.log(order);
-
-      //   const myHeaders = new Headers();
-      //   myHeaders.append("Content-Type", "application/json");
-      //   const requestOptions = {
-      //    method: "POST",
-      //    headers: myHeaders,
-      //    body: JSON.stringify(order),
-      //    redirect: "follow"
-      //  };
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const requestOptions = {
+         method: "POST",
+         headers: myHeaders,
+         body: JSON.stringify(order),
+         redirect: "follow"
+       };
        
-      //  fetch("http://localhost:8080/api/order/buy", requestOptions)
-      //    .then((response) => response.text())
-      //    .then((result) => 
-      //       {
-      //          if(result){
-      //             navigate("/checkout-cart/complete")
-      //          }
-      //       }
-      //    )
-      //    .catch((error) => console.error(error));
+       fetch("http://localhost:8080/api/order/buy", requestOptions)
+         .then((response) => response.text())
+         .then((result) => 
+            {
+               if(result){
+                  navigate("/checkout-cart/complete")
+               }
+            }
+         )
+         .catch((error) => console.error(error));
 
-
-        navigate("/checkout-cart/complete");
      }
     
  }

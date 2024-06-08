@@ -4,7 +4,7 @@ import '../../theme/customer/Order.css';
 import { ICONS, IMAGES } from '../../constants/customer';
 import { Link, useNavigate } from 'react-router-dom';
 import { imageStorage } from '../../config/FirebaseConfig';
-import { getDownloadURL, ref } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import InputFile from '../../components/customer/InputFile';
 
 
@@ -165,6 +165,14 @@ function Order() {
  }
 
  const handleCompleteOrder = () => {
+
+    let url = "";
+    if(filePayment){
+         url = `uploads/${"payment" + new Date().getMilliseconds}`;
+        const imageRef = ref(imageStorage,url);
+        uploadBytes(imageRef,filePayment);
+    }
+
     const cartItem = {
         "address": order.address,
         "totalPrice": order.totalPrice,
@@ -180,13 +188,16 @@ function Order() {
         "orderDetailDTOS": order.orderDetailDTOS,
         "paymentDTOS": {
             "amount": order.totalPrice*10/100,
-            "image": "",
+            "image": url,
             "paymentMethodDTO": {
                 "method": paymentMethod
             }
         },
         "delivery": true
-    }
+    }   
+
+    console.log(cartItem);
+
 
     navigate("/checkout-cart/complete");
  }

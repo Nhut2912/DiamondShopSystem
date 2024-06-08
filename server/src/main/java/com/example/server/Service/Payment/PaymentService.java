@@ -18,7 +18,6 @@ public class PaymentService implements IPaymentService{
     @Autowired
     IPaymentMethodService iPaymentMethodService;
     public boolean createPayment(OrderDTO orderDTO, Order order){
-        System.out.println(".....");
         try{
                 Payment payment = new Payment();
                 System.out.println();
