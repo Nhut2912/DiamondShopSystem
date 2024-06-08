@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,10 +66,16 @@ public class OrderService implements  IOrderService{
         }
     }
 
+
     @Override
     public Order getOrderById(Long id) {
         Optional<Order> order = iOrderRepository.findById(id);
         return order.orElse(null);
+    }
+
+    @Override
+    public List<Order> getOrdersByAccountID(Long id) {
+        return iOrderRepository.getOrdersByAccount_Id(id);
     }
 
 

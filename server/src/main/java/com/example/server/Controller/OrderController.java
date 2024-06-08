@@ -39,8 +39,6 @@ public class OrderController {
     @Autowired
     private IOrderDetailService iorderDetailService;
 
-    @Autowired
-    private IPaymentService iPaymentService;
 
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
@@ -68,9 +66,6 @@ public class OrderController {
 
 
 
-
-
-
     @GetMapping("/getAll")
     public List<Order> getAll(){
         return iorderService.getAllOrders();
@@ -83,7 +78,7 @@ public class OrderController {
 
     @PostMapping("/Pending")
     public ResponseEntity<String> pendingOrder(@PathVariable Long id){
-        boolean updated = iorderService.updateOrderStatus(id, "Pending");
+        boolean updated = iorderService.updateOrderStatus(id, "PENDING");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Pending Orders'.");
         }else{
@@ -94,7 +89,7 @@ public class OrderController {
 
     @PostMapping("/Preparing")
     public ResponseEntity<String> prepareOrder(@PathVariable Long id){
-        boolean updated = iorderService.updateOrderStatus(id, "Preparing");
+        boolean updated = iorderService.updateOrderStatus(id, "PREPARING");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Preparing Orders'.");
         }else{
@@ -105,7 +100,7 @@ public class OrderController {
 
     @PostMapping("/Delivering")
     public ResponseEntity<String> deliveringOrder(@PathVariable Long id){
-        boolean updated = iorderService.updateOrderStatus(id, "Delivering");
+        boolean updated = iorderService.updateOrderStatus(id, "DELIVERING");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Delivering Orders'.");
         }else{
@@ -115,7 +110,7 @@ public class OrderController {
 
     @PostMapping("/Completed")
     public ResponseEntity<String> completedOrder(@PathVariable Long id){
-        boolean updated = iorderService.updateOrderStatus(id, "Completed !!!");
+        boolean updated = iorderService.updateOrderStatus(id, "COMPLETED");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Completed Orders'.");
         }else{
@@ -125,11 +120,22 @@ public class OrderController {
 
     @PostMapping("/Canceled")
     public ResponseEntity<String> canceledOrder(@PathVariable Long id){
-        boolean updated = iorderService.updateOrderStatus(id, "Canceled");
+        boolean updated = iorderService.updateOrderStatus(id, "CANCELED");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Canceled Orders'.");
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+        }
+    }
+
+
+    @GetMapping("/account/{id}")
+    public ResponseEntity<List<Order>> getOrderByAccount(@PathVariable Long id){
+        List<Order> orders = iorderService.getOrdersByAccountID(id);
+        if(orders != null){
+            return ResponseEntity.status(200).body(orders);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 

@@ -7,11 +7,28 @@ import AccountPurchaseCard from './AccountPurchaseCard';
 
 function AccountPurchase() {
   const statusPurchase = [
-    "All","Pending","Prepare","Delivering","Completed","Canceled"
+    "All","PENDING","Prepare","Delivering","Completed","Canceled"
   ]
   const [acttiveItem,setActiveItem] = useState("All");
 
 
+  const [orders,setOrders] = useState();
+
+  useEffect(() => {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    fetch("http://localhost:8080/api/order/account/2", requestOptions)
+      .then((response) => response.text())
+      .then(result => setOrders(JSON.parse(result)))
+      .catch((error) => console.error(error));
+  },[])
+
+
+
+
+console.log(orders);
 
   const handleChangeStatus = (item) => {
     setActiveItem(item);
@@ -34,7 +51,20 @@ function AccountPurchase() {
           ))}
        </ul>
 
-      <AccountPurchaseCard />
+      {
+        orders !== undefined && orders !== null ?
+        orders.map((item) => (
+          <AccountPurchaseCard 
+          orderID={item.id} 
+          isDelivery={item.delivery}
+          totalPrice={item.totalPrice}
+          ordeDate={item.date}
+          orderStatus={item.orderStatus}
+          />
+      )) : ""
+      }
+
+
 
 
     </div>

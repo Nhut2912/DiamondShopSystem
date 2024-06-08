@@ -161,7 +161,7 @@ function CheckOutCart() {
         "delivery": true
     }
     localStorage.setItem("order",JSON.stringify(cartItem));
-    navigate("order", {});
+    navigate("order");
  } 
 
 

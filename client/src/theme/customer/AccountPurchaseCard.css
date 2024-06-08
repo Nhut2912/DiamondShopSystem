@@ -1,5 +1,6 @@
 .account-purchase-card-container{
     margin-right: 20px;
+    margin: 50px 0;
 }
 .account-purchase-card-container > p{
     font-family: 'Roboto Serif';
@@ -37,6 +38,11 @@
     width: 120px;
     height: 120px;
     background-color: beige;
+}
+.account-purchase-card-container > .purchase-card > div.product-purchase > div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
 .account-purchase-card-container > .purchase-card > div.product-purchase > div:nth-child(2) > h3{
     font-family: 'Roboto Serif';

@@ -28,5 +28,5 @@ public class OrderDTO {
 
     private Set<OrderDetailDTO> orderDetailDTOS;
 
-    private Set<PaymentDTO> paymentDTOS;
+    private PaymentDTO paymentDTOS;
 }
