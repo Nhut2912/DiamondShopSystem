@@ -29,7 +29,8 @@ public class PromotionService {
             if (productOptional.isPresent()) {
                 products.add(productOptional.get());
             } else {
-                throw new RuntimeException("Product with ID " + productId + " does not exist");
+                System.out.println("Product with ID " + productId + " does not exist");
+                return false;
             }
         }
 
