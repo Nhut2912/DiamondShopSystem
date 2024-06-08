@@ -8,6 +8,7 @@ import com.example.server.Repository.IPromotionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -24,10 +25,15 @@ public class PromotionService {
 
 
     public Promotion createPromotion(PromotionDTO promotionDTO){
-        List<Product> products = promotionDTO.getProductIds().stream().map(iProductRepository::findById).filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
-
-        if(products.isEmpty()){
-            throw new RuntimeException("No valid products found");
+        //kiem tra product co ton tai trong DB
+        Set<Product> products = new HashSet<>();
+        for (Long productId : promotionDTO.getProductIds()) {
+            Optional<Product> productOptional = iProductRepository.findById(productId);
+            if (productOptional.isPresent()) {
+                products.add(productOptional.get());
+            } else {
+                throw new RuntimeException("Product with ID " + productId + " does not exist");
+            }
         }
 
         Promotion promotion = new Promotion();

@@ -15,17 +15,9 @@ public class PromotionController {
     @Autowired
     private PromotionService promotionService;
 
-    @PostMapping("/CreatePromotion")
-    public ResponseEntity<PromotionDTO> createPromotion(@RequestBody PromotionDTO promotionDTO){
+    @PostMapping("/createPromo")
+    public ResponseEntity<Promotion> createPromotion(@RequestBody PromotionDTO promotionDTO) {
         Promotion promotion = promotionService.createPromotion(promotionDTO);
-
-        PromotionDTO responeDTO = new PromotionDTO();
-        responeDTO.setPromotionRate(promotion.getPromotionRate());
-        responeDTO.setActive(promotion.isActive());
-        responeDTO.setDateStart(promotion.getDateStart());
-        responeDTO.setDateEnd(promotion.getDateEnd());
-        responeDTO.setProductIds(promotionDTO.getProductIds());
-
-        return ResponseEntity.ok(responeDTO);
+        return ResponseEntity.ok(promotion);
     }
 }
