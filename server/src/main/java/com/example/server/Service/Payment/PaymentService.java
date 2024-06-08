@@ -18,17 +18,19 @@ public class PaymentService implements IPaymentService{
     @Autowired
     IPaymentMethodService iPaymentMethodService;
     public boolean createPayment(OrderDTO orderDTO, Order order){
-        String payTime = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-
+        System.out.println(".....");
         try{
                 Payment payment = new Payment();
+                System.out.println();
                 payment.setOrder(order);
                 if(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getMethod().equals("BANKTRANSFER")){
                     payment.setImage(orderDTO.getPaymentDTOS().getImage());
                 }else payment.setTransactionCode(orderDTO.getPaymentDTOS().getTransactionCode());
-                payment.setPaymentMethod(iPaymentMethodService.getPaymentMethod(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getId()));
+                payment.setPaymentMethod(iPaymentMethodService.getPaymentMethod(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getMethod()));
                 payment.setAmount(orderDTO.getPaymentDTOS().getAmount());
-                payment.setPayTime(java.sql.Date.valueOf(payTime));
+                payment.setPayTime(orderDTO.getPaymentDTOS().getPayTime());
+
+                System.out.println(payment);
                 iPaymentRepository.save(payment);
             return true;
         }catch(Exception ex){

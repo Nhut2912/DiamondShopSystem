@@ -44,7 +44,7 @@ function Order() {
  const paymentMethodList = [
     {name : "Bank Transfer", img : '',description  : "Bank Transfer"},
     {name : "MoMo", img : IMAGES.image_momo, description : "( Pay with MOMO wallet )" },
-    {name : "VN PAY", img : IMAGES.image_vnpay, description : "( Pay with VNPAY wallet )" },
+    {name : "VNPAY", img : IMAGES.image_vnpay, description : "( Pay with VNPAY wallet )" },
     {name : "PayPal", img : IMAGES.image_paypal, description : "( Pay with PAYPAL )" },
  ]
  const topRef = useRef(null);
@@ -137,7 +137,7 @@ function Order() {
             "birthDay": order.accountDTO.birthDay
         },
         "orderDetailDTOS": order.orderDetailDTOS,
-        "paymentDTO": {
+        "paymentDTOS": {
             "amount": order.totalPrice*10/100,
             "image": "",
             "transactionCode" : "",
@@ -178,7 +178,7 @@ function Order() {
             "birthDay": order.accountDTO.birthDay
         },
         "orderDetailDTOS": order.orderDetailDTOS,
-        "paymentDTO": {
+        "paymentDTOS": {
             "amount": order.totalPrice*10/100,
             "image": "",
             "paymentMethodDTO": {

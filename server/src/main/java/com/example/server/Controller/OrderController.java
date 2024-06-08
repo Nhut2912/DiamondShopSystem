@@ -39,6 +39,8 @@ public class OrderController {
     @Autowired
     private IOrderDetailService iorderDetailService;
 
+    @Autowired
+    private IPaymentService iPaymentService;
 
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
