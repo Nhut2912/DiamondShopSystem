@@ -60,7 +60,7 @@ root.render(
             <Route path="/checkout-cart/check-payment" element={<CheckPaymentMomo />} />
             <Route path='/login'  >
               <Route index element={<Login />} />
-              <Route path='verify' element={<Verify />} />
+              <Route path='verify/:id' element={<Verify />} />
             </Route>
 
             <Route path='/account' element={<Account />} >

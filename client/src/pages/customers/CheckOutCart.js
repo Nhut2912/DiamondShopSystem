@@ -85,10 +85,21 @@ function CheckOutCart() {
             orderObject.accountDTO.numberPhone !== null &&
             orderObject.accountDTO.name !== "" &&
             orderObject.accountDTO.numberPhone !== ""
+            && orderObject.accountDTO.email !== undefined &&
+            orderObject.accountDTO.email !== null &&
+            orderObject.accountDTO.email !== ""
         ) {
             let status = [...statusInformationCustomer];
                 status[0].status = true;
                 setStatusInformationCustomer(status);
+
+            setName(orderObject.accountDTO.name);
+            setEmail(orderObject.accountDTO.email);
+            setPhone(orderObject.accountDTO.numberPhone);
+                  }
+
+        if(orderObject.accountDTO.birthDay !== undefined && orderObject.accountDTO.birthDay !== null){
+            setBirthay(orderObject.accountDTO.birthDay); 
         }
 
         if(addressDetail !== "") {
@@ -297,19 +308,19 @@ function CheckOutCart() {
                             <div>
                                 <InputBox
                                     setParams={setName}
-                                    getParams={ order !== undefined && order !== null && order.accountDTO.name !== null ? order.accountDTO.name :null }
+                                    getParams={name}
                                 title={"Fullname"} />
                                 <InputBox 
                                     setParams={setPhone}
-                                    getParams={order !== undefined && order !== null && order.accountDTO.numberPhone !== null ? order.accountDTO.numberPhone : null }
+                                    getParams={phone}
                                 title={"Number phone"} />
                                 <InputBox 
                                     setParams={setEmail}
-                                    getParams={order !== undefined && order !== null && order.accountDTO.email !== null ? order.accountDTO.email : null }
+                                    getParams={email}
                                 title={"Email"} />
                                 <InputBox 
                                     setParams={setBirthay}
-                                    getParams={order !== undefined && order !== null && order.accountDTO.birthDay !== null ? order.accountDTO.birthDay :null}
+                                    getParams={birthday}
                                 title={"Birthday"} />
                             </div>
                             <div className='button-continue'

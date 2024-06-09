@@ -85,7 +85,7 @@ function Header() {
                     }>
                         <img src={ICONS.icon_user} />
                         <span>
-                            {login ? account.name : "Login"}
+                            {login ? account.email.split("@")[0] : "Login"}
                         </span>
                     </div>
                     <div 

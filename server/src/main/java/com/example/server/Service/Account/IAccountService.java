@@ -9,9 +9,9 @@ public interface IAccountService {
     public boolean isAccountExist(Long id);
     public boolean isSamePhone(String phone);
     public boolean updateNewestInfoForAccount(AccountDTO accountDTO);
-    String registerAccount(AccountDTO accountDTO);
+    boolean registerAccount(AccountDTO accountDTO);
     String loginAccount(AccountDTO accountDTO);
     String generateOtp();
     void sendEmailVerification(String email, String otp);
-    String verifyOtp(String otp);
+    AccountDTO verifyOtp(String otp, AccountDTO accountDTO);
 }

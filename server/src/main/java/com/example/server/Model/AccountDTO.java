@@ -21,4 +21,6 @@ public class AccountDTO {
 
     private Date birthDay;
 
+    private String role;
+
 }

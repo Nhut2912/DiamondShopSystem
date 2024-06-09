@@ -4,13 +4,15 @@ import com.example.server.Model.AccountDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Service.Account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping(path = "api/account")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AccountController {
 
     @Autowired
@@ -20,14 +22,11 @@ public class AccountController {
     public ResponseEntity<?> register(@RequestBody AccountDTO accountDTO) {
         return new ResponseEntity<>(accountService.registerAccount(accountDTO), HttpStatus.ACCEPTED);
     }
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AccountDTO accountDTO){
-        return new ResponseEntity<>(accountService.loginAccount(accountDTO), HttpStatus.ACCEPTED);
-    }
 
     @PostMapping("/verifyOtp")
-    public ResponseEntity<?>verifyOtp(@RequestParam String otp) {
-        return new ResponseEntity<>(accountService.verifyOtp(otp), HttpStatus.OK);
+    public ResponseEntity<?>verifyOtp(@RequestParam String otp, @RequestBody AccountDTO accountDTO) {
+        System.out.println(accountService.verifyOtp(otp,accountDTO));
+        return new ResponseEntity<>(accountService.verifyOtp(otp,accountDTO), HttpStatus.OK);
     }
 
 }

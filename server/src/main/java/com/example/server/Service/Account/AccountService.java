@@ -47,16 +47,16 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public String registerAccount(AccountDTO accountDTO) {
-        Optional<Account> accountNeedToCheck = iAccountRepository.findByEmail(accountDTO.getEmail());
-        if(accountNeedToCheck.isPresent()){
-            return "Account Exist";
-        }else{
-            String otp = generateOtp();
-            sendEmailVerification(accountDTO.getEmail(), otp);
-            httpSession.setAttribute(otp, accountDTO);
-            return "OTP: " + otp;
-        }
+    public boolean registerAccount(AccountDTO accountDTO) {
+        String otp = generateOtp();
+        sendEmailVerification(accountDTO.getEmail(), otp);
+       try{
+           System.out.println(accountDTO);
+           httpSession.setAttribute(otp,accountDTO);
+           return true;
+       }catch (Exception e){
+           return false;
+       }
     }
 
     @Override
@@ -81,20 +81,32 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public String verifyOtp(String otp) {
-        AccountDTO accountDTO = (AccountDTO)httpSession.getAttribute(otp);
-        if(accountDTO == null) return "Wrong OTP";
+    public AccountDTO verifyOtp(String otp, AccountDTO accountDTO) {
         Account account = new Account();
         Optional<Account> checkAccountExist = iAccountRepository.findByEmail(accountDTO.getEmail());
-        if(checkAccountExist.isPresent()) return "Account Exist";
-        account.setEmail(accountDTO.getEmail());
+        if(checkAccountExist.isEmpty()){
+            account.setEmail(accountDTO.getEmail());
+            account.setRole(accountDTO.getRole());
             try {
                 Account accountValid = iAccountRepository.save(account);
-                return accountValid.getRole();
+
+                AccountDTO accountReturn = new AccountDTO();
+                accountReturn.setId(accountValid.getId());
+                accountReturn.setEmail(accountValid.getEmail());
+                accountReturn.setRole(accountValid.getRole());
+                return accountReturn;
             }catch (Exception e){
-                return "Create Fail";
+                System.out.println(e.getMessage());
+                return null;
             }
         }
+
+        AccountDTO accountDTO1 = new AccountDTO();
+        accountDTO1.setId(checkAccountExist.get().getId());
+        accountDTO1.setEmail(checkAccountExist.get().getEmail());
+        accountDTO1.setRole(checkAccountExist.get().getRole());
+        return accountDTO1;
+    }
 
 
 
