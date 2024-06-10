@@ -16,6 +16,6 @@ public class DiamondService implements IDiamondService{
 
     @Override
     public List<Diamond> getDiamondByProductID(Long Id) {
-        return diamondRepository.getDiamondsByProductId(Id);
+        return diamondRepository.getDiamondByProduct_Id(Id);
     }
 }

@@ -13,5 +13,5 @@ import java.util.Set;
 public interface IProductMaterialRepository extends JpaRepository<ProductMaterial,Long> {
 
     @Query("SELECT p FROM ProductMaterial p WHERE p.product.id =:product_id")
-    public Set<ProductMaterial> getProductMaterialByProduct_Id(@Param("product_id") Long id);
+    public List<ProductMaterial> getProductMaterialByProduct_Id(@Param("product_id") Long id);
 }

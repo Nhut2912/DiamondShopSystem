@@ -5,6 +5,7 @@ import com.example.server.Repository.IProductMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -14,7 +15,7 @@ public class ProductMaterialService implements IProductMaterialService {
     private IProductMaterialRepository productMaterialRepository;
 
     @Override
-    public Set<ProductMaterial> getProductMaterials(Long productID) {
+    public List<ProductMaterial> getProductMaterials(Long productID) {
         return productMaterialRepository.getProductMaterialByProduct_Id(productID);
     }
 }
