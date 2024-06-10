@@ -7,7 +7,7 @@ import AccountPurchaseCard from './AccountPurchaseCard';
 
 function AccountPurchase() {
   const statusPurchase = [
-    "ALL","PENDING","PREPARE","DELIVERING","COMPLETED","CANCELED"
+    "ALL","PENDING","PREPARE","DELIVERING","COMPLETED","CANCELLED"
   ]
   const [acttiveItem,setActiveItem] = useState("ALL");
 

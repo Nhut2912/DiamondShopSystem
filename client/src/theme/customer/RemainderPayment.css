@@ -1,0 +1,280 @@
+.remainder-payment{
+    box-sizing: border-box;
+    padding-left: 255px;
+    padding-bottom: 100px;
+}
+.remainder-payment > h1{
+    margin-top: 0;
+    padding-top: 40px;
+    font-family: 'Roboto Serif';
+    font-size: 25px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.9);
+}
+.remainder-payment > p{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 40px;
+    font-weight: 400;
+    cursor: pointer;
+    margin: 0;
+}
+.remainder-payment > .deposit{
+    width: 65vw;
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    background-color: #FFFFFF;
+    margin-top: 80px;
+    padding: 50px 100px;
+}
+.remainder-payment > .deposit > h4{
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin: 0px 0 30px 0;
+    
+}
+.remainder-payment > .deposit > div:nth-child(2){
+    padding: 20px;
+    display: grid;
+    row-gap: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.remainder-payment > .deposit > div:nth-child(2) > ul{
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 2fr;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+    column-gap: 30px;
+}
+.remainder-payment > .deposit > div:nth-child(2) > ul > li{
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 500;
+}
+.remainder-payment > .deposit > div:nth-child(2) > .line{
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.remainder-payment > .deposit > div:nth-child(2) > ul:first-child{
+    margin-bottom: 10px;
+}
+.remainder-payment > .deposit > div:nth-child(2) > ul:first-child > li{
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 600;
+}
+.remainder-payment >.deposit > div:nth-child(2) > ul:last-child{
+    row-gap: 30px;
+}
+.remainder-payment >.deposit > div:nth-child(2) > ul:last-child > li{
+    grid-column:  3/5;
+    display: grid;
+    grid-template-columns: 7.2fr 4.8fr;
+    column-gap: 30px;
+
+}
+
+.remainder-payment > .deposit > div:nth-child(2) > ul:last-child > li > h5{
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.9);
+    margin: 0;
+}
+
+.remainder-payment > .deposit > div:nth-child(2) > ul:last-child > li:first-child > h5{
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+}
+.remainder-payment > .deposit > div:nth-child(2) > ul:last-child > li > h5:last-child{
+    display: flex;
+    justify-content: space-between;
+}
+.remainder-payment > .deposit > h4:nth-child(3){
+    margin-top: 50px;
+}
+
+
+.payment-method{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    gap: 20px;
+   
+}
+.payment-method > div{
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5px;
+    background: #F7F7F7;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.payment-method > div.isActive{
+    border: 1px solid #D9B384;
+}
+.payment-method > div > span{
+    color: rgba(0, 0, 0, 0.60);
+    text-align: center;
+    font-family: "Roboto Serif";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.26px;
+}
+.payment-method > div:first-child > span{
+    color: rgba(0, 0, 0, 0.80);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.26px;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer > h4{
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin: 80px 0 30px 0;
+} 
+.remainder-payment > .deposit > .continue-pay-remainder{
+    width: 200px;
+    height: 50px;
+    background-color: #D9B384;
+    margin-top: 30px;
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto Serif";
+    color: #FFFFFF;
+    font-weight: 500;
+    letter-spacing: 0.24px;
+    cursor: pointer;
+}
+
+.remainder-payment > .deposit > .remainder-payment-banktransfer >
+.payment-qr-bank-container > .qr-bank {
+    margin-top: 40px;
+    display: flex;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer >
+.payment-qr-bank-container > .qr-bank > .qr-bank-img {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .qr-bank > .qr-bank-img > img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .qr-bank  > .information-bank > ul {
+    padding-inline-start: 0;
+    list-style: none;
+    margin-top: 35px;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .qr-bank  > .information-bank > ul > li{
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .qr-bank > .information-bank > ul > li > h4{
+    font-family: 'Roboto Serif';
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 15px;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .qr-bank  > .information-bank > ul > li > h3{
+    font-family: 'Roboto Serif';
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+}
+
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .qr-bank  > .information-bank > p{
+    font-family: 'Roboto Serif';
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.1px;
+    margin-top: 100px;
+    width: 480px;
+    text-align: center;
+    font-style: italic;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .upload-payment{
+    margin-top: 100px;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .upload-payment > div:nth-child(1){
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+    justify-content: flex-start;
+
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .upload-payment > div:nth-child(1) > p{
+    font-family: 'Roboto Serif';
+    font-size: 15px;
+    font-weight: 500;
+    color: #D9B384;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .upload-payment > div:nth-child(1) > div > p{
+    font-family: 'Roboto Serif';
+    font-size: 15px;
+    font-weight: 500;
+    color: #ffffff;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .upload-payment > .receipt{
+    height: 500px;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer>
+.payment-qr-bank-container > .upload-payment > .receipt > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.remainder-payment > .deposit > .remainder-payment-banktransfer> .button-complete-your-order{
+    margin-top: 40px;
+    width: 250px;
+    height: 50px;
+    background-color: #D9B384;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+} 
+.remainder-payment > .deposit > .remainder-payment-banktransfer> .button-complete-your-order > span{
+    font-family: 'Roboto Serif';
+    font-weight: 500;
+    font-size: 16px;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+   
+}

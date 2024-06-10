@@ -18,8 +18,4 @@ public class DiamondPriceListController {
     @Autowired
     private IDiamondPriceListService iDiamondPriceListService;
 
-    @GetMapping("/getAll")
-    public List<DiamondPriceList> getAll(){
-        return iDiamondPriceListService.getAll();
-    }
 }

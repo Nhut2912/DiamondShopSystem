@@ -83,3 +83,23 @@
     color: rgba(0, 0, 0, 0.4);
     font-weight: 400;
 }
+.account-purchase-card-container > .remainder-paid{
+    margin-top: 20px;
+}
+.account-purchase-card-container > .remainder-paid > div{
+    width: 200px;
+    height: 50px;
+    background-color: #d9b384;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.account-purchase-card-container > .remainder-paid > div > span{
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: 0.24px;
+}

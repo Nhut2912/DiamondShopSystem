@@ -117,37 +117,31 @@ public class ProductService implements IProductService{
 
             productDTO.setSize(item.getSize().getSize());
 
-<<<<<<< HEAD
-            double totalPrice = 0;
-            List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
-            List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
-            for (Diamond diamond : listDiamondReturn) {
-                DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
-                        diamond.getClarity().getId(), diamond.getColor().getId()
-                        , diamond.getCut().getId(), diamond.getOrigin().getId());
-                totalPrice += diamondPriceList.getPrice() * diamondPriceList.getCarat() * 100;
-            }
-            for (ProductMaterial productMaterial : listProductMaterial){
-                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getId());
-                totalPrice += materialPriceList.getSellPrice();
-            }
-            totalPrice += (item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost() +
-                    ((double) item.getPriceRate() / 100));
+//
+//            double totalPrice = 0;
+//            List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
+//            List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
+//            for (Diamond diamond : listDiamondReturn) {
+//                DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
+//                        diamond.getClarity().getId(), diamond.getColor().getId()
+//                        , diamond.getCut().getId(), diamond.getOrigin().getId());
+//                totalPrice += diamondPriceList.getPrice() * diamondPriceList.getCarat() * 100;
+//            }
+//            for (ProductMaterial productMaterial : listProductMaterial){
+//                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getId());
+//                totalPrice += materialPriceList.getSellPrice();
+//            }
+//            totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
+//            totalPrice += totalPrice*((double) item.getPriceRate() / 100);
+//
+//            productDTO.setPrice(totalPrice);
 
-            productDTO.setPrice(totalPrice);
-
-
-//            Set<String> images = new HashSet<>();
-//            item.getImages().forEach((image -> images.add(image.getUrl())));
-//            productDTO.setImages(images);
-=======
-//            productDTO.setPrice();
 
 
             Set<String> images = new HashSet<>();
             item.getImages().forEach((image -> images.add(image.getUrl())));
             productDTO.setImages(images);
->>>>>>> 2e4e67df43c194e77ba142c3846983cb9ccab8c0
+
 
             productDTOS.add(productDTO);
         });

@@ -23,7 +23,7 @@ function AccountPurchaseCard({
         {name: "PREPARING" , color : "#F2A20C"},
         {name: "PERPARED", color : "#F2A20C"},
         {name : "DELIVERING", color : "#F25D07"},
-        {name : "CANCELED", color : "#D9043D"},
+        {name : "CANCELLED", color : "#D9043D"},
         {name : "COMPLETED", color : "#008F00"}
     ]
 
@@ -158,9 +158,19 @@ function AccountPurchaseCard({
                 </h4>
             </div>
         </div>
-        <div className='remainder-paid'>
 
-        </div>
+        {
+            orderStatus !== undefined && orderStatus !== null &&
+
+            (orderStatus !== "PENDING" && orderStatus !== "COMPLETED" && orderStatus !== "CANCELLED") ?
+            
+            <div className='remainder-paid'>
+                <div>
+                    <span>Pay Remainder</span>
+                </div>
+            </div>
+        : ""
+        }
     </div>
   )
 }

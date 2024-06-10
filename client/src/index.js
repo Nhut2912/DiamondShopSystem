@@ -34,6 +34,7 @@ import DetailProductAdmin from './components/admin/DetailProduct';
 import OrderComplete from './pages/customers/OrderComplete';
 import OrderCarddetailAdmin from './pages/admin/OrderCarddetail';
 import CheckPaymentMomo from './components/customer/CheckPaymentMomo';
+import RemainderPayment from './pages/customers/RemainderPayment';
 
 
 
@@ -57,15 +58,20 @@ root.render(
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
             </Route>
+
             <Route path="/checkout-cart/check-payment" element={<CheckPaymentMomo />} />
+
             <Route path='/login'  >
               <Route index element={<Login />} />
               <Route path='verify/:id' element={<Verify />} />
             </Route>
 
+
+
             <Route path='/account' element={<Account />} >
                 <Route index element={<AccountProfile />}/>
                 <Route path="purchase" element={<AccountPurchase />} />
+                <Route path="purchase/remainder/:id" element={<RemainderPayment />} />
             </Route>
 
 

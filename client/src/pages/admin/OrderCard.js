@@ -26,7 +26,7 @@ function OrderCard({role,orderID,
     {name: "PREPARING" , color : "#F2A20C"},
     {name: "PREPARED", color : "#F2A20C"},
     {name : "DELIVERING", color : "#F25D07"},
-    {name : "CANCELED", color : "#D9043D"},
+    {name : "CANCELLED", color : "#D9043D"},
     {name : "COMPLETED", color : "#008F00"}
 ]
 
@@ -35,7 +35,7 @@ const COLORS_STATUS_BACKGROUND = [
   {name: "PREPARING" , color : "rgba(242, 162, 12,0.1)"},
   {name: "PREPARED", color : "rgba(242, 162, 12,0.1)"},
   {name : "DELIVERING", color : "rgba(242, 93, 7,0.1)"},
-  {name : "CANCELED", color : "rgba(217, 4, 61,0.1)"},
+  {name : "CANCELLED", color : "rgba(217, 4, 61,0.1)"},
   {name : "COMPLETED", color : "rgba(0, 143, 0,0.1)"}
 ]
 

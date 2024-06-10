@@ -19,10 +19,10 @@ function OrderAdmin() {
             const account = JSON.parse(loggedAccount);
             setAccount(account);
             if(account.role === "DELIVERY STAFF" ){
-                setNavigateItem (["ALL","PREPARED","DELIVERING","COMPLETED","CANCELED"]);
+                setNavigateItem (["ALL","PREPARED","DELIVERING","COMPLETED","CANCELLED"]);
             }else {
                 setNavigateItem([
-                    "ALL","PENDING","PREPARING","PREPARED","DELIVERING","COMPLETED","CANCELED"
+                    "ALL","PENDING","PREPARING","PREPARED","DELIVERING","COMPLETED","CANCELLED"
                  ]
             );
             }

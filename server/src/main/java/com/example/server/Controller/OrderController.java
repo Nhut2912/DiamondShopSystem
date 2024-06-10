@@ -133,7 +133,7 @@ public class OrderController {
 
     @PostMapping("/Canceled/{id}")
     public ResponseEntity<String> canceledOrder(@PathVariable Long id){
-        boolean updated = iorderService.updateOrderStatus(id, "CANCELED");
+        boolean updated = iorderService.updateOrderStatus(id, "CANCELLED");
         if(updated){
             return ResponseEntity.ok("Order status updated to 'Canceled Orders'.");
         }else{
