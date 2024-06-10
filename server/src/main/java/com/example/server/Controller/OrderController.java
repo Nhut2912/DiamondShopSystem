@@ -4,6 +4,7 @@ import com.example.server.Model.AccountDTO;
 import com.example.server.Model.OrderDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Pojo.Order;
+import com.example.server.Pojo.Payment;
 import com.example.server.Pojo.Product;
 
 import com.example.server.Service.Account.IAccountService;
@@ -63,8 +64,25 @@ public class OrderController {
         return new ResponseEntity<>(false, HttpStatus.OK);
 
     }
-
-
+    @PostMapping("/updatePayment")
+    public boolean updatePayment(@RequestParam Long OrderId, @RequestParam String paymentMethod){
+        try {
+            Payment payment = iPaymentService.getPaymentByOrderIdToUpdatePayment(OrderId);
+            Payment newPayment = new Payment();
+            newPayment.setPaymentMethod(payment.getPaymentMethod());
+            newPayment.setOrder(payment.getOrder());
+            newPayment.setAmount(payment.getAmount());
+            newPayment.setPayTime(payment.getPayTime());
+            if(paymentMethod.equals("BANKTRANSFER")){
+                newPayment.setImage(payment.getImage());
+            }else newPayment.setTransactionCode(payment.getTransactionCode());
+            iPaymentService.updatePayment(newPayment);
+            return true;
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
 
 
     @GetMapping("/getAll")
