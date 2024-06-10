@@ -25,7 +25,6 @@ public class AccountController {
 
     @PostMapping("/verifyOtp")
     public ResponseEntity<?>verifyOtp(@RequestParam String otp, @RequestBody AccountDTO accountDTO) {
-        System.out.println(accountService.verifyOtp(otp,accountDTO));
         return new ResponseEntity<>(accountService.verifyOtp(otp,accountDTO), HttpStatus.OK);
     }
 

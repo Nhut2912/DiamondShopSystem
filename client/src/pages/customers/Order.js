@@ -33,7 +33,7 @@ function Order() {
   
   const [imagePayment,setImagePayment] = useState();
   const [filePayment,setFilePayment] = useState();
-  
+  const [accountDTO,setAccountDTO]  = useState();
   const [order,setOrder] = useState();
   const [isBankTransfer,setBankTransfer]  = useState(false);
   const [cart,setCart] = useState();
@@ -48,8 +48,10 @@ function Order() {
     {name : "PayPal", img : IMAGES.image_paypal, description : "( Pay with PAYPAL )" },
  ]
  const topRef = useRef(null);
+
+
+
  useEffect(() => {
-    
     if(isBankTransfer){
             const paymentELement = document.getElementById("order-payment-page");
             topRef.current = paymentELement;
@@ -59,9 +61,8 @@ function Order() {
         topRef.current = paymentELement;
         topRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-     
-    
   }, [isBankTransfer]);
+
 
  useEffect(() => {
     const order = localStorage.getItem("order");
@@ -75,6 +76,7 @@ function Order() {
     const cart = localStorage.getItem("account");
     if(cart !== undefined && cart !== null){
         const cartObject = JSON.parse(cart);
+        setAccountDTO(cartObject);
         setCart(cartObject.cart);
     }
  },[])
@@ -106,7 +108,7 @@ function Order() {
 
  
  if((order === undefined && order === null) || (cart === undefined
-    && cart !== undefined) || (imagesProduct === undefined && imagesProduct === null)
+    && cart === null) || (imagesProduct === undefined && imagesProduct === null) 
  ) return <div>Loading</div>
 
 
@@ -121,6 +123,17 @@ function Order() {
     navigate("/checkout-cart");
  }
 
+
+ const handlePayment = async () => {
+    
+    await fetch("http://localhost:8080/api/payment/"+convertUSDToVnd(order.totalPrice*10/100))
+    .then((response) => response.text())
+    .then((result) => 
+        window.location.assign(JSON.parse(result).payUrl)
+    )
+    .catch((error) => console.error(error));
+
+ }
  
  const handleOrder = () => {
 
@@ -128,7 +141,7 @@ function Order() {
         "address": order.address,
         "totalPrice": order.totalPrice,
         "accountDTO": {
-            "id": 2,
+            "id": accountDTO.id,
             "name": order.accountDTO.name,
             "email": order.accountDTO.email,
             "gender" :order.accountDTO.gender === "Male" ? true : false,
@@ -151,15 +164,9 @@ function Order() {
 
     if(paymentMethod === "Bank Transfer"){
         setBankTransfer(true);
-    }else{
-        
+    }else{   
         localStorage.setItem("order",JSON.stringify(cartItem));
-        fetch("http://localhost:8080/api/payment/"+convertUSDToVnd(order.totalPrice*10/100))
-        .then((response) => response.text())
-        .then((result) => 
-            window.location.assign(JSON.parse(result).payUrl)
-        )
-        .catch((error) => console.error(error));
+        handlePayment();
     }
     console.log(cartItem);
  }
@@ -167,8 +174,18 @@ function Order() {
  const handleCompleteOrder = () => {
 
     let url = "";
+    if(filePayment === undefined || filePayment === null){
+        
+        return;
+    } 
+
+
     if(filePayment){
-         url = `uploads/${"payment" + new Date().getMilliseconds}`;
+       
+        const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        const millisecond = new Date().getMilliseconds();
+        const filename = `payment_${randomString}_${millisecond}.${filePayment.type.split('/')[1]}`;
+        url = `uploads/${filename}`;
         const imageRef = ref(imageStorage,url);
         uploadBytes(imageRef,filePayment);
     }
@@ -177,7 +194,7 @@ function Order() {
         "address": order.address,
         "totalPrice": order.totalPrice,
         "accountDTO": {
-            "id": 2,
+            "id":  accountDTO.id,
             "name": order.accountDTO.name,
             "email": order.accountDTO.email,
             "gender" :order.accountDTO.gender,
@@ -190,16 +207,30 @@ function Order() {
             "amount": order.totalPrice*10/100,
             "image": url,
             "paymentMethodDTO": {
-                "method": paymentMethod
+                "method": "BANKTRANSFER"
             }
         },
         "delivery": true
     }   
 
-    console.log(cartItem);
-
-
-    navigate("/checkout-cart/complete");
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+ 
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify(cartItem),
+      redirect: "follow"
+    };
+    
+    fetch("http://localhost:8080/api/order/buy", requestOptions)
+      .then((response) => response.text())
+      .then((result) => 
+        {
+            if(result === "true")navigate("/checkout-cart/complete");
+        }
+        )
+      .catch((error) => console.error(error));
  }
  
   return (

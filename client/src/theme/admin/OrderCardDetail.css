@@ -5,27 +5,28 @@
     margin-top: 30px;
     font-family: 'Poppins';
     font-size: 25px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
     margin-bottom: 5px;
+    letter-spacing: 0.15px;
 }
 .order-detail-container >  p{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     margin-bottom: 40px;
-    font-weight: 300;
+    font-weight: 400;
     cursor: pointer;
 }
 .order-detail-container > .back-to-orders{
     display: flex;
     align-items: center;
-    border: 1px solid rgba(217, 179, 132, 0.5);
+    border: 1px solid rgba(217, 179, 132, 1);
     width: 150px;
     height: 40px;
     justify-content: center;
     position: relative;
-    border-radius: 50px;
+    border-radius: 5px;
     cursor: pointer;
 }
 .order-detail-container > .back-to-orders > img{
@@ -35,12 +36,12 @@
 .order-detail-container > .back-to-orders > span{
     font-family: 'Roboto Serif';
     font-size: 16px;
-    font-weight: 400;
-    color: rgba(217, 179, 132, 0.5);
+    font-weight: 500;
+    color: rgba(217, 179, 132, 1);
     margin-left: 20px;
 }
 .order-detail-container > .order-detail-content{
-    background-color: rgba(26, 27, 29, 1);
+    background-color: #FFFFFF;
     margin-top: 50px;
     padding: 100px;
     border-radius: 10px;
@@ -49,7 +50,7 @@
 .order-detail-container > .order-detail-content > .information-order{
     box-sizing: border-box;
     padding: 70px 80px;
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     position: relative;
     border-radius: 10px;
 }
@@ -63,11 +64,11 @@
     font-weight: 400;
     line-height: normal;
     padding: 8px 15px;
-    border: 1px solid rgba(217, 179, 132, 0.5);
-    color: rgba(217, 179, 132, 0.5);
+    border: 1px solid rgba(217, 179, 132, 1);
+    color: rgba(217, 179, 132, 1);
 }
 .order-detail-container > .order-detail-content > .information-order > h3{
-    color: rgba(255, 255, 255, 0.40);
+    color: rgba(0, 0, 0, 0.60);
     font-family: "Roboto Serif";
     font-size: 20px;
     font-style: normal;
@@ -92,7 +93,7 @@ width: 560px;
 }
 .order-detail-container > .order-detail-content > .information-order >  .customer-information > ul > li > h5{
 width: 160px;
-color: rgba(255, 255, 255, 0.2);
+color: rgba(0, 0, 0, 0.6);
 font-family: "Roboto Serif";
 font-size: 14px;
 font-weight: 600;
@@ -101,15 +102,16 @@ letter-spacing: 0.24px;
 }
 .order-detail-container > .order-detail-content > .information-order >  .customer-information > ul > li > span{
 width: 380px;
-color: rgba(255, 255, 255, 0.4);
+color: rgba(0, 0, 0, 0.7);
 font-family: "Roboto Serif";
 font-size: 15px;
 font-weight: 500;
 margin: 15px;
+line-height: 24px;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information{
 display: grid;
-border: 1px solid rgba(255, 255, 255, 0.10);
+border: 1px solid rgba(0, 0, 0, 0.15);
 padding: 20px ;
 margin-top: 50px;
 border-radius: 10px;
@@ -123,7 +125,7 @@ box-sizing: border-box;
 column-gap: 20px;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul > li{
-color: rgba(255, 255, 255, 0.4);
+color: rgba(0, 0, 0, 0.7);
 font-family: "Roboto Serif";
 font-size: 15px;
 font-weight: 500;
@@ -132,11 +134,11 @@ justify-content: center;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul:first-child > li{
 font-weight: 600;
-color: rgba(255, 255, 255, 0.7);
+color: rgba(0, 0, 0, 0.8);
 letter-spacing: 0.5px;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul:first-child{
-border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 padding-bottom: 20px;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul > li:nth-child(2){
@@ -153,16 +155,23 @@ align-items: center;
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul:nth-child(n+2) > li:first-child > div{
 height: 120px;
 width: 100%;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+}
+.order-detail-container > .order-detail-content > .information-order > .products-information > ul:nth-child(n+2) > li:first-child > div > img{
+    max-width: 100%;
+    max-height: 100%;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul:nth-child(n+2) > li:nth-child(2) > div > h4{
-color: rgba(255, 255, 255, 0.4);
+color: rgba(0, 0, 0, 0.7);
 font-family: "Roboto Serif";
 font-size: 16px;
 font-weight: 500;
 margin: 0;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul:nth-child(n+2) > li:nth-child(2) > div > p{
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(0, 0, 0, 0.5);
 font-family: "Roboto Serif";
 font-size: 14px;
 font-weight: 500;
@@ -170,19 +179,19 @@ margin-top: 10px;
 margin-bottom: 5px;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > ul:nth-child(n+2) > li:nth-child(2) > div > span{
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(0, 0, 0, 0.4);
 font-size: 14px;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > .line{
 height: 1px;
-background-color: rgba(255,255, 255, 0.10);
+background-color: rgba(0,0, 0, 0.15);
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > .total{
 display: grid;
 grid-template-columns: 8fr 4fr;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > .total > div:first-child{
-border-right: 1px solid rgba(255, 255, 255, 0.10);
+border-right: 1px solid rgba(0, 0, 0, 0.15);
 display: flex;
 justify-content: center;
 align-items: center;
@@ -197,24 +206,24 @@ justify-content: space-between;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > .total > ul > li > h5{
 margin: 15px 0;
-color: rgba(255, 255, 255, 0.5);
+color: rgba(0, 0, 0, 0.7);
 font-family: "Roboto Serif";
 font-size: 15px;
 font-weight: 600;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > .total > ul > li:last-child > h5{
-color: rgba(255, 255, 255, 0.8);
+color: rgba(0, 0, 0, 0.9);
 font-weight: 700;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > .total > ul > li > h4{
 margin: 15px 0;
-color: rgba(255, 255, 255, 0.5);
+color: rgba(0, 0, 0, 0.7);
 font-family: "Roboto Serif";
 font-size: 15px;
 font-weight: 600;
 }
 .order-detail-container > .order-detail-content > .information-order > .products-information > .total > ul > li:last-child  > h4{
-color: rgba(255, 255, 255, 0.8);
+color: rgba(0, 0, 0, 0.9);
 font-weight: 700;
 }
 .order-detail-container > .order-detail-content > .button-prepared{
@@ -225,17 +234,18 @@ font-weight: 700;
 .order-detail-container > .order-detail-content > .button-prepared > div{
     width: 255px;
     height: 50px;
-    background-color: rgba(217, 179, 132, 0.6);
+    background-color: rgba(217, 179, 132, 1);
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Roboto Serif';
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 1);
     border-radius: 5px;
     cursor: pointer;
  }
  .order-detail-container > .order-detail-content > .button-prepared >  div:nth-child(2){
     background-color: transparent;
-    border: 1px solid rgba(217, 179, 132, 0.5);
+    border: 1px solid rgba(217, 179, 132, 1);
+    color:rgba(217, 179, 132, 1);
  }

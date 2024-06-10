@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import '../../theme/customer/OrderComplete.css'
 import {ICONS} from '../../constants/customer/index'
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../../context/CartContext';
 
 function OrderComplete() {
+
+  const cartContext = useContext(CartContext);
 
   const navigate = useNavigate();
 
@@ -14,6 +17,17 @@ function OrderComplete() {
        topRef.current.scrollIntoView({ behavior: 'smooth' });
      }
    }, []);
+
+  useEffect(() => {
+    localStorage.removeItem("order");
+    const account = localStorage.getItem("account");
+    if(account !== undefined && account !== null){
+        const accountObject =  JSON.parse(account);
+        accountObject.cart = [];
+        localStorage.setItem("account",JSON.stringify(accountObject));
+        cartContext.addToCart();
+    }
+  })
 
 
   const handleBackToShopping = () => {

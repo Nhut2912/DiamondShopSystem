@@ -10,6 +10,7 @@ function OrderAdmin() {
     const [account,setAccount] = useState(null);
     const [activeItem,setActiveItem] = useState("ALL");
     const [navigateItem,setNavigateItem] = useState(null);
+    const [data,setData] = useState();
 
 
      useEffect(() => {
@@ -28,7 +29,16 @@ function OrderAdmin() {
         }else navigate("/admin")
      },[])
 
-     if(account === null) return <div>Loading.......</div>
+     useEffect(() => {
+        fetch("http://localhost:8080/api/order/getAll")
+        .then((response) => response.json())
+        .then((result) => setData(result))
+        .catch((error) => console.error(error));
+     },[])
+
+
+
+     if(account === null || data === undefined || data === null) return <div>Loading.......</div>
 
 
      
@@ -38,7 +48,7 @@ function OrderAdmin() {
         {OrderId: "ID0003",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "PREPARED", total: "1034", date: "8:32pm 01/06/2024" },
         {OrderId: "ID0004",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "DELIVERING", total: "1034", date: "8:32pm 01/06/2024" },
         {OrderId: "ID0005",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "COMPLETED", total: "1034", date: "8:32pm 01/06/2024" },
-        { OrderId: "ID0006",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "CANCELED", total: "1034", date: "8:32pm 01/06/2024" },
+        {OrderId: "ID0006",Customer: "Tran Minh Nhut",N_Phone :"0384463039", Address: "Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh 700000", status: "CANCELED", total: "1034", date: "8:32pm 01/06/2024" },
     ];
  
  const handleClick = (item) => {
@@ -55,15 +65,16 @@ function OrderAdmin() {
             ))}
         </ul>
         <div className='order-card-container'>
-           {    account &&
-                orderItems.filter((item) => {
+
+           {    account && data !== undefined && data !== null && 
+                data.filter((item) => {
                     if(activeItem !== "ALL"){
-                        if(item.status === activeItem){
+                        if(item.orderStatus === activeItem){
                             return item;
                         }
-                    }else if(activeItem === "ALL" && account.role === "DELIVERY STAFF"){
-                        if(item.status === "PREPARED" ||  item.status === "DELIVERING"
-                        ||  item.status === "COMPLETED" ||  item.status === "CANCELED"
+                    }else if(activeItem === "ALL" && account.orderStatus === "DELIVERY STAFF"){
+                        if(item.orderStatus === "PREPARED" ||  item.orderStatus === "DELIVERING"
+                        ||  item.orderStatus === "COMPLETED" ||  item.orderStatus === "CANCELED"
                          ){
                             return item;
                          }
@@ -74,16 +85,17 @@ function OrderAdmin() {
                 }).map((item) => (
                     <OrderCard 
                      role={account.role}
-                     orderID={item.OrderId}
-                     Customer={item.Customer}
-                     Address={item.Address}
-                     N_Phone={item.N_Phone}
-                     Status={item.status}
+                     orderID={item.id}
+                     Customer={item.account.name}
+                     Address={item.address}
+                     N_Phone={item.account.numberPhone}
+                     Status={item.orderStatus}
                      Date={item.date}
-                     Total={item.total}
+                     Total={item.totalPrice}
                      />
                 ))
            }
+
         </div>
     </div>
   )

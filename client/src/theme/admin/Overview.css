@@ -2,7 +2,7 @@
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1.5fr 10.5fr;
-    background-color: rgba(26, 27, 29, 0.99);
+    background-color: #F7F7F7;
 }
 .container-admin-overview{
     overflow: hidden;

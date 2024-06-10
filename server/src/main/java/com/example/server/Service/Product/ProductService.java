@@ -94,7 +94,7 @@ public class ProductService implements IProductService{
     @Override
     public List<ProductDTO> getProducts() {
         List<ProductDTO> productDTOS = new ArrayList<>();
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.getProductsByActive(true);
 
         products.forEach((item) -> {
             ProductDTO productDTO = new ProductDTO();

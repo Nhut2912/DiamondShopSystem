@@ -50,7 +50,6 @@ public class OrderController {
                 if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){
                     orderDto.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
                         Order order = iorderService.saveOrder(orderDto);
-
                     if(order != null){
                         iorderDetailService.saveOrderDetail(orderDto, order);
                         iPaymentService.createPayment(orderDto, order);
@@ -78,7 +77,7 @@ public class OrderController {
         return iorderService.getOrderByStatus(orderStatus);
     }
 
-    @PostMapping("/Pending")
+    @PostMapping("/Pending/{id}")
     public ResponseEntity<String> pendingOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "PENDING");
         if(updated){
@@ -89,7 +88,7 @@ public class OrderController {
     }
 
 
-    @PostMapping("/Preparing")
+    @PostMapping("/Preparing/{id}")
     public ResponseEntity<String> prepareOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "PREPARING");
         if(updated){
@@ -100,7 +99,19 @@ public class OrderController {
     }
 
 
-    @PostMapping("/Delivering")
+    @PostMapping("/Prepared/{id}")
+    public ResponseEntity<String> preparedOrder(@PathVariable Long id){
+        boolean updated = iorderService.updateOrderStatus(id, "PREPARED");
+        if(updated){
+            return ResponseEntity.ok("Order status updated to 'Prepared Orders'.");
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+        }
+    }
+
+
+
+    @PostMapping("/Delivering/{id}")
     public ResponseEntity<String> deliveringOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "DELIVERING");
         if(updated){
@@ -110,7 +121,7 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/Completed")
+    @PostMapping("/Completed/{id}")
     public ResponseEntity<String> completedOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "COMPLETED");
         if(updated){
@@ -120,7 +131,7 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/Canceled")
+    @PostMapping("/Canceled/{id}")
     public ResponseEntity<String> canceledOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "CANCELED");
         if(updated){
@@ -140,5 +151,6 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
+
 
 }

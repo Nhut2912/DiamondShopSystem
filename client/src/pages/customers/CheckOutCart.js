@@ -153,7 +153,7 @@ function CheckOutCart() {
         "subTotal" : subTotal,
         "discount" : discount,
         "accountDTO": {
-            "id": 2,
+            "id": account.id,
             "name": name,
             "email": email,
             "gender" :gender,

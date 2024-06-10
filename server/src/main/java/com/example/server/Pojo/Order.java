@@ -3,7 +3,7 @@ package com.example.server.Pojo;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -17,7 +17,7 @@ public class Order {
 
     private String address;
 
-    private Date date;
+    private LocalDateTime date;
 
     private boolean isDelivery;
 

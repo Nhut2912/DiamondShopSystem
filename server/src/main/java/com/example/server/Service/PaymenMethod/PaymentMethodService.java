@@ -21,6 +21,13 @@ public class PaymentMethodService implements IPaymentMethodService{
     @Override
     public PaymentMethod getPaymentMethod(String name) {
         Optional<PaymentMethod> paymentMethod = Optional.ofNullable(iPaymentMethodRepository.getPaymentMethodByMethod(name));
-        return paymentMethod.orElse(null);
+        if(paymentMethod.isEmpty()){
+            PaymentMethod paymentMethodNew = new PaymentMethod();
+            paymentMethodNew.setMethod(name);
+            iPaymentMethodRepository.save(paymentMethodNew);
+            return iPaymentMethodRepository.getPaymentMethodByMethod(name);
+        }else{
+            return paymentMethod.orElse(null);
+        }
     }
 }

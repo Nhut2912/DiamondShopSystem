@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PaymentService implements IPaymentService{
@@ -25,7 +26,15 @@ public class PaymentService implements IPaymentService{
                 if(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getMethod().equals("BANKTRANSFER")){
                     payment.setImage(orderDTO.getPaymentDTOS().getImage());
                 }else payment.setTransactionCode(orderDTO.getPaymentDTOS().getTransactionCode());
-                payment.setPaymentMethod(iPaymentMethodService.getPaymentMethod(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getMethod()));
+
+
+                payment.setPaymentMethod(
+                        iPaymentMethodService.getPaymentMethod(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getMethod())
+
+                );
+
+
+
                 payment.setAmount(orderDTO.getPaymentDTOS().getAmount());
                 payment.setPayTime(orderDTO.getPaymentDTOS().getPayTime());
 
@@ -37,4 +46,10 @@ public class PaymentService implements IPaymentService{
             return false;
         }
     }
+
+    @Override
+    public List<Payment> getPaymentByOrderId(Long id) {
+        return iPaymentRepository.getPaymentsByOrder_Id(id);
+    }
+
 }

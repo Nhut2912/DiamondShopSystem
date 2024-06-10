@@ -1,7 +1,9 @@
 .order-card-content{
     padding: 20px;
     border-radius: 10px;
-    background-color: rgba(26, 27, 29, 1);
+    /* background-color: rgba(26, 27, 29, 1); */
+    background-color: #FFFFFF;
+    
     cursor: pointer;
 }
 .order-card-content > div:first-child{
@@ -11,19 +13,19 @@
 .order-card-content > div:first-child > span{
     font-family: 'Poppins';
     font-size: 15px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+    color: rgba(0,0,0,0.5);
 }
 .order-card-content > div:first-child > div {
     padding: 5px 15px;
-    border: 1px solid rgba(217, 179, 132, 0.5);
+    border: 1px solid rgb(217, 179, 132);
     border-radius: 5px;
 }
 .order-card-content > div:first-child > div > span{
     font-family: 'Poppins';
     font-size: 15px;
     font-weight: 400;
-    color: rgba(217, 179, 132, 0.5);
+    color: rgb(217, 179, 132);
 }
 .order-card-content > div:nth-child(2) > ul{
     padding-inline-start: 0;
@@ -34,7 +36,7 @@
 }
 .order-card-content > div:nth-child(2) > ul > li{
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 3fr 9fr;
     column-gap: 20px;
 }
 
@@ -42,60 +44,63 @@
     margin: 0;
     font-family: 'Poppins';
     font-size: 15px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.2);
+    font-weight: 500;
+    color: rgba(0,0,0,0.3);
 }
 .order-card-content > div:nth-child(2) > ul > li > span{
     font-family: 'Poppins';
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 24px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(0,0,0,0.5);
     letter-spacing: 0.24px;
 }
-.order-card-content > div:nth-child(2) > ul > li.deposit{
-    display: flex;
-    align-items: center;
-}
+
 .order-card-content > div:nth-child(2) > ul > li.deposit > div{
-    display: flex;
-    column-gap: 10px;
+    display: grid;
+    grid-template-columns: 3fr 9fr;
     align-items: center;
 
 }
 .order-card-content > div:nth-child(2) > ul > li.deposit > div > b{
     font-family: 'Poppins';
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 24px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(0,0,0,0.5);
     letter-spacing: 0.24px;
 }
 .order-card-content > div:nth-child(2) > ul > li.deposit > div > span{
     font-family: 'Poppins';
     font-size: 16px;
-    color: rgba(217, 179, 132, 0.2);
+    font-weight: 500;
+    letter-spacing: 0.24px;
+    border-radius: 5px;
+    width: fit-content;
 }
 .order-card-content > div:nth-child(2) > ul > li:last-child {
     align-items: center;
 }
 .order-card-content > div:nth-child(2) > ul > li:last-child > div {
-    display: flex;
-    column-gap: 10px;
+    display: grid;
+    grid-template-columns: 3fr 9fr;
     align-items: center;
 }
 .order-card-content > div:nth-child(2) > ul > li:last-child > div > b{
     font-family: 'Poppins';
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 24px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(0,0,0,0.5);
     letter-spacing: 0.24px;
 }
 .order-card-content > div:nth-child(2) > ul > li:last-child > div > span{
     font-family: 'Poppins';
     font-size: 16px;
-   color: rgba(217, 179, 132, 0.2);
+    font-weight: 500;
+    letter-spacing: 0.24px;
+    border-radius: 5px;
+    width: fit-content;
 }
 
 .order-card-content > div:nth-child(3){
@@ -103,7 +108,7 @@
     justify-content: space-between;
     margin: 15px 0 0 0;
     align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(0,0,0,0.08);
     padding-top: 20px;
 }
 .order-card-content > div:nth-child(3) > div:nth-child(1){
@@ -118,23 +123,23 @@
     font-size: 17px;
     font-weight: 500;
     line-height: 24px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(0,0,0,0.5);
     letter-spacing: 0.24px;
 }
 .order-card-content > div:nth-child(3) > div:nth-child(1) > span{
     font-family: 'Poppins';
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 24px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(0,0,0,0.5);
     letter-spacing: 0.24px;
 }
 .order-card-content > div:nth-child(3) > p{
     font-family: 'Poppins';
     font-size: 13px;
-    font-weight: 300;
+    font-weight:500;
     line-height: 24px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.3);
     letter-spacing: 0.24px;
     margin: 0;
 }

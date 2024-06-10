@@ -37,7 +37,10 @@
 .account-purchase-card-container > .purchase-card > div.product-purchase > div:nth-child(1){
     width: 120px;
     height: 120px;
-    background-color: beige;
+}
+.account-purchase-card-container > .purchase-card > div.product-purchase > div:nth-child(1) > img{
+    max-width: 100%;
+    max-height: 100%;
 }
 .account-purchase-card-container > .purchase-card > div.product-purchase > div:nth-child(2){
     display: flex;
@@ -79,7 +82,4 @@
 .account-purchase-card-container > .purchase-card > div:last-child > h4:first-child > span{
     color: rgba(0, 0, 0, 0.4);
     font-weight: 400;
-}
-.account-purchase-card-container > .purchase-card > div:last-child > h4:last-child{
-    color: red;
 }
