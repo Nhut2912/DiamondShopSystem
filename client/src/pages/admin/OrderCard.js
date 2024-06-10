@@ -24,25 +24,30 @@ function OrderCard({role,orderID,
   const COLORS_STATUS = [
     {name: "PENDING" , color : "#F2C438"},
     {name: "PREPARING" , color : "#F2A20C"},
-    {name: "PERPARED", color : "#F2A20C"},
+    {name: "PREPARED", color : "#F2A20C"},
     {name : "DELIVERING", color : "#F25D07"},
     {name : "CANCELED", color : "#D9043D"},
     {name : "COMPLETED", color : "#008F00"}
 ]
 
+const COLORS_STATUS_BACKGROUND = [
+  {name: "PENDING" , color : "rgba(242, 196, 56,0.1)"},
+  {name: "PREPARING" , color : "rgba(242, 162, 12,0.1)"},
+  {name: "PREPARED", color : "rgba(242, 162, 12,0.1)"},
+  {name : "DELIVERING", color : "rgba(242, 93, 7,0.1)"},
+  {name : "CANCELED", color : "rgba(217, 4, 61,0.1)"},
+  {name : "COMPLETED", color : "rgba(0, 143, 0,0.1)"}
+]
+
+
+
+
   const [data,setData] = useState();
   const navigate = useNavigate();
   const [statusColor,setStatusColor] = useState();
+  const [backgroundColor,setBackgroundColor] = useState();
 
-
-
-  useEffect(()=> {
-    COLORS_STATUS.map((status) => {
-      if(status.name === Status.trim().toUpperCase()){
-        setStatusColor(status.color);
-      }
-    })
-  },[])
+  console.log(Status);
 
   useEffect(()=>{
     fetch(`http://localhost:8080/api/payment?order_id=${orderID}`)
@@ -51,8 +56,24 @@ function OrderCard({role,orderID,
     .catch((error) => console.error(error));
   },[])
 
-  if(data === undefined || data === null) return <div>Loading ...</div>
-  if(statusColor === undefined || statusColor === null) return <div>Loading...</div>
+  useEffect(()=> {
+    COLORS_STATUS.map((status) => {
+      if(status.name === Status.trim().toUpperCase()){
+        setStatusColor(status.color);
+      }
+    })
+  },[Status])
+
+  useEffect(()=> {
+    COLORS_STATUS_BACKGROUND.map((status) => {
+      if(status.name === Status.trim().toUpperCase()){
+        setBackgroundColor(status.color);
+      }
+    })
+  },[Status])
+
+  if(data === undefined || data === null) return <div>Loading .</div>
+  if(backgroundColor === undefined || statusColor === undefined) return <div>Loading ...</div>
 
   let remainder = ((Total*90)/100).toFixed(2);
 
@@ -65,12 +86,14 @@ function OrderCard({role,orderID,
     <div className='order-card-content' onClick={handleDetailOrder}>
        <div>
             <span>#{orderID}</span>
-            <div style={{backgroundColor: statusColor ,border: "none"}}>
+            <div
+              style={{
+                borderColor: statusColor,
+                backgroundColor: backgroundColor
+              }}
+            >
                 <span
-                  style={{color: "#FFFFFF"
-                          
-                  }}    
-                
+                  style={{color: statusColor}}
                 >
                     {Status}
                 </span>

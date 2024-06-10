@@ -158,6 +158,9 @@ function AccountPurchaseCard({
                 </h4>
             </div>
         </div>
+        <div className='remainder-paid'>
+
+        </div>
     </div>
   )
 }
