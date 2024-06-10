@@ -5,7 +5,7 @@ import ProductCheckOut from '../../components/customer/ProductCheckOut';
 import InputBox from '../../components/customer/InputBox';
 import InputSelectBox from '../../components/customer/InputSelectBox';
 import { ICONS } from '../../constants/customer';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import useLocalStorage from '../../hook/useLocalStorage';
 import { CartContext } from '../../context/CartContext';
 
@@ -20,7 +20,10 @@ const numberFormatter = new Intl.NumberFormat('en-US', {
 
 function CheckOutCart() {
  const navigate = useNavigate();
+ 
  const cartContext = useContext(CartContext);
+
+ const [order,setOrder] = useState();
 
 
  const [subTotal,setSubTotal] = useState(0);
@@ -37,7 +40,11 @@ function CheckOutCart() {
  const [district,setDistrict] = useState();
  const [ward,setWard] = useState();
  const [address,setAddress] = useState();
-const [gender,setGender] = useState("Male");
+ const [gender,setGender] = useState("Male");
+ const [statusInformationCustomer,setStatusInformationCustomer] = useState([
+    {name : "Buyer Information", status : false},
+    {name : "Form Of Receipt", status : false}
+ ])
 
 
 
@@ -59,6 +66,52 @@ const [gender,setGender] = useState("Male");
     "Male","Female"
  ]
 
+ useEffect(() => {
+    const order = localStorage.getItem("order");
+    if(order !== undefined && order !== null){
+        const orderObject = JSON.parse(order);
+        setOrder(orderObject)
+        const addressDetail = orderObject.address.split(',').reverse();
+        setProvince(addressDetail[0].trim());
+        setDistrict(addressDetail[1].trim());
+        setWard(addressDetail[2].trim());
+        setAddress(addressDetail.slice(3).join(',').trim());
+        setGender(orderObject.accountDTO.gender);
+
+        
+        if(orderObject.accountDTO.name !== undefined &&
+            orderObject.accountDTO.numberPhone !== undefined && 
+            orderObject.accountDTO.name !== null &&
+            orderObject.accountDTO.numberPhone !== null &&
+            orderObject.accountDTO.name !== "" &&
+            orderObject.accountDTO.numberPhone !== ""
+            && orderObject.accountDTO.email !== undefined &&
+            orderObject.accountDTO.email !== null &&
+            orderObject.accountDTO.email !== ""
+        ) {
+            let status = [...statusInformationCustomer];
+                status[0].status = true;
+                setStatusInformationCustomer(status);
+
+            setName(orderObject.accountDTO.name);
+            setEmail(orderObject.accountDTO.email);
+            setPhone(orderObject.accountDTO.numberPhone);
+                  }
+
+        if(orderObject.accountDTO.birthDay !== undefined && orderObject.accountDTO.birthDay !== null){
+            setBirthay(orderObject.accountDTO.birthDay); 
+        }
+
+        if(addressDetail !== "") {
+              let status = [...statusInformationCustomer];
+                status[1].status = true;
+                setStatusInformationCustomer(status);
+        }
+
+
+    };
+ },[])
+
  useEffect(()=> {
     if(account === undefined || account === null){
         navigate("/login")
@@ -74,7 +127,6 @@ const [gender,setGender] = useState("Male");
         cart.map((item) => {
            _subTotal += item.price;
         })
-        console.log(_subTotal);
        setSubTotal(_subTotal);
        setTotal(subTotal + discount);
     }
@@ -95,44 +147,36 @@ const [gender,setGender] = useState("Male");
         productsOrder = productsOrderUpdate;
     })
 
-
-    const order = {
-        "address": province +", " +district +", " + ward +", "+address,
+    const cartItem = {
+        "address": address +", "+ ward  +", " +district +", "  + province,
         "totalPrice": total,
+        "subTotal" : subTotal,
+        "discount" : discount,
         "accountDTO": {
-                  "id": 2,
-                  "name": name,
-                  "email": email,
-                  "numberPhone": phone,
-                  "address": province +", " +district +", " + ward +", "+address,
-                  "birthDay": birthday
-           
+            "id": account.id,
+            "name": name,
+            "email": email,
+            "gender" :gender,
+            "numberPhone": phone,
+            "address": address +", "+ ward  +", " +district +", "  + province,
+            "birthDay": birthday
         },
-        "orderDetailDTOS" :productsOrder,
-        "delivery" : true
-    }
-
-
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: JSON.stringify(order),
-        redirect: "follow"
-      };
-      
-      fetch("http://localhost:8080/api/order/buy", requestOptions)
-        .then((response) => response.text())
-        .then( (result) => {
-            if(result === "true"){
-                navigate("order")
+        "orderDetailDTOS": productsOrder,
+        "paymentDTO": {
+            "amount": 0,
+            "image": "",
+            "paymentMethodDTO": {
+                "method": ""
             }
-        }
-        )
-        .catch((error) => console.error(error));
+        },
+        "delivery": true
+    }
+    localStorage.setItem("order",JSON.stringify(cartItem));
+    navigate("order");
  } 
+
+
+ 
 
 
  const handleDeleteProduct = (id) => {
@@ -148,12 +192,7 @@ const [gender,setGender] = useState("Male");
     setGender(item);
  }
 
- const [statusInformationCustomer,setStatusInformationCustomer] = useState([
-    {name : "Buyer Information", status : false},
-    {name : "Form Of Receipt", status : false}
- ])
-
-
+ 
 
 
   return (
@@ -269,15 +308,19 @@ const [gender,setGender] = useState("Male");
                             <div>
                                 <InputBox
                                     setParams={setName}
+                                    getParams={name}
                                 title={"Fullname"} />
                                 <InputBox 
                                     setParams={setPhone}
+                                    getParams={phone}
                                 title={"Number phone"} />
                                 <InputBox 
                                     setParams={setEmail}
+                                    getParams={email}
                                 title={"Email"} />
                                 <InputBox 
                                     setParams={setBirthay}
+                                    getParams={birthday}
                                 title={"Birthday"} />
                             </div>
                             <div className='button-continue'
@@ -322,17 +365,21 @@ const [gender,setGender] = useState("Male");
                                         <InputSelectBox 
                                             options={Province}
                                             setParams={setProvince}
+                                            getParams={province !== undefined && province !== null ? province : null}
                                         title={"Province/City"} />
                                         <InputSelectBox
                                             options={District}
+                                            getParams={district !== undefined && district !== null ? district : null}
                                             setParams={setDistrict}
                                         title={"District"} />
                                         <InputSelectBox
                                             options={Ward}
                                             setParams={setWard}
+                                            getParams={ward !== undefined && ward !== null ? ward : null}
                                         title={"Ward/Commune"} />
                                         <InputBox
                                             setParams={setAddress}
+                                            getParams={address !== undefined && address !== null && address !== "undefined" ? address : null}
                                         title={"Detail Address"}/>
                                         <InputBox title={"Notes"}/>
                                     </div>

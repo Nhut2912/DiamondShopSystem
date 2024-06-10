@@ -11,7 +11,6 @@ public class OrderDetailDTO {
 
     private double priceBeforeSizeAdjustment;
 
-    //user size
     private int size;
 
     private Long productID;

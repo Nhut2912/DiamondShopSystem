@@ -35,11 +35,7 @@ const Authentication = () => {
     })
   }
 
-  /**
-   * author : Tran Minh Nhut
-   * date : 20/5/2024
-   * purpose : thu thap thong tin ve username va password
-   */
+  
 
    const [userName,setUserName] = useState("");
    const [password,setPassword] = useState("");

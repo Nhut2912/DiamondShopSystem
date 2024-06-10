@@ -3,7 +3,7 @@ package com.example.server.Service.Order;
 import com.example.server.Model.OrderDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Pojo.Order;
-import com.example.server.Pojo.Product;
+
 import com.example.server.Repository.IAccountRepository;
 import com.example.server.Repository.IOrderRepository;
 
@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +30,10 @@ public class OrderService implements  IOrderService{
         try{
             Order order = new Order();
             order.setAddress(orderDTO.getAccountDTO().getAddress());
-            order.setDate(Date.valueOf("2024-06-05"));
-            order.setOrderStatus("PENDING");
+            order.setDate(LocalDateTime.now());
+            if(orderDTO.getPaymentDTOS().getPaymentMethodDTO().getMethod().equals("BANKTRANSFER")){
+                order.setOrderStatus("PENDING");
+            }else order.setOrderStatus("PREPARING");
             order.setDelivery(orderDTO.isDelivery());
             order.setTotalPrice(orderDTO.getTotalPrice());
             Optional<Account> account = accountRepository.findById(orderDTO.getAccountDTO().getId());
@@ -65,10 +70,16 @@ public class OrderService implements  IOrderService{
         }
     }
 
+
     @Override
     public Order getOrderById(Long id) {
         Optional<Order> order = iOrderRepository.findById(id);
         return order.orElse(null);
+    }
+
+    @Override
+    public List<Order> getOrdersByAccountID(Long id) {
+        return iOrderRepository.getOrdersByAccount_Id(id);
     }
 
 

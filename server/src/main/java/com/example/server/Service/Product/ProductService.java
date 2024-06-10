@@ -102,7 +102,7 @@ public class ProductService implements IProductService{
     @Override
     public List<ProductDTO> getProducts() {
         List<ProductDTO> productDTOS = new ArrayList<>();
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.getProductsByActive(true);
 
         products.forEach((item) -> {
             ProductDTO productDTO = new ProductDTO();
@@ -117,6 +117,7 @@ public class ProductService implements IProductService{
 
             productDTO.setSize(item.getSize().getSize());
 
+<<<<<<< HEAD
             double totalPrice = 0;
             List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
             List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
@@ -139,6 +140,14 @@ public class ProductService implements IProductService{
 //            Set<String> images = new HashSet<>();
 //            item.getImages().forEach((image -> images.add(image.getUrl())));
 //            productDTO.setImages(images);
+=======
+//            productDTO.setPrice();
+
+
+            Set<String> images = new HashSet<>();
+            item.getImages().forEach((image -> images.add(image.getUrl())));
+            productDTO.setImages(images);
+>>>>>>> 2e4e67df43c194e77ba142c3846983cb9ccab8c0
 
             productDTOS.add(productDTO);
         });

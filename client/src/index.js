@@ -33,6 +33,7 @@ import NotificationsAdmin from './pages/admin/Notifications';
 import DetailProductAdmin from './components/admin/DetailProduct';
 import OrderComplete from './pages/customers/OrderComplete';
 import OrderCarddetailAdmin from './pages/admin/OrderCarddetail';
+import CheckPaymentMomo from './components/customer/CheckPaymentMomo';
 
 
 
@@ -49,16 +50,17 @@ root.render(
               <Route path="/products/:id" element={<ProductDetail />}  />
               <Route path="/checkout-cart">
                 <Route index element={<CheckOutCart />} />
+                
                   <Route path="order" element={<Order />} />
                   <Route path="complete" element={<OrderComplete />} />
               </Route>
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
             </Route>
-
+            <Route path="/checkout-cart/check-payment" element={<CheckPaymentMomo />} />
             <Route path='/login'  >
               <Route index element={<Login />} />
-              <Route path='verify' element={<Verify />} />
+              <Route path='verify/:id' element={<Verify />} />
             </Route>
 
             <Route path='/account' element={<Account />} >

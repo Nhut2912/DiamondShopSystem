@@ -4,33 +4,63 @@ import '../../theme/customer/Verify.css';
 import { ICONS } from '../../constants/customer';
 import { useNavigate, useParams  } from 'react-router-dom';
 import useLocalStorage from '../../hook/useLocalStorage';
+import { signOut } from 'firebase/auth';
 
 
 
 function Verify() {
 
-  const [account,setAccount] = useLocalStorage("account",null);
-  
-  
-    const userVirtual = [
-        {numberPhone : "0384463039",name :"TranMinhNhut",role : "CUSTOMER",cart :[]},
-        {numberPhone : "0125426890",name :"TranMinhNhut",role : "CUSTOMER",cart :[]},
-      ]
-      
-  const phoneVerify = localStorage.getItem('phone_verify');
-  const verifyCode = "1234";
+  const params = useParams();
+  console.log(params.id);
+
   const navigate = useNavigate();
+  const [OTP,SETOTP] = useState();
 
+  const handleVerify = async () => {
+    const accountDTO = localStorage.getItem("accountDTO");
+    localStorage.removeItem("accountDTO");
 
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
- const [OTP,SETOTP] = useState();
+    const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: accountDTO,
+    redirect: "follow"
+    };
 
-  const handleVerify = () => {
-        if(OTP === verifyCode){
-            setAccount(userVirtual[0]);
-            navigate(-2);
-        }
+    console.log(OTP);
+    fetch(`http://localhost:8080/api/account/verifyOtp?otp=${OTP}`, requestOptions)
+    .then((response) => response.text())
+    .then((result) =>{
+      if(result !== null && result !== undefined){
+          const accountDTO = JSON.parse(result);
+
+          const account = {
+            "id" : accountDTO.id,
+            "name" : accountDTO.name,
+            "email" : accountDTO.email,
+            "numberPhone" : accountDTO.numberPhone,
+            "birthDay" : accountDTO.birthDay,
+            "role" : accountDTO.role,
+            "cart" : []
+          }
+          localStorage.setItem("account",JSON.stringify(account));
+          navigate("/products");
+      }
+    }
+    )
+    .catch((error) => console.error(error));
+
+  };
+
+  const handleChange = (e)=> {
+    SETOTP(e.target.value);
+    console.log(e.target.value);
   }
+
+
 
   return (
     <div className='verify-container'>
@@ -40,14 +70,14 @@ function Verify() {
             </div>
             <div >
                 <h2>Verify</h2>
-                <p>Your verification code has been sent to your phone number <br />
-                <span>0384463039</span>
+                <p>Your verification code has been sent to your email {params.id} <br />
+                <span></span>
                 </p>
                 
                 <div>
                     <label>OTP</label>
                     <input type='text'
-                        onChange={(event) => SETOTP(event.target.value)}
+                        onChange={(e) => handleChange(e)}
                     />
                 </div>
                 <div className='button-verify' onClick={handleVerify}>

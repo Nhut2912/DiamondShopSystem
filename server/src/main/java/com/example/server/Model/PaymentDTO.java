@@ -5,6 +5,7 @@ import lombok.Data;
 import java.sql.Date;
 @Data
 public class PaymentDTO {
+
     private double amount;
 
     private Date payTime;
@@ -12,4 +13,6 @@ public class PaymentDTO {
     private String transactionCode;
 
     private String image;
+
+    private PaymentMethodDTO paymentMethodDTO;
 }

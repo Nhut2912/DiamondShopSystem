@@ -15,6 +15,7 @@ import image_product_3 from '../../assets/images/customer/gnddddw003910-nhan-kim
 import image_vnpay from '../../assets/images/customer/vnpay.png';
 import image_momo from '../../assets/images/customer/momo.png';
 import image_paypal from '../../assets/images/customer/paypal.png'
+import image_qr_bank_pay from '../../assets/images/customer/qr-bank-payment.jpg';
 const IMAGES = {
     image_banner: image_banner,
     image_the_momment_set: image_the_momment_set,
@@ -32,7 +33,8 @@ const IMAGES = {
     image_product_3: image_product_3,
     image_vnpay: image_vnpay,
     image_momo : image_momo,
-    image_paypal:image_paypal
+    image_paypal:image_paypal,
+    image_qr_bank_pay: image_qr_bank_pay
 }   
 
 export default IMAGES;

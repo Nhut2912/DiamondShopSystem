@@ -7,11 +7,34 @@ import AccountPurchaseCard from './AccountPurchaseCard';
 
 function AccountPurchase() {
   const statusPurchase = [
-    "All","Pending","Prepare","Delivering","Completed","Canceled"
+    "ALL","PENDING","PREPARE","DELIVERING","COMPLETED","CANCELED"
   ]
-  const [acttiveItem,setActiveItem] = useState("All");
+  const [acttiveItem,setActiveItem] = useState("ALL");
 
 
+
+  const [orders,setOrders] = useState();
+
+
+
+
+  useEffect(() => {
+
+    const account = JSON.parse(localStorage.getItem("account"));
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    fetch(`http://localhost:8080/api/order/account/${account.id}`, requestOptions)
+      .then((response) => response.text())
+      .then(result => setOrders(JSON.parse(result)))
+      .catch((error) => console.error(error));
+  },[])
+
+
+
+
+console.log(orders);
 
   const handleChangeStatus = (item) => {
     setActiveItem(item);
@@ -34,7 +57,33 @@ function AccountPurchase() {
           ))}
        </ul>
 
-      <AccountPurchaseCard />
+      {
+        orders !== undefined && orders !== null ?
+        orders.filter((element) =>{
+          if(acttiveItem === "ALL"){
+             return element;
+          }else if(acttiveItem === "PREPARE"){
+            if(element.orderStatus.trim() === "PREPARING" || element.orderStatus.trim() === "PREPARED"){
+              return element;
+            }
+          }else{
+            if(element.orderStatus.trim() === acttiveItem){
+              return element;
+            }
+          }
+        }).map((item)=> (
+          <AccountPurchaseCard 
+          orderID={item.id} 
+          isDelivery={item.delivery}
+          totalPrice={item.totalPrice}
+          ordeDate={item.date}
+          orderStatus={item.orderStatus}
+          />
+        ))
+       : ""
+      }
+
+
 
 
     </div>

@@ -1,12 +1,12 @@
 .deposit-payment{
     margin-top: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     padding: 70px 80px;
     border-radius: 10px ;
  }
 .deposit-payment > h3{
     margin-top: 70px;
-    color: rgba(255, 255, 255, 0.40);
+    color: rgba(0, 0, 0, 0.6);
     font-family: "Roboto Serif";
     font-size: 20px;
     font-style: normal;
@@ -19,8 +19,8 @@
     margin-left: 40px;
     font-size: 16px;
     font-weight: 400;
-    border: 1px solid rgba(217, 179, 132, 0.5);
-    color: rgba(217, 179, 132, 0.5);
+    border: 1px solid rgba(217, 179, 132, 1);
+    color: rgba(217, 179, 132, 1);
     padding: 10px 20px;
 }
 
@@ -46,23 +46,31 @@
     font-family: "Roboto Serif";
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
     letter-spacing: 0.8px;
-    color: rgba(255, 255, 255, 0.20);
+    color: rgba(0, 0, 0, 0.4);
     margin: 0;
  }
 .deposit-payment > .method-payment-deposit > li > span{
     font-family: 'Roboto Serif';
-    font-weight: 400;
+    font-weight: 600;
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.50);
+    color: rgba(0, 0, 0, 0.60);
  }
 .deposit-payment > .method-payment-deposit > li > div.invoice{
     height: 500px;
     width: 500px;
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(0, 0, 0, 0.10);
     border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ .deposit-payment > .method-payment-deposit > li > div.invoice > img{
+    max-width: 100%;
+    max-height: 100%;
  }
 .deposit-payment > .button-accept-payment{
     margin-top: 80px;
@@ -72,17 +80,19 @@
 .deposit-payment > .button-accept-payment > div{
     width: 255px;
     height: 50px;
-    background-color: rgba(217, 179, 132, 0.6);
+    background-color: rgba(217, 179, 132, 1);
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Roboto Serif';
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    color: #FFFFFF;
     border-radius: 5px;
     cursor: pointer;
+    
  }
 .deposit-payment > .button-accept-payment > div:nth-child(2){
     background-color: transparent;
-    border: 1px solid rgba(217, 179, 132, 0.5);
+    border: 1px solid rgba(217, 179, 132, 1);
+    color: rgba(217, 179, 132, 1);
  }
