@@ -7,11 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Repository
 public interface IDiamondRepository extends JpaRepository<Diamond,Long> {
 
-    @Query("SELECT d FROM Diamond d WHERE d.product.id = :product_id")
-    public List<Diamond> getDiamondsByProductId(@Param("product_id") Long Id);
+    public List<Diamond>  getDiamondByProduct_Id(Long Id);
 }
