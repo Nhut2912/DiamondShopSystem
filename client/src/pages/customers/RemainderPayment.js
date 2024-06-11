@@ -3,11 +3,25 @@ import React, { useEffect, useState } from 'react'
 import '../../theme/customer/RemainderPayment.css';
 import { IMAGES } from '../../constants/customer';
 import InputFile from '../../components/customer/InputFile';
+import { useParams } from 'react-router-dom';
+
+
+const convertUSDToVnd = (usd) => {
+    const usdPrice = 25430;
+    return Math.ceil(usd*usdPrice);
+}  
+
 
 
 function RemainderPayment() {
-
+  const params = useParams(); 
+  const orderID = params.id;
+   
+  const [payments,setPayments] = useState();
   const [accountDTO,setAccountDTO]  = useState();
+  const [deposit,setDeposit] = useState();
+  const [numberOfGoods,setNumberOfGoods] = useState();
+
   const paymentMethodList = [
     {name : "Bank Transfer", img : '',description  : "Bank Transfer"},
     {name : "MoMo", img : IMAGES.image_momo, description : "( Pay with MOMO wallet )" },
@@ -32,22 +46,75 @@ function RemainderPayment() {
     }
  },[])
 
+ useEffect(() => {
+    fetch(`http://localhost:8080/api/payment?order_id=${orderID}`)
+    .then((response) => response.json())
+    .then( ( result ) => {
+        if(result !== null){
+            setPayments(result);
+            setDeposit(result[0].amount);
+        }
+
+    }).catch((error) => console.error(error));
+ },[])
+ 
+ useEffect(()=> {
+    fetch(`http://localhost:8080/api/order_detail?order_id=${orderID}`)
+    .then((response) => response.json())
+    .then( ( result ) => {
+        if(result !== null){
+            setNumberOfGoods(result.length);
+        }
+
+    }).catch((error) => console.error(error));
+ },[])
+
+
+ if(deposit === undefined || deposit === null ) return <div>Loading..</div>
+ if(payments === undefined || payments === null) return <div>Loading...</div>
+
+
+
+ let remainder = 0;
+ if(payments !== undefined && payments !== null && deposit !== undefined && deposit !== null){
+       remainder = payments[0].order.totalPrice -deposit
+ }
+
+
+ const handlePayment = async () => {
+    
+    await fetch("http://localhost:8080/api/paymentRemainder/"+convertUSDToVnd(remainder))
+    .then((response) => response.text())
+    .then((result) => 
+       {
+        if(result !== undefined){
+            localStorage.setItem("_orderID",JSON.stringify({
+                "orderId": orderID,
+                "amount" : remainder.toFixed(2),
+                "method" : "MOMO"
+            }));
+            window.location.assign(JSON.parse(result).payUrl)
+        }
+       }
+    )
+    .catch((error) => console.error(error));
+
+ }
 
  const handleContinue = () => {
     if(paymentMethod === "Bank Transfer"){
         setIsBankTransfer(true);
-    }else{
-
+    }else if(paymentMethod === "MoMo"){
+        handlePayment();
     }
  }
-
 
 
 
   return (
                <div className='remainder-payment'  id="order-payment-page">
                <h1>Remainder Payment</h1>
-               <p>Purchase History / <span>Remainder Payment</span> / <span>1</span></p>
+               <p>Purchase History / <span>Remainder Payment</span> / <span>{orderID}</span></p>
                  <div className='deposit'>
                               <h4>
                                   REMAINDER FEE
@@ -61,10 +128,19 @@ function RemainderPayment() {
                                   </ul>
                                   <ul>
                                      
-                                      <li>Tran Minh Nhut</li>
-                                      <li>0384463039</li>
-                                      <li>8</li>
-                                      <li>$1000</li>
+                                      <li>{payments !== undefined && payments !== null &&
+                                        payments.length > 0 ?
+                                        payments[0].order.account.name : ''
+                                      }</li>
+                                      <li>{payments !== undefined && payments !== null &&
+                                        payments.length > 0 ?
+                                        payments[0].order.account.numberPhone : ''
+                                      }</li>
+                                      <li>{numberOfGoods}</li>
+                                      <li>${payments !== undefined && payments !== null &&
+                                        payments.length > 0 ?
+                                        payments[0].order.totalPrice.toFixed(2) : ''
+                                      }</li>
                                   </ul>
                                   <div className='line'></div>
                                       <ul>
@@ -73,7 +149,7 @@ function RemainderPayment() {
                                                   Deposit Fee
                                               </h5>
                                               <h5>
-                                                 $100
+                                                 ${deposit.toFixed(2)}
      
                                                  <span style={{color: "green"}}>DONE</span>
                                               </h5>
@@ -83,7 +159,10 @@ function RemainderPayment() {
                                                   Remainder Fee
                                               </h5>
                                               <h5>
-                                                 $900
+                                                 ${payments !== undefined && payments !== null &&
+                                        payments.length > 0 ?
+                                        (payments[0].order.totalPrice -deposit).toFixed(2) : ''
+                                      }
                                               </h5>
                                           </li>
                                       </ul>

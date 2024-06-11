@@ -4,8 +4,8 @@
 .radio-admin-input-container > label{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.4);
-    font-weight: 300;   
+    color: rgba(0,0,0,0.7);
+    font-weight: 400; 
 
 }
 .radio-admin-input-container > .container-option-radio {
@@ -20,19 +20,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(0,0,0,0.3);
     border-radius: 5px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 .radio-admin-input-container > .container-option-radio > div.isActive{
-    background-color: rgba(255,255,255,0.3);
-   
+    background-color: #d9b384;
+    border: none;
 }
 .radio-admin-input-container > .container-option-radio > div > span{
     font-family: 'Poppins';
     font-size: 14px;
-    color: rgba(255,255,255,0.3);
-    font-weight: 300; 
+    color: rgba(0,0,0,0.6);
+    font-weight: 400; 
     
 }
 .radio-admin-input-container > .container-option-radio > div.isActive > span{

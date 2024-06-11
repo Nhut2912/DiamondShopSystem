@@ -6,8 +6,8 @@
 .input-admin-select-box-container > label{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.3);
-    font-weight: 300;
+    color: rgba(0,0,0,0.7);
+    font-weight: 400;
 }
 .input-admin-select-box-container > .content-select{
     position: relative;
@@ -22,16 +22,16 @@
     cursor: pointer;
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.6);
     font-weight: 300;
     background-color: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.2);
     border-radius: 5px;
     position: relative;
     z-index: 101;
 }
 .input-admin-select-box-container > .content-select > .content-option > option{
-    background-color: rgba(26, 27, 29, 1);
+    background-color: #FFFFFF;
 
 }
 .input-admin-select-box-container > .content-select > .img-select-box{

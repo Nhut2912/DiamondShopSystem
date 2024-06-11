@@ -4,8 +4,8 @@
 .input-file-container > label{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.3);
-    font-weight: 300;
+    color: rgba(0,0,0,0.7);
+    font-weight: 400;
 }
 .input-file-container > .input-file-card > input{
     margin-top: 10px;
@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     font-family: 'Poppins';
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.7);
     font-size: 14px;
     cursor: pointer;
 }
@@ -28,9 +28,9 @@
     height:100%;
     position: absolute;
     left: 0;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(0,0,0,0.3);
     border-radius: 5px;
-    background-color: rgba(26, 27, 29, 1);
+    background-color: #FFFFFF;
     padding-left: 20px;
     box-sizing: border-box;
     align-content: center;

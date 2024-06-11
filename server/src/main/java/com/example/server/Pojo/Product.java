@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +21,8 @@ public class Product {
     private String code;
 
     private String name;
+
+    private LocalDateTime dateAdd;
 
     private boolean active = true;
 

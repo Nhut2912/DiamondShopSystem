@@ -3,6 +3,7 @@ import '../../theme/customer/AccountPurchaseCard.css'
 import ConvertLocalDateToFormat from '../../function/ConvertLocalDateToFormat';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { imageStorage } from '../../config/FirebaseConfig';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -18,6 +19,7 @@ function AccountPurchaseCard({
     }) {
 
 
+
     const COLORS_STATUS = [
         {name: "PENDING" , color : "#F2C438"},
         {name: "PREPARING" , color : "#F2A20C"},
@@ -26,7 +28,8 @@ function AccountPurchaseCard({
         {name : "CANCELLED", color : "#D9043D"},
         {name : "COMPLETED", color : "#008F00"}
     ]
-
+ 
+ const navigate = useNavigate();
 
  const [data,setData] = useState();
  const [imagesProduct,setImagesProduct] = useState();
@@ -52,7 +55,6 @@ function AccountPurchaseCard({
             result.map((item) => {
                 paidTmp += item.amount;
             })
-            console.log(paidTmp)
             setPaid(paidTmp);
         }
 
@@ -102,7 +104,9 @@ function AccountPurchaseCard({
   if(data === undefined && data === null) return <div>Loading...</div>;
   let count = 0;
 
-
+  const handlePayRemainder = () => {
+     navigate("/account/purchase/remainder/"+orderID);
+  }
 
 
   return (
@@ -165,8 +169,12 @@ function AccountPurchaseCard({
             (orderStatus !== "PENDING" && orderStatus !== "COMPLETED" && orderStatus !== "CANCELLED") ?
             
             <div className='remainder-paid'>
-                <div>
-                    <span>Pay Remainder</span>
+                <div
+
+                    onClick={handlePayRemainder}
+
+                >
+                    <span   >Pay Remainder</span>
                 </div>
             </div>
         : ""

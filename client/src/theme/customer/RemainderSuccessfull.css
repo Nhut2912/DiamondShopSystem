@@ -1,0 +1,22 @@
+.remainder-successfull-container{
+ background-color: aqua;
+    height: 100vh;
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.remainder-successfull-container > .square {
+    width: 10px;
+    height: 200px;
+    background-color: brown;
+    position: absolute;
+    transition: linear 1s ;
+}
+.remainder-successfull-container > .square:hover {
+    width: 200px;
+    height: 200px;
+    background-color: brown;
+    position: absolute;
+  
+}

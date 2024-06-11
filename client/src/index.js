@@ -35,6 +35,8 @@ import OrderComplete from './pages/customers/OrderComplete';
 import OrderCarddetailAdmin from './pages/admin/OrderCarddetail';
 import CheckPaymentMomo from './components/customer/CheckPaymentMomo';
 import RemainderPayment from './pages/customers/RemainderPayment';
+import CheckRemainder from './components/customer/CheckRemainder';
+import RemainderSuccessfull from './components/customer/RemainderSuccessfull';
 
 
 
@@ -67,12 +69,14 @@ root.render(
             </Route>
 
 
-
+            <Route path="purchase/remainder/check-payment" element={<CheckRemainder />} />
+            <Route path="purchase/remainder/status" element={<RemainderSuccessfull />} />
             <Route path='/account' element={<Account />} >
                 <Route index element={<AccountProfile />}/>
                 <Route path="purchase" element={<AccountPurchase />} />
                 <Route path="purchase/remainder/:id" element={<RemainderPayment />} />
             </Route>
+
 
 
             <Route  path='/admin' element={<Authentication />}/>

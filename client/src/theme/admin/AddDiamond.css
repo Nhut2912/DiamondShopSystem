@@ -1,7 +1,7 @@
 .add-diamond-container >  .Certificate > .image-certificate {
     width: 500px;
     height: 386.16px;
-    border: 1px solid rgba(255,255,255,0.4);
+    border: 1px solid rgba(0,0,0,0.1);
     border-radius: 5px;
     overflow: hidden;
     display: flex;

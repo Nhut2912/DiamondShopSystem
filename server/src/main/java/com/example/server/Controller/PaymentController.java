@@ -58,6 +58,30 @@ public class PaymentController {
         return captureWalletMoMoResponse;
     }
 
+
+    @GetMapping("paymentRemainder/{amount}")
+    public PaymentResponse paymentRemainder(@PathVariable Long amount) throws MoMoException {
+        LogUtils.init();
+
+        String requestId = String.valueOf(System.currentTimeMillis());
+        String orderId = String.valueOf(System.currentTimeMillis());
+
+        String orderInfo = "Pay Remainder";
+        String returnURL = "http:/localhost:3000/purchase/remainder/check-payment";
+        String notifyURL = "/check";
+        Environment environment = Environment.selectEnv("dev");
+
+        /*
+         * create payment with capture momo wallet
+         */
+        PaymentResponse captureWalletMoMoResponse = CreateOrderMoMo.process(environment, orderId, requestId, Long.toString(amount), orderInfo, returnURL, notifyURL, "", RequestType.CAPTURE_WALLET, Boolean.TRUE);
+        return captureWalletMoMoResponse;
+    }
+
+
+
+
+
     @PostMapping("checkPayment")
     public ResponseEntity<?> paymentNotification(@RequestBody PaymentNotificationDTO paymentNotificationDTO){
         String a = new GsonBuilder()

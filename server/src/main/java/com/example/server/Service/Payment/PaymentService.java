@@ -52,7 +52,7 @@ public class PaymentService implements IPaymentService{
         return iPaymentRepository.getPaymentsByOrder_Id(id);
     }
 
-    public Payment getPaymentByOrderIdToUpdatePayment(Long id){return iPaymentRepository.getPaymentsByOrder_Id(id.toString());}
+    public Payment getPaymentByOrderIdToUpdatePayment(Long id){return iPaymentRepository.getPaymentByOrder_Id(id);}
 
     public boolean updatePayment(Payment payment){
         try {

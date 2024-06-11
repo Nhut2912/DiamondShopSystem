@@ -99,9 +99,9 @@ public class OrderController {
     public ResponseEntity<String> pendingOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "PENDING");
         if(updated){
-            return ResponseEntity.ok("Order status updated to 'Pending Orders'.");
+            return ResponseEntity.ok("true");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("false");
         }
     }
 
@@ -110,9 +110,9 @@ public class OrderController {
     public ResponseEntity<String> prepareOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "PREPARING");
         if(updated){
-            return ResponseEntity.ok("Order status updated to 'Preparing Orders'.");
+            return ResponseEntity.ok("true");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("false");
         }
     }
 
@@ -121,9 +121,9 @@ public class OrderController {
     public ResponseEntity<String> preparedOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "PREPARED");
         if(updated){
-            return ResponseEntity.ok("Order status updated to 'Prepared Orders'.");
+            return ResponseEntity.ok("true");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("false");
         }
     }
 
@@ -133,9 +133,9 @@ public class OrderController {
     public ResponseEntity<String> deliveringOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "DELIVERING");
         if(updated){
-            return ResponseEntity.ok("Order status updated to 'Delivering Orders'.");
+            return ResponseEntity.ok("true");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("false");
         }
     }
 
@@ -143,9 +143,9 @@ public class OrderController {
     public ResponseEntity<String> completedOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "COMPLETED");
         if(updated){
-            return ResponseEntity.ok("Order status updated to 'Completed Orders'.");
+            return ResponseEntity.ok("true");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("false");
         }
     }
 
@@ -153,9 +153,9 @@ public class OrderController {
     public ResponseEntity<String> canceledOrder(@PathVariable Long id){
         boolean updated = iorderService.updateOrderStatus(id, "CANCELLED");
         if(updated){
-            return ResponseEntity.ok("Order status updated to 'Canceled Orders'.");
+            return ResponseEntity.ok("true");
         }else{
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("false");
         }
     }
 

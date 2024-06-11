@@ -5,16 +5,17 @@
     margin-top: 30px;
     font-family: 'Poppins';
     font-size: 25px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    color: rgba(0,0,0,0.8);
+    letter-spacing: 0.15px;
     margin-bottom: 5px;
 }
 .product-container >  p{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     margin-bottom: 40px;
-    font-weight: 300;
+    font-weight: 400;
     cursor: pointer;
 }
 .product-container > .product-navigation{
@@ -28,7 +29,7 @@
 .product-container > .product-navigation > .search-sort > .search{
     width: 350px;
     height: 50px;
-    background-color: rgba(26, 27, 29, 1);
+    background-color: #FFFFFF;
     border-radius: 5px;
     display: grid;
 }
@@ -38,14 +39,14 @@
     outline: none;
     background-color: transparent;
     border: none;
-    color: rgba(255,255,255,0.7);
+    color: rgba(0,0,0,0.7);
     font-size: 15px;
     font-family: 'Poppins';
 }
 .product-container > .product-navigation > .search-sort > .sort{
     width: 200px;
     height: 50px;
-    background-color: rgba(26, 27, 29, 1);
+    background-color: #FFFFFF;
     border-radius: 5px;
     display: grid;
     position: relative;
@@ -57,9 +58,9 @@
     background-color: transparent;
     font-family: 'Poppins';
     font-size: 14px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.7);
     border: none;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.5px;
     padding-right: 34px;
     position: relative;
@@ -86,19 +87,19 @@
     padding: 15px 40px;
     font-family: 'Poppins';
     font-size: 16px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
     cursor: pointer;
 }
 .product-container > .product-navigation > ul > li.isActive{
-    background-color: rgba(26, 27, 29, 1);
-    color: rgba(255,255,255,1);
+    background-color: #FFFFFF;
+    color: rgba(0,0,0,0.8);
     font-weight: 500;
     border-top-left-radius:10px ;
     border-top-right-radius:10px ;
 }
 .product-container >  .product-content{
-    background-color: rgba(26, 27, 29, 1);
+    background-color: #FFFFFF;
     border-radius: 10px;
     border-top-left-radius: 0;
     display: block;
@@ -110,9 +111,9 @@
     text-align: right;
     margin: 0 42px;
     font-family: 'Poppins';
-    font-weight: 300;
-    font-size: 13px;
-    color: rgba(255,255,255,0.2);
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(0,0,0,0.6);
 }
 .product-container >  .product-content  > .product-view  > .produc-items-container{
     overflow-y: scroll;
