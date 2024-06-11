@@ -10,6 +10,6 @@ public interface IPaymentService {
     public boolean createPayment(OrderDTO orderDTO, Order order);
 
     public List<Payment> getPaymentByOrderId(Long id);
-    public Payment getPaymentByOrderIdToUpdatePayment(Long id);
+
     public boolean updatePayment(Payment payment);
 }

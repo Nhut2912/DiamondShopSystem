@@ -52,8 +52,6 @@ public class PaymentService implements IPaymentService{
         return iPaymentRepository.getPaymentsByOrder_Id(id);
     }
 
-    public Payment getPaymentByOrderIdToUpdatePayment(Long id){return iPaymentRepository.getPaymentsByOrder_Id(id.toString());}
-
     public boolean updatePayment(Payment payment){
         try {
             iPaymentRepository.save(payment);

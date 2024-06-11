@@ -10,5 +10,5 @@ import java.util.List;
 public interface IPaymentRepository extends CrudRepository<Payment, Long> {
 
     public List<Payment> getPaymentsByOrder_Id(Long id);
-    public Payment getPaymentsByOrder_Id(String id);
+
 }

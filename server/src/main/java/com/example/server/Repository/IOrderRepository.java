@@ -15,4 +15,5 @@ public interface IOrderRepository extends CrudRepository<Order, Long> {
      @Query("SELECT o FROM Order o WHERE o.account.id =:account_id ")
      List<Order> getOrdersByAccount_Id(@Param("account_id") Long id);
 
+
 }

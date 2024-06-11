@@ -2,6 +2,7 @@ package com.example.server.Controller;
 
 import com.example.server.Model.AccountDTO;
 import com.example.server.Model.OrderDTO;
+import com.example.server.Model.PaymentDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Pojo.Order;
 import com.example.server.Pojo.Payment;
@@ -11,6 +12,7 @@ import com.example.server.Service.Account.IAccountService;
 import com.example.server.Service.Order.IOrderService;
 import com.example.server.Service.Order.OrderService;
 import com.example.server.Service.OrderDetail.IOrderDetailService;
+import com.example.server.Service.PaymenMethod.IPaymentMethodService;
 import com.example.server.Service.Payment.IPaymentService;
 import com.example.server.Service.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,9 @@ public class OrderController {
     @Autowired
     private IPaymentService iPaymentService;
 
+    @Autowired
+    private IPaymentMethodService iPaymentMethodService;
+
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
         if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId()) && iAccountService.isSamePhone(orderDto.getAccountDTO().getNumberPhone())) {
@@ -65,17 +70,22 @@ public class OrderController {
 
     }
     @PostMapping("/updatePayment")
-    public boolean updatePayment(@RequestParam Long OrderId, @RequestParam String paymentMethod){
+    public boolean updatePayment(@RequestBody PaymentDTO paymentDTO, @RequestParam Long orderId){
         try {
-            Payment payment = iPaymentService.getPaymentByOrderIdToUpdatePayment(OrderId);
+
             Payment newPayment = new Payment();
-            newPayment.setPaymentMethod(payment.getPaymentMethod());
-            newPayment.setOrder(payment.getOrder());
-            newPayment.setAmount(payment.getAmount());
-            newPayment.setPayTime(payment.getPayTime());
-            if(paymentMethod.equals("BANKTRANSFER")){
-                newPayment.setImage(payment.getImage());
-            }else newPayment.setTransactionCode(payment.getTransactionCode());
+
+            Order order = iorderService.getOrderById(orderId);
+            newPayment.setOrder(order);
+            newPayment.setAmount(paymentDTO.getAmount());
+            newPayment.setPayTime(paymentDTO.getPayTime());
+            if(paymentDTO.getPaymentMethodDTO().getMethod().equals("BANKTRANSFER")){
+                newPayment.setImage(paymentDTO.getImage());
+            }else newPayment.setTransactionCode(paymentDTO.getTransactionCode());
+            newPayment.setPaymentMethod(
+                    iPaymentMethodService.getPaymentMethod(paymentDTO.getPaymentMethodDTO().getMethod())
+
+            );
             iPaymentService.updatePayment(newPayment);
             return true;
         }catch(Exception ex){

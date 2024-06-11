@@ -1,5 +1,6 @@
 package com.example.server.Model;
 
+import com.example.server.Pojo.PaymentMethod;
 import lombok.Data;
 
 import java.sql.Date;
