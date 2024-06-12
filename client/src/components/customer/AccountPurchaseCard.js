@@ -10,7 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const numberFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumSignificantDigits: 2
+    minimumFractionDigits: 2,
   });
 
 
@@ -164,8 +164,9 @@ function AccountPurchaseCard({
         </div>
 
         {
-            orderStatus !== undefined && orderStatus !== null &&
-
+            orderStatus !== undefined && orderStatus !== null && paid !== undefined && paid !== null &&
+            totalPrice !== undefined && totalPrice !== null &&
+             paid.toFixed(2)  !== totalPrice.toFixed(2)  &&
             (orderStatus !== "PENDING" && orderStatus !== "COMPLETED" && orderStatus !== "CANCELLED") ?
             
             <div className='remainder-paid'>

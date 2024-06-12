@@ -118,15 +118,15 @@ public class ProductService implements IProductService{
             productDTO.setSize(item.getSize().getSize());
 
 
-<<<<<<< HEAD
-//
-=======
-//--perfect--
+
             double totalPrice = 0;
             double caratInterval = 0;
             
             List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
             List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
+
+            System.out.println(listDiamondReturn);
+
             for (Diamond diamond : listDiamondReturn) {
                 if(diamond.getCarat() >= 0.1 && diamond.getCarat() <= 0.3) {
                     caratInterval = 0.1;
@@ -142,55 +142,23 @@ public class ProductService implements IProductService{
                 DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
                         diamond.getClarity().getId(), diamond.getColor().getId()
                         , diamond.getCut().getId(), diamond.getOrigin().getId());
-                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() * 100;
+                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() *10;
             }
+
+
+
+
             for (ProductMaterial productMaterial : listProductMaterial){
-                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getId());
+                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
                 totalPrice += materialPriceList.getSellPrice();
             }
             totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
             totalPrice += totalPrice*((double) item.getPriceRate() / 100);
 
             productDTO.setPrice(totalPrice);
-//--perfect--
-
-
->>>>>>> e074036b69d5bf41e2fb5fa1911130350670a651
-//            double totalPrice = 0;
-//            List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
-//            List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
-//            for (Diamond diamond : listDiamondReturn) {
-//                DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
-//                        diamond.getClarity().getId(), diamond.getColor().getId()
-//                        , diamond.getCut().getId(), diamond.getOrigin().getId());
-//                totalPrice += diamondPriceList.getPrice() * diamondPriceList.getCarat() * 100;
-//            }
-//            for (ProductMaterial productMaterial : listProductMaterial){
-//                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getId());
-//                totalPrice += materialPriceList.getSellPrice();
-//            }
-//            totalPrice += (item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost() +
-//                    ((double) item.getPriceRate() / 100));
-//
-//            productDTO.setPrice(totalPrice);
-<<<<<<< HEAD
-
-
-=======
-            //productDTO.setPrice(totalPrice);
->>>>>>> e074036b69d5bf41e2fb5fa1911130350670a651
-
-//            Set<String> images = new HashSet<>();
-//            item.getImages().forEach((image -> images.add(image.getUrl())));
-//            productDTO.setImages(images);
-
-<<<<<<< HEAD
 
 
 
-
-=======
->>>>>>> e074036b69d5bf41e2fb5fa1911130350670a651
             Set<String> images = new HashSet<>();
             item.getImages().forEach((image -> images.add(image.getUrl())));
             productDTO.setImages(images);
@@ -214,7 +182,52 @@ public class ProductService implements IProductService{
 
               productDTO.setSizeUnitPrice(product.get().getSizeUnitPrice());
 
-              Set<String> images = new HashSet<>();
+
+
+            double totalPrice = 0;
+            double caratInterval = 0;
+
+            List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(product.get().getId());
+            List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(product.get().getId());
+
+
+
+            for (Diamond diamond : listDiamondReturn) {
+                if(diamond.getCarat() >= 0.1 && diamond.getCarat() <= 0.3) {
+                    caratInterval = 0.1;
+                }else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.7){
+                    caratInterval = 0.5;
+                }else if (diamond.getCarat() >= 0.8 && diamond.getCarat() <= 1.4) {
+                    caratInterval = 1;
+                }else if (diamond.getCarat() >= 1.5 && diamond.getCarat() <= 1.7) {
+                    caratInterval = 1.5;
+                }else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
+                    caratInterval = 2;
+                }
+                DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
+                        diamond.getClarity().getId(), diamond.getColor().getId()
+                        , diamond.getCut().getId(), diamond.getOrigin().getId());
+                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() *10;
+            }
+
+
+
+
+            for (ProductMaterial productMaterial : listProductMaterial){
+                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
+                totalPrice += materialPriceList.getSellPrice();
+            }
+            totalPrice += product.get().getProductionCost() + product.get().getSecondaryDiamondCost() + product.get().getSecondaryMaterialCost();
+            totalPrice += totalPrice*((double) product.get().getPriceRate() / 100);
+
+            productDTO.setPrice(totalPrice);
+
+
+
+
+
+
+            Set<String> images = new HashSet<>();
               product.get().getImages().forEach((image -> images.add(image.getUrl())));
               productDTO.setImages(images);
               productDTO.setCategory(product.get().getCategory().getName());

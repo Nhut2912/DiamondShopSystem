@@ -6,17 +6,11 @@
     justify-content: center;
     align-items: center;
 }
-.remainder-successfull-container > .square {
-    width: 10px;
-    height: 200px;
-    background-color: brown;
-    position: absolute;
-    transition: linear 1s ;
-}
-.remainder-successfull-container > .square:hover {
-    width: 200px;
-    height: 200px;
-    background-color: brown;
-    position: absolute;
-  
+
+
+.remainder-successfull-container > .square > ul {
+    display: grid;
+    grid-template-columns: 2fr 6fr 4fr;
+    column-gap: 20px;
+    width: 60vw;
 }

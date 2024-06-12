@@ -9,13 +9,12 @@ import InputFile from '../../components/customer/InputFile';
 
 
 
-
-const numberFormatter = new Intl.NumberFormat('en-US', {
+const formattedNumber = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumSignificantDigits: 2
-  });
-
+    minimumFractionDigits: 2,
+  })
+  
 
 const convertUSDToVnd = (usd) => {
     const usdPrice = 25430;
@@ -352,7 +351,7 @@ function Order() {
                                  <li>
                                      {item.sizeUser}
                                  </li>
-                                 <li>{numberFormatter.format(item.price)}
+                                 <li>{formattedNumber.format(item.price)}
                                  </li>
                            </ul>
        
@@ -376,7 +375,7 @@ function Order() {
                      
                                        <li>
                                            <h5>Sub total</h5>
-                                           <h4>{numberFormatter.format( order !== undefined &&
+                                           <h4>{formattedNumber.format( order !== undefined &&
                                              order !== null ? 
                                              order.subTotal :"" )}</h4>
                                        </li>
@@ -384,14 +383,14 @@ function Order() {
                                            <h5>
                                              Discount
                                            </h5>
-                                           <h4>{numberFormatter.format(
+                                           <h4>{formattedNumber.format(
                                              order !== undefined &&
                                              order !== null ? 
                                              order.discount : "")}</h4>
                                        </li>
                                        <li>
                                            <h5>Total</h5>
-                                           <h4>{numberFormatter.format( order !== undefined &&
+                                           <h4>{formattedNumber.format( order !== undefined &&
                                              order !== null ? 
                                              order.totalPrice : "")}</h4>
                                        </li>
@@ -440,7 +439,7 @@ function Order() {
                                  order.accountDTO.numberPhone : ""
                              }</li>
                                  <li>{cart !== undefined && cart !== null ? cart.length : 0}</li>
-                                 <li>{numberFormatter.format(order !== undefined && order !== null ? order.totalPrice : 0)}</li>
+                                 <li>{formattedNumber.format(order !== undefined && order !== null ? order.totalPrice : 0)}</li>
                              </ul>
                              <div className='line'></div>
                                  <ul>
@@ -449,7 +448,7 @@ function Order() {
                                              Deposit Fee
                                          </h5>
                                          <h5>
-                                         {numberFormatter.format(order !== undefined && order !== null ?  order.totalPrice*10/100 : 0)}
+                                         {formattedNumber.format(order !== undefined && order !== null ?  order.totalPrice*10/100 : 0)}
                                          </h5>
                                      </li>
                                  </ul>
@@ -509,7 +508,7 @@ function Order() {
                                  order.accountDTO.numberPhone : ""
                              }</li>
                                  <li>{cart !== undefined && cart !== null ? cart.length : 0}</li>
-                                 <li>{numberFormatter.format( order !== undefined && order !== null ? order.totalPrice : 0)}</li>
+                                 <li>{formattedNumber.format( order !== undefined && order !== null ? order.totalPrice : 0)}</li>
                              </ul>
                              <div className='line'></div>
                                  <ul>
@@ -518,7 +517,7 @@ function Order() {
                                              Deposit Fee
                                          </h5>
                                          <h5>
-                                         {numberFormatter.format(order !== undefined && order !== null ?  order.totalPrice*10/100 : 0)}
+                                         {formattedNumber.format(order !== undefined && order !== null ?  order.totalPrice*10/100 : 0)}
                                          </h5>
                                      </li>
                                  </ul>

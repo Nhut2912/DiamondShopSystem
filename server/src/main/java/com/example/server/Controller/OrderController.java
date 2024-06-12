@@ -50,7 +50,7 @@ public class OrderController {
 
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
-        if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId()) && iAccountService.isSamePhone(orderDto.getAccountDTO().getNumberPhone())) {
+        if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId())) {
             try{
 
                 if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){

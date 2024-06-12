@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function CheckRemainder() {
 
@@ -6,6 +7,8 @@ function CheckRemainder() {
   const [resultCode,setResultCode] = useState();
   const [responseTime,setResponseTime] = useState();
   const [transaction,setTransaction] = useState();
+  const navigate = useNavigate();
+
 
   useEffect(()=> {
     const params =  new URLSearchParams(window.location.search);
@@ -44,8 +47,34 @@ function CheckRemainder() {
               "method": payment.method
           }
         }
-        console.log(paymentSend);
-        console.log(payment.orderId);
+      
+        const callPaymentAPi = async() => {
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+    
+    
+          const requestOptions = {
+             method: "POST",
+             headers: myHeaders,
+             body: JSON.stringify(paymentSend),
+             redirect: "follow"
+          };
+    
+          await fetch(`http://localhost:8080/api/order/updatePayment?orderId=${payment.orderId}`, requestOptions)
+             .then((response) => response.text())
+             .then((result) => 
+                {
+                   if(result){
+                      navigate("/purchase/remainder/status")
+                   }
+                }
+             )
+             .catch((error) => console.error(error));
+ 
+       }
+       
+       callPaymentAPi();
+
     }
  },[payment,resultCode,responseTime])
 

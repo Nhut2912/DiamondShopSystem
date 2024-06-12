@@ -16,8 +16,8 @@ function Product() {
           .then(data => setData(data))
           .catch((error) => console.error(error));
   },[])
-  console.log(data);
-  if(data === undefined) return <div>Loading</div>
+
+  if(data === undefined || data === null) return <div>Loading</div>
 
   const itemsSorted = [
     {name : "Default Sorted"},
@@ -66,6 +66,7 @@ function Product() {
                               name={product.name}
                               images={product.images}
                               id={product.id}
+                              price={product.price}
                               />
                             ))
                           }
@@ -115,6 +116,7 @@ function Product() {
                               name={product.name}
                               images={product.images}
                               id={product.id}
+                              price={product.price}
                               />
                             ))
                           }

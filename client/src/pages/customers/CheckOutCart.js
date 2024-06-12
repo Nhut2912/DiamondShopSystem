@@ -10,12 +10,13 @@ import useLocalStorage from '../../hook/useLocalStorage';
 import { CartContext } from '../../context/CartContext';
 
 
-const numberFormatter = new Intl.NumberFormat('en-US', {
+
+const formattedNumber = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumSignificantDigits: 2
-  });
-
+    minimumFractionDigits: 2,
+  })
+  
 
 
 function CheckOutCart() {
@@ -238,19 +239,19 @@ function CheckOutCart() {
                                 <ul>
                                     <li>
                                     <span>Sub total</span>
-                                    <span>{numberFormatter.format(subTotal)}</span>
+                                    <span>{formattedNumber.format(subTotal)}</span>
                                     </li>
                                     <li>
                                     <span>
                                         Discount
                                     </span>
-                                    <span>{numberFormatter.format(discount)}</span>
+                                    <span>{formattedNumber.format(discount)}</span>
                                     </li>
                                 </ul>
                             </div>
                             <div className='total'>
                                 <h4>Total</h4>
-                                <span>{numberFormatter.format(total)}</span>
+                                <span>{formattedNumber.format(total)}</span>
                             </div>
                        </>
                     }

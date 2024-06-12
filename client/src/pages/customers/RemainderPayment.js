@@ -4,7 +4,9 @@ import '../../theme/customer/RemainderPayment.css';
 import { IMAGES } from '../../constants/customer';
 import InputFile from '../../components/customer/InputFile';
 import { useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import { imageStorage } from '../../config/FirebaseConfig';
+import { ref, uploadBytes } from 'firebase/storage';
 
 const convertUSDToVnd = (usd) => {
     const usdPrice = 25430;
@@ -14,13 +16,20 @@ const convertUSDToVnd = (usd) => {
 
 
 function RemainderPayment() {
+
   const params = useParams(); 
   const orderID = params.id;
-   
+
+  const navigate = useNavigate();
+
+
   const [payments,setPayments] = useState();
   const [accountDTO,setAccountDTO]  = useState();
   const [deposit,setDeposit] = useState();
   const [numberOfGoods,setNumberOfGoods] = useState();
+  const [imagePayment,setImagePayment] = useState();
+  const [fileImagePayment,setFileImagePayment] = useState();
+
 
   const paymentMethodList = [
     {name : "Bank Transfer", img : '',description  : "Bank Transfer"},
@@ -100,6 +109,58 @@ function RemainderPayment() {
     .catch((error) => console.error(error));
 
  }
+
+
+
+ const handlePaymentBankTransfer = () => {
+
+    let url ="";
+    if(fileImagePayment){
+       
+        const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        const millisecond = new Date().getMilliseconds();
+        const filename = `payment_${randomString}_${millisecond}.${fileImagePayment.type.split('/')[1]}`;
+        url = `uploads/${filename}`;
+        const imageRef = ref(imageStorage,url);
+        uploadBytes(imageRef,fileImagePayment);
+    }
+
+
+
+    const paymentSend = {
+        "amount" : remainder.toFixed(2),
+        "payTime" : "",
+        "transactionCode" : "",
+        "image": url,
+        "paymentMethodDTO": {
+            "method": "BANKTRANSFER"
+        }
+      }
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+  
+  
+        const requestOptions = {
+           method: "POST",
+           headers: myHeaders,
+           body: JSON.stringify(paymentSend),
+           redirect: "follow"
+        };
+  
+        fetch(`http://localhost:8080/api/order/updatePayment?orderId=${orderID}`, requestOptions)
+           .then((response) => response.text())
+           .then((result) => 
+              {
+                 if(result){
+                    navigate("/purchase/remainder/status")
+                 }
+              }
+           )
+           .catch((error) => console.error(error));
+     
+ }
+
+
 
  const handleContinue = () => {
     if(paymentMethod === "Bank Transfer"){
@@ -228,12 +289,13 @@ function RemainderPayment() {
                                                 <div className='upload-payment'>
                                                     <div>
                                                         <InputFile
-                                                            
+                                                            setImageData={imagePayment}
+                                                            setFileImage={fileImagePayment}
                                                         _width="200px" />
                                                         <p>Please upload your reciept here</p>
                                                     </div>
                                                     <div className='receipt'>
-                                                        <img  alt=''/>
+                                                        <img src={imagePayment} alt=''/>
                                                     </div>
                                                 </div>
                                 </div>

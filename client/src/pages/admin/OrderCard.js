@@ -46,8 +46,9 @@ const COLORS_STATUS_BACKGROUND = [
   const navigate = useNavigate();
   const [statusColor,setStatusColor] = useState();
   const [backgroundColor,setBackgroundColor] = useState();
-
-  console.log(Status);
+  const [remainderPaid,setRemainderPaid] = useState();
+  const [depositPaid,setDepositPaid] = useState();
+  const [statusRemainder,setStatusRemainder] = useState("NOT YET");
 
   useEffect(()=>{
     fetch(`http://localhost:8080/api/payment?order_id=${orderID}`)
@@ -72,6 +73,29 @@ const COLORS_STATUS_BACKGROUND = [
     })
   },[Status])
 
+
+  useEffect(() => {
+      if(data !== undefined && data !== null){
+        if(data.length === 1){
+          setDepositPaid((data[0].amount).toFixed(2));
+        }else{
+          setDepositPaid((data[0].amount).toFixed(2));
+          let remainder = 0;
+          for(let i = 1 ; i < data.length ; i++){
+            if(data[i].paymentMethod.method === "BANKTRANSFER"){
+              setStatusRemainder("PENDING")
+            }else{
+              remainder += data[i].amount;
+            }
+           
+          }
+          setRemainderPaid(remainder);
+        }
+      }
+      
+  })
+
+
   if(data === undefined || data === null) return <div>Loading .</div>
   if(backgroundColor === undefined || statusColor === undefined) return <div>Loading ...</div>
 
@@ -81,7 +105,8 @@ const COLORS_STATUS_BACKGROUND = [
   const handleDetailOrder = () => {
     navigate(`/admin/overview/order/${orderID}`);
   }
-  
+
+
   return (
     <div className='order-card-content' onClick={handleDetailOrder}>
        <div>
@@ -124,7 +149,7 @@ const COLORS_STATUS_BACKGROUND = [
                         <div>
                           <b> ${(Total*10/100).toFixed(2)} </b>
                           {
-                            Status === "PENDING" ?
+                            (Total*10/100) === depositPaid ?
                             <span 
                               style={{color: "rgba(217, 179, 132, 1)" ,
                                   border: "1px solid rgba(217, 179, 132, 1)",
@@ -145,12 +170,26 @@ const COLORS_STATUS_BACKGROUND = [
                           <div>
                             <b>$
                             {remainder} </b>
-                            <span
-                              style={{color: "rgba(0,0,0,0.4)",
-                                  border: "1px solid rgba(0,0,0,0.4)",
+
+                            { 
+                                statusRemainder !== undefined && statusRemainder !== undefined &&
+                                (statusRemainder === "PENDING" || statusRemainder === "NOT YET") && 
+                                remainderPaid === remainder
+                                ?
+                                <span
+                                style={{color: "rgba(0,0,0,0.4)",
+                                    border: "1px solid rgba(0,0,0,0.4)",
+                                  padding: "2px 20px"
+                                }}
+                              >{statusRemainder}</span> :   <span
+                              style={{color: "rgba(54, 227, 57, 1)",
+                                border: "1px solid rgba(54, 227, 57,1)",
                                 padding: "2px 20px"
-                              }}
-                            >NOT YET</span>
+                              }} 
+                            >DONE</span>
+                            }
+
+                          
                           </div>
                       </li>
                   </>
@@ -162,16 +201,8 @@ const COLORS_STATUS_BACKGROUND = [
       <div>
           <div>
               <h4>Total </h4> 
-              <span>${Total} </span>
-              {
-                Status !== 'PENDING' ? 
-                <span
-                style={{fontSize:"12px",
-                  color: 'rgba(255,255,255,0.4)',
-                  fontWeight: '400'
-                }}
-              >{"( Paid $100 / $1034 )"}</span> :""
-              }
+              <span>${Total.toFixed(2)} </span>
+              
             
           </div>
           <p>

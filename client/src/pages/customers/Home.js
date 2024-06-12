@@ -119,6 +119,7 @@ function Home() {
                                     id={item.id}
                                     name={item.name}
                                     images={item.images}
+                                    price={item.price}
                                 />
                            ))
                         }

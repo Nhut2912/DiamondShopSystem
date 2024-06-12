@@ -219,7 +219,11 @@ function AddProduct() {
       };
       fetch("http://localhost:8080/api/product/save", requestOptions)
       .then((response) => response.text())
-      .then(data =>  setData(data))
+      .then(data =>  {
+        if(data !== null){
+          window.location.href = window.location.href;
+        }
+      })
       .catch((error) => console.error(error));
 
       console.log(data);

@@ -55,7 +55,7 @@ function AddDiamond({origin, color, clarity,cut ,imageData,index,setImageData,le
                         <RadioInput title={"Cut"} items={cut}  _width={"100px"} setParams={setCutDiamond} />
                 </div>
                 <div className='Carat'>
-                    <InputDoubleBox title={"Carat (g)"}  _width="100px" setParams={setCaratDiamond} />
+                    <InputDoubleBox title={"Carat"}  _width="100px" setParams={setCaratDiamond} />
                 </div>
                 <div className='Certificate'>
                    <div className='image-certificate' 

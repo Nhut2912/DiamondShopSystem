@@ -11,17 +11,25 @@ import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react';
 import { ProductCart } from '../../constants/customer/ProductCart';
 
-const numberFormatter = new Intl.NumberFormat('en-US', {
+const formattedNumber = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
-  maximumSignificantDigits: 2
-});
+  minimumFractionDigits: 2,
+})
 
-const getPriceBySize = (userSize,productSize,unitPrice,productPrice) =>{
-    if(userSize > productSize){
-        return productPrice + (userSize - productSize)*unitPrice;
+
+const getPriceBySize = (userSize,productSize,unitPrice,productPrice) => {
+
+  console.log(productPrice);
+  console.log(unitPrice)
+  console.log(productSize)
+  console.log(userSize)
+    if(userSize == productSize){
+      return productPrice;
+    }else if(userSize > productSize){
+      return productPrice + (userSize-productSize)*unitPrice;
     }else{
-      return productPrice - (userSize - productSize)*unitPrice;
+      return productPrice - (productSize-userSize)*unitPrice;
     }
 }
 
@@ -113,6 +121,8 @@ function ProductDetailCard({data}) {
      }else navigate("/login")
   }
 
+  console.log(data);
+
   return (
     <div className='product-detail-card-container'>
         <div className='image-product-container'>
@@ -132,7 +142,8 @@ function ProductDetailCard({data}) {
         <div className='information-product-container'>
               <h1>{data.name}</h1>
               <p>CODE : {data.code}</p>
-              <h2>{numberFormatter.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price))}
+              <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price).toFixed(2))}
+                {console.log(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price).toFixed(2))}
                 </h2>
               <div className='choose-size'>
                  {data.category === "Ring" ? 

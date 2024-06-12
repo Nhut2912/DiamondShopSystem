@@ -38,6 +38,7 @@ public class AccountService implements IAccountService{
             accountUpdate.setName(accountDTO.getName());
             accountUpdate.setAddress(accountDTO.getAddress());
             accountUpdate.setBirthDay(accountDTO.getBirthDay());
+            accountUpdate.setNumberPhone(accountDTO.getNumberPhone());
             return true;
         }catch (Exception ex){
             System.out.println(ex.getMessage());

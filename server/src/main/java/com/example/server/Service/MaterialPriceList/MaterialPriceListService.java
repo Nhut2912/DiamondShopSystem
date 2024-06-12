@@ -9,11 +9,15 @@ import java.util.Optional;
 
 @Service
 public class MaterialPriceListService implements IMaterialPriceListService{
+
     @Autowired
     private IMaterialPriceListRepository iMaterialPriceListRepository;
+
+
     @Override
     public MaterialPriceList getMaterialPriceListById(Long id) {
         Optional<MaterialPriceList> materialPriceList = iMaterialPriceListRepository.findByMaterial_id(id);
+        System.out.println(materialPriceList);
         return materialPriceList.orElse(null);
     }
 }

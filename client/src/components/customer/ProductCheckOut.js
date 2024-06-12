@@ -6,12 +6,13 @@ import { ICONS } from '../../constants/customer';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { imageStorage } from '../../config/FirebaseConfig';
 
-const numberFormatter = new Intl.NumberFormat('en-US', {
+
+
+  const formattedNumber = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumSignificantDigits: 2
-  });
-
+    minimumFractionDigits: 2,
+  })
   
 
 function ProductCheckOut({data,handleDeleteProduct}) {
@@ -49,7 +50,7 @@ function ProductCheckOut({data,handleDeleteProduct}) {
         <ul>
             <li>
                 <span>Price</span>
-                <span>{numberFormatter.format(data.price)}</span>
+                <span>{formattedNumber.format(data.price)}</span>
             </li>
             <li>
                 <span>

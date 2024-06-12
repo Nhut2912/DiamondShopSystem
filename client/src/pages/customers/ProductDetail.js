@@ -22,7 +22,8 @@ function ProductDetail() {
  
   if(data === undefined) return <div>Loading</div>
  
-  
+
+  console.log(data);
 
   return (
     <div>

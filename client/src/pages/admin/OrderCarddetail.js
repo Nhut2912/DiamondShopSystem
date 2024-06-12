@@ -18,8 +18,10 @@ function OrderCarddetail() {
  const [imagesProduct,setImagesProduct] = useState();
  const [payments,setPayments] = useState();
 
- const [paymentDeposit,setPaymentDeposit] = useState();
- const [paymentRemainder,setPaymentRemainder] = useState(); 
+ 
+ const [remainderPaid,setRemainderPaid] = useState(); 
+ const [totalOrder,setTotalOrder] = useState();
+
  const [statusDeposit,setStatusDeposit] = useState();
  const [statusRemainder,setStatusRemainder] = useState();
 
@@ -87,24 +89,58 @@ function OrderCarddetail() {
                     setStatusDeposit("DONE");
                 }
             }
-
-            // if(payments.length > 1){
-            //     payments.slice(0,payments.length-1).map(())
-            // }else setStatusRemainder("NOT YET");
         }   
   },[payments])
+
+
+  useEffect(() => {
+        if(orderDetail !== undefined && orderDetail !== null){
+            setTotalOrder(  
+                orderDetail[0].order.totalPrice.toFixed(2));
+        }
+
+  },[orderDetail])
+
+
+  useEffect(() => {
+    if(payments !== undefined && payments !== null){
+        let remainder = 0;
+        if(payments.length > 1){
+            for(let i =1; i < payments.length; i++){
+                if(payments[i].paymentMethod.method === "BANKTRANSFER"){
+                
+                }else{
+                    remainder += payments[i].amount;
+                }
+            }
+            setRemainderPaid(remainder);
+        }
+    }
+
+  },[payments])
+
+
+
+  useEffect(()=> {
+    if(remainderPaid !== undefined && remainderPaid !== null && orderDetail !== undefined && orderDetail !== null){
+        if(remainderPaid == ((orderDetail[0].order.totalPrice*90)/100).toFixed(2)){
+            setStatusRemainder("DONE");
+        }else if(payments.length === 1 ){
+            setStatusRemainder("NOT YET")
+        }else{
+            setStatusRemainder("PENDING")
+        }
+    }
+  },[remainderPaid,orderDetail])
+
+
 
   if(statusDeposit === undefined || statusDeposit === null) return <div>Loadding</div> 
  if(orderDetail === undefined || orderDetail === null) return <div>Loading</div>;
 
 
 
-let count = 0;
-let subTotal = 0;
-orderDetail.map((item) =>{
 
-        subTotal += item.priceAfterSizeAdjustment;
-})
 
 const handlePreparedOrder = () => {
         const requestOptions = {
@@ -114,7 +150,11 @@ const handlePreparedOrder = () => {
           
           fetch(`http://localhost:8080/api/order/Prepared/${orderID}`, requestOptions)
             .then((response) => response.text())
-            .then((result) => console.log(result))
+            .then((result) => {
+                if(result){
+                    window.location.href = window.location.href;
+                }
+            })
             .catch((error) => console.error(error));
     
   }
@@ -127,7 +167,13 @@ const handlePreparedOrder = () => {
       
       fetch(`http://localhost:8080/api/order/Delivering/${orderID}`, requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then((result) => 
+            {
+                if(result){
+                    window.location.href = window.location.href;
+                }
+            }
+        )
         .catch((error) => console.error(error));
 
  }
@@ -141,7 +187,12 @@ const handlePreparedOrder = () => {
       
       fetch(`http://localhost:8080/api/order/Canceled/${orderID}`, requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then((result) => {
+
+            if(result){
+                window.location.href = window.location.href;
+            }
+        })
         .catch((error) => console.error(error));
   }
 
@@ -154,10 +205,24 @@ const handlePreparedOrder = () => {
       
       fetch(`http://localhost:8080/api/order/Completed/${orderID}`, requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then((result) => {
+            if(result){
+                window.location.href = window.location.href;
+            }
+        })
         .catch((error) => console.error(error));
 
  }
+
+
+
+
+
+let count = 0;
+let subTotal = 0;
+orderDetail.map((item) =>{
+        subTotal += item.priceAfterSizeAdjustment;
+})
 
 
 
@@ -282,8 +347,7 @@ const handlePreparedOrder = () => {
                                         <li>
                                             <h5>Total</h5>
                                             <h4>$ {
-                                                orderDetail !== undefined && orderDetail !== undefined ?
-                                                orderDetail[0].order.totalPrice.toFixed(2) : ""
+                                               totalOrder !== undefined && totalOrder !== null ? totalOrder : ""
                                             }</h4>
                                         </li>
                                 </ul>
@@ -305,10 +369,9 @@ const handlePreparedOrder = () => {
                 paymentDate={payments !== undefined && payments !== null &&
                     payments.length > 0 ? payments[0].payTime : null}
                 paymentAmount={payments !== undefined && payments !== null &&
-                    payments.length > 0 ? payments[0].amount : null}
+                    payments.length > 0 ? (payments[0].amount).toFixed(2) : null}
                 paymentFEE={
-                    orderDetail !== undefined && orderDetail !== undefined ?
-                    orderDetail[0].order.totalPrice*10/100 : ""
+                    totalOrder !== undefined && totalOrder !== null ? (totalOrder*10/100).toFixed(2) : null
                 }
                 statusOrder={orderDetail !== undefined && orderDetail !== undefined ? 
                     orderDetail[0].order.orderStatus : ""}
@@ -318,21 +381,30 @@ const handlePreparedOrder = () => {
                 orderID={orderID}
             />
 
+            {
+                statusRemainder !== undefined && statusRemainder !== null &&
 
-             <PaymentInformation
+                <PaymentInformation
                 paymentTitle={"REMAINDER PAYMENT"}
-                statusPayment={"NOT YET"}
-                paymentId={""}
-                paymentMethod={""}
-                paymentDate={""}
-                paymentAmount={""}
+                statusPayment={statusRemainder !== undefined && statusRemainder !== null ? statusRemainder : null}
+                paymentId={payments !== undefined && payments !== null &&
+                    payments.length > 1 ? payments[1].id : null}
+                paymentMethod={payments !== undefined && payments !== null &&
+                    payments.length > 1 ? payments[1].paymentMethod.method.toUpperCase() : null}
+                paymentDate={payments !== undefined && payments !== null &&
+                    payments.length > 1 ? payments[1].payTime : null}
+                paymentAmount={payments !== undefined && payments !== null &&
+                    payments.length > 1 ? payments[1].amount : null}
                 paymentFEE={
                     orderDetail !== undefined && orderDetail !== undefined ?
-                    orderDetail[0].order.totalPrice*90/100 : ""
+                    (orderDetail[0].order.totalPrice*90/100).toFixed(2) : ""
                 }
                 statusOrder={orderDetail !== undefined && orderDetail !== undefined ? 
                     orderDetail[0].order.orderStatus : ""}
-            />
+                />
+            }
+
+             
 
 
            {

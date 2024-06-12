@@ -101,13 +101,13 @@
 }
 
 
-.payment-method{
+.remainder-payment > .deposit > .payment-method{
     display: grid;
     grid-template-columns: 6fr 6fr;
     gap: 20px;
    
 }
-.payment-method > div{
+.remainder-payment > .deposit > .payment-method > div{
     height: 90px;
     display: flex;
     flex-direction: column;
@@ -118,10 +118,10 @@
     cursor: pointer;
     box-sizing: border-box;
 }
-.payment-method > div.isActive{
+.remainder-payment > .deposit > .payment-method > div.isActive{
     border: 1px solid #D9B384;
 }
-.payment-method > div > span{
+.remainder-payment > .deposit > .payment-method > div > span{
     color: rgba(0, 0, 0, 0.60);
     text-align: center;
     font-family: "Roboto Serif";
@@ -131,7 +131,7 @@
     line-height: normal;
     letter-spacing: 0.26px;
 }
-.payment-method > div:first-child > span{
+.remainder-payment > .deposit > .payment-method > div:first-child > span{
     color: rgba(0, 0, 0, 0.80);
     font-size: 15px;
     font-weight: 600;

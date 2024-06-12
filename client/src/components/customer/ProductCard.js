@@ -7,7 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { imageStorage } from '../../config/FirebaseConfig';
 
-function ProductCard({name,images,id}) {
+const formattedNumber = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+})
+
+
+function ProductCard({name,images,id,price}) {
 
   const [imagesProduct,setImagesProduct] = useState();
   const navigate = useNavigate();
@@ -61,15 +68,15 @@ function ProductCard({name,images,id}) {
             <img src={imagesProduct[0] === null ? "" : imagesProduct[0]} alt='' />
         </div>
         <div className='product-card-price'>
-          {true && 
+          {false && 
              <span>
              $ 1,703.87
            </span>
           }
            
             <div>
-              <h3>$ 1,003.87</h3>
-              <img src={ICONS.icon_cart} alt=''/>
+              <h3>{formattedNumber.format(price)}</h3>
+              {/* <img src={ICONS.icon_cart} alt=''/> */}
             </div>
         </div>
     </div>
