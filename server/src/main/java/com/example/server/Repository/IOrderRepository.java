@@ -15,5 +15,9 @@ public interface IOrderRepository extends CrudRepository<Order, Long> {
      @Query("SELECT o FROM Order o WHERE o.account.id =:account_id ")
      List<Order> getOrdersByAccount_Id(@Param("account_id") Long id);
 
+     @Query("Select o from Order o where MONTH(o.date) = :month and YEAR(o.date) = :year")
+     List<Order> getOrderByMonthAndYear(@Param("month") int month, @Param("year") int year);
 
+     @Query("Select o from Order o where DAY(o.date) = :day")
+     List<Order> getOrderByDay(@Param("day") int day);
 }

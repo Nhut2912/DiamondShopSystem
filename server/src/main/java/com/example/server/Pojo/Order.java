@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -17,7 +18,7 @@ public class Order {
 
     private String address;
 
-    private LocalDateTime date;
+    private Date date;
 
     private boolean isDelivery;
 

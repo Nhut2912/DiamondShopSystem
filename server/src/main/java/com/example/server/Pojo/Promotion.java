@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,11 +28,13 @@ public class Promotion {
 
     private Date dateEnd;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name ="promotions_products",
-        joinColumns = @JoinColumn(name = "promotion_id"),
-            inverseJoinColumns = @JoinColumn(name ="product_id")
-    )
-    private Set<Product> products = new HashSet<Product>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name ="promotions_products",
+//        joinColumns = @JoinColumn(name = "promotion_id"),
+//            inverseJoinColumns = @JoinColumn(name ="product_id")
+//    )
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promotion_id")
+    private List<Promotions_products> promotions_products = new ArrayList<>();
 
 }
