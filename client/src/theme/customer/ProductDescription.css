@@ -35,5 +35,5 @@
     border-bottom:2px solid  #D9B384;
 }
 .product-description-container > .product-description-content >  .content{
-    height: 600px;
+   padding: 20px 0 50px 0;
 }

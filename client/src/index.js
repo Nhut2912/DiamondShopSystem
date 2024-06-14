@@ -37,6 +37,7 @@ import CheckPaymentMomo from './components/customer/CheckPaymentMomo';
 import RemainderPayment from './pages/customers/RemainderPayment';
 import CheckRemainder from './components/customer/CheckRemainder';
 import RemainderSuccessfull from './components/customer/RemainderSuccessfull';
+import PromotionsDetail from './components/admin/PromotionsDetail';
 
 
 
@@ -89,6 +90,7 @@ root.render(
                     <Route path="account" element={<AccountAdmin />}/>
                     <Route path="warranty" element={<WarrantyAdmin />}/>
                     <Route path="promotions" element={<PromotionsAdmin />}/>
+                    <Route path="promotions/:id" element={<PromotionsDetail />}/>
                     <Route path="gold-price" element={<GoldPriceAdmin />}/>
                     <Route path="diamond-price" element={<DiamondPriceAdmin />}/>
                     <Route path="notifications" element={<NotificationsAdmin />}/>

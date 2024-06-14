@@ -18,4 +18,5 @@ public class ProductMaterialService implements IProductMaterialService {
     public List<ProductMaterial> getProductMaterials(Long productID) {
         return productMaterialRepository.getProductMaterialByProduct_Id(productID);
     }
+
 }

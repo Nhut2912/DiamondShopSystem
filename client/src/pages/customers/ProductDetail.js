@@ -37,7 +37,7 @@ function ProductDetail() {
           >{data.id}</span></p>
 
           <ProductDetailCard data = {data} />
-          <ProductDescription />
+          <ProductDescription data={data} />
           <Question />
 
           <div className='similar-product'>

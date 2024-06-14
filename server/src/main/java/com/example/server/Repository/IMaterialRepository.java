@@ -14,5 +14,4 @@ public interface IMaterialRepository extends JpaRepository<Material,Long> {
     @Query("SELECT m FROM Material  m WHERE m.name = :name")
     public Material getMaterialByName(@Param("name") String name);
 
-
 }

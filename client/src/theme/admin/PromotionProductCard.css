@@ -1,0 +1,45 @@
+.promotion-product-card{
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 0.7fr 2fr 3fr 1.5fr  3fr 1.8fr ;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    column-gap: 10px;
+    align-items: center;
+    border-radius: 10px;
+}
+.promotion-product-card > li{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    padding-left: 20px;
+    font-weight: 500;
+}
+.promotion-product-card > li:first-child > div{
+    height: 150px;
+    min-width: 150px;
+    background-color: aqua;
+    border-radius: 5px;
+}
+.promotion-product-card > li:nth-child(5){
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+.promotion-product-card > li:nth-child(5) > span{
+    padding: 7px 25px;
+    background-color: rgba(0, 0, 0, 0.09);
+    color: #FFFFFF;
+    border-radius: 40px;
+}
+.promotion-product-card > li:nth-child(5) > span.isActive{
+    padding: 7px 25px;
+    background-color: #d9b384;
+    color: #FFFFFF;
+    border-radius: 40px;
+}
+.promotion-product-card > li:last-child{
+    display: flex;
+    justify-content: center;
+}

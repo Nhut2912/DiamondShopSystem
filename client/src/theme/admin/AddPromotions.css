@@ -1,0 +1,132 @@
+.add-promotions-container{
+    margin-top: 30px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 5px 0 20px 0;
+    min-height: 68vh;
+}
+.add-promotions-container > .add-promotion-information{
+    margin: 0 100px;
+    padding: 50px 0;
+    position: relative;
+}
+
+.add-promotions-container > .add-promotion-information > .save-promotion{
+    position: absolute;
+    right:0;
+    top:50px;
+    font-family: "Poppins";
+    font-size: 16px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: 400;
+    letter-spacing: 0.24px;
+    padding: 12px 30px;
+    background-color: #d9b384;
+    cursor: pointer;
+}
+.add-promotions-container > .add-promotion-information > .primary-add-information{
+    padding: 0 200px;
+}
+.add-promotions-container > .add-promotion-information > .primary-add-information > div{
+    display: flex;
+    column-gap: 80px;
+}
+.add-promotions-container > .add-promotion-information > .primary-add-information > div:nth-child(1) 
+> div:first-child > input
+{
+    width: 400px;
+}
+.add-promotions-container > .add-promotion-information > .primary-add-information > div:nth-child(2) 
+> div > input
+{
+    width: 300px;
+}
+.add-promotions-container > .add-promotion-information > .primary-add-information > div > div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 7px;
+    margin-top: 60px;
+}
+.add-promotions-container > .add-promotion-information > .primary-add-information > div > div > label{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(0,0,0,0.5);
+    font-weight: 400;
+}
+.add-promotions-container > .add-promotion-information > .primary-add-information > div > div > input{
+    font-family: 'Poppins';
+    height: 40px;
+    background-color: transparent;
+    outline: none;
+    border-radius: 5px;
+    padding: 0 15px;
+    color: rgba(0,0,0,0.7);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.24px;
+    border: 1px solid rgba(0,0,0,0.1);
+ 
+}
+
+.add-promotions-container > .add-promotion-information > h2{
+    margin: 80px 0 0 0;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(0,0,0,0.5);
+}
+.add-promotions-container > .add-promotion-information > h2:first-child{
+    margin-top: 0;
+}
+
+
+.add-promotions-container > .add-promotion-information > .search-product-on-promotion{
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 40px;
+    align-items: center;
+}
+.add-promotions-container > .add-promotion-information > .search-product-on-promotion > span{
+    font-family: "Poppins";
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(0,0,0,0.3);
+}
+.add-promotions-container > .add-promotion-information > .search-product-on-promotion > div.add-product-promotion{
+    display: flex;
+    justify-content: center;
+    padding: 12px 50px;
+    background-color: #F7F7F7;
+    font-family: "Poppins";
+    font-size: 15px;
+    border-radius: 8px;
+    color: rgba(0,0,0,0.7);
+    cursor: pointer;
+}
+.add-promotions-container > .add-promotion-information > .search-product-on-promotion > div.search-product-promotion{
+    height: 45px;
+    width: 350px;
+    background-color: #F7F7F7;
+    margin-left: 50px;
+    position: relative;
+} 
+.add-promotions-container > .add-promotion-information > .search-product-on-promotion > div.search-product-promotion > img{
+    position: absolute;
+    right: 15px;
+    top:50%;
+    transform: translateY(-50%);
+}
+.add-promotions-container > .add-promotion-information > .search-product-on-promotion > div.search-product-promotion > input{
+    font-family: 'Poppins';
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 15px;
+    color: rgba(0,0,0,0.6);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.24px;
+}

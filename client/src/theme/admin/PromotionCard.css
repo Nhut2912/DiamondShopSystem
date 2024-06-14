@@ -1,0 +1,35 @@
+.promotion-card-container{
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1.5fr 2.5fr 2fr 2.5fr 2.5fr 1fr;
+    padding: 20px 35px;
+    align-items: center;
+    transition: 0.5s ease;
+}
+.promotion-card-container:hover{
+    background-color: rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+}
+.promotion-card-container > li{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.7);
+    padding-left: 20px;
+    font-weight: 400;
+}
+.promotion-card-container > li:nth-child(2){
+    font-weight: 500;
+    font-size: 16px;
+}
+.promotion-card-container > li:last-child{
+    display: flex;
+    justify-content:center;
+}
+.promotion-card-container > li:last-child > div.isAvailable{
+    border: 1px solid rgba(54, 227, 57, 1);
+    padding: 5px 25px;
+    border-radius: 50px;
+    background-color: rgba(54, 227, 57, 0.2);
+    color: rgba(54, 227, 57, 1);
+}

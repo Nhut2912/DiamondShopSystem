@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
 import '../../theme/customer/ProductDescription.css';
+import DescriptionCharacteristics from './DescriptionCharacteristics';
+import DiamondCertificate from './DiamondCertificate';
 
-function ProductDescription() {
+function ProductDescription({data}) {
   
   const [activeItem,setActiveItem] = useState("Description and characteristics");
   
@@ -11,6 +13,9 @@ function ProductDescription() {
     {name : "Diamond certificate"}
   ]
 
+  const handleNavigate = (item) => {
+    setActiveItem(item);
+  }
 
   return (
     <div className='product-description-container'>
@@ -19,7 +24,9 @@ function ProductDescription() {
                 <ul>
                     {
                         navigateItems.map((item) => (
-                            <li className={activeItem === item.name ? 'isActive' : null}>
+                            <li 
+                            onClick={() => handleNavigate(item.name)}
+                            className={activeItem === item.name ? 'isActive' : null}>
                                 {item.name}
                             </li>
                         ))
@@ -29,7 +36,16 @@ function ProductDescription() {
                 </ul>
             </div>
             <div className='content'>
-
+                <div className='product-description'>
+                  {
+                    activeItem === "Description and characteristics" ? 
+                    <DescriptionCharacteristics 
+                    data={data}
+                    /> :  <DiamondCertificate />
+                  }
+                      
+                     
+                </div>
             </div>
         </div>
     </div>

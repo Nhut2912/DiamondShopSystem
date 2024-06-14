@@ -128,13 +128,13 @@ public class ProductService implements IProductService{
             System.out.println(listDiamondReturn);
 
             for (Diamond diamond : listDiamondReturn) {
-                if(diamond.getCarat() >= 0.1 && diamond.getCarat() <= 0.3) {
+                if(diamond.getCarat() >= 0.1 && diamond.getCarat() < 0.4) {
                     caratInterval = 0.1;
-                }else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.7){
+                }else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.8){
                     caratInterval = 0.5;
-                }else if (diamond.getCarat() >= 0.8 && diamond.getCarat() <= 1.4) {
+                }else if (diamond.getCarat() > 0.8 && diamond.getCarat() < 1.5) {
                     caratInterval = 1;
-                }else if (diamond.getCarat() >= 1.5 && diamond.getCarat() <= 1.7) {
+                }else if (diamond.getCarat() >= 1.5 && diamond.getCarat() < 1.8) {
                     caratInterval = 1.5;
                 }else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
                     caratInterval = 2;
@@ -142,7 +142,7 @@ public class ProductService implements IProductService{
                 DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
                         diamond.getClarity().getId(), diamond.getColor().getId()
                         , diamond.getCut().getId(), diamond.getOrigin().getId());
-                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() *10;
+                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
             }
 
 
@@ -193,21 +193,26 @@ public class ProductService implements IProductService{
 
 
             for (Diamond diamond : listDiamondReturn) {
-                if(diamond.getCarat() >= 0.1 && diamond.getCarat() <= 0.3) {
+                if(diamond.getCarat() >= 0.1 && diamond.getCarat() < 0.4) {
                     caratInterval = 0.1;
-                }else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.7){
+                }else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.8){
                     caratInterval = 0.5;
-                }else if (diamond.getCarat() >= 0.8 && diamond.getCarat() <= 1.4) {
+                }else if (diamond.getCarat() > 0.8 && diamond.getCarat() < 1.5) {
                     caratInterval = 1;
-                }else if (diamond.getCarat() >= 1.5 && diamond.getCarat() <= 1.7) {
+                }else if (diamond.getCarat() >= 1.5 && diamond.getCarat() < 1.8) {
                     caratInterval = 1.5;
                 }else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
                     caratInterval = 2;
                 }
+
+                System.out.println(diamond.getCarat());
                 DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
                         diamond.getClarity().getId(), diamond.getColor().getId()
                         , diamond.getCut().getId(), diamond.getOrigin().getId());
-                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() *10;
+
+
+
+                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
             }
 
 
@@ -262,6 +267,8 @@ public class ProductService implements IProductService{
         return product.orElse(null);
     }
 
+
+
     @Override
     public Product getProductToSetStatus(Long id) {
         Optional<Product> product = productRepository.findById(id);
@@ -275,5 +282,8 @@ public class ProductService implements IProductService{
         }
         return null;
     }
+
+
+
 
 }

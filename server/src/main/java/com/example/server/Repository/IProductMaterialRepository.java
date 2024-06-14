@@ -14,4 +14,6 @@ public interface IProductMaterialRepository extends JpaRepository<ProductMateria
 
     @Query("SELECT p FROM ProductMaterial p WHERE p.product.id =:product_id")
     public List<ProductMaterial> getProductMaterialByProduct_Id(@Param("product_id") Long id);
+
+
 }
