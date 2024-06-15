@@ -1,7 +1,9 @@
 package com.example.server.Repository;
 
 
+import com.example.server.Pojo.Category;
 import com.example.server.Pojo.Product;
+import com.example.server.Pojo.ProductMaterial;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +15,7 @@ public interface IProductRepository extends JpaRepository<Product,Long> {
 
 
     public List<Product> getProductsByActive(boolean active);
+
+    List<Product>  findAllByProductMaterialsOrCategory(Set<ProductMaterial> materials, Category category);
+
 }
