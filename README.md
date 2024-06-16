@@ -18,4 +18,6 @@ The main objective of the Diamond Shop project is to create a web application th
 * Hibernate
 #### Database:
 * MSSQL Server
-#### Package and Tool Management: Maven, Git
+#### Package and Tool Management:
+* Maven
+* Git
