@@ -1,7 +1,6 @@
 
 # Welcome to Diamond Shop
-<img src="(https://www.candere.com/media/jewellery/images/KC04954YG_1100x1100.gif" width="400" height="790">
-![Jewelry](https://www.candere.com/media/jewellery/images/KC04954YG_1100x1100.gif | width=100)
+![Jewelry](https://www.candere.com/media/jewellery/images/KC04954YG_1100x1100.gif?width=100)
 ## You will find in this repo the following stuff
 ### Project Objectives
 The main objective of the Diamond Shop project is to create a web application that allows users to view product listings, add products to the cart, and order with multiple payment methods using bank transfer, momo,...
