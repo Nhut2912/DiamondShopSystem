@@ -19,4 +19,5 @@ public interface IOrderService {
     public List<Order> getOrdersByDay(int id);
     public Map<LocalDate, Integer> getOrdersByMonthAndYear(int month, int year);
     public Map<LocalDate, Long> getStatisticByWeek() throws ParseException;
+    public Map<LocalDate, Long> getStatisticByMonth() throws ParseException;
 }
