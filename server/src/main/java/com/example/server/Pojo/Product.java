@@ -6,7 +6,9 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -57,8 +59,9 @@ public class Product {
     @JoinColumn(name = "product_id")
     private Set<ProductMaterial> productMaterials = new HashSet<>();
 
-    @ManyToMany(mappedBy = "products")
-    private Set<Promotion> promotions = new HashSet<Promotion>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private List<Promotions_products> promotions_products = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name ="product_id")

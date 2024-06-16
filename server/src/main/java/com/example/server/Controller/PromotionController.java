@@ -1,8 +1,7 @@
 package com.example.server.Controller;
 
 import com.example.server.Model.PromotionDTO;
-import com.example.server.Pojo.Promotion;
-import com.example.server.Service.Promotion.PromotionService;
+import com.example.server.Service.Promotion.IPromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +12,16 @@ import org.springframework.web.bind.annotation.*;
 public class PromotionController {
 
     @Autowired
-    private PromotionService promotionService;
+    private IPromotionService iPromotionService;
 
     @PostMapping("create")
     public ResponseEntity<?> createPromotion(@RequestBody PromotionDTO promotionDTO){
 
-        return ResponseEntity.ok(promotionService.createPromotion(promotionDTO));
+        return ResponseEntity.ok(iPromotionService.createPromotion(promotionDTO));
+    }
+    @PostMapping("update")
+    public ResponseEntity<?> updatePromotion(@RequestBody PromotionDTO promotionDTO){
+
+        return ResponseEntity.ok(iPromotionService.updatePromotion(promotionDTO));
     }
 }

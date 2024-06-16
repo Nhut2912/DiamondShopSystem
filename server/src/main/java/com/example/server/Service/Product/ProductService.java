@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -298,7 +299,6 @@ public class ProductService implements IProductService{
         return null;
     }
 
-
     @Override
     public Product getProductToSetStatus(Long id) {
         Optional<Product> product = productRepository.findById(id);
@@ -313,6 +313,81 @@ public class ProductService implements IProductService{
         return null;
     }
 
+    @Override
+    public List<ProductDTO> findSimilarProducts(Product product) {
+        List<Product> products = productRepository.findAllByProductMaterialsOrCategory(product.getProductMaterials(), product.getCategory());
+        List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(product.getId());
+        List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(product.getId());
+        System.out.println(products.size());
+        System.out.println(product.getId());
+        System.out.println(listProductMaterial.size());
+        System.out.println(listDiamondReturn.size());
+
+        double totalPrice = 0;
+        double caratInterval = 0;
+
+        for (Diamond diamond : listDiamondReturn) {
+            if (diamond.getCarat() >= 0.1 && diamond.getCarat() <= 0.3) {
+                caratInterval = 0.1;
+            } else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.7) {
+                caratInterval = 0.5;
+            } else if (diamond.getCarat() >= 0.8 && diamond.getCarat() <= 1.4) {
+                caratInterval = 1;
+            } else if (diamond.getCarat() >= 1.5 && diamond.getCarat() <= 1.7) {
+                caratInterval = 1.5;
+            } else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
+                caratInterval = 2;
+            }
+            DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
+                    diamond.getClarity().getId(), diamond.getColor().getId()
+                    , diamond.getCut().getId(), diamond.getOrigin().getId());
+            totalPrice += diamondPriceList.getPrice() * diamond.getCarat() * 10;
+        }
+
+
+        for (ProductMaterial productMaterial : listProductMaterial) {
+            MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
+            totalPrice += materialPriceList.getSellPrice();
+        }
+        totalPrice += product.getProductionCost() + product.getSecondaryDiamondCost() + product.getSecondaryMaterialCost();
+        totalPrice += totalPrice * ((double) product.getPriceRate() / 100);
+
+        System.out.println(totalPrice);
+        List<ProductDTO> result = new ArrayList<>();
+        List<ProductDTO> productDTOS = getProducts();
+
+        double finalTotalPrice = totalPrice;
+        result = productDTOS.stream()
+                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100) || products.stream().anyMatch(p -> p.getId().equals(dto.getId())))
+                .collect(Collectors.toList());
+
+        for(ProductDTO productDTO : result){
+            productDTO.setCategory(product.getCategory().getName());
+            List<ProductMaterial> productMaterials = productMaterialService.getProductMaterials(productDTO.getId());
+            Set<MaterialDTO> materialDTOS = new HashSet<>();
+            productMaterials.forEach((item) -> {
+                MaterialDTO materialDTO = new MaterialDTO();
+                materialDTO.setId(item.getId());
+                materialDTO.setWeight(item.getWeight());
+                materialDTO.setName(item.getMaterial().getName());
+                materialDTOS.add(materialDTO);
+            });
+            productDTO.setMaterials(materialDTOS);
+
+            List<Diamond> diamonds = diamondService.getDiamondByProductID(product.getId());
+            List<DiamondDTO> diamondDTOS = new ArrayList<>();
+            diamonds.forEach((item) -> {
+                DiamondDTO diamondDTO = new DiamondDTO();
+                diamondDTO.setId(item.getId());
+                diamondDTO.setCarat(item.getCarat());
+                diamondDTO.setId(item.getId());
+                diamondDTOS.add(diamondDTO);
+            });
+            productDTO.setDiamonds(diamondDTOS);
+        }
+
+        return result;
+    }
 
 
 

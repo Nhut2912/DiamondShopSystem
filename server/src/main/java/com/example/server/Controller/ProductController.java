@@ -3,12 +3,14 @@ package com.example.server.Controller;
 
 import com.example.server.Model.ProductDTO;
 import com.example.server.Pojo.Product;
+import com.example.server.Repository.IProductRepository;
 import com.example.server.Service.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -16,8 +18,16 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
+
+
+    @Autowired
+    private IProductRepository productRepository;
+
     @Autowired
     private IProductService productService;
+
+
+
 
     @PostMapping("/save")
     public ResponseEntity<Product> saveProduct(@RequestBody Product product){
@@ -34,5 +44,29 @@ public class ProductController {
     public ResponseEntity<ProductDTO> getProduct( @PathVariable Long id){
        return ResponseEntity.status(200).body(productService.getProduct(id));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductDetails(@PathVariable Long id) {
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/similar/{id}")
+    public ResponseEntity<List<ProductDTO>> getSimilarProducts(@PathVariable Long id) {
+        Optional<Product> productOptional = productRepository.findById(id);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            List<ProductDTO> similarProducts = productService.findSimilarProducts(product);
+            return ResponseEntity.ok(similarProducts);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }
