@@ -1,4 +1,4 @@
-
+<img align="right" alt="Coding" width="400" src="https://www.candere.com/media/jewellery/images/KC04954YG_1100x1100.gif">
 # Welcome to Diamond Shop
 ## You will find in this repo the following stuff
 ### Project Objectives
