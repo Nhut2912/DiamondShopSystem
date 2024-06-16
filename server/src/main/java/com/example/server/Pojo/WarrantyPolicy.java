@@ -17,4 +17,6 @@ public class WarrantyPolicy {
     private String name;
 
     private Date warrantyPeriod;
+
+
 }

@@ -20,6 +20,7 @@ import com.example.server.Service.Size.ISizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -92,6 +93,9 @@ public class ProductService implements IProductService{
                 Origin origin = originService.getOrigin(element.getOrigin().getOrigin());
                 if(origin != null)  element.setOrigin(origin);
             });
+
+            product.setDateAdd(LocalDateTime.now());
+
             productRepository.save(product);
             return true;
         }catch (Exception e){
@@ -118,6 +122,7 @@ public class ProductService implements IProductService{
 
             productDTO.setSize(item.getSize().getSize());
 
+            productDTO.setCategory(item.getCategory().getName());
 
 
             double totalPrice = 0;
@@ -127,6 +132,9 @@ public class ProductService implements IProductService{
             List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
 
             System.out.println(listDiamondReturn);
+
+
+            List<DiamondDTO> diamondDTOS = new ArrayList<>();
 
             for (Diamond diamond : listDiamondReturn) {
                 if(diamond.getCarat() >= 0.1 && diamond.getCarat() < 0.4) {
@@ -140,22 +148,40 @@ public class ProductService implements IProductService{
                 }else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
                     caratInterval = 2;
                 }
+
+                DiamondDTO diamondDTO = new DiamondDTO();
+                diamondDTO.setId(diamond.getId());
+                diamondDTO.setOrigin(diamond.getOrigin().getOrigin());
+                diamondDTO.setClarity(diamond.getClarity().getClarity());
+                diamondDTO.setCut(diamond.getCut().getCut());
+                diamondDTO.setColor(diamond.getColor().getColor());
+                diamondDTO.setCarat(diamond.getCarat());
+                diamondDTOS.add(diamondDTO);
+
                 DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
                         diamond.getClarity().getId(), diamond.getColor().getId()
                         , diamond.getCut().getId(), diamond.getOrigin().getId());
                 totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
             }
 
+            productDTO.setDiamonds(diamondDTOS);
 
-
+            Set<MaterialDTO> materialDTOS = new HashSet<>();
 
             for (ProductMaterial productMaterial : listProductMaterial){
+
+                MaterialDTO materialDTO = new MaterialDTO();
+                materialDTO.setName(productMaterial.getMaterial().getName());
+                materialDTO.setWeight(productMaterial.getWeight());
+                materialDTOS.add(materialDTO);
+
                 MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
                 totalPrice += materialPriceList.getSellPrice();
             }
             totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
             totalPrice += totalPrice*((double) item.getPriceRate() / 100);
 
+            productDTO.setMaterials(materialDTOS);
             productDTO.setPrice(totalPrice);
 
 
@@ -268,6 +294,10 @@ public class ProductService implements IProductService{
         return product.orElse(null);
     }
 
+    @Override
+    public List<Product> getProductsNewArrival() {
+        return null;
+    }
 
     @Override
     public Product getProductToSetStatus(Long id) {

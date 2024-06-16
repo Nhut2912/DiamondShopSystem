@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -20,4 +21,7 @@ public interface IOrderRepository extends CrudRepository<Order, Long> {
 
      @Query("Select o from Order o where DAY(o.date) = :day")
      List<Order> getOrderByDay(@Param("day") int day);
+
+     @Query(value = "SELECT * FROM orders WHERE CONVERT(date, date) BETWEEN :startDate AND :endDate", nativeQuery = true)
+     List<Order> getOrderByStartDateAndEndDate(@Param("startDate")Date startDate, @Param("endDate")Date endDate);
 }
