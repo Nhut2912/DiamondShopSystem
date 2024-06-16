@@ -18,4 +18,6 @@ public interface IProductService {
 
     public Product getProductById(Long id);
 
+    List<ProductDTO> findSimilarProducts(Product product);
+
 }
