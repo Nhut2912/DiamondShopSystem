@@ -1,5 +1,5 @@
 
-# Welcome to Diamond Shop ![Jewelry](https://static.vecteezy.com/system/resources/previews/019/923/291/original/diamond-engagement-ring-icon-png.png?width=20)
+# Welcome to Diamond Shop
 ![Jewelry](https://www.candere.com/media/jewellery/images/KC04954YG_1100x1100.gif?width=500)
 ## You will find in this repo the following stuff
 ### Project Objectives
