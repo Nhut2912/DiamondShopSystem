@@ -21,7 +21,17 @@ function DescriptionCharacteristics({data}) {
 
  useEffect(() => {
 
+    if(data !== undefined && data !== null){
+        fetch(`http://localhost:8080/api/diamond/product/${data.id}`)
+        .then((response) => response.json())
+        .then((result) => setDiamonds(result))
+        .catch((error) => console.error(error));
+    }
+
+
  },[data])
+
+ console.log(diamonds);
 
   return (
     <div className='description-container'>
@@ -50,20 +60,23 @@ function DescriptionCharacteristics({data}) {
 
        <div>
             <h4>Number of diamonds</h4>
-            <span>2</span>
+            <span>{diamonds !== undefined && diamonds !== null && diamonds.length }</span>
        </div>
 
        <div>
             <h4>Diamond characteristics</h4>
             <div>
-                <ul>
-                    <li>No. 1</li>
+                {
+                    diamonds !== undefined && diamonds !== null && diamonds.map((item,index) => (
+
+                        <ul>
+                    <li>No. {index+1}</li>
                     <li>
                         <span>
                             Origin 
                         </span>
                         <span>
-                            NATURAL
+                            {item.origin.origin}
                         </span>
                     </li>
                     <li>
@@ -71,7 +84,7 @@ function DescriptionCharacteristics({data}) {
                             Color 
                         </span>
                         <span>
-                            K
+                        {item.color.color}
                         </span>
                     </li>
                     <li>
@@ -79,7 +92,7 @@ function DescriptionCharacteristics({data}) {
                             Clarity 
                         </span>
                         <span>
-                            SI2
+                        {item.clarity.clarity}
                         </span>
                    </li>
                     <li>
@@ -87,7 +100,7 @@ function DescriptionCharacteristics({data}) {
                             Cut {"(Cut Score)"}
                         </span>
                         <span>
-                        EX.
+                        {item.cut.cut}
                         </span>
                     </li>
                     <li>
@@ -95,106 +108,34 @@ function DescriptionCharacteristics({data}) {
                             Carat
                         </span>
                         <span>
-                            0.2
+                            {item.carat}
                         </span>
                     
                    </li>
                 </ul>
-                <ul>
-                <li>No. 2</li>
-                <li>
-                        <span>
-                            Origin 
-                        </span>
-                        <span>
-                            NATURAL
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            Color 
-                        </span>
-                        <span>
-                            K
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            Clarity 
-                        </span>
-                        <span>
-                            SI2
-                        </span>
-                   </li>
-                    <li>
-                        <span>
-                            Cut {"(Cut Score)"}
-                        </span>
-                        <span>
-                        EX.
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            Carat
-                        </span>
-                        <span>
-                            0.2
-                        </span>
-                    
-                   </li>
-                </ul>
-                <ul>
-                <li>No. 3</li>
-                <li>
-                        <span>
-                            Origin 
-                        </span>
-                        <span>
-                            NATURAL
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            Color 
-                        </span>
-                        <span>
-                            K
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            Clarity 
-                        </span>
-                        <span>
-                            SI2
-                        </span>
-                   </li>
-                    <li>
-                        <span>
-                            Cut {"(Cut Score)"}
-                        </span>
-                        <span>
-                        EX.
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            Carat
-                        </span>
-                        <span>
-                            0.2
-                        </span>
-                    
-                   </li>
-                </ul>
+
+                    ))
+                }
+
+                
+                
             </div>
        </div>
        <p>
             <span>
             Money diamonds are jewelry that brings freedom and endless fashion inspiration.
            Owning your own diamond jewelry is what everyone desires. The ring is crafted from 
-           14K gold and accented with diamonds, creating jewelry full of luxury and class.
+           {
+
+            
+                data !== undefined && data !== null && data.materials.map((item,index) => (
+                  <><b> {item.name} </b>
+                    <b>{index < data.materials.length-1 ? ", " : null}</b>
+                  </>  
+                ))
+        
+
+           } and accented with diamonds, creating jewelry full of luxury and class.
             </span>
             <br />
            <span>

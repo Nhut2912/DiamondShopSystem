@@ -6,6 +6,7 @@ import ProductDetailCard from '../../components/customer/ProductDetailCard';
 import ProductDescription from '../../components/customer/ProductDescription';
 import Question from '../../components/customer/Question';
 import ProductCard from '../../components/customer/ProductCard';
+import { IMAGES } from '../../constants/customer';
 
 function ProductDetail() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ function ProductDetail() {
           >Home</span> / <span
             onClick={() => navigate("/products")}
           >Product</span> / <span
-          >{data.id}</span></p>
+          >{data.code}</span></p>
 
           <ProductDetailCard data = {data} />
           <ProductDescription data={data} />
@@ -59,7 +60,7 @@ function ProductDetail() {
             </div>
 
           <div className='banner-on-product-detail'>
-
+                <img src={IMAGES.image_banner} />
           </div>
       </div>
 

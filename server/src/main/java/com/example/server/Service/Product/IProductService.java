@@ -18,4 +18,6 @@ public interface IProductService {
 
     public Product getProductById(Long id);
 
+    public List<Product> getProductsNewArrival();
+
 }
