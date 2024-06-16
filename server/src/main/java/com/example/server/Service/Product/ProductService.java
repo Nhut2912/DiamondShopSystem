@@ -333,7 +333,7 @@ public class ProductService implements IProductService{
 
         for(ProductDTO productDTO : result){
             productDTO.setCategory(product.getCategory().getName());
-            List<ProductMaterial> productMaterials = productMaterialService.getProductMaterials(product.getId());
+            List<ProductMaterial> productMaterials = productMaterialService.getProductMaterials(productDTO.getId());
             Set<MaterialDTO> materialDTOS = new HashSet<>();
             productMaterials.forEach((item) -> {
                 MaterialDTO materialDTO = new MaterialDTO();
