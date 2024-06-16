@@ -328,7 +328,7 @@ public class ProductService implements IProductService{
 
         double finalTotalPrice = totalPrice;
         result = productDTOS.stream()
-                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100) || products.stream().anyMatch(p -> p.getId().equals(dto.getId())))
+                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
                 .collect(Collectors.toList());
 
         for(ProductDTO productDTO : result){
