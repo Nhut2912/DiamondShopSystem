@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -183,6 +184,10 @@ public class OrderController {
     public ResponseEntity<List<Order>> statisticOrderByDay(@PathVariable int day){
         return new ResponseEntity<>(iorderService.getOrdersByDay(day), HttpStatus.OK);
     }
+    @GetMapping("/statisticOrderByWeek")
+    public ResponseEntity<?> statisticOrderByWeek() throws ParseException {
 
+        return new ResponseEntity<>(iorderService.getStatisticByWeek(), HttpStatus.OK);
+    }
 
 }

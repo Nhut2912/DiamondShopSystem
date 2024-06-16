@@ -7,28 +7,13 @@
     <list default="true" id="238e78d8-921c-487d-bbcf-651e12043aa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/PromotionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/PromotionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/PromotionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/PromotionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/Promotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/Promotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IOrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IPromotionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IPromotionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/ServerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/IOrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Promotion/PromotionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Promotion/PromotionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/PromotionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/PromotionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Model/PromotionDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Model/PromotionDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/Promotion.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/Promotion.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IOrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IOrderRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IPromotionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IPromotionRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/PromotionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/PromotionService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,26 +40,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.ServerApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Quiz_App_Project/quizapp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Diamond_Shop_15_6/DiamondShopSystem&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\Diamon_Shop_Ver_2\DiamondShopSystem\server\src\main\java\com\example\server\Service\Email" />
@@ -123,6 +108,8 @@
       <workItem from="1718073975591" duration="403000" />
       <workItem from="1718075121164" duration="3606000" />
       <workItem from="1718377853573" duration="10611000" />
+      <workItem from="1718421659071" duration="4584000" />
+      <workItem from="1718431352871" duration="2963000" />
     </task>
     <servers />
   </component>

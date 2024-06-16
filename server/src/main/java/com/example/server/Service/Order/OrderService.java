@@ -8,16 +8,14 @@ import com.example.server.Repository.IAccountRepository;
 import com.example.server.Repository.IOrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService implements  IOrderService{
@@ -91,4 +89,34 @@ public class OrderService implements  IOrderService{
         List<Order> orders = iOrderRepository.getOrderByMonthAndYear(month, year);
         return null;
     }
+
+    public Map<LocalDate, Long> getStatisticByWeek() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.minusDays(7);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+        // Create a map with order counts per day
+        Map<String, Long> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        for (Map.Entry<String, Long> entry : orderCountMap.entrySet()){
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        Map<LocalDate, Long> resultDate = new HashMap<>();
+
+        for (LocalDate date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
+            long count = orderCountMap.getOrDefault(formatter.format(formatter.parse(date.toString())), 0L);
+            resultDate.put(date, count);
+        }
+        System.out.println(resultDate.size());
+        return resultDate;
+    }
+
 }
