@@ -12,6 +12,8 @@ function ProductDetail() {
   const navigate = useNavigate();
   const param = useParams();
   const [data,setData] = useState();
+  const [productSimilar,setProductSimilar] = useState();
+
 
   console.log(param);
   useEffect(() => {
@@ -20,11 +22,18 @@ function ProductDetail() {
         .then(data => setData(data))
         .catch((error) => console.error(error));
   },[])
- 
-  if(data === undefined) return <div>Loading</div>
- 
+  
+  useEffect(() => {
+    fetch('http://localhost:8080/api/product/similar/'+param.id)
+    .then(response => response.json())
+    .then(data => setProductSimilar(data))
+    .catch((error) => console.error(error));
+  },[])
 
-  console.log(data);
+
+  if(data === undefined) return <div>Loading</div>
+  console.log(productSimilar);
+
 
   return (
     <div>
@@ -47,13 +56,17 @@ function ProductDetail() {
                 </h3>
                 <div className='slider'>
                    <div className='slider-container' id="slider-container">
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
-                      <ProductCard />
+                    {productSimilar !== undefined && productSimilar !== null &&
+                      productSimilar.map((item) => (
+                          <ProductCard 
+                          name={item.name}
+                          images={item.images}
+                          id={item.id}
+                          price={item.price}
+                          />
+                      ))
+                    }
+                      
                    </div>
                 </div>
                 

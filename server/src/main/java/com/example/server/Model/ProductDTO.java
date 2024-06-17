@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Data
 public class ProductDTO {
-
     private Long id;
     private String name;
     private String code;
@@ -18,5 +17,7 @@ public class ProductDTO {
     private Set<String> images;
     private Set<MaterialDTO> materials;
     private List<DiamondDTO> diamonds;
+    private List<PromotionDTO> promotions;
+
 
 }

@@ -4,6 +4,7 @@ package com.example.server.Service.Product;
 import com.example.server.Model.DiamondDTO;
 import com.example.server.Model.MaterialDTO;
 import com.example.server.Model.ProductDTO;
+import com.example.server.Model.PromotionDTO;
 import com.example.server.Pojo.*;
 import com.example.server.Repository.IProductRepository;
 import com.example.server.Service.Category.ICategoryService;
@@ -255,7 +256,16 @@ public class ProductService implements IProductService{
             productDTO.setPrice(totalPrice);
 
 
+            List<PromotionDTO> promotionDTOS = new ArrayList<>();
+            for(Promotions_products promotions_products : product.get().getPromotions_products()){
+                PromotionDTO promotionDTO = new PromotionDTO();
+                promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
+                promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
+                promotionDTO.setIdPromotion(promotions_products.getPromotion().getId());
+                promotionDTOS.add(promotionDTO);
+            }
 
+            productDTO.setPromotions(promotionDTOS);
 
 
 
@@ -313,6 +323,10 @@ public class ProductService implements IProductService{
         return null;
     }
 
+
+
+
+
     @Override
     public List<ProductDTO> findSimilarProducts(Product product) {
         List<Product> products = productRepository.findAllByProductMaterialsOrCategory(product.getProductMaterials(), product.getCategory());
@@ -327,21 +341,21 @@ public class ProductService implements IProductService{
         double caratInterval = 0;
 
         for (Diamond diamond : listDiamondReturn) {
-            if (diamond.getCarat() >= 0.1 && diamond.getCarat() <= 0.3) {
+            if(diamond.getCarat() >= 0.1 && diamond.getCarat() < 0.4) {
                 caratInterval = 0.1;
-            } else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.7) {
+            }else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.8){
                 caratInterval = 0.5;
-            } else if (diamond.getCarat() >= 0.8 && diamond.getCarat() <= 1.4) {
+            }else if (diamond.getCarat() > 0.8 && diamond.getCarat() < 1.5) {
                 caratInterval = 1;
-            } else if (diamond.getCarat() >= 1.5 && diamond.getCarat() <= 1.7) {
+            }else if (diamond.getCarat() >= 1.5 && diamond.getCarat() < 1.8) {
                 caratInterval = 1.5;
-            } else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
+            }else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
                 caratInterval = 2;
             }
             DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
                     diamond.getClarity().getId(), diamond.getColor().getId()
                     , diamond.getCut().getId(), diamond.getOrigin().getId());
-            totalPrice += diamondPriceList.getPrice() * diamond.getCarat() * 10;
+            totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
         }
 
 
@@ -358,7 +372,7 @@ public class ProductService implements IProductService{
 
         double finalTotalPrice = totalPrice;
         result = productDTOS.stream()
-                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100) || products.stream().anyMatch(p -> p.getId().equals(dto.getId())))
+                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 1000 && dto.getPrice() <= finalTotalPrice + 1000) || products.stream().anyMatch(p -> p.getId().equals(dto.getId())))
                 .collect(Collectors.toList());
 
         for(ProductDTO productDTO : result){

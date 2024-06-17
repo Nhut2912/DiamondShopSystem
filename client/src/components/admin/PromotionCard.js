@@ -3,28 +3,29 @@ import React from 'react'
 import '../../theme/admin/PromotionCard.css'
 import { useNavigate } from 'react-router-dom'
 
-function PromotionCard() {
+function PromotionCard({promotion,index}) {
 
   const navigate = useNavigate();  
   
-  const promotionsID = 1;
 
   const handleClickDetail = () => {
-    navigate(""+promotionsID)
+    navigate("promtion-details",{state : promotion})
   }
 
   return (
     <ul
     onClick={handleClickDetail}
     className='promotion-card-container'>
-         <li>#00001</li>
-         <li>SALE DOUBLE DAY 6.6</li>
-         <li>30%</li>
-         <li>12/06/2024</li>
-         <li>18/06/2024</li>
+        <li>{index+1}</li>
+         <li>#{promotion.idPromotion}</li>
+         <li>{promotion.namePromotion}</li>
+         <li>{promotion.promotionRate}%</li>
+         <li>{promotion.dateStart}</li>
+         <li>{promotion.dateEnd}</li>
+         <li>{promotion.productIds.length}</li>
          <li>
-            <div className='isAvailable'>
-                Available
+            <div className=  {promotion.active ? "isAvailable" : "isUnAvailable"}>
+                {promotion.active ? "AVAILABLE" : "UNAVAILABLE"}
             </div>
          </li>
     </ul>

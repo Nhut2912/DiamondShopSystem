@@ -59,7 +59,7 @@ public class Product {
     @JoinColumn(name = "product_id")
     private Set<ProductMaterial> productMaterials = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private List<Promotions_products> promotions_products = new ArrayList<>();
 

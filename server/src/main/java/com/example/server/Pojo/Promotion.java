@@ -1,5 +1,6 @@
 package com.example.server.Pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,7 +23,7 @@ public class Promotion {
 
     private String namePromotion;
 
-    private boolean active = true;
+    private boolean active ;
 
     private Date dateStart;
 
@@ -37,4 +38,15 @@ public class Promotion {
     @JoinColumn(name = "promotion_id")
     private List<Promotions_products> promotions_products = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Promotion{" +
+                "id=" + id +
+                ", promotionRate=" + promotionRate +
+                ", namePromotion='" + namePromotion + '\'' +
+                ", active=" + active +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                '}';
+    }
 }

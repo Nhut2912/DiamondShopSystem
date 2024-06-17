@@ -24,4 +24,9 @@ public class PromotionController {
 
         return ResponseEntity.ok(iPromotionService.updatePromotion(promotionDTO));
     }
+
+    @GetMapping("getPromotions")
+    public ResponseEntity<?> getPromotions(){
+        return ResponseEntity.ok(iPromotionService.getPromotions());
+    }
 }

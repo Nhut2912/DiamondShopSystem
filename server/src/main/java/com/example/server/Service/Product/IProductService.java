@@ -18,10 +18,10 @@ public interface IProductService {
 
     public Product getProductById(Long id);
 
-<<<<<<< HEAD
+
     public List<Product> getProductsNewArrival();
-=======
+
     List<ProductDTO> findSimilarProducts(Product product);
->>>>>>> de3b2392181063da7cac85a0208c62254aba7ba9
+
 
 }

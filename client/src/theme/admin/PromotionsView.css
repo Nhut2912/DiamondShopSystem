@@ -9,18 +9,25 @@
     padding-inline-start: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: 1.5fr 2.5fr 2fr 2.5fr 2.5fr 1fr;
+    grid-template-columns: 0.7fr 1.2fr 2.2fr 1.5fr 1.7fr 1.7fr 1.5fr 1.5fr;
     padding: 20px 35px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
+    align-items: center;
+    column-gap: 20px;
     
 }
 .promotions-view-container > .headtable-promotions-view > li{
     font-family: 'Poppins';
-    font-size: 15px;
-    color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
     padding-left: 20px;
     font-weight: 500;
 }
+/* .promotions-view-container > .headtable-promotions-view > li:nth-child(4),
+.promotions-view-container > .headtable-promotions-view > li:nth-child(7){
+    display: flex;
+    justify-content: center;
+} */
 .promotions-view-container > .headtable-promotions-view > li:last-child{
     display: flex;
     justify-content:center;

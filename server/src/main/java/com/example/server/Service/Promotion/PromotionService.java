@@ -93,4 +93,30 @@ public class PromotionService implements IPromotionService{
             return false;
         }
     }
+
+
+    @Override
+    public List<PromotionDTO> getPromotions(){
+        Iterable<Promotion> promotions = iPromotionRepository.findAll();
+        List<PromotionDTO> promotionDTOS = new ArrayList<>();
+        promotions.forEach((promotion -> {
+            PromotionDTO promotionDTO = new PromotionDTO();
+            promotionDTO.setIdPromotion(promotion.getId());
+            promotionDTO.setNamePromotion(promotion.getNamePromotion());
+            promotionDTO.setPromotionRate(promotion.getPromotionRate());
+            promotionDTO.setDateStart(promotion.getDateStart());
+            promotionDTO.setDateEnd(promotion.getDateEnd());
+            promotionDTO.setActive(promotion.isActive());
+
+            List<Promotions_products> promotions_products = promotion.getPromotions_products();
+            List<Long> productsID = new ArrayList<>();
+            promotions_products.forEach(promotionsProducts -> {
+                productsID.add(promotionsProducts.getProduct().getId());
+            });
+            promotionDTO.setProductIds(productsID);
+            promotionDTOS.add(promotionDTO);
+        }));
+
+        return promotionDTOS;
+    }
 }

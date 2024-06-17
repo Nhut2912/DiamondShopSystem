@@ -24,6 +24,21 @@
     border-radius: 8px;
     cursor: pointer;
 }
+.promotion-information-container > .save-promotion{
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    width: 150px;
+    background-color: #d9b384;
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+    font-family: "Poppins";
+    font-size: 15px;
+    color: #FFFFFF;
+    border-radius: 8px;
+    cursor: pointer;
+}
 .promotion-information-container > h1{
     font-family: "Poppins";
     margin: 0 0 20px 50px;
@@ -44,7 +59,7 @@
     padding: 5px 100px 5px 0px;
     border-radius: 5px;
 }
-.promotion-information-container > .information-promotion > .head-information >  div{
+.promotion-information-container > .information-promotion > .head-information >  div.un-edit-status{
     border: 1px solid rgba(54, 227, 57, 1);
     padding: 5px 25px;
     border-radius: 5px;
@@ -54,6 +69,32 @@
     justify-content: center;
     align-items: center;
     font-family: 'Poppins';
+}
+.promotion-information-container > .information-promotion > .head-information >  ul.edited-status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins';
+    padding-inline-start: 0;
+    list-style: none;
+    column-gap: 20px;
+    margin-block-start: 0;
+}
+.promotion-information-container > .information-promotion > .head-information >  ul.edited-status > li{
+    padding: 8px 25px;
+    border:1px solid rgba(0,0,0,0.1);
+    color: rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+.promotion-information-container > .information-promotion > .head-information >  ul.edited-status > li:nth-child(1).isActiveStatus{
+    color :rgba(54, 227, 57, 1);
+    background-color: rgba(54, 227, 57, 0.2);
+    border: 1px solid rgba(54, 227, 57, 1);
+}
+.promotion-information-container > .information-promotion > .head-information >  ul.edited-status > li:nth-child(2).isActiveStatus{
+    color :rgba(217, 4, 61,1);
+    background-color: rgba(217, 4, 61,0.2);
+    border: 1px solid rgba(217, 4, 61,1);
 }
 .promotion-information-container > .information-promotion > .primary-information{
     padding: 0 200px;
@@ -93,8 +134,8 @@
     border-radius: 5px;
     padding: 0 15px;
     color: rgba(0,0,0,0.8);
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 500;
     letter-spacing: 0.24px;
  
 }
@@ -109,17 +150,22 @@
     color: rgba(0,0,0,0.7);
     margin-bottom: 30px;
 }
+
+
+
+
+
 .promotion-information-container > .information-promotion > .search-product-on-promotion{
-    display: flex;
-    justify-content: flex-end;
-    column-gap: 40px;
+    display: grid;
+    grid-template-columns: 6fr 4fr 2fr;
     align-items: center;
+    margin-top: 40px;
 }
 .promotion-information-container > .information-promotion > .search-product-on-promotion > span{
     font-family: "Poppins";
     font-size: 15px;
     font-weight: 300;
-    color: rgba(0,0,0,0.3);
+    color: rgba(0,0,0,0.5);
 }
 .promotion-information-container > .information-promotion > .search-product-on-promotion > div.add-product-promotion{
     display: flex;
@@ -131,6 +177,7 @@
     border-radius: 8px;
     color: rgba(0,0,0,0.7);
     cursor: pointer;
+    position: relative;
 }
 .promotion-information-container > .information-promotion > .search-product-on-promotion > div.search-product-promotion{
     height: 45px;
@@ -157,4 +204,155 @@
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.24px;
+    
+}
+
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list{
+    position: fixed;
+    right: 10%;
+    width: 500px;
+    height: 500px;
+    top: 10%;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    cursor: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    z-index: 1000;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .header-product{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    position: relative;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .header-product > span{
+    font-family: 'Poppins';
+    color: rgba(0,0,0,0.7);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.24px;
+    position: relative;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .header-product > .search-products{
+    width: 250px;
+    position: relative;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion > .add-product-promotion >
+.product-list > .header-product > .search-products > img{
+    position: absolute;
+    right: 8px;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10001;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion > .add-product-promotion >
+.product-list > .header-product > .search-products > input{
+    width: 20px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font-family: 'Poppins';
+    height: 35px;
+    background-color: transparent;
+    padding: 0 40px 0  20px;
+    color: rgba(0,0,0,0.5);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.24px;
+    border-radius: 50px;
+    transition: 0.5s ease;
+    position: relative;
+    z-index: 100;
+    left:100%;
+    transform: translateX(-100%);
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .header-product > .search-products > input.searchActive{
+    width: 100%;
+    background-color: #F7F7F7;
+    transition: 0.5s ease;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .container-products > ul {
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 3fr 5fr 2fr 2fr;
+    column-gap: 20px;
+    align-items: center;
+    color: rgba(0,0,0,0.4);
+}
+
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list >  ul:nth-child(2){
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 10px 0;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 3fr 5fr 2fr 2fr;
+    column-gap: 20px;
+    align-items: center;
+    color: rgba(0,0,0,0.4);
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list >  ul:nth-child(2) > li{
+    font-weight: 500;
+    color: rgba(0,0,0,0.5);
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .container-products > ul > li:last-child{
+   display: flex;
+   justify-content: center;
+   position: relative;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .container-products > ul > li:last-child > div{
+    width: 80%;
+    height: 30px;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    border: 1px solid rgba(54, 227, 57, 1);
+    background-color: rgba(54, 227, 57, 0.2);
+    color: rgba(54, 227, 57, 1);
+    box-sizing: border-box;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .container-products > ul:hover{
+    background-color: #F7F7F7;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .container-products  > ul{
+    padding: 15px 20px;
+    cursor: pointer;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .container-products{
+    height: 370px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: -10px -20px 0 -20px;
+}
+.promotion-information-container > .information-promotion > .search-product-on-promotion  > .add-product-promotion >
+.product-list > .container-products::-webkit-scrollbar{
+    display: none;
+}
+.container-products-promotion{
+    min-height: 40vh;
 }

@@ -1,21 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../theme/admin/PromotionsDetail.css'
 import { ICONS } from '../../constants/admin'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import PromotionInformation from './PromotionInformation';
 
 
 function PromotionsDetail() {
-  
+
+ const location = useLocation();   
  const navigate = useNavigate();
+ const [data,setData] = useState();
+
+
+
+useEffect(() => {
+        if(location.state){
+            setData(location.state);
+            console.log(data);
+         }
+        
+},[])
+
 
 
   return (
     <div className='promotions-detail-container'>
          <h1>Promotions</h1>
         <p>
-            Admin / <span>Promotions</span> / <span>1</span>
+            Admin / <span>Promotions</span> / <span>{data !== undefined && data !== null ? data.idPromotion: 0}</span>
         </p>
 
         <div className='back-to-promotions'
@@ -25,7 +38,9 @@ function PromotionsDetail() {
             <span>Back</span>
         </div>
 
-        <PromotionInformation />
+        <PromotionInformation
+            data={data}
+        />
     </div>
   )
 }
