@@ -29,4 +29,9 @@ public class PromotionController {
     public ResponseEntity<?> getPromotions(){
         return ResponseEntity.ok(iPromotionService.getPromotions());
     }
+
+    @GetMapping("/getProductsByActivePromotion")
+    public ResponseEntity<?> getProductsByActivePromotion() {
+        return ResponseEntity.ok(iPromotionService.getProductsByActivePromotion());
+    }
 }

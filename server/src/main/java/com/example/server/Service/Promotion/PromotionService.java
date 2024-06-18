@@ -119,4 +119,12 @@ public class PromotionService implements IPromotionService{
 
         return promotionDTOS;
     }
+
+    public List<Product> getProductsByActivePromotion() {
+        List<Promotions_products> activePromotionsProducts = iPromotionProductRepository.findByPromotionActive(true);
+        return activePromotionsProducts.stream()
+                .map(Promotions_products::getProduct)
+                .filter(Product::isActive)
+                .collect(Collectors.toList());
+    }
 }
