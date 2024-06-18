@@ -398,7 +398,10 @@ public class ProductService implements IProductService{
                 DiamondDTO diamondDTO = new DiamondDTO();
                 diamondDTO.setId(item.getId());
                 diamondDTO.setCarat(item.getCarat());
-                diamondDTO.setId(item.getId());
+                diamondDTO.setCut(item.getCut().getCut());
+                diamondDTO.setOrigin(item.getOrigin().getOrigin());
+                diamondDTO.setColor(item.getColor().getColor());
+                diamondDTO.setClarity(item.getClarity().getClarity());
                 diamondDTOS.add(diamondDTO);
             });
             productDTO.setDiamonds(diamondDTOS);
