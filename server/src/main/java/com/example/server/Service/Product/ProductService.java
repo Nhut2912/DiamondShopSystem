@@ -387,7 +387,15 @@ public class ProductService implements IProductService{
 
         double finalTotalPrice = totalPrice;
         result = productDTOS.stream()
+<<<<<<< HEAD
                 .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
+=======
+
+                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 1000 && dto.getPrice() <= finalTotalPrice + 1000) || products.stream().anyMatch(p -> p.getId().equals(dto.getId())))
+
+                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
+
+>>>>>>> 0789887e8c3c57b7bb7d2d164270f876f6bd593c
                 .collect(Collectors.toList());
 
         for(ProductDTO productDTO : result){
@@ -409,7 +417,10 @@ public class ProductService implements IProductService{
                 DiamondDTO diamondDTO = new DiamondDTO();
                 diamondDTO.setId(item.getId());
                 diamondDTO.setCarat(item.getCarat());
-                diamondDTO.setId(item.getId());
+                diamondDTO.setCut(item.getCut().getCut());
+                diamondDTO.setOrigin(item.getOrigin().getOrigin());
+                diamondDTO.setColor(item.getColor().getColor());
+                diamondDTO.setClarity(item.getClarity().getClarity());
                 diamondDTOS.add(diamondDTO);
             });
             productDTO.setDiamonds(diamondDTOS);
