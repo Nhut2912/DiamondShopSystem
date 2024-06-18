@@ -1,14 +1,12 @@
 package com.example.server.Controller;
 
+import com.example.server.Model.DiamondPriceListDTO;
 import com.example.server.Pojo.DiamondPriceList;
 import com.example.server.Service.DiamondPriceList.IDiamondPriceListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,9 @@ public class DiamondPriceListController {
     public ResponseEntity<?> getDiamonds(){
         return ResponseEntity.ok(iDiamondPriceListService.getDiamondsPriceList());
     }
-
+    @PostMapping("/updateDiamondPriceList")
+    public boolean updateDiamondPriceList(@RequestBody DiamondPriceListDTO diamondPriceListDTO){
+        return iDiamondPriceListService.updateDiamondPrice(diamondPriceListDTO);
+    }
 
 }
