@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface IDiamondPriceListRepository extends CrudRepository<DiamondPriceList,Long> {
+public interface IDiamondPriceListRepository extends CrudRepository<DiamondPriceList, Long> {
     Optional<DiamondPriceList> findByCaratAndClarity_idAndColor_idAndCut_idAndOrigin_id(double carat,
                                                                                         Long clarity_id, Long color_id,
                                                                                         Long cut_id, Long origin_id);
