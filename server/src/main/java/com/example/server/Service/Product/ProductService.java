@@ -277,6 +277,9 @@ public class ProductService implements IProductService{
                 promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
                 promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
                 promotionDTO.setIdPromotion(promotions_products.getPromotion().getId());
+                promotionDTO.setActive(promotions_products.getPromotion().isActive());
+                promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
+                promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
                 promotionDTOS.add(promotionDTO);
             }
 
@@ -387,15 +390,7 @@ public class ProductService implements IProductService{
 
         double finalTotalPrice = totalPrice;
         result = productDTOS.stream()
-<<<<<<< HEAD
-                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
-=======
-
-                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 1000 && dto.getPrice() <= finalTotalPrice + 1000) || products.stream().anyMatch(p -> p.getId().equals(dto.getId())))
-
-                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
-
->>>>>>> 0789887e8c3c57b7bb7d2d164270f876f6bd593c
+                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 1000 && dto.getPrice() <= finalTotalPrice + 1000 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
                 .collect(Collectors.toList());
 
         for(ProductDTO productDTO : result){

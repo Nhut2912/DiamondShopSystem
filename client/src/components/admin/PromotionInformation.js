@@ -3,11 +3,9 @@ import React, { useEffect, useState } from 'react'
 import '../../theme/admin/PromotionInformation.css'
 import ProductPromotion from './ProductPromotion'
 import ICONS from '../../constants/admin/icons'
-import { UpdatePromotionContext } from '../../context/UpdateContext';
-import { useContext } from 'react';
+
 function PromotionInformation({data}) {
- 
- const updatePromotionContext = useContext(UpdatePromotionContext);
+
 
  const [id,setId] = useState();
  const [name,setName] = useState();
@@ -41,10 +39,6 @@ function PromotionInformation({data}) {
         setActive(data.active ? "AVAILABLE" : "UNAVAILABLE")
     }
  },[data])
-
-
-console.log(productsPromotion)
-
 
 
 
@@ -90,6 +84,10 @@ console.log(productsPromotion)
     }
  }
 
+ const handleDeleteProduct = (value) => {
+   let productsPromotionUpdate = productsPromotion.filter((item) => item !== value);
+   setProductsPromotion(productsPromotionUpdate)
+ }
 
  const handleChangeName = (event) => {
     const value = event.target.value;
@@ -334,7 +332,7 @@ console.log(productsPromotion)
                                 thisPromotionRate={rate}
                                 thisPromotionID={ id
                                 }
-                              
+                                handleDeleteProduct={handleDeleteProduct}
                             />
                 </div>
          </div>

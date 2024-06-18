@@ -4,7 +4,7 @@ import '../../theme/admin/PromotionProductCard.css'
 
 function PromotionProductCard({
   index,Code,Name,Price,thisPromotion,
-  thisPromotionRate,promotionsAvailable,thisPromotionID
+  thisPromotionRate,promotionsAvailable,thisPromotionID,handleDeleteProduct,productID
 }) {
 
   const [promotionsRate,setPromotionsRate] = useState();
@@ -24,9 +24,13 @@ function PromotionProductCard({
     setPromotionsRate(promotionRate)
   },[thisPromotionRate])
 
- 
+  const handlePressDeleteProduct = () => {
+    handleDeleteProduct(productID)
+  }
+
+
   return (
-    <ul className='promotion-product-card'>
+    <ul className='promotion-product-card' onClick={handlePressDeleteProduct}>
         <li>
             {index}
         </li>

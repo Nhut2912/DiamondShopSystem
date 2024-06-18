@@ -13,7 +13,7 @@ function ProductDetail() {
   const param = useParams();
   const [data,setData] = useState();
   const [productSimilar,setProductSimilar] = useState();
-
+  
 
   console.log(param);
   useEffect(() => {
@@ -63,6 +63,7 @@ function ProductDetail() {
                           images={item.images}
                           id={item.id}
                           price={item.price}
+                          promotions={item.promotions}
                           />
                       ))
                     }

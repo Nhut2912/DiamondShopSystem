@@ -40,11 +40,28 @@ function ProductDetailCard({data}) {
   const navigate = useNavigate();
   const cart = useContext(CartContext);
   const [account,setAccount] = useLocalStorage("account",localStorage.getItem("account"));
+  const [promtionRate,setPromotionRate] = useState();
+  const [isPromotion,setIsPromotion] = useState();
 
   let size = data.size;
   const sizesProduct = [{value : size-2}, {value : size-1 }, {value :  size}, {value:  size+1}, {value :  size+2}]
   const [userSize,setUserSize] = useState(size);
 
+
+  useEffect(() => {
+    if(data.promotions !== undefined && data.promotions !== null && data.promotions.length > 0){
+ 
+      setIsPromotion(true);
+      let promotionRate = 0;
+      data.promotions.map((item) => {
+        console.log(item);
+          if(item.active && ((new Date(item.dateEnd).getTime()) > (new Date().getTime()))){
+            promotionRate += item.promotionRate;
+          }
+      })
+      setPromotionRate(promotionRate);
+    }else setIsPromotion(false);
+  },[data])
 
   useEffect(() => {
     const getImageUrls = async () => {
@@ -142,9 +159,20 @@ function ProductDetailCard({data}) {
         <div className='information-product-container'>
               <h1>{data.name}</h1>
               <p>CODE : {data.code}</p>
-              <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price).toFixed(2))}
-                {console.log(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price).toFixed(2))}
+              <h5>{isPromotion !== undefined && isPromotion !== null && promtionRate !== undefined
+                  && promtionRate !== null ?
+                  formattedNumber.format(data.price) : null
+                }</h5>
+
+                {
+                  isPromotion !== undefined && isPromotion !== null ?
+                  <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,(data.price-(data.price*promtionRate)  /100)).toFixed(2))}
+                
+                  </h2>: <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price).toFixed(2))}
+                
                 </h2>
+                }
+             
               <div className='choose-size'>
                  {data.category === "Ring" ? 
                   <>
