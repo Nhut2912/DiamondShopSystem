@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import '../../theme/customer/ProductCard.css';
-import { ICONS } from '../../constants/customer';
+
 import { useNavigate } from 'react-router-dom';
 
-import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { getDownloadURL, ref } from 'firebase/storage';
 import { imageStorage } from '../../config/FirebaseConfig';
 
 const formattedNumber = new Intl.NumberFormat('en-US', {
@@ -14,7 +14,7 @@ const formattedNumber = new Intl.NumberFormat('en-US', {
 })
 
 
-function ProductCard({name,images,id,price}) {
+function ProductCard({name,images,id,price,promotions}) {
 
   const [imagesProduct,setImagesProduct] = useState();
   const navigate = useNavigate();
@@ -23,7 +23,21 @@ function ProductCard({name,images,id,price}) {
         navigate("/products/"+id);
       }
   }
-  
+  const [promtionRate,setPromotionRate] = useState();
+  const [isPromotion,setIsPromotion] = useState();
+
+  useEffect(() => {
+    if(promotions !== undefined && promotions !== null && promotions.length > 0){
+      setIsPromotion(true);
+      let promotionRate = 0;
+      promotions.map((item) => {
+          if(item.active && ((new Date(item.dateEnd).getTime()) > (new Date().getTime()))){
+            promotionRate += item.promotionRate;
+          }
+      })
+      setPromotionRate(promotionRate);
+    }else setIsPromotion(false);
+  },[promotions])
 
 
   useEffect(() => {
@@ -53,11 +67,11 @@ function ProductCard({name,images,id,price}) {
     >
         <h3>{name === undefined ? "" : name}</h3>
 
-        {false &&
+        {isPromotion &&
           (
             <div className='tag-product-card'>
                 <h4>On sale</h4>
-                <span>30%</span>
+                <span>{promtionRate !== undefined && promtionRate !== null ? promtionRate :0}%</span>
             </div>
           )
         }
@@ -68,14 +82,20 @@ function ProductCard({name,images,id,price}) {
             <img src={imagesProduct[0] === null ? "" : imagesProduct[0]} alt='' />
         </div>
         <div className='product-card-price'>
-          {false && 
+          {isPromotion && 
              <span>
-             $ 1,703.87
+             {formattedNumber.format(price)}
            </span>
           }
            
             <div>
-              <h3>{formattedNumber.format(price)}</h3>
+              {isPromotion &&
+                isPromotion ? 
+                <h3>{formattedNumber.format(price-(price*promtionRate)/100)}</h3>:
+                <h3>{formattedNumber.format(price)}</h3>
+              }
+             
+
               {/* <img src={ICONS.icon_cart} alt=''/> */}
             </div>
         </div>

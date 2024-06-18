@@ -3,6 +3,7 @@ package com.example.server.Pojo;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class Product {
 
     private String name;
 
+    @CreationTimestamp
     private LocalDateTime dateAdd;
 
     private boolean active = true;

@@ -1,0 +1,52 @@
+.filter-diamond-container{
+   background-color: #FFFFFF;
+   width: 300px;
+   padding: 0 25px;
+   box-sizing: border-box;
+   border-radius: 8px;
+}
+.filter-diamond-container > h3{
+    font-family: "Poppins";
+    letter-spacing: 0.54px;
+    font-weight: 400;
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 20px 0 0 0;
+}
+.filter-diamond-container > .filter-content{
+    margin-top: 20px;
+}
+
+.filter-diamond-container > .filter-content >  div > h4{
+    font-family: "Poppins";
+    font-size: 14px;
+    margin: 20px 0 10px 0;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.24px;
+}
+.filter-diamond-container > .filter-content >  div  > ul {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.filter-diamond-container > .filter-content >  div  > ul > li{
+    padding: 8px 17px;
+    font-family: "Poppins";
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.filter-diamond-container > .filter-content >  div  > ul > li.isActive{
+    border: 1px solid #d9b384;
+    background-color: #d9b384;
+    color: #FFFFFF;
+}

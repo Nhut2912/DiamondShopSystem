@@ -120,6 +120,7 @@ function Home() {
                                     name={item.name}
                                     images={item.images}
                                     price={item.price}
+                                    promotions={item.promotions}
                                 />
                            ))
                         }

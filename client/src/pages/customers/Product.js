@@ -401,6 +401,7 @@ function Product() {
                               images={product.images}
                               id={product.id}
                               price={product.price}
+                              promotions={product.promotions}
                               />
                             ))
                           }
@@ -586,6 +587,7 @@ function Product() {
                               images={product.images}
                               id={product.id}
                               price={product.price}
+                              promotions={product.promotions}
                               />
                             ))
                           }

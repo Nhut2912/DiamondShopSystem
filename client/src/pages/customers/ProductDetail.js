@@ -32,7 +32,7 @@ function ProductDetail() {
 
 
   if(data === undefined) return <div>Loading</div>
-  console.log(productSimilar);
+  console.log(data);
 
 
   return (

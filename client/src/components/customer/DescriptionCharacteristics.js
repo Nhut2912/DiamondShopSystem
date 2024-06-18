@@ -4,7 +4,7 @@ import '../../theme/customer/DescriptionCharacteristics.css';
 
 function DescriptionCharacteristics({data}) {
  
-  console.log(data);
+  console.log(data.id);
  const [productWeight,setProductWeight] = useState();
  const [diamonds,setDiamonds] = useState();
 
@@ -76,7 +76,7 @@ function DescriptionCharacteristics({data}) {
                             Origin 
                         </span>
                         <span>
-                            {item.origin.origin}
+                            {item.origin}
                         </span>
                     </li>
                     <li>
@@ -84,7 +84,7 @@ function DescriptionCharacteristics({data}) {
                             Color 
                         </span>
                         <span>
-                        {item.color.color}
+                        {item.color}
                         </span>
                     </li>
                     <li>
@@ -92,7 +92,7 @@ function DescriptionCharacteristics({data}) {
                             Clarity 
                         </span>
                         <span>
-                        {item.clarity.clarity}
+                        {item.clarity}
                         </span>
                    </li>
                     <li>
@@ -100,7 +100,7 @@ function DescriptionCharacteristics({data}) {
                             Cut {"(Cut Score)"}
                         </span>
                         <span>
-                        {item.cut.cut}
+                        {item.cut}
                         </span>
                     </li>
                     <li>

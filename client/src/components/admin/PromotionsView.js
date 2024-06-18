@@ -6,6 +6,8 @@ import PromotionCard from './PromotionCard'
 
 function PromotionsView() {
 
+
+
   const [promotions,setPromotions] = useState();
 
 
@@ -34,6 +36,7 @@ function PromotionsView() {
                 <PromotionCard 
                   promotion={item}
                   index = {index}
+                 
                 />
               ))     
           }

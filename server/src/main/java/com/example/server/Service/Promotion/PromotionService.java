@@ -65,6 +65,7 @@ public class PromotionService implements IPromotionService{
         iPromotionProductRepository.deleteAllByPromotionId(promotionDTO.getIdPromotion());
         //kiem tra product co ton tai trong DB
         List<Product> products = new ArrayList<>();
+
         for (Long productId : promotionDTO.getProductIds()) {
             Optional<Product> productOptional = iProductRepository.findById(productId);
             if (productOptional.isPresent()) {

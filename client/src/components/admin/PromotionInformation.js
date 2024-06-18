@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react'
 import '../../theme/admin/PromotionInformation.css'
 import ProductPromotion from './ProductPromotion'
 import ICONS from '../../constants/admin/icons'
-
+import { UpdatePromotionContext } from '../../context/UpdateContext';
+import { useContext } from 'react';
 function PromotionInformation({data}) {
  
+ const updatePromotionContext = useContext(UpdatePromotionContext);
+
  const [id,setId] = useState();
  const [name,setName] = useState();
  const [rate,setRate] = useState();
@@ -112,7 +115,7 @@ console.log(productsPromotion)
     myHeaders.append("Content-Type", "application/json");
     
             const raw = JSON.stringify({
-            "id":id ,
+            "idPromotion":id ,
             "promotionRate": rate,
             "active": active === "AVAILABLE" ? true : false,
             "namePromotion": name,
@@ -128,11 +131,13 @@ console.log(productsPromotion)
             redirect: "follow"
             };
             
+            console.log(raw)
 
             fetch("http://localhost:8080/Promotion/update", requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 if(result){
+                  
                     window.location.href = window.location.href;
                 }
             })

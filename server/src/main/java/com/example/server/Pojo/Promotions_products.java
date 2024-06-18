@@ -1,23 +1,19 @@
 package com.example.server.Pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name ="promotions_products")
+@IdClass(Promotions_products_Id.class)
 public class Promotions_products {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "product_id")
     Product product;
 
-
-    @ManyToOne(cascade = CascadeType.ALL)
+    @Id
+    @ManyToOne
     @JoinColumn(name = "promotion_id")
     Promotion promotion;
 
@@ -32,7 +28,6 @@ public class Promotions_products {
     @Override
     public String toString() {
         return "Promotions_products{" +
-                "id=" + id +
                 ", promotion=" + promotion +
                 '}';
     }

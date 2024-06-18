@@ -186,6 +186,21 @@ public class ProductService implements IProductService{
             productDTO.setPrice(totalPrice);
 
 
+            List<PromotionDTO> promotionDTOS = new ArrayList<>();
+            for(Promotions_products promotions_products : item.getPromotions_products()) {
+                if (promotions_products.getPromotion().isActive()) {
+                    PromotionDTO promotionDTO = new PromotionDTO();
+                    promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
+                    promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
+                    promotionDTO.setIdPromotion(promotions_products.getPromotion().getId());
+                    promotionDTO.setActive(promotions_products.getPromotion().isActive());
+                    promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
+                    promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
+                    promotionDTOS.add(promotionDTO);
+                }
+            }
+            productDTO.setPromotions(promotionDTOS);
+
 
             Set<String> images = new HashSet<>();
             item.getImages().forEach((image -> images.add(image.getUrl())));
@@ -372,11 +387,7 @@ public class ProductService implements IProductService{
 
         double finalTotalPrice = totalPrice;
         result = productDTOS.stream()
-<<<<<<< HEAD
-                .filter(dto -> (dto.getPrice() >= finalTotalPrice - 1000 && dto.getPrice() <= finalTotalPrice + 1000) || products.stream().anyMatch(p -> p.getId().equals(dto.getId())))
-=======
                 .filter(dto -> (dto.getPrice() >= finalTotalPrice - 100 && dto.getPrice() <= finalTotalPrice + 100 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
->>>>>>> 55398991831eeead03ac9a4bfa3950d4d50f7a9c
                 .collect(Collectors.toList());
 
         for(ProductDTO productDTO : result){
