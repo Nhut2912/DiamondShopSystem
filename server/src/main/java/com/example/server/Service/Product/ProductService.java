@@ -482,6 +482,7 @@ public class ProductService implements IProductService{
                 diamondDTO.setCut(diamond.getCut().getCut());
                 diamondDTO.setColor(diamond.getColor().getColor());
                 diamondDTO.setCarat(diamond.getCarat());
+                diamondDTO.setCode(diamond.getCode());
                 diamondDTOS.add(diamondDTO);
 
                 DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,

@@ -16,4 +16,6 @@ public class DiamondDTO {
     private String clarity;
 
     private String cut;
+
+    private String code;
 }
