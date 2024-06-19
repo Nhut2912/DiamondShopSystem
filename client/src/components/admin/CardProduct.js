@@ -3,12 +3,11 @@ import React from 'react'
 import '../../theme/admin/CardProduct.css';
 import { useNavigate } from 'react-router-dom';
 
-function CardProduct() {
+function CardProduct({data}) {
   const navigate = useNavigate();
-  const productId = 123;
+  const productId = data.id;
   const handClick = () => {  
-   
-    console.log(".....");
+  
     navigate(""+productId);
 
 
@@ -17,7 +16,7 @@ function CardProduct() {
     <div className='content-table-container' onClick={handClick} style={{'cursor': 'pointer'}} >
         <ul className='table-content'>
           <li>
-              1
+              #{data.id}
           </li>
           <li>
               <div className='img-product-table'>
@@ -25,7 +24,7 @@ function CardProduct() {
               </div>
           </li>
           <li>
-            #DDDDW000923
+            #{data.code}
           </li>
           <li>
             14K White Gold Diamond Pendant PNJ DDDDW000923

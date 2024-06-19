@@ -213,6 +213,9 @@ public class ProductService implements IProductService{
 
     }
 
+
+
+
     @Override
     public ProductDTO getProduct(Long id) {
         Optional<Product> product = productRepository.findById(id);
@@ -426,6 +429,113 @@ public class ProductService implements IProductService{
         return result;
     }
 
+    @Override
+    public List<ProductDTO> getProductsRoleAdmin() {
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        List<Product> products = productRepository.findAll();
+
+        products.forEach((item) -> {
+            ProductDTO productDTO = new ProductDTO();
+
+            productDTO.setId(item.getId());
+
+            productDTO.setName(item.getName());
+
+            productDTO.setCode(item.getCode());
+
+            productDTO.setSizeUnitPrice(item.getSizeUnitPrice());
+
+            productDTO.setSize(item.getSize().getSize());
+
+            productDTO.setCategory(item.getCategory().getName());
+
+            productDTO.setActive(item.isActive());
+
+            double totalPrice = 0;
+            double caratInterval = 0;
+
+            List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
+            List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
+
+            System.out.println(listDiamondReturn);
+
+
+            List<DiamondDTO> diamondDTOS = new ArrayList<>();
+
+            for (Diamond diamond : listDiamondReturn) {
+                if(diamond.getCarat() >= 0.1 && diamond.getCarat() < 0.4) {
+                    caratInterval = 0.1;
+                }else if (diamond.getCarat() >= 0.4 && diamond.getCarat() <= 0.8){
+                    caratInterval = 0.5;
+                }else if (diamond.getCarat() > 0.8 && diamond.getCarat() < 1.5) {
+                    caratInterval = 1;
+                }else if (diamond.getCarat() >= 1.5 && diamond.getCarat() < 1.8) {
+                    caratInterval = 1.5;
+                }else if (diamond.getCarat() >= 1.8 && diamond.getCarat() <= 2) {
+                    caratInterval = 2;
+                }
+
+                DiamondDTO diamondDTO = new DiamondDTO();
+                diamondDTO.setId(diamond.getId());
+                diamondDTO.setOrigin(diamond.getOrigin().getOrigin());
+                diamondDTO.setClarity(diamond.getClarity().getClarity());
+                diamondDTO.setCut(diamond.getCut().getCut());
+                diamondDTO.setColor(diamond.getColor().getColor());
+                diamondDTO.setCarat(diamond.getCarat());
+                diamondDTOS.add(diamondDTO);
+
+                DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(caratInterval,
+                        diamond.getClarity().getId(), diamond.getColor().getId()
+                        , diamond.getCut().getId(), diamond.getOrigin().getId());
+                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
+            }
+
+            productDTO.setDiamonds(diamondDTOS);
+
+            Set<MaterialDTO> materialDTOS = new HashSet<>();
+
+            for (ProductMaterial productMaterial : listProductMaterial){
+
+                MaterialDTO materialDTO = new MaterialDTO();
+                materialDTO.setName(productMaterial.getMaterial().getName());
+                materialDTO.setWeight(productMaterial.getWeight());
+                materialDTOS.add(materialDTO);
+
+                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
+                totalPrice += materialPriceList.getSellPrice();
+            }
+            totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
+            totalPrice += totalPrice*((double) item.getPriceRate() / 100);
+
+            productDTO.setMaterials(materialDTOS);
+            productDTO.setPrice(totalPrice);
+
+
+            List<PromotionDTO> promotionDTOS = new ArrayList<>();
+            for(Promotions_products promotions_products : item.getPromotions_products()) {
+                if (promotions_products.getPromotion().isActive()) {
+                    PromotionDTO promotionDTO = new PromotionDTO();
+                    promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
+                    promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
+                    promotionDTO.setIdPromotion(promotions_products.getPromotion().getId());
+                    promotionDTO.setActive(promotions_products.getPromotion().isActive());
+                    promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
+                    promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
+                    promotionDTOS.add(promotionDTO);
+                }
+            }
+            productDTO.setPromotions(promotionDTOS);
+
+
+            Set<String> images = new HashSet<>();
+            item.getImages().forEach((image -> images.add(image.getUrl())));
+            productDTO.setImages(images);
+
+
+            productDTOS.add(productDTO);
+        });
+        return productDTOS;
+    }
 
 
 }

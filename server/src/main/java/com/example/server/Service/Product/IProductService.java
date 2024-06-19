@@ -23,5 +23,6 @@ public interface IProductService {
 
     List<ProductDTO> findSimilarProducts(Product product);
 
+    public List<ProductDTO> getProductsRoleAdmin();
 
 }

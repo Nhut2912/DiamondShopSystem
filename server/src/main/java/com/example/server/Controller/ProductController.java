@@ -69,4 +69,10 @@ public class ProductController {
     }
 
 
+    @GetMapping("/getProducts/roleAdmin")
+    public ResponseEntity<List<ProductDTO>> getProductsRoleAdmin() {
+        return ResponseEntity.status(200).body(productService.getProductsRoleAdmin());
+    }
+
+
 }

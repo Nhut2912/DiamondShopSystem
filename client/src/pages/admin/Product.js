@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../../theme/admin/Product.css'
 import { ICONS } from '../../constants/admin';
@@ -8,6 +8,7 @@ import AddProduct from '../../components/admin/AddProduct';
 
 function Product() {
   
+  const [data,setData] = useState();
   const [activeNavigations,setActiveNavigations] = useState('View products');
   const [isAddProduct,setAddProduct] = useState(false);
 
@@ -15,6 +16,14 @@ function Product() {
     {name: 'View products'},
     {name: 'Add product'}
   ]
+
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/product/getProducts/roleAdmin")
+    .then((response) => response.json())
+    .then((result) => setData(result))
+    .catch((error) => console.error(error));
+  },[])
 
   const handleClick = (item) => {
     if(item === navigationProducts[0].name){
@@ -84,13 +93,14 @@ function Product() {
                       </h4>
                       <HeadTableCardProduct />
                       <div className='produc-items-container'>
-                      
-                          <CardProduct />
-                          <CardProduct />
-                          <CardProduct />
-                          <CardProduct />
-                          <CardProduct />
-                          <CardProduct />
+                        {data !== undefined && data !== null && data.length > 0 && 
+                          data.map((item) => (
+                              <CardProduct 
+                                  data={item}
+                              />
+                          ))
+                        }
+                          
                       </div>
                     </div>
                   ) :<AddProduct />
