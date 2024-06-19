@@ -1,0 +1,60 @@
+.warranty-policy-add-container{
+    height: calc(72vh - 100px);
+    border-radius: 10px;
+    padding: 30px 50px;
+    box-sizing: border-box;
+    border: 1px solid #d9b384;
+}
+.warranty-policy-add-container > h4{
+    font-family: "Poppins";
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 20px 0;
+    color: rgba(0, 0, 0, 0.7);
+}
+.warranty-policy-add-container > div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.warranty-policy-add-container > div > label{
+    font-family: "Poppins";
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.4);
+}
+.warranty-policy-add-container > div > input{
+    height: 40px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-family: 'Poppins';
+    padding: 0 15px;
+    color: rgba(0,0,0,0.8);
+    font-size: 15px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+.warranty-policy-add-container > div:nth-child(2){
+    margin-top: 40px;
+}
+.warranty-policy-add-container > div:nth-child(3){
+    margin-top: 20px;
+}
+.warranty-policy-add-container > div:nth-child(3) > input{
+    width: 40%;
+}
+.warranty-policy-add-container > div:nth-child(4){
+    margin-top: 40px;
+    background-color: #d9b384;
+    height: 45px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+    color: #FFFFFF;
+    cursor: pointer;
+}

@@ -8,11 +8,19 @@
       <change afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IImageRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/ProductDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/IProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IWarrantyPolicyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IWarrantyPolicyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IWarrantyPolicyRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IWarrantyPolicyRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.class" afterDir="false" />
+>>>>>>> de2ea312012cda6c35b45a8cbb91412eed379bb3
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +130,12 @@
       <workItem from="1718727935934" duration="1111000" />
       <workItem from="1718787679088" duration="601000" />
       <workItem from="1718788586882" duration="218000" />
+<<<<<<< HEAD
       <workItem from="1718806656135" duration="12699000" />
+=======
+      <workItem from="1718804678582" duration="2615000" />
+      <workItem from="1718813874365" duration="7995000" />
+>>>>>>> de2ea312012cda6c35b45a8cbb91412eed379bb3
     </task>
     <servers />
   </component>

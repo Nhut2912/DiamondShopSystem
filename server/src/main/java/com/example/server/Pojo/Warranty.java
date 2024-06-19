@@ -3,6 +3,7 @@ package com.example.server.Pojo;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -16,6 +17,9 @@ public class Warranty {
 
     private boolean status ;
 
+    private Date dateStart;
+
+    private Date dateEnd;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;

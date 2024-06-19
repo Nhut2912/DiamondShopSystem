@@ -16,7 +16,8 @@ public class WarrantyPolicy {
 
     private String name;
 
-    private Date warrantyPeriod;
+    private Integer warrantyPeriod;
 
+    private boolean isActive;
 
 }
