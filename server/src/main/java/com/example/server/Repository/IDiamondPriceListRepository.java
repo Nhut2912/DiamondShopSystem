@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface IDiamondPriceListRepository extends CrudRepository<DiamondPriceList, Long> {
-    Optional<DiamondPriceList> findByCaratAndClarity_idAndColor_idAndCut_idAndOrigin_id(double carat,
+    Optional<DiamondPriceList> findByClarity_idAndColor_idAndCut_idAndOrigin_id(
                                                                                         Long clarity_id, Long color_id,
                                                                                         Long cut_id, Long origin_id);
 

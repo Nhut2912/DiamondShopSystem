@@ -6,17 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="238e78d8-921c-487d-bbcf-651e12043aa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/DiamondPriceList.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Pojo/DiamondPriceList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IDiamondPriceListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IDiamondPriceListRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/DiamondPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/DiamondPriceListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/MaterialPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/MaterialPriceListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/DiamondPriceListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/DiamondPriceListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/DiamondPriceList.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Pojo/DiamondPriceList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IDiamondPriceListRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IDiamondPriceListRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/DiamondPriceList/DiamondPriceListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/DiamondPriceList/DiamondPriceListService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/DiamondPriceList/IDiamondPriceListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/DiamondPriceList/IDiamondPriceListService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +48,7 @@
     &quot;Spring Boot.ServerApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Diamond_Shop_18_06_Ver2/DiamondShopSystem&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Diamond_Shop_19_06/DiamondShopSystem&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -119,6 +114,8 @@
       <workItem from="1718724075112" duration="2286000" />
       <workItem from="1718727233039" duration="377000" />
       <workItem from="1718727935934" duration="1111000" />
+      <workItem from="1718787679088" duration="601000" />
+      <workItem from="1718788586882" duration="218000" />
     </task>
     <servers />
   </component>

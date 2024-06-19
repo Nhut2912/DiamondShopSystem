@@ -30,9 +30,7 @@ public class DiamondPriceListService implements IDiamondPriceListService {
 
     @Override
     public DiamondPriceList getDiamondPriceListBy4C(double carat, Long clarity_id, Long color_id, Long cut_id, Long origin_id) {
-        System.out.println("carat: " + carat + " clarity: " + clarity_id + " color: " + color_id + " cut: " + cut_id + " origin: " + origin_id);
-        Optional<DiamondPriceList> diamondPriceList = iDiamondPriceListRepository.findByCaratAndClarity_idAndColor_idAndCut_idAndOrigin_id(carat, clarity_id, color_id, cut_id, origin_id);
-        return diamondPriceList.orElse(null);
+        return null;
     }
 
     @Override
@@ -42,7 +40,7 @@ public class DiamondPriceListService implements IDiamondPriceListService {
         diamondPriceLists.forEach((diamondPriceList -> {
             DiamondPriceListDTO diamondPriceListDTO = new DiamondPriceListDTO();
             diamondPriceListDTO.setId(diamondPriceList.getId());
-            diamondPriceListDTO.setCarat(diamondPriceList.getCarat());
+//            diamondPriceListDTO.setCarat(diamondPriceList.getCarat());
             diamondPriceListDTO.setEffDate(diamondPriceList.getEffDate());
             diamondPriceListDTO.setCut(diamondPriceList.getCut().getCut());
             diamondPriceListDTO.setColor(diamondPriceList.getColor().getColor());
@@ -64,7 +62,7 @@ public class DiamondPriceListService implements IDiamondPriceListService {
         }
         DiamondPriceList diamondPriceListSave = new DiamondPriceList();
         diamondPriceListSave.setId(diamondPriceListDTO.getId());
-        diamondPriceListSave.setCarat(diamondPriceListDTO.getCarat());
+//        diamondPriceListSave.setCarat(diamondPriceListDTO.getCarat());
         diamondPriceListSave.setEffDate(diamondPriceListDTO.getEffDate());
         diamondPriceListSave.setPrice(diamondPriceListDTO.getPrice());
 
