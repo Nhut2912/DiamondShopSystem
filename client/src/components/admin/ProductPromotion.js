@@ -8,7 +8,7 @@ function ProductPromotion({thisPromotionID,productsPromotion, thisPromotion,this
 }) {
 
   const [data,setData] = useState([]);
-  console.log(productsPromotion);
+
 
   useEffect(() => {
      if(productsPromotion !== undefined && productsPromotion !== null ){
@@ -24,17 +24,13 @@ function ProductPromotion({thisPromotionID,productsPromotion, thisPromotion,this
                return await response.json();
               })
             )
-            setData([...data,...productObject.filter(product => product !== null)])
+            if(data === undefined || data === null){
+              setData([...productObject.filter(product => product !== null)])
+            }else setData([...data,...productObject.filter(product => product !== null)]);
 
           }
           fetchData();
-
-
-
         }else{
-
-           
-
             const fetchData = async() => {
               
               let dataFetch = [];

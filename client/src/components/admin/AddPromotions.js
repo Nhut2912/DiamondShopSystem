@@ -206,7 +206,7 @@ myHeaders.append("Content-Type", "application/json");
                                    
                                     {
                                         productsData !== undefined && productsData !== null &&
-                                        productsData.map((item,index) => (
+                                        productsData.filter((item) => !productsPromotion.some(id => id === item.id)).map((item,index) => (
                                             <ul
                                                 draggable="true"
                                                 onDragStart={handleDrapProductsPromotion} 

@@ -83,6 +83,7 @@ public class DiamondPriceListService implements IDiamondPriceListService {
         diamondPriceListSave.setColor(color.get());
         diamondPriceListSave.setCut(cut.get());
         diamondPriceListSave.setOrigin(origin.get());
+        iDiamondPriceListRepository.save(diamondPriceListSave);
         return true;
     }
 

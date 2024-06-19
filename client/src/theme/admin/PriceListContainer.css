@@ -79,6 +79,12 @@
     padding: 25px 15px;
     margin-block-start: 0;
     margin-block-end: 0;
+    align-items: center;
+}
+.price-list-container > .container-price-scroll > ul.isEdited{
+    background-color: #FFFFFF;
+    border: 1px solid #d9b384;
+    border-radius: 5px;
 }
 .price-list-container > .container-price-scroll > ul > li{
     font-family: 'Poppins';
@@ -88,9 +94,31 @@
     cursor: pointer;
     
 }
+.price-list-container > .container-price-scroll > ul > li > input{
+    font-family: 'Poppins';
+    height: 30px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 0 15px;
+    color: rgba(0,0,0,0.8);
+    font-size: 15px;
+    font-weight: 400;
+    width: 100px;
+}
 .price-list-container > .container-price-scroll > ul > li:last-child{
     display: flex;
     justify-content: center;
+}
+.price-list-container > .container-price-scroll > ul > li:last-child > span.update{
+    padding: 10px 25px;
+    background-color: #d9b384;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+.price-list-container > .container-price-scroll > ul > li:last-child > span.edit{
+    padding: 10px 25px;
 }
 .price-list-container > .container-price-scroll > .line{
     height: 1px;

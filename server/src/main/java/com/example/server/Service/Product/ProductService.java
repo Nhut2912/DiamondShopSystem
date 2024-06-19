@@ -273,14 +273,16 @@ public class ProductService implements IProductService{
 
             List<PromotionDTO> promotionDTOS = new ArrayList<>();
             for(Promotions_products promotions_products : product.get().getPromotions_products()){
-                PromotionDTO promotionDTO = new PromotionDTO();
-                promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
-                promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
-                promotionDTO.setIdPromotion(promotions_products.getPromotion().getId());
-                promotionDTO.setActive(promotions_products.getPromotion().isActive());
-                promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
-                promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
-                promotionDTOS.add(promotionDTO);
+                if(promotions_products.getPromotion().isActive()){
+                    PromotionDTO promotionDTO = new PromotionDTO();
+                    promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
+                    promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
+                    promotionDTO.setIdPromotion(promotions_products.getPromotion().getId());
+                    promotionDTO.setActive(promotions_products.getPromotion().isActive());
+                    promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
+                    promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
+                    promotionDTOS.add(promotionDTO);
+                }
             }
 
             productDTO.setPromotions(promotionDTOS);
@@ -391,11 +393,6 @@ public class ProductService implements IProductService{
         double finalTotalPrice = totalPrice;
         result = productDTOS.stream()
                 .filter(dto -> (dto.getPrice() >= finalTotalPrice - 1000 && dto.getPrice() <= finalTotalPrice + 1000 && !dto.getId().equals(product.getId())) || products.stream().anyMatch(p -> (p.getId().equals(dto.getId())) && !p.getId().equals(product.getId())))
-<<<<<<< HEAD
-=======
-
-
->>>>>>> d0474d702aaec12f01cc43222a3e58a7fdb99eda
                 .collect(Collectors.toList());
 
         for(ProductDTO productDTO : result){
