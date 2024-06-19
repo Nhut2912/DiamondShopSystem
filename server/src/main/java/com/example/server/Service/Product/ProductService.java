@@ -6,7 +6,7 @@ import com.example.server.Model.MaterialDTO;
 import com.example.server.Model.ProductDTO;
 import com.example.server.Model.PromotionDTO;
 import com.example.server.Pojo.*;
-import com.example.server.Repository.IProductRepository;
+import com.example.server.Repository.*;
 import com.example.server.Service.Category.ICategoryService;
 import com.example.server.Service.Clarity.IClarityService;
 import com.example.server.Service.Color.IColorService;
@@ -17,6 +17,7 @@ import com.example.server.Service.Material.IMaterialService;
 import com.example.server.Service.MaterialPriceList.IMaterialPriceListService;
 import com.example.server.Service.Origin.IOriginService;
 import com.example.server.Service.ProductMaterial.IProductMaterialService;
+import com.example.server.Service.Promotion.IPromotionService;
 import com.example.server.Service.Size.ISizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,30 @@ public class ProductService implements IProductService{
     private IProductRepository productRepository;
 
     @Autowired
+    private ICategoryRepository categoryRepository;
+
+    @Autowired
+    private ISizeRepository sizeRepository;
+
+    @Autowired
+    private IImageRepository imageRepository;
+
+    @Autowired
+    IClarityService clarityService;
+
+    @Autowired
+    IColorService colorService;
+
+    @Autowired
+    ICutService cutService;
+
+    @Autowired
+    IOriginService originService;
+
+    @Autowired
+    IDiamondRepository diamondRepository;
+
+    @Autowired
     private ISizeService sizeService;
 
     @Autowired
@@ -40,18 +65,6 @@ public class ProductService implements IProductService{
 
     @Autowired
     private ICategoryService categoryService;
-
-    @Autowired
-    private IColorService colorService;
-
-    @Autowired
-    private ICutService cutService;
-
-    @Autowired
-    private IClarityService clarityService;
-
-    @Autowired
-    private IOriginService originService;
 
     @Autowired
     private IProductMaterialService productMaterialService;
@@ -64,6 +77,8 @@ public class ProductService implements IProductService{
 
     @Autowired
     private IMaterialPriceListService iMaterialPriceListService;
+
+    @Autowired IPromotionRepository promotionRepository;
 
     @Override
     public boolean save(Product product) {
@@ -535,6 +550,72 @@ public class ProductService implements IProductService{
             productDTOS.add(productDTO);
         });
         return productDTOS;
+    }
+
+    @Override
+    public boolean updateProduct(Product product) {
+        Optional<Product> productOptional = productRepository.findById(product.getId());
+        try {
+            productOptional.orElseThrow(() -> new ClassNotFoundException("Product Not Found by id: " + product.getId()));
+        }catch(ClassNotFoundException ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        Product productSave = productOptional.get();
+        productSave.setId(product.getId());
+        productSave.setCode(product.getCode());
+        productSave.setName(product.getName());
+        productSave.setActive(true);
+        productSave.setDateAdd(product.getDateAdd());
+        productSave.setSizeUnitPrice(product.getSizeUnitPrice());
+        productSave.setSecondaryMaterialCost(product.getSecondaryMaterialCost());
+        productSave.setSecondaryDiamondCost(product.getSecondaryDiamondCost());
+        productSave.setProductionCost(product.getProductionCost());
+        productSave.setPriceRate(product.getPriceRate());
+        Category category = categoryService.getCategory(product.getCategory().getName());
+        productSave.setCategory(category);
+        Size size = sizeService.getSize(product.getSize().getSize());
+        productSave.setSize(size);
+        Set<ProductMaterial> productMaterialSet = new HashSet<>();
+        product.getProductMaterials().forEach((item) -> {
+            Material material = materialService.getMaterial(item.getMaterial().getName());
+            item.setMaterial(material);
+            productMaterialSet.add(item);
+        });
+        product.setProductMaterials(productMaterialSet);
+
+        Set<Diamond> diamondSet = new HashSet<>();
+        product.getDiamonds().forEach((item) -> {
+            Color color = colorService.getColor(item.getColor().getColor());
+            item.setColor(color);
+            Clarity clarity =clarityService.getClarity(item.getClarity().getClarity());
+            item.setClarity(clarity);
+            Cut cut = cutService.getCut(item.getCut().getCut());
+            item.setCut(cut);
+            Origin origin = originService.getOrigin(item.getOrigin().getOrigin());
+            item.setOrigin(origin);
+            diamondSet.add(item);
+        });
+        productSave.setDiamonds(diamondSet);
+
+        productRepository.save(productSave);
+
+        return true;
+    }
+
+    @Override
+    public boolean deleteProduct(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        try {
+            product.orElseThrow(() -> new ClassNotFoundException("Product Not Found by id: " + id));
+        }catch(ClassNotFoundException ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        Product productDelete = product.get();
+        productDelete.setActive(false);
+        productRepository.save(productDelete);
+        return true;
     }
 
 

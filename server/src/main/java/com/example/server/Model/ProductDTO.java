@@ -1,7 +1,9 @@
 package com.example.server.Model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +22,15 @@ public class ProductDTO {
     private List<DiamondDTO> diamonds;
     private List<PromotionDTO> promotions;
 
+    @CreationTimestamp
+    private LocalDateTime dateAdd;
+    private int priceRate;
+
+    private double productionCost;
+
+    private double secondaryDiamondCost;
+
+    private double secondaryMaterialCost;
 
 
 }

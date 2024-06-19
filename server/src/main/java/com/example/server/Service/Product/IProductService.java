@@ -25,4 +25,8 @@ public interface IProductService {
 
     public List<ProductDTO> getProductsRoleAdmin();
 
+    public boolean updateProduct(Product product);
+
+    public boolean deleteProduct(Long id);
+
 }
