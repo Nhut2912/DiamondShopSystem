@@ -56,6 +56,6 @@ public class WarrantyPolicyService implements IWarrantyPolicyService {
     }
     @Override
     public List<WarrantyPolicy> getWarrantyPolicies() {
-        return (List<WarrantyPolicy>)iWarrantyPolicyRepository.findAll();
+        return iWarrantyPolicyRepository.findByIsActive(true);
     }
 }
