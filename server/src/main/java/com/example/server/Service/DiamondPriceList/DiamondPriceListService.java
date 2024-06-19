@@ -53,12 +53,13 @@ public class DiamondPriceListService implements IDiamondPriceListService {
         }));
         return diamondPriceListDTOS;
     }
-
+    @Override
     public boolean updateDiamondPrice(DiamondPriceListDTO diamondPriceListDTO) {
         Optional<DiamondPriceList> diamondPriceList = iDiamondPriceListRepository.findById(diamondPriceListDTO.getId());
         try {
             diamondPriceList.orElseThrow(() -> new ClassNotFoundException("Diamond Price List Not Found by id: " + diamondPriceListDTO.getId()));
         }catch(ClassNotFoundException ex){
+            System.out.println(ex.getMessage());
             return false;
         }
         DiamondPriceList diamondPriceListSave = new DiamondPriceList();
@@ -77,6 +78,7 @@ public class DiamondPriceListService implements IDiamondPriceListService {
             cut.orElseThrow(() -> new ClassNotFoundException("Diamond Price List Not Found By" + diamondPriceListDTO.getCut()));
             origin.orElseThrow(() -> new ClassNotFoundException("Diamond Price List Not Found By" + diamondPriceListDTO.getOrigin()));
         }catch(ClassNotFoundException ex){
+            System.out.println(ex.getMessage());
             return false;
         }
         diamondPriceListSave.setClarity(clarity.get());
