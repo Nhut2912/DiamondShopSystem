@@ -1,0 +1,7 @@
+.warranty-policy-container{
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    column-gap: 100px;
+
+}
