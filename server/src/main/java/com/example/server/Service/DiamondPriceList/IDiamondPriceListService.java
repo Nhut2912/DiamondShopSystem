@@ -10,7 +10,7 @@ import java.util.List;
 public interface IDiamondPriceListService {
     public DiamondPriceList getDiamondPriceListBy4C(double carat,
                                                     Long clarity_id, Long color_id,
-                                                    Long cut_id, Long origin_id);
+                                                    Long cut_id, Long origin_id) throws ClassNotFoundException;
 
 
     public List<DiamondPriceListDTO> getDiamondsPriceList();
