@@ -180,14 +180,16 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-    @GetMapping("/statisticOrderByDay/{day}")
-    public ResponseEntity<List<Order>> statisticOrderByDay(@PathVariable int day){
-        return new ResponseEntity<>(iorderService.getOrdersByDay(day), HttpStatus.OK);
-    }
+
     @GetMapping("/statisticOrderByWeek")
     public ResponseEntity<?> statisticOrderByWeek() throws ParseException {
 
         return new ResponseEntity<>(iorderService.getStatisticByWeek(), HttpStatus.OK);
+    }
+    @GetMapping("/statisticOrderByMonth")
+    public ResponseEntity<?> statisticOrderByMonth() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getStatisticByMonth(), HttpStatus.OK);
     }
 
 }
