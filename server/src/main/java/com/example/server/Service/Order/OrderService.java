@@ -83,9 +83,7 @@ public class OrderService implements IOrderService {
         return iOrderRepository.getOrdersByAccount_Id(id);
     }
 
-    public List<Order> getOrdersByDay(int id) {
-        return iOrderRepository.getOrderByDay(id);
-    }
+
 
     public Map<LocalDate, Integer> getOrdersByMonthAndYear(int month, int year) {
         List<Order> orders = iOrderRepository.getOrderByMonthAndYear(month, year);

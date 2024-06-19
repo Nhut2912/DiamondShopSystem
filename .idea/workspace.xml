@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="238e78d8-921c-487d-bbcf-651e12043aa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/DiamondPriceListDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Model/DiamondPriceListDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IDiamondPriceListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IDiamondPriceListRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/DiamondPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/DiamondPriceListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/IDiamondPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/IDiamondPriceListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IWarrantyPolicyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IWarrantyPolicyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IWarrantyPolicyRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IWarrantyPolicyRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/WarrantyPolicy/WarrantyPolicyService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +115,8 @@
       <workItem from="1718727935934" duration="1111000" />
       <workItem from="1718787679088" duration="601000" />
       <workItem from="1718788586882" duration="218000" />
-      <workItem from="1718804678582" duration="1629000" />
+      <workItem from="1718804678582" duration="2615000" />
+      <workItem from="1718813874365" duration="7995000" />
     </task>
     <servers />
   </component>
