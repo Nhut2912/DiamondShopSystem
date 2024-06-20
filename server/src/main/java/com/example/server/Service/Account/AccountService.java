@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class AccountService implements IAccountService{
@@ -110,6 +112,65 @@ public class AccountService implements IAccountService{
     }
 
 
+    public List<AccountDTO> findAllActive() {
+        return iAccountRepository.findByActive(true).stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
 
+    public Optional<AccountDTO> findByEmail(String email) {
+        return iAccountRepository.findByEmail(email).filter(Account::isActive).map(this::convertToDto);
+    }
+
+    public Optional<AccountDTO> findById(Long id) {
+        return iAccountRepository.findById(id).filter(Account::isActive).map(this::convertToDto);
+    }
+
+    public AccountDTO save(AccountDTO accountDto) {
+        Account account = convertToEntity(accountDto);
+        Account savedAccount = iAccountRepository.save(account);
+        return convertToDto(savedAccount);
+    }
+
+    public boolean deactivateByEmail(String email) {
+        Optional<Account> account = iAccountRepository.findByEmail(email);
+        if (account.isPresent()) {
+            Account accountToDeactivate = account.get();
+            accountToDeactivate.setActive(false);
+            iAccountRepository.save(accountToDeactivate);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    private AccountDTO convertToDto(Account account) {
+        AccountDTO accountDto = new AccountDTO();
+        accountDto.setId(account.getId());
+        accountDto.setName(account.getName());
+        accountDto.setEmail(account.getEmail());
+        accountDto.setPassword(account.getPassword());
+        accountDto.setNumberPhone(account.getNumberPhone());
+        accountDto.setAddress(account.getAddress());
+        accountDto.setBirthDay(account.getBirthDay());
+        accountDto.setRole(account.getRole());
+        return accountDto;
+    }
+
+    private Account convertToEntity(AccountDTO accountDto) {
+        Account account = new Account();
+        account.setId(accountDto.getId());
+        account.setName(accountDto.getName());
+        account.setEmail(accountDto.getEmail());
+        account.setPassword(accountDto.getPassword());
+        account.setNumberPhone(accountDto.getNumberPhone());
+        account.setAddress(accountDto.getAddress());
+        account.setBirthDay(accountDto.getBirthDay());
+        account.setRole(accountDto.getRole());
+        account.setActive(true); // đảm bảo account đc active
+        return account;
+    }
 
 }
