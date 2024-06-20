@@ -1,12 +1,14 @@
-.warranty-policy-views-container{
-    margin-top: 40px;
-}
+
 .warranty-policy-views-container > ul {
     list-style: none;
     padding-inline-start: 0;
     display: grid;
-    grid-template-columns: 1fr 1.5fr 2fr 2fr 1fr;
+    grid-template-columns: 1fr 1.5fr 3fr 2fr 1fr;
     padding: 0 20px ;
+    align-items: center;
+    padding: 20px 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 .warranty-policy-views-container > ul:first-child {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -22,19 +24,52 @@
     display: flex;
     justify-content: center;
 }
-.warranty-policy-views-container > ul{
+
+
+.warranty-policy-views-container > .container-warranty-policy-card{
+    height: 59vh;
+    overflow-y: scroll;
+    
+}
+.warranty-policy-views-container > .container-warranty-policy-card::-webkit-scrollbar{
+    display: none;
+}
+.warranty-policy-views-container > .container-warranty-policy-card > ul {
+    list-style: none;
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 3fr 2fr 1fr;
+    padding: 0 20px ;
+    align-items: center;
     padding: 20px 0;
     margin-block-start: 0;
     margin-block-end: 0;
 }
-.warranty-policy-views-container > ul > li{
+
+.warranty-policy-views-container > .container-warranty-policy-card > ul > li{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(0, 0, 0, 0.7);
     font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
 
 }
-.warranty-policy-views-container > .line{
+.warranty-policy-views-container > .container-warranty-policy-card > ul > li:last-child{
+    color: rgba(217, 4, 61, 1);
+    border: 1px solid rgba(217, 4, 61, 1);
+    padding: 5px 8px;
+    border-radius: 50px;
+    text-align: center;
+    background-color: rgba(217, 4, 61, 0.2);
+}
+.warranty-policy-views-container > .container-warranty-policy-card > ul > li:last-child.isActive{
+    background-color: rgba(54, 227, 57, 0.2);
+    text-align: center;
+    padding: 5px 8px;
+    border-radius: 50px;
+    color: rgba(54, 227, 57, 1);
+    border: 1px solid rgba(54, 227, 57, 1);
+}
+.warranty-policy-views-container > .container-warranty-policy-card > .line{
     height: 1px;
     border-bottom: 1px dotted rgba(0, 0, 0, 0.15);
 
