@@ -1,0 +1,42 @@
+.add-account-container {
+    width: 100%;
+    margin: 20px auto;
+  }
+  
+  .account-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .account-table th, .account-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .account-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .account-table input, .account-table select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  
+  .add-account-container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #C7A173;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-account-container button:hover {
+    background-color: #0056b3;
+  }
+  
