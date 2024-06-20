@@ -1,0 +1,41 @@
+.update-gold-price-container {
+    width: 100%;
+    margin: 20px auto;
+}
+
+.gold-price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.gold-price-table th, .gold-price-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.gold-price-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.gold-price-table input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.update-gold-price-container button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #C7A173;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.update-gold-price-container button:hover {
+    background-color: #0056b3;
+}

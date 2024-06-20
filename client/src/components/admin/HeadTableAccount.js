@@ -9,8 +9,9 @@ function HeadTableCardAccount(){
           <li>Email</li>
           <li>Name</li>
           <li>Phone</li>
-          <li>Status</li>
           <li>Role</li>
+          <li>Status</li>
+          <li></li>
        </ul>
     </div>
    )

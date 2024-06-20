@@ -1,19 +1,19 @@
-.content-table-account-container > .table-account-content {
+.content-table-gold-price-container > .table-gold-price-content {
     justify-content: space-between;
     margin-block-start: 0em;
     margin-block-end: 0em;
     padding-inline-start: 0px;
     list-style: none;
-    padding: 20px 0 20px 0;
+    padding: 20px 0;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto;
     column-gap: 20px;   
     border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
     margin: 0 42px;
     align-items: center;
 }
 
-.content-table-account-container > .table-account-content > li {
+.content-table-gold-price-container > .table-gold-price-content > li {
     font-family: 'Poppins';
     font-size: 15px;
     color: rgba(0, 0, 0, 0.7);
@@ -22,7 +22,7 @@
     position: relative;
 }
 
-.content-table-account-container > .table-account-content > li > .status-account {
+.content-table-gold-price-container > .table-gold-price-content > li > .status-gold-price {
     width: 100%;
     background-color: rgba(54, 227, 57, 0.2);
     text-align: center;
@@ -30,20 +30,20 @@
     color: rgba(54, 227, 57, 1);
 }
 
-.content-table-account-container > .table-account-content > li.edit-account {
+.content-table-gold-price-container > .table-gold-price-content > li.edit-gold-price {
     display: flex;
     justify-content: center;
 }
 
-.content-table-account-container > .table-account-content > li > input,
-.content-table-account-container > .table-account-content > li > select {
-    width: calc(100% - 40px); /* Adjust width according to padding */
+.content-table-gold-price-container > .table-gold-price-content > li > input,
+.content-table-gold-price-container > .table-gold-price-content > li > select {
+    width: calc(100% - 40px); 
     padding: 5px;
     font-size: 15px;
     font-family: 'Poppins';
 }
 
-.content-table-account-container > .table-account-content > li > button {
+.content-table-gold-price-container > .table-gold-price-content > li > button {
     padding: 5px 10px;
     font-size: 14px;
     font-family: 'Poppins';

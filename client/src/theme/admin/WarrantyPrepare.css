@@ -13,5 +13,95 @@
     font-weight: 600;
     line-height: normal;
     letter-spacing: 0.8px;
-    margin: 0;
+    margin: 0 0 40px 0;
+}
+
+.warranty-prepare-container > table ,.warranty-prepare-container  > table > tr > th,.warranty-prepare-container  > table > tr> td{
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-collapse: collapse;
+}
+
+.warranty-prepare-container > table  > tr{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 3fr 5.5fr;
+}
+.warranty-prepare-container > table > tr > td{
+    text-align: start;
+    padding: 10px 20px 10px 15px;
+    font-family: "Poppins";
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.55);
+}
+.warranty-prepare-container > table > tr > th{
+    text-align: start;
+    padding: 10px 20px 10px 15px;
+    font-family: "Poppins";
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.65);
+}
+.warranty-prepare-container > table > tr > td:last-child{
+    position: relative;
+}
+.warranty-prepare-container > table > tr > td:last-child > ul {
+    padding-inline-start: 0;
+    list-style: none;
+    position: absolute;
+    left:-2px;
+    right: -2px;
+    margin-block-start: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    background-color: #FFFFFF;
+    height: 0;
+    transition:  1s ease;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+    border-top: none;
+}
+.warranty-prepare-container > table > tr > td:last-child > img {
+    right:15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.warranty-prepare-container > table > tr > td:last-child > ul.isActive {
+    border-top: none;
+    height: 150px;
+    transition:  1s ease;
+    overflow-y: scroll;
+    margin-top: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-top: none;
+}
+.warranty-prepare-container > table > tr > td:last-child > ul.isActive::-webkit-scrollbar{
+    display: none;
+}
+.warranty-prepare-container > table > tr > td:last-child > ul > li{
+    position: relative;
+    color: transparent;
+    background-color: transparent;
+    height: 0;
+}
+.warranty-prepare-container > table > tr > td:last-child > ul.isActive > li{
+    padding: 12px 15px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.55);
+    height: auto;
+}
+.warranty-prepare-container > table > tr > td:last-child > ul > li:hover{
+    background-color: #F7F7F7;
+}
+.warranty-prepare-container > .button-create-warranty{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 230px;
+    background-color: #d9b384;
+    height: 50px;
+    align-items: center;
+    font-family: "Roboto Serif";
+    color: #FFFFFF;
+    font-weight: 500;
 }
