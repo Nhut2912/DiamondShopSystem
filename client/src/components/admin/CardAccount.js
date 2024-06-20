@@ -1,34 +1,115 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 import '../../theme/admin/CardAccount.css';
-import { useNavigate } from 'react-router-dom';
 
 function CardAccount(){
-    const navigate = useNavigate();
-    const accountId = 123;
-    const handClick = () => {
+    
+    const [isEditing, setIsEditing] = useState(false);
+    const [formData, setFormData] = useState({
+        id: '#12345',
+        email: 'john.doe@example.com',
+        name: 'John Doe',
+        phone: '+1-234-567-8901',
+        role: 'Admin',
+        status: 'Active'
+    });
 
-        console.log("...");
-        navigate(""+accountId);
-    }
+    const handleEditClick = () => {
+        setIsEditing(!isEditing);
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const handleSaveClick = () => {
+        setIsEditing(false);
+        // Save data logic here
+    };
+
     return (
-        <div className='content-table-account-container' onClick={handClick} style={{'cursor':'pointer'}}>
+        <div className='content-table-account-container'>
             <ul className='table-account-content'>
-               <li>#12345</li>
-               <li>john.doe@example.com</li>
-               <li>John Doe</li>
-               <li>+1-234-567-8901</li>
-               <li>
-                <div className='status-account'>
-                    <span>
-                        Active
-                    </span>
-                </div>
-               </li>
-               <li>Admin</li>
+                <li>{formData.id}</li>
+                <li>
+                    {isEditing ? (
+                        <input 
+                            type="text" 
+                            name="email" 
+                            value={formData.email} 
+                            onChange={handleChange} 
+                        />
+                    ) : (
+                        formData.email
+                    )}
+                </li>
+                <li>
+                    {isEditing ? (
+                        <input 
+                            type="text" 
+                            name="name" 
+                            value={formData.name} 
+                            onChange={handleChange} 
+                        />
+                    ) : (
+                        formData.name
+                    )}
+                </li>
+                <li>
+                    {isEditing ? (
+                        <input 
+                            type="text" 
+                            name="phone" 
+                            value={formData.phone} 
+                            onChange={handleChange} 
+                        />
+                    ) : (
+                        formData.phone
+                    )}
+                </li>
+                <li>
+                    {isEditing ? (
+                        <input 
+                            type="text" 
+                            name="role" 
+                            value={formData.role} 
+                            onChange={handleChange} 
+                        />
+                    ) : (
+                        formData.role
+                    )}
+                </li>
+                <li>
+                    <div className='status-account'>
+                        {isEditing ? (
+                            <select 
+                                name="status" 
+                                value={formData.status} 
+                                onChange={handleChange}
+                            >
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        ) : (
+                            <span>{formData.status}</span>
+                        )}
+                    </div>
+                </li>
+                <li className='edit-account'>
+                    {isEditing ? (
+                        <button onClick={handleSaveClick}>Save</button>
+                    ) : (
+                        <button onClick={handleEditClick}>Edit</button>
+                    )}
+                </li>
             </ul>
         </div>
-    )
+    );
 }
+
 
 export default CardAccount

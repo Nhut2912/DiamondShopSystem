@@ -25,6 +25,8 @@ function OrderCarddetail() {
 
  const [statusDeposit,setStatusDeposit] = useState();
  const [statusRemainder,setStatusRemainder] = useState();
+ 
+ const [warranty,setWarranty] = useState();
 
  useEffect(() => {
     const loggedAccount = localStorage.getItem('account');
@@ -227,6 +229,7 @@ orderDetail.map((item) =>{
 
 
 
+
   return (
     <div className='order-detail-container'>
         <h1>Orders</h1>
@@ -404,8 +407,10 @@ orderDetail.map((item) =>{
                     orderDetail[0].order.orderStatus : ""}
                 />
             }
-
-            <WarrantyPrepare />
+    
+            <WarrantyPrepare 
+                orderDetail={orderDetail}
+            />
             
 
 

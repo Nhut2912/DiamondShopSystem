@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import '../../theme/admin/Account.css'
 import HeadTableCardAccount from '../../components/admin/HeadTableAccount';
 import CardAccount from '../../components/admin/CardAccount';
+import AddAccount from '../../components/admin/AddAccount';
 
 function Account(){
   const [activeNavigations,setActiveNavigations] = useState('View Account');
@@ -58,7 +59,7 @@ function Account(){
                        <CardAccount/>
                   </div>
               </div>
-            ) :""
+            ) :<AddAccount/>
             }
         </div>
     </div>
