@@ -20,10 +20,6 @@ const formattedNumber = new Intl.NumberFormat('en-US', {
 
 const getPriceBySize = (userSize,productSize,unitPrice,productPrice) => {
 
-  console.log(productPrice);
-  console.log(unitPrice)
-  console.log(productSize)
-  console.log(userSize)
     if(userSize == productSize){
       return productPrice;
     }else if(userSize > productSize){
@@ -160,12 +156,12 @@ function ProductDetailCard({data}) {
               <h1>{data.name}</h1>
               <p>CODE : {data.code}</p>
               <h5>{isPromotion !== undefined && isPromotion !== null && promtionRate !== undefined
-                  && promtionRate !== null ?
+                  && promtionRate !== null && isPromotion ? 
                   formattedNumber.format(data.price) : null
                 }</h5>
 
                 {
-                  isPromotion !== undefined && isPromotion !== null ?
+                  isPromotion !== undefined && isPromotion !== null && isPromotion ? 
                   <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,(data.price-(data.price*promtionRate)  /100)).toFixed(2))}
                 
                   </h2>: <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price).toFixed(2))}

@@ -1,0 +1,17 @@
+.warranty-prepare-container{
+    margin-top: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 70px 80px;
+    border-radius: 10px;
+}
+.warranty-prepare-container > h3{
+    margin-top: 70px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: "Roboto Serif";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin: 0;
+}

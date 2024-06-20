@@ -29,11 +29,7 @@ public class Promotion {
 
     private Date dateEnd;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name ="promotions_products",
-//        joinColumns = @JoinColumn(name = "promotion_id"),
-//            inverseJoinColumns = @JoinColumn(name ="product_id")
-//    )
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "promotion_id")
     private List<Promotions_products> promotions_products = new ArrayList<>();

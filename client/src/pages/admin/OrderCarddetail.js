@@ -6,6 +6,7 @@ import {ICONS} from '../../constants/admin'
 import PaymentInformation from '../../components/admin/PaymentInformation';
 import { imageStorage } from '../../config/FirebaseConfig';
 import { getDownloadURL, ref } from 'firebase/storage';
+import WarrantyPrepare from '../../components/admin/WarrantyPrepare';
 
 function OrderCarddetail() {
  const order = useParams();
@@ -404,7 +405,8 @@ orderDetail.map((item) =>{
                 />
             }
 
-             
+            <WarrantyPrepare />
+            
 
 
            {

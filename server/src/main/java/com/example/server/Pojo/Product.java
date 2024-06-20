@@ -70,5 +70,4 @@ public class Product {
     private Set<OrderDetail> orderDetails;
 
 
-
 }

@@ -47,7 +47,8 @@ const COLORS_STATUS_BACKGROUND = [
   const [statusColor,setStatusColor] = useState();
   const [backgroundColor,setBackgroundColor] = useState();
   const [remainderPaid,setRemainderPaid] = useState();
-  const [depositPaid,setDepositPaid] = useState();
+
+  const [depositMethod,setDepositMethod] = useState();
   const [statusRemainder,setStatusRemainder] = useState("NOT YET");
 
   useEffect(()=>{
@@ -77,9 +78,10 @@ const COLORS_STATUS_BACKGROUND = [
   useEffect(() => {
       if(data !== undefined && data !== null){
         if(data.length === 1){
-          setDepositPaid((data[0].amount).toFixed(2));
+          setDepositMethod(data[0].paymentMethod.method);
+          setRemainderPaid(0)
         }else{
-          setDepositPaid((data[0].amount).toFixed(2));
+          setDepositMethod(data[0].paymentMethod.method)
           let remainder = 0;
           for(let i = 1 ; i < data.length ; i++){
             if(data[i].paymentMethod.method === "BANKTRANSFER"){
@@ -93,7 +95,7 @@ const COLORS_STATUS_BACKGROUND = [
         }
       }
       
-  })
+  },[data])
 
 
   if(data === undefined || data === null) return <div>Loading .</div>
@@ -149,7 +151,9 @@ const COLORS_STATUS_BACKGROUND = [
                         <div>
                           <b> ${(Total*10/100).toFixed(2)} </b>
                           {
-                            (Total*10/100) === depositPaid ?
+                            depositMethod !== undefined && depositMethod !== null &&
+                            depositMethod === "BANKTRANSFER" && Status === "PENDING"
+                            ?
                             <span 
                               style={{color: "rgba(217, 179, 132, 1)" ,
                                   border: "1px solid rgba(217, 179, 132, 1)",
@@ -170,16 +174,16 @@ const COLORS_STATUS_BACKGROUND = [
                           <div>
                             <b>$
                             {remainder} </b>
-
+                           
                             { 
-                                statusRemainder !== undefined && statusRemainder !== undefined &&
-                                (statusRemainder === "PENDING" || statusRemainder === "NOT YET") && 
-                                remainderPaid === remainder
+                                statusRemainder !== undefined && statusRemainder !== undefined && remainderPaid !== undefined && remainderPaid !== null &&
+                                (statusRemainder === "PENDING" || statusRemainder === "NOT YET") &&
+                                remainderPaid.toFixed(2) !== remainder
                                 ?
                                 <span
                                 style={{color: "rgba(0,0,0,0.4)",
                                     border: "1px solid rgba(0,0,0,0.4)",
-                                  padding: "2px 20px"
+                                    padding: "2px 20px"
                                 }}
                               >{statusRemainder}</span> :   <span
                               style={{color: "rgba(54, 227, 57, 1)",

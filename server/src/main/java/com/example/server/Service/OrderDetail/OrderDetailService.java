@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +49,20 @@ public class OrderDetailService implements IOrderDetailService{
 
     @Override
     public List<OrderDetail> getOrderDetailByOrderID(Long id) {
-        return iOrderDetailRepository.getOrderDetailsByOrder_Id(id);
+        List<OrderDetail> orderDetails = iOrderDetailRepository.getOrderDetailsByOrder_Id(id);
+        List<OrderDetail> orderDetailsReturn = new ArrayList<>();
+        for(OrderDetail orderDetail : orderDetails){
+            OrderDetail orderDetailReturn = new OrderDetail();
+            orderDetailReturn.setOrder(orderDetail.getOrder());
+            orderDetailReturn.setId(orderDetail.getId());
+            orderDetailReturn.setPriceAfterSizeAdjustment(orderDetail.getPriceAfterSizeAdjustment());
+            orderDetailReturn.setPriceBeforeSizeAdjustment(orderDetail.getPriceBeforeSizeAdjustment());
+            orderDetailReturn.setSize(orderDetail.getSize());
+            Product product = orderDetail.getProduct();
+            product.setPromotions_products(null);
+            orderDetailReturn.setProduct(product);
+            orderDetailsReturn.add(orderDetailReturn);
+        }
+        return orderDetailsReturn ;
     }
 }
