@@ -74,5 +74,13 @@ public class ProductController {
         return ResponseEntity.status(200).body(productService.getProductsRoleAdmin());
     }
 
+    @PostMapping("/updateProduct")
+    public ResponseEntity<?> updateProduct(@RequestBody Product product){
+        return ResponseEntity.ok(productService.updateProduct(product));
+    }
 
+    @PostMapping("/deleteProduct/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id){
+        return ResponseEntity.ok((productService.deleteProduct(id)));
+    }
 }
