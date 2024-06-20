@@ -26,6 +26,7 @@ public class Warranty {
     private Date dateStart;
 
     private Date dateEnd;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;

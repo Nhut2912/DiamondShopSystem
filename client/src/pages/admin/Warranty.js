@@ -15,8 +15,6 @@ function Warranty() {
   const [navigateActive,setNavigateActive] = useState("View Warranties");
 
 
-
-
   const handleClickNavigate = (value) => {
     setNavigateActive(value);
   }
@@ -42,7 +40,9 @@ function Warranty() {
 
             <div className='warranty-content-container'>
               {
-                false ? <WarrantyView />  : <WarrantyPolicy />
+                navigateActive !== undefined && navigateActive !== null &&
+                navigateActive === "View Warranties"
+                ? <WarrantyView />  : <WarrantyPolicy />
               }
                 
             </div>
