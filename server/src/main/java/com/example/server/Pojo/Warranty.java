@@ -15,6 +15,12 @@ public class Warranty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String userName;
+
+    private String phoneNumber;
+
+    private String address;
+
     private boolean status ;
 
     private Date dateStart;

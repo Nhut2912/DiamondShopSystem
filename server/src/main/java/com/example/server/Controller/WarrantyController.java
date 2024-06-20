@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Model.WarrantyDTO;
 import com.example.server.Pojo.Warranty;
 import com.example.server.Service.Warranty.IWarrantyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,19 @@ public class WarrantyController {
     IWarrantyService iWarrantyService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createWarranty(@RequestBody Warranty warranty){
-        return new ResponseEntity<>(iWarrantyService.createWarranty(warranty), HttpStatus.CREATED);
+    public ResponseEntity<?> createWarranty(@RequestBody WarrantyDTO warrantyDTO){
+        return new ResponseEntity<>(iWarrantyService.createWarranty(warrantyDTO), HttpStatus.CREATED);
+    }
+    @PostMapping("/update")
+    public ResponseEntity<?> updateWarranty(@RequestBody WarrantyDTO warrantyDTO){
+        return new ResponseEntity<>(iWarrantyService.updateWarranty(warrantyDTO), HttpStatus.CREATED);
+    }
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteWarranty(@RequestBody WarrantyDTO warrantyDTO){
+        return new ResponseEntity<>(iWarrantyService.deleteWarranty(warrantyDTO), HttpStatus.CREATED);
+    }
+    @GetMapping("/get")
+    public ResponseEntity<?> getWarranties(){
+        return new ResponseEntity<>(iWarrantyService.getWarranties(), HttpStatus.CREATED);
     }
 }

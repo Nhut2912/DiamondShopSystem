@@ -12,6 +12,12 @@ public class WarrantyDTO {
 
     private boolean status ;
 
+    private String userName;
+
+    private String phoneNumber;
+
+    private String address;
+
     private Date dateStart;
 
     private Date dateEnd;
