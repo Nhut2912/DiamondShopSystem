@@ -4,6 +4,8 @@ import com.example.server.Model.WarrantyDTO;
 import com.example.server.Pojo.Product;
 import com.example.server.Pojo.Warranty;
 import com.example.server.Pojo.WarrantyPolicy;
+import com.example.server.Repository.IProductRepository;
+import com.example.server.Repository.IWarrantyPolicyRepository;
 import com.example.server.Repository.IWarrantyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +21,22 @@ import java.util.Optional;
 public class WarrantyService implements IWarrantyService{
     @Autowired
     IWarrantyRepository iWarrantyRepository;
-
+    @Autowired
+    IProductRepository iProductRepository;
+    @Autowired
+    IWarrantyPolicyRepository iWarrantyPolicyRepository;
     public boolean createWarranty(WarrantyDTO warrantyDTO){
         LocalDate startDate = LocalDate.now();
         int periodMonth = warrantyDTO.getWarrantyPolicies().getWarrantyPeriod();
         LocalDate endDate = startDate.plusMonths(periodMonth);
+
+        Optional<Product> product = iProductRepository.findById(warrantyDTO.getProduct().getId());
+        Optional<WarrantyPolicy> policy = Optional.ofNullable(iWarrantyPolicyRepository.findByNameAndWarrantyPeriod(warrantyDTO.getWarrantyPolicies().getName(), warrantyDTO.getWarrantyPolicies().getWarrantyPeriod()));
+
+
         System.out.println(endDate);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
         Warranty warranty = new Warranty();
         warranty.setUserName(warrantyDTO.getUserName());
         warranty.setPhoneNumber(warrantyDTO.getPhoneNumber());
@@ -35,7 +46,10 @@ public class WarrantyService implements IWarrantyService{
         try {
             warranty.setDateStart(formatter.parse(startDate.toString()));
             warranty.setDateEnd(formatter.parse(endDate.toString()));
-            warranty.setWarrantyPolicies(warrantyDTO.getWarrantyPolicies());
+
+            policy.ifPresent(warranty::setWarrantyPolicies);
+            product.ifPresent(warranty::setProduct);
+
             iWarrantyRepository.save(warranty);
 
         } catch (Exception e) {
