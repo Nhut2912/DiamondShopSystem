@@ -43,24 +43,7 @@ public class AccountController {
         return account.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/UpdateAccount")
-    public ResponseEntity<AccountDTO> updateAccount(@PathVariable(value = "id") Long accountId,
-                                                    @Valid  @RequestBody AccountDTO accountDetails) {
-        Optional<AccountDTO> account = accountService.findById(accountId);
-        if (account.isPresent()) {
-            AccountDTO accountToUpdate = account.get();
-            accountToUpdate.setName(accountDetails.getName());
-            accountToUpdate.setEmail(accountDetails.getEmail());
-            accountToUpdate.setPassword(accountDetails.getPassword());
-            accountToUpdate.setNumberPhone(accountDetails.getNumberPhone());
-            accountToUpdate.setAddress(accountDetails.getAddress());
-            accountToUpdate.setBirthDay(accountDetails.getBirthDay());
-            accountToUpdate.setRole(accountDetails.getRole());
-            return ResponseEntity.ok(accountService.save(accountToUpdate));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+    
 
     @PostMapping("/InactiveAccount")
     public ResponseEntity<Boolean> deactivateAccount(@RequestParam(value = "email") String email) {
