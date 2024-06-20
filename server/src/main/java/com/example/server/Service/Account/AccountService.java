@@ -145,6 +145,22 @@ public class AccountService implements IAccountService{
     }
 
 
+    public AccountDTO updateAccount(Long accountId, AccountDTO accountDetails) {
+        Optional<Account> optionalAccount = iAccountRepository.findById(accountId).filter(Account::isActive);
+        if (optionalAccount.isPresent()) {
+            Account accountToUpdate = optionalAccount.get();
+            accountToUpdate.setName(accountDetails.getName());
+            accountToUpdate.setPassword(accountDetails.getPassword());
+            accountToUpdate.setNumberPhone(accountDetails.getNumberPhone());
+            accountToUpdate.setAddress(accountDetails.getAddress());
+            Account updatedAccount = iAccountRepository.save(accountToUpdate);
+            return convertToDto(updatedAccount);
+        }
+        return null;
+    }
+
+
+
 
     private AccountDTO convertToDto(Account account) {
         AccountDTO accountDto = new AccountDTO();

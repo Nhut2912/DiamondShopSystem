@@ -43,7 +43,18 @@ public class AccountController {
         return account.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    
+
+    @PutMapping("/UpdateAccount")
+    public ResponseEntity<AccountDTO> updateAccount(@PathVariable(value = "id") Long accountId,
+                                                    @Valid @RequestBody AccountDTO accountDetails) {
+        AccountDTO updatedAccount = accountService.updateAccount(accountId, accountDetails);
+        if (updatedAccount != null) {
+            return ResponseEntity.ok(updatedAccount);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PostMapping("/InactiveAccount")
     public ResponseEntity<Boolean> deactivateAccount(@RequestParam(value = "email") String email) {

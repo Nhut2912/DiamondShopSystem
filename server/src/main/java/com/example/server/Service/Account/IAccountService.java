@@ -25,4 +25,6 @@ public interface IAccountService {
     public Optional<AccountDTO> findById(Long id);
 
     public AccountDTO save(AccountDTO accountDto);
+
+    public AccountDTO updateAccount(Long accountId, AccountDTO accountDetails);
 }
