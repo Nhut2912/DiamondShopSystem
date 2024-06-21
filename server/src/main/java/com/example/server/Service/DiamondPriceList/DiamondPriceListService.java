@@ -90,4 +90,35 @@ public class DiamondPriceListService implements IDiamondPriceListService {
         return true;
     }
 
+    public boolean addDiamondPriceList(DiamondPriceListDTO diamondPriceListDTO){
+        DiamondPriceList diamondPriceListSave = new DiamondPriceList();
+        diamondPriceListSave.setId(diamondPriceListDTO.getId());
+        diamondPriceListDTO.setCaratFrom(diamondPriceListDTO.getCaratFrom());
+        diamondPriceListDTO.setCaratTo(diamondPriceListDTO.getCaratTo());
+        diamondPriceListSave.setEffDate(diamondPriceListDTO.getEffDate());
+        diamondPriceListSave.setPrice(diamondPriceListDTO.getPrice());
+
+        Optional<Clarity> clarity = Optional.ofNullable(iClarityRepository.getClarityByClarity(diamondPriceListDTO.getClarity()));
+        Optional<Color> color = Optional.ofNullable(iColorRepository.getColorByColor(diamondPriceListDTO.getColor()));
+        Optional<Cut> cut = Optional.ofNullable(iCutRepository.getCutByCut(diamondPriceListDTO.getCut()));
+        Optional<Origin> origin = Optional.ofNullable(iOriginRepository.getOriginByOrigin(diamondPriceListDTO.getOrigin()));
+        try{
+            clarity.orElseThrow(() -> new ClassNotFoundException("Diamond Price List Not Found By" + diamondPriceListDTO.getClarity()));
+            color.orElseThrow(() -> new ClassNotFoundException("Diamond Price List Not Found By" + diamondPriceListDTO.getColor()));
+            cut.orElseThrow(() -> new ClassNotFoundException("Diamond Price List Not Found By" + diamondPriceListDTO.getCut()));
+            origin.orElseThrow(() -> new ClassNotFoundException("Diamond Price List Not Found By" + diamondPriceListDTO.getOrigin()));
+
+            diamondPriceListSave.setClarity(clarity.get());
+            diamondPriceListSave.setColor(color.get());
+            diamondPriceListSave.setCut(cut.get());
+            diamondPriceListSave.setOrigin(origin.get());
+            iDiamondPriceListRepository.save(diamondPriceListSave);
+            return true;
+        }catch(ClassNotFoundException ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+
+    }
+
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface IAccountRepository extends CrudRepository<Account, Long> {
     public Optional<Account> findByNumberPhone(String phone);
     public Optional<Account> findByEmail(String email);
-
+    public Optional<Account> findByNameAndPassword(String name, String password);
     List<Account> findByActive(boolean active);
 
 }

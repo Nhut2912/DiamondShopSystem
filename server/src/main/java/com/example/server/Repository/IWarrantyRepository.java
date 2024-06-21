@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface IWarrantyRepository extends CrudRepository<Warranty, Long> {
     List<Warranty> findByStatus(boolean status);
+    Warranty findByProduct_Id(Long id);
 }

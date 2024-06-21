@@ -47,4 +47,25 @@ public class MaterialPriceListService implements IMaterialPriceListService{
         iMaterialPriceListRepository.save(materialPriceListSave);
         return true;
     }
+    public boolean addMaterialPrice(MaterialPriceListDTO materialPriceListDTO){
+        Optional<Material> material = Optional.ofNullable(iMaterialRepository.getMaterialByName(materialPriceListDTO.getMaterial()));
+        try {
+            iMaterialPriceListRepository.findById(materialPriceListDTO.getId()).orElseThrow(() ->
+                    new ClassNotFoundException("Material Price List Not Found by id material price list: " +
+                            materialPriceListDTO.getId()));
+            material.orElseThrow(() -> new ClassNotFoundException("Material Price List Not Found by Material: " + materialPriceListDTO.getMaterial()));
+            MaterialPriceList materialPriceListSave = new MaterialPriceList();
+            materialPriceListSave.setId(materialPriceListDTO.getId());
+            materialPriceListSave.setEffDate(materialPriceListDTO.getEffDate());
+            materialPriceListSave.setMaterial(material.get());
+            materialPriceListSave.setSellPrice(materialPriceListDTO.getSellPrice());
+            iMaterialPriceListRepository.save(materialPriceListSave);
+            return true;
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+
+
+    }
 }

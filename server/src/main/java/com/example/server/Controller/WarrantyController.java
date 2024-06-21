@@ -31,4 +31,10 @@ public class WarrantyController {
     public ResponseEntity<?> getWarranties(){
         return new ResponseEntity<>(iWarrantyService.getWarranties(), HttpStatus.CREATED);
     }
+
+    @PostMapping("/getByProductId/{id}")
+    public ResponseEntity<?> getWarranties(@PathVariable Long id){
+        return new ResponseEntity<>(iWarrantyService.getWarrantyByProduct(id), HttpStatus.CREATED);
+    }
+
 }
