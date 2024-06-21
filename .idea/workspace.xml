@@ -6,16 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="238e78d8-921c-487d-bbcf-651e12043aa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/MaterialPriceListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/MaterialPriceListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/MaterialPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/MaterialPriceListService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/MaterialPriceListController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Model/AccountDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Model/AccountDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/MaterialPriceList/MaterialPriceListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/MaterialPriceList/MaterialPriceListService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Promotion/IPromotionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Promotion/IPromotionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Promotion/PromotionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Promotion/PromotionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IPromotion_ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IPromotion_ProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/IPromotionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/IPromotionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/PromotionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/PromotionService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +126,7 @@
       <workItem from="1718893300970" duration="953000" />
       <workItem from="1718935531954" duration="2082000" />
       <workItem from="1718977039925" duration="4300000" />
-      <workItem from="1718987300934" duration="2153000" />
+      <workItem from="1718987300934" duration="8162000" />
     </task>
     <servers />
   </component>
