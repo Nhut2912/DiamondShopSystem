@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="238e78d8-921c-487d-bbcf-651e12043aa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Warranty/WarrantyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Warranty/WarrantyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Account/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Account/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/DiamondPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/DiamondPriceListService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/IDiamondPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/DiamondPriceList/IDiamondPriceListService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/IMaterialPriceListService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/MaterialPriceListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/MaterialPriceList/MaterialPriceListService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +124,7 @@
       <workItem from="1718788586882" duration="218000" />
       <workItem from="1718806656135" duration="12699000" />
       <workItem from="1718893300970" duration="953000" />
-      <workItem from="1718935531954" duration="116000" />
+      <workItem from="1718935531954" duration="2082000" />
     </task>
     <servers />
   </component>

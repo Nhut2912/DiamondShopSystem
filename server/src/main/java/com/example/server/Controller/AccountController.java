@@ -27,6 +27,11 @@ public class AccountController {
         return new ResponseEntity<>(accountService.registerAccount(accountDTO), HttpStatus.ACCEPTED);
     }
 
+    @PostMapping("/checkAdmin")
+    public ResponseEntity<?> checkAdmin(@RequestBody AccountDTO accountDTO) {
+        return new ResponseEntity<>(accountService.registerAccount(accountDTO), HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/verifyOtp")
     public ResponseEntity<?>verifyOtp(@RequestParam String otp, @RequestBody AccountDTO accountDTO) {
         return new ResponseEntity<>(accountService.verifyOtp(otp,accountDTO), HttpStatus.OK);

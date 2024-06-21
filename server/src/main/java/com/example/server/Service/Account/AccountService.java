@@ -28,6 +28,16 @@ public class AccountService implements IAccountService{
         System.out.println(accountNeedToCheck.isPresent());
         return accountNeedToCheck.isPresent();
     }
+
+    public String isAdmin(AccountDTO accountDTO) {
+        Optional<Account> account = null;
+        if(accountDTO.getName().equals("Admin")){
+            account = iAccountRepository.findByNameAndPassword(accountDTO.getName(), accountDTO.getPassword());
+        }
+        if(account != null && account.isPresent()) {return account.get().getRole();}
+        return "Admin Invalid";
+    }
+
     public boolean isSamePhone(String phone){
         Optional<Account> account = iAccountRepository.findByNumberPhone(phone);
         if(account.isPresent()) return  true;

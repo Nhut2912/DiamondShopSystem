@@ -15,4 +15,5 @@ public interface IDiamondPriceListService {
 
     public List<DiamondPriceListDTO> getDiamondsPriceList();
     public boolean updateDiamondPrice(DiamondPriceListDTO diamondPriceListDTO);
+    public boolean addDiamondPriceList(DiamondPriceListDTO diamondPriceListDTO);
 }
