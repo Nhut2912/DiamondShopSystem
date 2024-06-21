@@ -14,13 +14,14 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
-public class AccountService implements IAccountService{
+public class AccountService implements IAccountService {
     @Autowired
     IAccountRepository iAccountRepository;
     @Autowired
     private IEmailService emailService;
     @Autowired
     private HttpSession httpSession;
+
     @Override
     public boolean isAccountExist(Long id) {
         System.out.println(id);
@@ -29,21 +30,46 @@ public class AccountService implements IAccountService{
         return accountNeedToCheck.isPresent();
     }
 
-    public String isAdmin(AccountDTO accountDTO) {
-        Optional<Account> account = null;
-        if(accountDTO.getName().equals("Admin")){
-            account = iAccountRepository.findByNameAndPassword(accountDTO.getName(), accountDTO.getPassword());
+    @Override
+    public String createAccount(AccountDTO accountDTO) {
+        Account account = new Account();
+        account.setEmail(accountDTO.getEmail());
+        account.setPassword(accountDTO.getPassword());
+        account.setName(accountDTO.getName());
+        account.setNumberPhone(accountDTO.getNumberPhone());
+        account.setRole(accountDTO.getRole());
+        account.setBirthDay(accountDTO.getBirthDay());
+        account.setAddress(accountDTO.getAddress());
+        try {
+            iAccountRepository.save(account);
+            return account.getRole();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
-        if(account != null && account.isPresent()) {return account.get().getRole();}
-        return "Admin Invalid";
+        return "Cannot Create Account";
     }
 
-    public boolean isSamePhone(String phone){
+    @Override
+    public String isStaffOrAdmin(AccountDTO accountDTO) {
+
+        Optional<Account> account = iAccountRepository.findByNameAndPassword(accountDTO.getName(), accountDTO.getPassword());;
+        try {
+            account.orElseThrow(() -> new ClassNotFoundException("Account is not valid!!"));
+            return account.get().getRole();
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return "Not Valid";
+        }
+
+    }
+
+    public boolean isSamePhone(String phone) {
         Optional<Account> account = iAccountRepository.findByNumberPhone(phone);
-        if(account.isPresent()) return  true;
+        if (account.isPresent()) return true;
         else return false;
     }
-    public boolean updateNewestInfoForAccount(AccountDTO accountDTO){
+
+    public boolean updateNewestInfoForAccount(AccountDTO accountDTO) {
         try {
             Optional<Account> account = iAccountRepository.findById(accountDTO.getId());
             Account accountUpdate = account.get();
@@ -52,7 +78,7 @@ public class AccountService implements IAccountService{
             accountUpdate.setBirthDay(accountDTO.getBirthDay());
             accountUpdate.setNumberPhone(accountDTO.getNumberPhone());
             return true;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return false;
         }
@@ -63,19 +89,19 @@ public class AccountService implements IAccountService{
     public boolean registerAccount(AccountDTO accountDTO) {
         String otp = generateOtp();
         sendEmailVerification(accountDTO.getEmail(), otp);
-       try{
-           System.out.println(accountDTO);
-           httpSession.setAttribute(otp,accountDTO);
-           return true;
-       }catch (Exception e){
-           return false;
-       }
+        try {
+            System.out.println(accountDTO);
+            httpSession.setAttribute(otp, accountDTO);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public String loginAccount(AccountDTO accountDTO) {
         Optional<Account> account = iAccountRepository.findByEmail(accountDTO.getEmail());
-        if(account.isPresent()) return account.get().getRole();
+        if (account.isPresent()) return account.get().getRole();
         return "Account does not exsit!!";
     }
 
@@ -89,15 +115,15 @@ public class AccountService implements IAccountService{
     @Override
     public void sendEmailVerification(String email, String otp) {
         String subject = "Email verification";
-        String body ="Your verification otp is: " + otp;
-        emailService.sendEmail(email,subject,body);
+        String body = "Your verification otp is: " + otp;
+        emailService.sendEmail(email, subject, body);
     }
 
     @Override
     public AccountDTO verifyOtp(String otp, AccountDTO accountDTO) {
         Account account = new Account();
         Optional<Account> checkAccountExist = iAccountRepository.findByEmail(accountDTO.getEmail());
-        if(checkAccountExist.isEmpty()){
+        if (checkAccountExist.isEmpty()) {
             account.setEmail(accountDTO.getEmail());
             account.setRole(accountDTO.getRole());
             try {
@@ -108,7 +134,7 @@ public class AccountService implements IAccountService{
                 accountReturn.setEmail(accountValid.getEmail());
                 accountReturn.setRole(accountValid.getRole());
                 return accountReturn;
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 return null;
             }
@@ -168,8 +194,6 @@ public class AccountService implements IAccountService{
         }
         return null;
     }
-
-
 
 
     private AccountDTO convertToDto(Account account) {

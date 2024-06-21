@@ -18,23 +18,28 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class WarrantyService implements IWarrantyService{
+public class WarrantyService implements IWarrantyService {
     @Autowired
     IWarrantyRepository iWarrantyRepository;
     @Autowired
     IProductRepository iProductRepository;
     @Autowired
     IWarrantyPolicyRepository iWarrantyPolicyRepository;
-    public boolean createWarranty(WarrantyDTO warrantyDTO){
-        LocalDate startDate = LocalDate.now();
-        int periodMonth = warrantyDTO.getWarrantyPolicies().getWarrantyPeriod();
-        LocalDate endDate = startDate.plusMonths(periodMonth);
 
+    public boolean createWarranty(WarrantyDTO warrantyDTO) {
+        LocalDate startDate = LocalDate.now();
         Optional<Product> product = iProductRepository.findById(warrantyDTO.getProduct().getId());
         Optional<WarrantyPolicy> policy = iWarrantyPolicyRepository.findById(warrantyDTO.getWarrantyPolicies().getId());
+        try {
 
+            product.orElseThrow(() -> new ClassNotFoundException("Not found by id product: " + warrantyDTO.getProduct().getId()));
+            policy.orElseThrow(() -> new ClassNotFoundException("Not found by id product: " + warrantyDTO.getWarrantyPolicies().getId()));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
-        System.out.println(endDate);
+        int periodMonth = policy.get().getWarrantyPeriod();
+        LocalDate endDate = startDate.plusMonths(periodMonth);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         Warranty warranty = new Warranty();
@@ -74,7 +79,7 @@ public class WarrantyService implements IWarrantyService{
             warranty.setStatus(true);
             warranty.setWarrantyPolicies(warrantyDTO.getWarrantyPolicies());
             iWarrantyRepository.save(warranty);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return false;
@@ -92,7 +97,7 @@ public class WarrantyService implements IWarrantyService{
     public List<WarrantyDTO> getWarranties() {
         List<Warranty> warranties = iWarrantyRepository.findByStatus(true);
         List<WarrantyDTO> warrantyDTOs = new ArrayList<>();
-        for(Warranty warranty: warranties){
+        for (Warranty warranty : warranties) {
             WarrantyDTO warrantyDTO = new WarrantyDTO();
             warrantyDTO.setAddress(warranty.getAddress());
             warrantyDTO.setUserName(warranty.getUserName());
@@ -105,6 +110,28 @@ public class WarrantyService implements IWarrantyService{
             warrantyDTOs.add(warrantyDTO);
         }
         return warrantyDTOs;
+    }
+
+    @Override
+    public WarrantyDTO getWarrantyByProduct(Long id) {
+        Optional<Product> product = iProductRepository.findById(id);
+        WarrantyDTO warrantyDTOReturn = new WarrantyDTO();
+        if (product.isPresent()) {
+            Warranty warranty = iWarrantyRepository.findByProduct_Id(product.get().getId());
+            warrantyDTOReturn = new WarrantyDTO();
+            warrantyDTOReturn.setId(warranty.getId());
+            product.get().setPromotions_products(null);
+            warrantyDTOReturn.setProduct(product.get());
+            warrantyDTOReturn.setWarrantyPolicies(warranty.getWarrantyPolicies());
+            warrantyDTOReturn.setAddress(warranty.getAddress());
+            warrantyDTOReturn.setUserName(warranty.getUserName());
+            warrantyDTOReturn.setDateStart(warranty.getDateStart());
+            warrantyDTOReturn.setDateEnd(warranty.getDateEnd());
+            warrantyDTOReturn.setStatus(warranty.isStatus());
+            warrantyDTOReturn.setPhoneNumber(warranty.getPhoneNumber());
+
+        }
+        return warrantyDTOReturn;
     }
 
 

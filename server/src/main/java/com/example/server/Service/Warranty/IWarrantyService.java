@@ -10,4 +10,5 @@ public interface IWarrantyService {
     public boolean updateWarranty(WarrantyDTO warrantyDTO);
     public boolean deleteWarranty(WarrantyDTO warrantyDTO);
     public List<WarrantyDTO> getWarranties();
+    public WarrantyDTO getWarrantyByProduct(Long id);
 }

@@ -27,9 +27,9 @@ public class AccountController {
         return new ResponseEntity<>(accountService.registerAccount(accountDTO), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/checkAdmin")
+    @PostMapping("/checkUserNameAndPassword")
     public ResponseEntity<?> checkAdmin(@RequestBody AccountDTO accountDTO) {
-        return new ResponseEntity<>(accountService.registerAccount(accountDTO), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(accountService.isStaffOrAdmin(accountDTO), HttpStatus.OK);
     }
 
     @PostMapping("/verifyOtp")
@@ -69,6 +69,11 @@ public class AccountController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
         }
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<?> createAccount(@RequestBody AccountDTO accountDTO) {
+        return new ResponseEntity<>(accountService.createAccount(accountDTO), HttpStatus.OK);
     }
 
 }

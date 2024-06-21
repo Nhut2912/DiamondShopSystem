@@ -27,4 +27,7 @@ public interface IAccountService {
     public AccountDTO save(AccountDTO accountDto);
 
     public AccountDTO updateAccount(Long accountId, AccountDTO accountDetails);
+
+    public String createAccount(AccountDTO accountDto);
+    public String isStaffOrAdmin(AccountDTO accountDTO);
 }
