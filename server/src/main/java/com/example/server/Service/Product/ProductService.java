@@ -185,8 +185,8 @@ public class ProductService implements IProductService{
                 materialDTO.setWeight(productMaterial.getWeight());
                 materialDTOS.add(materialDTO);
 
-                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
-                totalPrice += materialPriceList.getSellPrice();
+
+                totalPrice += iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId()).getSellPrice();
             }
             totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
             totalPrice += totalPrice*((double) item.getPriceRate() / 100);
@@ -269,8 +269,8 @@ public class ProductService implements IProductService{
 
 
             for (ProductMaterial productMaterial : listProductMaterial){
-                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
-                totalPrice += materialPriceList.getSellPrice();
+
+                totalPrice += iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId()).getSellPrice();
             }
             totalPrice += product.get().getProductionCost() + product.get().getSecondaryDiamondCost() + product.get().getSecondaryMaterialCost();
             totalPrice += totalPrice*((double) product.get().getPriceRate() / 100);
@@ -383,8 +383,8 @@ public class ProductService implements IProductService{
 
 
         for (ProductMaterial productMaterial : listProductMaterial) {
-            MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
-            totalPrice += materialPriceList.getSellPrice();
+
+            totalPrice += iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId()).getSellPrice();
         }
         totalPrice += product.getProductionCost() + product.getSecondaryDiamondCost() + product.getSecondaryMaterialCost();
         totalPrice += totalPrice * ((double) product.getPriceRate() / 100);
@@ -498,8 +498,8 @@ public class ProductService implements IProductService{
                 materialDTO.setWeight(productMaterial.getWeight());
                 materialDTOS.add(materialDTO);
 
-                MaterialPriceList materialPriceList = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
-                totalPrice += materialPriceList.getSellPrice();
+
+                totalPrice += iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId()).getSellPrice();
             }
             totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
             totalPrice += totalPrice*((double) item.getPriceRate() / 100);

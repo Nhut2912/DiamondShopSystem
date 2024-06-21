@@ -9,6 +9,8 @@ import com.example.server.Repository.IMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,10 +23,40 @@ public class MaterialPriceListService implements IMaterialPriceListService{
     private IMaterialRepository iMaterialRepository;
 
     @Override
-    public MaterialPriceList getMaterialPriceListById(Long id) {
+    public List<MaterialPriceListDTO> getMaterialPriceLists() {
+        Optional<List<MaterialPriceList>> materialPriceList = Optional.of((List<MaterialPriceList>) iMaterialPriceListRepository.findAll());
+        List<MaterialPriceListDTO> materialPriceListDTOS = new ArrayList<>();
+        try {
+            materialPriceList.orElseThrow(() -> new ClassNotFoundException("Not Found"));
+            for(MaterialPriceList materialPriceListLoop : materialPriceList.get()){
+                MaterialPriceListDTO materialPriceListDTO = new MaterialPriceListDTO();
+                materialPriceListDTO.setId(materialPriceListLoop.getId());
+                materialPriceListDTO.setSellPrice(materialPriceListLoop.getSellPrice());
+                materialPriceListDTO.setEffDate(materialPriceListLoop.getEffDate());
+                materialPriceListDTO.setMaterial(materialPriceListLoop.getMaterial().getName());
+                materialPriceListDTOS.add(materialPriceListDTO);
+            }
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+        return materialPriceListDTOS;
+    }
+    @Override
+    public MaterialPriceListDTO getMaterialPriceListById(Long id) {
         Optional<MaterialPriceList> materialPriceList = iMaterialPriceListRepository.findByMaterial_id(id);
-        System.out.println(materialPriceList);
-        return materialPriceList.orElse(null);
+        MaterialPriceListDTO materialPriceListDTO = new MaterialPriceListDTO();
+        try{
+            materialPriceList.orElseThrow(() -> new ClassNotFoundException("Not Found"));
+            materialPriceListDTO.setMaterial(materialPriceList.get().getMaterial().getName());
+            materialPriceListDTO.setSellPrice(materialPriceList.get().getSellPrice());
+            materialPriceListDTO.setId(materialPriceList.get().getId());
+            materialPriceListDTO.setEffDate(materialPriceList.get().getEffDate());
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return materialPriceListDTO;
+        }
+        return materialPriceListDTO;
     }
     @Override
     public boolean updateMaterialPrice(MaterialPriceListDTO materialPriceListDTO) {
@@ -47,7 +79,7 @@ public class MaterialPriceListService implements IMaterialPriceListService{
         iMaterialPriceListRepository.save(materialPriceListSave);
         return true;
     }
-    public boolean addMaterialPrice(MaterialPriceListDTO materialPriceListDTO){
+    public boolean createMaterialPrice(MaterialPriceListDTO materialPriceListDTO){
         Optional<Material> material = Optional.ofNullable(iMaterialRepository.getMaterialByName(materialPriceListDTO.getMaterial()));
         try {
             iMaterialPriceListRepository.findById(materialPriceListDTO.getId()).orElseThrow(() ->
@@ -55,7 +87,7 @@ public class MaterialPriceListService implements IMaterialPriceListService{
                             materialPriceListDTO.getId()));
             material.orElseThrow(() -> new ClassNotFoundException("Material Price List Not Found by Material: " + materialPriceListDTO.getMaterial()));
             MaterialPriceList materialPriceListSave = new MaterialPriceList();
-            materialPriceListSave.setId(materialPriceListDTO.getId());
+//            materialPriceListSave.setId(materialPriceListDTO.getId());
             materialPriceListSave.setEffDate(materialPriceListDTO.getEffDate());
             materialPriceListSave.setMaterial(material.get());
             materialPriceListSave.setSellPrice(materialPriceListDTO.getSellPrice());
