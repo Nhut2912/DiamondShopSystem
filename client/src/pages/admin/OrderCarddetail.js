@@ -36,6 +36,10 @@ function OrderCarddetail() {
     }else navigate("/admin")
  },[])
 
+
+ 
+
+
  useEffect(() => {
         fetch(`http://localhost:8080/api/order_detail?order_id=${orderID}`)
         .then((response) => response.json())
@@ -55,6 +59,30 @@ function OrderCarddetail() {
   .catch((error) => console.error(error));
  },[])
 
+ useEffect(() => {
+    if(orderDetail !== undefined && orderDetail !== null && orderDetail.length >0){
+        let warrantyProducts = [];
+        orderDetail.map((item) => {
+           
+                fetch(`http://localhost:8080/api/warranty/getByProductId/${item.product.id}`,{method:"POST"})
+                .then((response) => response.text())
+                .then((result) => 
+                    {   
+                        if(result !== null && result !== "" ){
+                            const warranty = {
+                                productId : item.product.id,
+                                warranty : JSON.parse(result)
+                            }
+                            warrantyProducts.push(warranty)
+                        }
+                    }
+                )
+                .catch((error) => console.error(error));
+        })
+        setWarranty(warrantyProducts);
+        
+    }
+ },[orderDetail])
 
  useEffect(()=> {
     if(orderDetail !== undefined && orderDetail !== null){
@@ -229,7 +257,7 @@ orderDetail.map((item) =>{
 
 
 
-
+console.log(warranty)
   return (
     <div className='order-detail-container'>
         <h1>Orders</h1>
@@ -407,17 +435,22 @@ orderDetail.map((item) =>{
                     orderDetail[0].order.orderStatus : ""}
                 />
             }
-    
-            <WarrantyPrepare 
+            {   
+                  orderDetail !== undefined && orderDetail !== undefined && warranty !== undefined && warranty !== null &&
+                orderDetail.length !== warranty.length ? 
+                <WarrantyPrepare 
                 orderDetail={orderDetail}
-            />
-            
+                warrantyProduct={warranty}
+                />
+                :null
+            }
+           
 
 
            {
             userRole !== "DELIVERY STAFF" && 
-            orderDetail !== undefined && orderDetail !== undefined && 
-                    orderDetail[0].order.orderStatus  === "PREPARING" ?
+            orderDetail !== undefined && orderDetail !== undefined && warranty !== undefined && warranty !== null &&
+                    orderDetail[0].order.orderStatus  === "PREPARING" && orderDetail.length === warranty.length ?
             <div className='button-prepared'>
                 <div
                     onClick={handlePreparedOrder}

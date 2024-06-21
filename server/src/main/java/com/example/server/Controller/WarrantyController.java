@@ -34,7 +34,10 @@ public class WarrantyController {
 
     @PostMapping("/getByProductId/{id}")
     public ResponseEntity<?> getWarranties(@PathVariable Long id){
-        return new ResponseEntity<>(iWarrantyService.getWarrantyByProduct(id), HttpStatus.CREATED);
+        WarrantyDTO warrantyDTO = iWarrantyService.getWarrantyByProduct(id);
+       if(warrantyDTO != null){
+           return ResponseEntity.ok(warrantyDTO);
+       }else return null;
     }
 
 }

@@ -19,6 +19,10 @@ function AddAccount() {
 
 
   const handleCreate = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+
       const Object = {
         "name" : name,
         "email" : email,
@@ -29,7 +33,22 @@ function AddAccount() {
         "role" : role,
         "active" : true 
       }
-      console.log(Object)
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(Object),
+        redirect: "follow"
+      };
+      
+      fetch("http://localhost:8080/api/account/create", requestOptions)
+        .then((response) => response.text())
+        .then((result) => 
+          {
+            window.location.href = window.location.href
+          }
+        )
+        .catch((error) => console.error(error));
   }
 
 
