@@ -31,7 +31,7 @@ public class WarrantyService implements IWarrantyService{
         LocalDate endDate = startDate.plusMonths(periodMonth);
 
         Optional<Product> product = iProductRepository.findById(warrantyDTO.getProduct().getId());
-        Optional<WarrantyPolicy> policy = Optional.ofNullable(iWarrantyPolicyRepository.findByNameAndWarrantyPeriod(warrantyDTO.getWarrantyPolicies().getName(), warrantyDTO.getWarrantyPolicies().getWarrantyPeriod()));
+        Optional<WarrantyPolicy> policy = iWarrantyPolicyRepository.findById(warrantyDTO.getWarrantyPolicies().getId());
 
 
         System.out.println(endDate);
