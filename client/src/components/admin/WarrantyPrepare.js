@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import '../../theme/admin/WarrantyPrepare.css';
 import { ICONS } from '../../constants/admin';
 
-function WarrantyPrepare({orderDetail}) {
+function WarrantyPrepare({orderDetail,warrantyProduct}) {
 
   const [isActivePolicy,setIsActivePolicy] = useState({
     status: false, index : ""
@@ -95,7 +95,10 @@ function WarrantyPrepare({orderDetail}) {
             </tr>
             {
               orderDetail !== undefined && orderDetail !== null &&
-              orderDetail.length > 0 && orderDetail.map((item,index) => (
+              orderDetail.length > 0 && orderDetail.filter((item) => 
+              !warrantyProduct.some((warranty) => warranty.warranty.product.id === item.product.id)
+              ).
+              map((item,index) => (
               
                 <tr>
                   <td>{index+1}</td>
