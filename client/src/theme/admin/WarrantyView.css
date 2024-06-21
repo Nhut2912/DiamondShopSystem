@@ -11,6 +11,7 @@
     padding: 35px 15px;
     margin-block-start: 0;
     margin-block-end: 0;
+    column-gap: 20px;
 }
 .warranty-view-container > ul:first-child{
     padding: 30px 15px;
@@ -35,19 +36,86 @@
 .warranty-view-container > ul:nth-child(n+2){
     margin: 5px 0;
 }
+.warranty-view-container > ul:nth-child(n+2) > li > input{
+    width: 90%;
+    height: 40px;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    background-color: transparent;
+    outline: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 0 10px;
+    color: rgba(0,0,0,0.8);
+    font-size: 15px;
+    font-weight: 400;
+}
 .warranty-view-container > ul:nth-child(n+2) > li:nth-child(7){
     font-weight: 700;
     font-weight: 17px;
+   
 }
-.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7).isActive{
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > img{
+    right: 7px;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7).isUpdate{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 40px;
+    position: relative;
+    padding: 0 7px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > ul {
+    padding-inline-start: 0;
+    list-style: none;
+    position: absolute;
+    top:90%;
+    background-color: #FFFFFF;
+    width: 100%;
+    margin-left: -8px;
+    height: 0;
+    overflow-y: scroll;
+    transition: 0.2s ease;
+}
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > ul.isActive{
+    height: 80px;
+    padding: 10px 0px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease;
+}
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > ul::-webkit-scrollbar{
+    display: none;
+}
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > ul  > li {
+   padding: 8px 7px;
+   font-size: 16px;
+   font-weight: 600;
+}
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > ul  > li:hover{
+    background-color: #F7f7f7;
+}
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > ul  > li.isActive{
     color: rgba(54, 227, 57, 1);
 }
-.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7).isInActive{
+.warranty-view-container > ul:nth-child(n+2) > li:nth-child(7) > ul  > li.isInActive{
     color: rgba(217, 4, 61, 1);
 }
 
+
+
 .warranty-view-container > ul:nth-child(n+2) > li:last-child > span{
     padding: 8px 33px;
+    cursor: pointer;
 }
 .warranty-view-container > ul:nth-child(n+2) > li:last-child.isUpdate > span{
     background-color: #d9b384;

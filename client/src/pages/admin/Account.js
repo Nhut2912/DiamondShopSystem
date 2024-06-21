@@ -1,4 +1,4 @@
-import React, {useState} from 'react' 
+import React, {useEffect, useState} from 'react' 
 
 import '../../theme/admin/Account.css'
 import HeadTableCardAccount from '../../components/admin/HeadTableAccount';
@@ -8,6 +8,18 @@ import AddAccount from '../../components/admin/AddAccount';
 function Account(){
   const [activeNavigations,setActiveNavigations] = useState('View Account');
   const [isAddAccount,setAddAccount] = useState(false);
+
+  const [data,setData] = useState();
+
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/account")
+    .then((response) => response.json())
+    .then((result) => setData(result))
+    .catch((error) => console.error(error));
+  },[])
+
+
 
   const navigationAccount = [
     {name: 'View Account'},
@@ -50,9 +62,12 @@ function Account(){
               <div className='account-view'>
                   <HeadTableCardAccount />
                   <div className='account-items-container'>
-                       <CardAccount/>
-                      
-               
+                  {
+                    data !== undefined && data !== null && data.map((item) => (
+                      <CardAccount data={item}/>
+                    ))
+                  }
+           
                   </div>
               </div>
             ) :<AddAccount/>

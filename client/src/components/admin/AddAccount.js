@@ -9,6 +9,28 @@ function AddAccount() {
   
   const [isDropDown,setIsDropDown] = useState(false);
   const [gender,setGender] = useState("Male")
+  const [email,setEmail] = useState();
+  const [password,setPassword] = useState();
+  const [name,setName] = useState();
+  const [phone,setPhone] = useState();
+  const [role,setRole] = useState();
+  const [birthday,setBirthday] = useState();
+  const [address,setAddress] = useState();
+
+
+  const handleCreate = () => {
+      const Object = {
+        "name" : name,
+        "email" : email,
+        "password" : password,
+        "numberPhone":phone,
+        "address" : address,
+        "birthDay" : birthday,
+        "role" : role,
+        "active" : true 
+      }
+      console.log(Object)
+  }
 
 
   return (
@@ -24,46 +46,85 @@ function AddAccount() {
         <div>
           <div>
                 <label>Email</label>
-                <input type='text' />
+                <input 
+                  onChange={(event) => {setEmail(event.target.value)}}
+                type='text' />
             </div>
             <div>
                 <label>Password</label>
-                <input type='text' />
+                <input 
+                   onChange={(event) => {setPassword(event.target.value)}}
+                type='text' />
             </div>
         </div>
        
         <div>
           <div>
               <label>Name</label>
-              <input type='text' />
+              <input
+                onChange={(event) => {setName(event.target.value)}}
+              type='text' />
           </div>
           <div>
               <label>Phone</label>
-              <input type='text' />
+              <input
+                onChange={(event) => {setPhone(event.target.value)}}
+              type='text' />
           </div>
         </div>
         <div>
             <label>Role</label>
             <div>
-               <span>CUSTOMER</span>
+               <span>{role !== undefined && role !== null ? role : ""}</span>
                <img 
                 onClick={() => setIsDropDown(!isDropDown)}
                src={ICONS.icon_drop_down} />
                <ul className={isDropDown ? 'isActive' : ''}>
-                  <li>ADMIN</li>
-                  <li>CUSTOMER</li>
+                  <li 
+                  onClick={(event) => {
+                      setRole(event.target.innerText)
+                      setIsDropDown(false)
+                  }} >ADMIN</li>
+                  <li
+                    onClick={(event) => {
+                      setRole(event.target.innerText)
+                      setIsDropDown(false)
+                  }}
+                  >CUSTOMER</li>
+                   <li
+                    onClick={(event) => {
+                      setRole(event.target.innerText)
+                      setIsDropDown(false)
+                  }}
+                  >MANAGER</li>
+                   <li
+                    onClick={(event) => {
+                      setRole(event.target.innerText)
+                      setIsDropDown(false)
+                  }}
+                  >SALE STAFF</li>
+                  <li
+                    onClick={(event) => {
+                      setRole(event.target.innerText)
+                      setIsDropDown(false)
+                  }}
+                  >DELIVERY STAFF</li>
                </ul>
             </div>
         </div>
         <div>
             <label>Birthday</label>
-            <input type='text' />
+            <input 
+              onChange={(event) => {setBirthday(event.target.value)}}
+            type='text' />
         </div>
         <div>
             <label>Address</label>
-            <input type='text' />
+            <input
+              onChange={(event) => {setAddress(event.target.value)}}
+            type='text' />
         </div>
-        <div>
+        <div onClick={() => handleCreate()} >
             CREATE ACCOUNT
         </div>
     </div>

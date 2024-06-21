@@ -1,48 +1,94 @@
 import React, { useState } from 'react';
 
 import '../../theme/admin/CardAccount.css';
+import { ICONS } from '../../constants/admin';
 
-function CardAccount(){
+function CardAccount({data}){
     
     const [isEditing, setIsEditing] = useState(false);
-    
-    const [formData, setFormData] = useState({
-        id: '#12345',
-        email: 'john.doe@example.com',
-        name: 'John Doe',
-        phone: '+1-234-567-8901',
-        role: 'Admin',
-        status: 'Active'
-    });
+    const [isDropDown,setIsDropDown] = useState(false);
+    const [role,setRole] = useState();
 
     const handleEditClick = () => {
         setIsEditing(true);
     };
-
-   
-
     const handleUpdateClick = () => {
         setIsEditing(false);
     };
 
+
     return (
         <div className='content-table-account-container'>
             <ul className={isEditing ? 'table-account-content isUpdate' : 'table-account-content'} >
-                <li>#1234</li>
                 <li>
-                    nhuttmse172865@fpt.edu.vn
+                    #{data.id}
                 </li>
                 <li>
-                    Tran Minh Nhut
+                    {data.email}
                 </li>
                 <li>
-                    0384463039
+                    {
+                        !isEditing ? data.name :
+                        <input />
+                    }
                 </li>
                 <li>
-                    CUSTOMER
+                    {
+                        !isEditing ? data.numberPhone :
+                        <input />
+                    }
+                   
                 </li>
                 <li>
-                   <span>Active</span>
+                    {
+                        !isEditing ?   data.role:
+                        
+                             <span
+                                onClick={() => setIsDropDown(!isDropDown)}
+                             className='isRole'>
+                                    {data.role} 
+                                    <img src={ICONS.icon_drop_down} />
+                                    <ul className={isDropDown ? 'isActive' : ''}>
+                                        <li 
+                                        onClick={(event) => {
+                                            setRole(event.target.innerText)
+                                            setIsDropDown(false)
+                                        }} >ADMIN</li>
+                                        <li
+                                            onClick={(event) => {
+                                            setRole(event.target.innerText)
+                                            setIsDropDown(false)
+                                        }}
+                                        >CUSTOMER</li>
+                                        <li
+                                            onClick={(event) => {
+                                            setRole(event.target.innerText)
+                                            setIsDropDown(false)
+                                        }}
+                                        >MANAGER</li>
+                                        <li
+                                            onClick={(event) => {
+                                            setRole(event.target.innerText)
+                                            setIsDropDown(false)
+                                        }}
+                                        >SALE STAFF</li>
+                                        <li
+                                            onClick={(event) => {
+                                            setRole(event.target.innerText)
+                                            setIsDropDown(false)
+                                        }}
+                                        >DELIVERY STAFF</li>
+                                </ul>
+                             </span>
+
+                            
+                        
+                    }
+              
+                </li>
+                <li className={data.active ? 'isActive' : 'isInActive'}>
+                    {console.log(data.active)}
+                   <span>{data.active ? 'ACTIVE' : 'INACTIVE'}</span>
                 </li>
                 <li className={isEditing ? 'edit-account isUpdate' : 'edit-account' }>
                     {

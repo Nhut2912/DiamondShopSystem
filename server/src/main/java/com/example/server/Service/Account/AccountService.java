@@ -172,6 +172,7 @@ public class AccountService implements IAccountService{
         accountDto.setAddress(account.getAddress());
         accountDto.setBirthDay(account.getBirthDay());
         accountDto.setRole(account.getRole());
+        accountDto.setActive(account.isActive());
         return accountDto;
     }
 

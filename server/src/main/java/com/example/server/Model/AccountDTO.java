@@ -23,4 +23,7 @@ public class AccountDTO {
 
     private String role;
 
+    private boolean gender;
+
+    private boolean active;
 }

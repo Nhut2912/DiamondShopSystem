@@ -33,9 +33,55 @@ function WarrantyPrepare({orderDetail}) {
     setIsActivePolicy(false);
   }
 
+
   const handleCreateWarranty = () => {
-    
+
+
+      const handleCreateWarranty = () => {
+
+          orderDetail.map((item,index) => {
+            
+          const Object = {
+            "status" : true,
+            "userName" : item.order.account.name,
+            "phoneNumber" : item.order.account.numberPhone,
+            "address" : item.order.address,
+            "product" : {
+              "id" : item.product.id
+            },
+            "warrantyPolicies" :{
+              "id": policyChoose[index].id
+            }
+          }
+
+
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            const requestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: JSON.stringify(Object),
+              redirect: "follow"
+            };
+            
+            fetch("http://localhost:8080/api/warranty/create", requestOptions)
+              .then((response) => response.text())
+              .then((result) => console.log(result))
+              .catch((error) => console.error(error));
+
+
+          })
+      
+    }
+
+    handleCreateWarranty();
+
   }
+
+
+
+
 
   return (
     <div className='warranty-prepare-container'>
@@ -89,7 +135,9 @@ function WarrantyPrepare({orderDetail}) {
  
         </table>
       
-        <div className='button-create-warranty'>
+        <div 
+          onClick={handleCreateWarranty}
+        className='button-create-warranty'>
             CREATE WARRANTY
         </div>
     </div>

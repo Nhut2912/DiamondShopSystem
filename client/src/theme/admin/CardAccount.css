@@ -27,12 +27,16 @@
     position: relative;
 }
 
-.content-table-account-container > .table-account-content > li:nth-child(6) > span  {
+.content-table-account-container > .table-account-content > li:nth-child(6).isActive > span  {
     padding: 6px 25px;
     background-color: rgba(54, 227, 57, 0.2);
     text-align: center;
     border-radius: 50px;
     color: rgba(54, 227, 57, 1);
+}
+.content-table-account-container > .table-account-content > li:nth-child(6).isInActive > span{
+    color: rgba(217, 4, 61, 1);
+    background-color: rgba(217, 4, 61, 0.2);
 }
 
 .content-table-account-container > .table-account-content > li.edit-account {
@@ -47,4 +51,59 @@
 .content-table-account-container > .table-account-content > li.edit-account.isUpdate > span{
     background-color: #d9b384;
     color: #FFFFFF;
+}
+.content-table-account-container > .table-account-content.isUpdate > li > input{
+    width: 80%;
+    font-family: 'Poppins';
+    height: 35px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 0 15px;
+    color: rgba(0,0,0,0.8);
+    font-size: 14px;
+    font-weight: 400;
+} 
+.content-table-account-container > .table-account-content.isUpdate > li > span.isRole{
+    padding: 8px 32px 8px 15px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.content-table-account-container > .table-account-content.isUpdate > li > span.isRole > img{
+    position: absolute;
+    right: 2px;
+}
+.content-table-account-container > .table-account-content.isUpdate > li > span.isRole  > ul{
+    position: absolute;
+    padding-inline-start: 0;
+    list-style: none;
+    width: 100%;
+    height: 0;
+    background-color: #FFFFFF;
+    top:100%;
+    overflow-y: scroll;
+    transition: 0.5s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top:none ;
+}
+.content-table-account-container > .table-account-content.isUpdate > li > span.isRole  > ul.isActive{
+    height: 150px;
+    padding-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: 0.5s ease;
+    border-top:none ;
+
+}
+.content-table-account-container > .table-account-content.isUpdate > li > span > ul::-webkit-scrollbar{
+    display: none;
+}
+.content-table-account-container > .table-account-content.isUpdate > li > span > ul > li{
+    padding: 7px 15px;
+}
+.content-table-account-container > .table-account-content.isUpdate > li > span > ul > li:hover{
+    background-color: #F7F7F7;
 }
