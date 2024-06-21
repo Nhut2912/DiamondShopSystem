@@ -3,103 +3,69 @@ import React, { useState } from 'react';
 
 import '../../theme/admin/AddAccount.css';
 
+import {ICONS} from '../../constants/admin'
+
 function AddAccount() {
-  const [accountData, setAccountData] = useState({
-    id: '',
-    email: '',
-    name: '',
-    phone: '',
-    role: '',
-    status: 'Active'
-  });
+  
+  const [isDropDown,setIsDropDown] = useState(false);
+  const [gender,setGender] = useState("Male")
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAccountData({
-      ...accountData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = () => {
-    // Logic to handle submit data
-    console.log('Account Data Submitted: ', accountData);
-  };
 
   return (
     <div className='add-account-container'>
-      <table className='account-table'>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Role</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                type='text'
-                name='id'
-                value={accountData.id}
-                onChange={handleChange}
-                placeholder='#12345'
-              />
-            </td>
-            <td>
-              <input
-                type='email'
-                name='email'
-                value={accountData.email}
-                onChange={handleChange}
-                placeholder='john.doe@example.com'
-              />
-            </td>
-            <td>
-              <input
-                type='text'
-                name='name'
-                value={accountData.name}
-                onChange={handleChange}
-                placeholder='John Doe'
-              />
-            </td>
-            <td>
-              <input
-                type='text'
-                name='phone'
-                value={accountData.phone}
-                onChange={handleChange}
-                placeholder='+1-234-567-8901'
-              />
-            </td>
-            <td>
-              <input
-                type='text'
-                name='role'
-                value={accountData.role}
-                onChange={handleChange}
-                placeholder='Admin'
-              />
-            </td>
-            <td>
-              <select
-                name='status'
-                value={accountData.status}
-                onChange={handleChange}
-              >
-                <option value='Active'>Active</option>
-                <option value='Inactive'>Inactive</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button onClick={handleSubmit}>Add Account</button>
+      <h3>INFORMATION ACCOUNT</h3>
+       <div>
+            <label>Gender</label>
+            <div>
+              <div onClick={() => setGender("Male")} className={gender === "Male" ? 'isActive' : null}>Male</div>
+              <div onClick={() => setGender("Female")} className={gender !== "Male" ? 'isActive' : null} >Female</div>
+            </div>
+        </div>
+        <div>
+          <div>
+                <label>Email</label>
+                <input type='text' />
+            </div>
+            <div>
+                <label>Password</label>
+                <input type='text' />
+            </div>
+        </div>
+       
+        <div>
+          <div>
+              <label>Name</label>
+              <input type='text' />
+          </div>
+          <div>
+              <label>Phone</label>
+              <input type='text' />
+          </div>
+        </div>
+        <div>
+            <label>Role</label>
+            <div>
+               <span>CUSTOMER</span>
+               <img 
+                onClick={() => setIsDropDown(!isDropDown)}
+               src={ICONS.icon_drop_down} />
+               <ul className={isDropDown ? 'isActive' : ''}>
+                  <li>ADMIN</li>
+                  <li>CUSTOMER</li>
+               </ul>
+            </div>
+        </div>
+        <div>
+            <label>Birthday</label>
+            <input type='text' />
+        </div>
+        <div>
+            <label>Address</label>
+            <input type='text' />
+        </div>
+        <div>
+            CREATE ACCOUNT
+        </div>
     </div>
   );
 }

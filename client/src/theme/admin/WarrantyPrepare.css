@@ -23,7 +23,7 @@
 
 .warranty-prepare-container > table  > tr{
     display: grid;
-    grid-template-columns: 1.5fr 2fr 3fr 5.5fr;
+    grid-template-columns: 1.5fr 2fr 5fr 3.5fr;
 }
 .warranty-prepare-container > table > tr > td{
     text-align: start;
@@ -41,6 +41,7 @@
 }
 .warranty-prepare-container > table > tr > td:last-child{
     position: relative;
+    padding-right: 45px;
 }
 .warranty-prepare-container > table > tr > td:last-child > ul {
     padding-inline-start: 0;
@@ -54,13 +55,13 @@
     row-gap: 5px;
     background-color: #FFFFFF;
     height: 0;
-    transition:  1s ease;
+    transition:  0.5s ease;
     border: 2px solid rgba(0, 0, 0, 0.15);
     margin-top: 10px;
     border-top: none;
 }
 .warranty-prepare-container > table > tr > td:last-child > img {
-    right:15px;
+    right:10px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -69,7 +70,7 @@
 .warranty-prepare-container > table > tr > td:last-child > ul.isActive {
     border-top: none;
     height: 150px;
-    transition:  1s ease;
+    transition:  0.5s ease;
     overflow-y: scroll;
     margin-top: 10px;
     border: 2px solid rgba(0, 0, 0, 0.15);
@@ -104,4 +105,5 @@
     font-family: "Roboto Serif";
     color: #FFFFFF;
     font-weight: 500;
+    cursor: pointer;
 }

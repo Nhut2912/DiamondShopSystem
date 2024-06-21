@@ -1,18 +1,23 @@
+
 .content-table-account-container > .table-account-content {
     justify-content: space-between;
     margin-block-start: 0em;
     margin-block-end: 0em;
     padding-inline-start: 0px;
     list-style: none;
-    padding: 20px 0 20px 0;
+    padding: 35px 15px;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: 1.3fr 2.5fr 2.5fr 2.2fr 1.3fr 1fr 1.2fr;
     column-gap: 20px;   
     border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
     margin: 0 42px;
     align-items: center;
+    box-sizing: border-box;
 }
-
+.content-table-account-container > .table-account-content.isUpdate{
+    border: 1px solid #d9b384;
+    box-sizing: border-box;
+}
 .content-table-account-container > .table-account-content > li {
     font-family: 'Poppins';
     font-size: 15px;
@@ -22,34 +27,24 @@
     position: relative;
 }
 
-.content-table-account-container > .table-account-content > li > .status-account {
-    width: 100%;
+.content-table-account-container > .table-account-content > li:nth-child(6) > span  {
+    padding: 6px 25px;
     background-color: rgba(54, 227, 57, 0.2);
     text-align: center;
-    border-radius: 5px;
+    border-radius: 50px;
     color: rgba(54, 227, 57, 1);
 }
 
 .content-table-account-container > .table-account-content > li.edit-account {
     display: flex;
     justify-content: center;
-}
-
-.content-table-account-container > .table-account-content > li > input,
-.content-table-account-container > .table-account-content > li > select {
-    width: calc(100% - 40px); /* Adjust width according to padding */
-    padding: 5px;
-    font-size: 15px;
-    font-family: 'Poppins';
-}
-
-.content-table-account-container > .table-account-content > li > button {
-    padding: 5px 10px;
-    font-size: 14px;
-    font-family: 'Poppins';
-    background-color: #C7A173;
-    color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
+}
+.content-table-account-container > .table-account-content > li.edit-account > span{
+    padding: 7px 32px;
+    border-radius: 5px;
+}
+.content-table-account-container > .table-account-content > li.edit-account.isUpdate > span{
+    background-color: #d9b384;
+    color: #FFFFFF;
 }

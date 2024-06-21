@@ -4,9 +4,9 @@
     margin-block-end: 0em;
     padding-inline-start: 0px;
     list-style: none;
-    padding: 30px 0 20px 0;
+    padding: 25px  15px;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-template-columns: 1.3fr 2.5fr 2.5fr 2.2fr 1.3fr 1fr 1.2fr;
     column-gap: 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0 42px;
@@ -19,3 +19,9 @@
     padding-left: 20px;
     font-weight: 500;
 }   
+
+.head-table-account-container > .head-table-account-content > li:last-child{
+    display: flex;
+    justify-content: center;
+
+}

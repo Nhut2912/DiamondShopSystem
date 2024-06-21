@@ -1,0 +1,129 @@
+.material-price-list-container{
+    height: 100%;
+    width: 100%;
+}
+.material-price-list-container > .head-price-list{
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns:1.5fr 2.5fr 2fr 2fr 2fr ;
+    padding: 20px 15px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    background-color: #FFFFFF;
+}
+.material-price-list-container >  .seach-and-show{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+.material-price-list-container >  .seach-and-show > span{
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.6);
+}
+.material-price-list-container >  .seach-and-show > div{
+    width: 350px;
+    height: 40px;
+    position: relative;
+}
+.material-price-list-container >  .seach-and-show > div > img{
+    position: absolute;
+    right: 15px;
+    top:50%;
+    transform: translateY(-50%);
+}
+.material-price-list-container >  .seach-and-show > div > input{
+    font-family: 'Poppins';
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 15px;
+    color: rgba(0,0,0,0.5);
+    font-size: 15px;
+    font-weight: 400;
+    appearance: none;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+}
+.material-price-list-container >  .seach-and-show > div > input::placeholder{
+    color: rgba(0,0,0,0.5);
+}
+.material-price-list-container > .head-price-list > li{
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+}
+.material-price-list-container > .head-price-list > li:last-child{
+    display: flex;
+    justify-content: center;
+}
+
+
+.material-price-list-container >  .container-price-scroll {
+    height: 76vh;
+    overflow-y: scroll;
+}
+.material-price-list-container >  .container-price-scroll::-webkit-scrollbar{
+    display: none;
+}
+.material-price-list-container >  .container-price-scroll > ul{
+    padding-inline-start: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns:1.5fr 2.5fr 2fr 2fr 2fr ;
+    padding: 25px 15px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    align-items: center;
+}
+.material-price-list-container >  .container-price-scroll > ul.isEdited{
+    background-color: #FFFFFF;
+    border: 1px solid #d9b384;
+    border-radius: 5px;
+}
+.material-price-list-container >  .container-price-scroll > ul > li{
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.5);
+    cursor: pointer;
+    
+}
+.material-price-list-container >  .container-price-scroll > ul > li > input{
+    font-family: 'Poppins';
+    height: 30px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 0 15px;
+    color: rgba(0,0,0,0.8);
+    font-size: 15px;
+    font-weight: 400;
+    width: 100px;
+}
+.material-price-list-container >  .container-price-scroll > ul > li:last-child{
+    display: flex;
+    justify-content: center;
+}
+.material-price-list-container > .container-price-scroll > ul > li:last-child > span.update{
+    padding: 10px 25px;
+    background-color: #d9b384;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+.material-price-list-container >  .container-price-scroll > ul > li:last-child > span.edit{
+    padding: 10px 25px;
+}
+.material-price-list-container >  .container-price-scroll > .line{
+    height: 1px;
+    margin: 5px 0;
+    border-top: 1px dotted rgba(0,0,0,0.1);
+}

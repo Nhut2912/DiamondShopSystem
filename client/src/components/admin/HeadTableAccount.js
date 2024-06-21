@@ -11,7 +11,7 @@ function HeadTableCardAccount(){
           <li>Phone</li>
           <li>Role</li>
           <li>Status</li>
-          <li></li>
+          <li>Update</li>
        </ul>
     </div>
    )

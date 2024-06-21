@@ -1,42 +1,183 @@
 .add-account-container {
     width: 100%;
-    margin: 20px auto;
-  }
-  
-  .account-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .account-table th, .account-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .account-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  .account-table input, .account-table select {
-    width: 100%;
-    padding: 5px;
+    height: 78vh;
+    padding: 30px 100px 100px 100px;
     box-sizing: border-box;
-  }
+    
+}
+.add-account-container > h3{
+  font-family: "Poppins";
+  font-size: 23px;
+  font-weight: 500;
+  color: rgba(0, 0, 0,0.5);
+  margin: 0 0 40px 0;
+}
+
+.add-account-container > div:nth-child(6),
+.add-account-container > div:nth-child(5),
+.add-account-container > div:nth-child(4),
+.add-account-container > div:nth-child(2) > div,
+.add-account-container > div:nth-child(3){
+  display: flex;
+  column-gap: 40px;
+  align-items: center;
+}
+
+.add-account-container > div:nth-child(3) > div,
+.add-account-container > div:nth-child(4) > div,
+.add-account-container > div:nth-child(7) {
+  display: flex;
+  flex-direction: column;
+} 
+.add-account-container > div:nth-child(3),
+.add-account-container > div:nth-child(4){
+  margin: 30px 0;
+}
+
+.add-account-container   label{
+  font-family: "Poppins";
+  font-size: 16px;
+  color: rgba(0, 0, 0,0.5);
+}
+.add-account-container input[type="text"]{
+  height: 40px;
+  box-sizing: border-box;
+  font-family: 'Poppins';
+  background-color: transparent;
+  outline: none;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 5px;
+  padding: 0 15px;
+  color: rgba(0,0,0,0.8);
+  font-size: 15px;
+  font-weight: 400;
+}
+.add-account-container > div:nth-child(3) > div:nth-child(1) > input{
+  width: 320px;
   
-  .add-account-container button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #C7A173;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+} 
+.add-account-container > div:nth-child(3) > div:nth-child(2) > input{
+  width: 300px;
+ 
+}
+.add-account-container > div:nth-child(4) > div:nth-child(1) > input{
+  width: 300px;
   
-  .add-account-container button:hover {
-    background-color: #0056b3;
-  }
+} 
+.add-account-container > div:nth-child(4) > div:nth-child(2) > input{
+  width: 320px;
   
+}
+.add-account-container > div:nth-child(5) {
+  margin: 30px 0;
+}
+.add-account-container > div:nth-child(5) > div{
+  position: relative;
+  width: 220px;
+  height: 40px;
+  display: flex;
+  padding: 0 15px;
+  align-items: center;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 5px;
+  padding: 0 15px;
+  color: rgba(0,0,0,0.8);
+  font-size: 15px;
+  font-weight: 400;
+  
+}
+.add-account-container > div:nth-child(5) > div > span{
+  font-family: "Poppins";
+  color: rgba(0, 0, 0,0.8);
+}
+.add-account-container > div:nth-child(5) > div >  img{
+  position: absolute;
+  right: 15px;
+  top:50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.add-account-container > div:nth-child(5) > div > ul{
+  position: absolute;
+  padding-inline-start: 0;
+  list-style: none;
+  top:95%;
+  width: 100%;
+  border: 1px solid transparent;
+  left:-1px;
+  margin-block-start: 0;
+  border-top:none ;
+  padding-top: 0px;
+  height: 0;
+  overflow-y: scroll;
+  margin-block-end: 0;
+  transition: 0.5s ease;
+}.add-account-container > div:nth-child(5) > div > ul.isActive{
+  padding: 10px 0;
+  height: 120px;
+  border: 1px solid rgba(0,0,0,0.2);
+  background-color: #FFFFFF;
+  border-top:none ;
+  transition: 0.5s ease;
+}
+.add-account-container > div:nth-child(5) > div > ul::-webkit-scrollbar{
+  display: none;
+}
+.add-account-container > div:nth-child(5) > div > ul > li{
+  position: relative;
+  padding: 10px 15px;
+  font-family: "Poppins";
+  color: rgba(0, 0, 0,0.8);
+}
+.add-account-container > div:nth-child(5) > div > ul > li:hover{
+  background-color: #F7F7F7;
+}
+.add-account-container > div:nth-child(7){
+  margin-top: 30px;
+}
+.add-account-container > div:nth-child(7) > input{
+  width: 660px;
+}
+.add-account-container > div:last-child{
+  margin-top: 40px;
+  width: 200px;
+  height: 50px;
+  background-color: #d9b384;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-family: "Poppins";
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.add-account-container > div:nth-child(2) > div > div{
+  padding-left: 25px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-family: "Poppins";
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 15px;
+  color: rgba(0, 0, 0,0.8);
+  position: relative;
+}
+.add-account-container > div:nth-child(2) > div > div.isActive::before{
+  background-color: #d9b384;
+  border: 1px solid #d9b384;
+  transition: 0.2s ease;
+}
+.add-account-container > div:nth-child(2) > div > div::before{
+  content: "";
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(0, 0, 0,0.1);
+  top:50%;
+  position: absolute;
+  transform: translateY(-50%);
+  left: -2px;
+  transition: 0.2s ease;
+}

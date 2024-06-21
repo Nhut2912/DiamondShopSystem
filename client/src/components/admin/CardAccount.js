@@ -5,6 +5,7 @@ import '../../theme/admin/CardAccount.css';
 function CardAccount(){
     
     const [isEditing, setIsEditing] = useState(false);
+    
     const [formData, setFormData] = useState({
         id: '#12345',
         email: 'john.doe@example.com',
@@ -15,96 +16,43 @@ function CardAccount(){
     });
 
     const handleEditClick = () => {
-        setIsEditing(!isEditing);
+        setIsEditing(true);
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
+   
 
-    const handleSaveClick = () => {
+    const handleUpdateClick = () => {
         setIsEditing(false);
-        // Save data logic here
     };
 
     return (
         <div className='content-table-account-container'>
-            <ul className='table-account-content'>
-                <li>{formData.id}</li>
+            <ul className={isEditing ? 'table-account-content isUpdate' : 'table-account-content'} >
+                <li>#1234</li>
                 <li>
-                    {isEditing ? (
-                        <input 
-                            type="text" 
-                            name="email" 
-                            value={formData.email} 
-                            onChange={handleChange} 
-                        />
-                    ) : (
-                        formData.email
-                    )}
+                    nhuttmse172865@fpt.edu.vn
                 </li>
                 <li>
-                    {isEditing ? (
-                        <input 
-                            type="text" 
-                            name="name" 
-                            value={formData.name} 
-                            onChange={handleChange} 
-                        />
-                    ) : (
-                        formData.name
-                    )}
+                    Tran Minh Nhut
                 </li>
                 <li>
-                    {isEditing ? (
-                        <input 
-                            type="text" 
-                            name="phone" 
-                            value={formData.phone} 
-                            onChange={handleChange} 
-                        />
-                    ) : (
-                        formData.phone
-                    )}
+                    0384463039
                 </li>
                 <li>
-                    {isEditing ? (
-                        <input 
-                            type="text" 
-                            name="role" 
-                            value={formData.role} 
-                            onChange={handleChange} 
-                        />
-                    ) : (
-                        formData.role
-                    )}
+                    CUSTOMER
                 </li>
                 <li>
-                    <div className='status-account'>
-                        {isEditing ? (
-                            <select 
-                                name="status" 
-                                value={formData.status} 
-                                onChange={handleChange}
-                            >
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                        ) : (
-                            <span>{formData.status}</span>
-                        )}
-                    </div>
+                   <span>Active</span>
                 </li>
-                <li className='edit-account'>
-                    {isEditing ? (
-                        <button onClick={handleSaveClick}>Save</button>
-                    ) : (
-                        <button onClick={handleEditClick}>Edit</button>
-                    )}
+                <li className={isEditing ? 'edit-account isUpdate' : 'edit-account' }>
+                    {
+                        !isEditing ? <span
+                            onClick={handleEditClick}
+                        >Edit</span> : <span
+                            onClick={handleUpdateClick}
+                        >Update</span>
+                    }
+                    
                 </li>
             </ul>
         </div>

@@ -1,0 +1,15 @@
+.filter-material-price-list{
+    background-color: #FFFFFF;
+    width: 300px;
+    padding: 0 25px;
+    box-sizing: border-box;
+    border-radius: 8px;
+ }
+ .filter-material-price-list > h3{
+     font-family: "Poppins";
+     letter-spacing: 0.54px;
+     font-weight: 400;
+     font-size: 17px;
+     color: rgba(0, 0, 0, 0.5);
+     margin: 20px 0 0 0;
+ }

@@ -1,5 +1,6 @@
 .account-container{
   width: 100%;
+  height: auto;
 }
 .account-container > h1{
   margin-top: 30px;
@@ -21,6 +22,7 @@
 .account-container > .account-navigation{
   display: flex;
   justify-content: space-between;
+  margin-top: 60px;
 }
 .account-container > .account-navigation > ul{
   padding-inline-start: 0;
@@ -53,18 +55,12 @@
   overflow: hidden;
   position: relative;
 }
-.account-container >  .account-content > .account-view > h4{
-  text-align: right;
-  margin: 0 42px;
-  font-family: 'Poppins';
-  font-weight: 400;
-  font-size: 14px;
-  color: rgba(0,0,0,0.6);
-}
+
 .account-container >  .account-content  > .account-view  > .account-items-container{
   overflow-y: scroll;
   position: relative;
-  height: 66vh;
+  height: 63vh;
+
 }
 .account-container >  .account-content > .account-view > .account-items-container::-webkit-scrollbar{
   width: 0 !important;
@@ -72,6 +68,7 @@
 }
 
 .account-container >  .account-content > .account-view {
-  height: 77vh;
+  height: 70vh;
   overflow:hidden;
+
 }

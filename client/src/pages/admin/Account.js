@@ -11,7 +11,7 @@ function Account(){
 
   const navigationAccount = [
     {name: 'View Account'},
-    {name: 'Add Account'}
+    {name: 'Create Account'}
   ]
 
   const handleClick = (item) => {
@@ -51,12 +51,8 @@ function Account(){
                   <HeadTableCardAccount />
                   <div className='account-items-container'>
                        <CardAccount/>
-                       <CardAccount/>
-                       <CardAccount/>
-                       <CardAccount/>
-                       <CardAccount/>
-                       <CardAccount/>
-                       <CardAccount/>
+                      
+               
                   </div>
               </div>
             ) :<AddAccount/>

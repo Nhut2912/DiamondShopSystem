@@ -33,6 +33,10 @@ function WarrantyPrepare({orderDetail}) {
     setIsActivePolicy(false);
   }
 
+  const handleCreateWarranty = () => {
+    
+  }
+
   return (
     <div className='warranty-prepare-container'>
         <h3>WARRANTY</h3>
@@ -51,7 +55,9 @@ function WarrantyPrepare({orderDetail}) {
                   <td>{index+1}</td>
                   <td>{item.product.code}</td>
                   <td>{item.product.name}</td>
-                  <td>
+                  <td
+                     onClick={() => handleClickActive(index)}
+                  >
                     <span>
                       {policyChoose !== undefined && policyChoose !== null &&
                       policyChoose.length >0 &&
@@ -61,7 +67,7 @@ function WarrantyPrepare({orderDetail}) {
                       
                       </span>
                     <img  
-                        onClick={() => handleClickActive(index)}
+                       
                         src={ICONS.icon_drop_down} />
 
                     <ul 

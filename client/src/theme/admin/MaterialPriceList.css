@@ -1,0 +1,7 @@
+.material-price-list-content-container{
+    position: relative;
+    height: 81vh;
+    overflow: hidden;
+    display: flex;
+    column-gap: 40px;
+}

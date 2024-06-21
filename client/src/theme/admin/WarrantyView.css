@@ -8,7 +8,7 @@
     grid-template-columns: 1fr 1.7fr 1.6fr 2.5fr 1.6fr 1.6fr 1fr  1fr;
     padding: 0 20px ;
     align-items: center;
-    padding: 25px 15px;
+    padding: 35px 15px;
     margin-block-start: 0;
     margin-block-end: 0;
 }
@@ -45,6 +45,7 @@
 .warranty-view-container > ul:nth-child(n+2) > li:nth-child(7).isInActive{
     color: rgba(217, 4, 61, 1);
 }
+
 .warranty-view-container > ul:nth-child(n+2) > li:last-child > span{
     padding: 8px 33px;
 }
