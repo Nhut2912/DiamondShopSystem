@@ -20,4 +20,7 @@ public interface IOrderService {
     public Map<LocalDate, Integer> getOrdersByMonthAndYear(int month, int year);
     public Map<LocalDate, Long> getStatisticByWeek() throws ParseException;
     public Map<LocalDate, Long> getStatisticByMonth() throws ParseException;
+
+    public Map<LocalDate, Double> getTotalPriceStatisticByWeek() throws ParseException;
+    public Map<LocalDate, Double> getTotalPriceStatisticByMonth() throws ParseException;
 }

@@ -158,4 +158,68 @@ public class OrderService implements IOrderService {
         return resultDate;
     }
 
+    public Map<LocalDate, Double> getTotalPriceStatisticByWeek() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.minusDays(7);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+        // Create a map with order counts per day
+        Map<String, Double> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.summingDouble(Order::getTotalPrice)
+                ));
+
+        Map<LocalDate, Double> resultDate = new HashMap<>();
+
+        for (LocalDate date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
+            double sumPrice = orderCountMap.getOrDefault(formatter.format(formatter.parse(date.toString())), (double) 0);
+            resultDate.put(date, sumPrice);
+        }
+        System.out.println(resultDate.size());
+        return resultDate;
+    }
+
+    public Map<LocalDate, Double> getTotalPriceStatisticByMonth() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        System.out.println(currentDate.getMonth().getValue());
+        LocalDate beforeDate;
+        if (currentDate.getMonth().getValue() == 4 || currentDate.getMonth().getValue() == 6 ||
+                currentDate.getMonth().getValue() == 9 || currentDate.getMonth().getValue() == 11) {
+            beforeDate = currentDate.minusDays(30);
+        } else if (Year.of(currentDate.getYear()).isLeap() && currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(29);
+        } else if (currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(28);
+        } else {
+            beforeDate = currentDate.minusDays(31);
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+        // Create a map with order counts per day
+        Map<String, Double> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.summingDouble(Order::getTotalPrice)
+                ));
+
+        Map<LocalDate, Double> resultDate = new HashMap<>();
+
+        for (LocalDate date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
+            double sumPrice = orderCountMap.getOrDefault(formatter.format(formatter.parse(date.toString())), (double) 0);
+            resultDate.put(date, sumPrice);
+        }
+        System.out.println(resultDate.size());
+        return resultDate;
+    }
+
 }

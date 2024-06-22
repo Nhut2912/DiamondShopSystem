@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,4 +77,16 @@ public class AccountController {
         return new ResponseEntity<>(accountService.createAccount(accountDTO), HttpStatus.OK);
     }
 
+    @GetMapping("/statisticNewCustomerByWeek")
+    public ResponseEntity<?> statisticToTalPriceByWeek() throws ParseException {
+
+        return new ResponseEntity<>(accountService.getAccountStatisticByWeek(), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/statisticNewCustomerByMonth")
+    public ResponseEntity<?> statisticToTalPriceByMonth() throws ParseException {
+
+        return new ResponseEntity<>(accountService.getAccountStatisticByMonth(), HttpStatus.OK);
+    }
 }
