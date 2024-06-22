@@ -3,29 +3,7 @@ import React, { useEffect, useState } from 'react'
 import '../../theme/admin/PriceListContainer.css';
 import {ICONS} from '../../constants/admin'
 
-const convertCarat = (carat) => {
 
-  switch (carat) {
-    case 0.1:
-        return "(0.1 - 0.4)"
-      break;
-    case 0.5:
-      return "(0.4 - 0.8)"
-      break;
-    case 1:
-      return "(0.8 - 1.5)"
-        break;
-    case 1.5:
-      return "(1.5 - 1.8)"
-        break;
-    case 2:
-      return "(1.8 - 2.0)"
-        break;
-    default:
-      break;
-  }
-
-}
 
 
 
@@ -164,7 +142,7 @@ function PriceListContainer({ originFilter,
             <li>Cut</li>
             <li>Carat</li>
             <li>Effected Date</li>
-            <li>Price</li>
+            <li>Price {"($)"}</li>
             <li>Update</li>
         </ul>
         <div className='container-price-scroll'>
@@ -182,7 +160,7 @@ function PriceListContainer({ originFilter,
                     <li>{item.clarity}</li>
                     <li>{item.cut}</li>
                     <li>
-                        {convertCarat(item.carat)}
+                        {`(${item.caratFrom} - ${item.caratTo})`}
                     </li>
                     <li>
                       {isEdit.index === index && isEdit.status === true ? 
@@ -196,7 +174,7 @@ function PriceListContainer({ originFilter,
                       {isEdit.index === index && isEdit.status === true ? 
                         <input
                         onChange={(event) => handleChangePrice(event)}
-                        value={price} /> :   item.price
+                        value={price} /> :   `${item.price}`
                       }
                      </li>
                     

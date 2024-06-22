@@ -26,6 +26,13 @@ function Product() {
   const [maxChangePrice,setMaxChangePrice] = useState(100000);
 
 
+  const [minCarat,setMinCarat] =  useState(0);
+  const [maxCarat,setMaxCarat] = useState(10);
+  const [minChangeCarat,setMinChangeCarat] =  useState(0);
+  const [maxChangeCarat,setMaxChangeCarat] = useState(10);
+  const [leftCarat,setLeftCarat] = useState(0);
+  const [rightCarat,setRightCarat] = useState(0);
+
   const [originFilter,setOriginFilter] = useState([]);
   const [colorFilter,setColorFilter] = useState([]);
   const [clarityFilter,setClarityFilter] = useState([]);
@@ -354,7 +361,7 @@ function Product() {
   const handleInputMinValuePrice = (event) => {
    const value = event.target.value;
  
-   console.log(value);
+ 
    if(value <= maxPrice-1000 && value >= 0){
     setLeft((value/100000)*100);
     setMinPrice(value);
@@ -371,6 +378,47 @@ function Product() {
    }
 
 
+
+   
+
+  const handleMinValueCarat = (event) => {
+    const value = event.target.value;
+    if(value <= maxPrice-1 && value >= 0){
+      setLeftCarat((value/10)*100);
+      setMinCarat(value);
+    }
+  }
+  const handleMaxValueCarat =(event) => {
+    const value = event.target.value;
+
+
+    if(value >= minPrice+1 && value <= 10){
+      setRightCarat(100-(value/10)*100)
+      setMaxCarat(value);
+    }
+  }
+
+
+  const handleInputMinValueCarat = (event) => {
+   const value = event.target.value;
+ 
+ 
+   if(value <= maxPrice-1 && value >= 0){
+    setLeftCarat((value/10)*100);
+    setMinCarat(value);
+  }
+  }
+
+
+  const handleInputMaxValueCarat = (event) => {
+    const value = event.target.value;
+    if(value >= minPrice+1 && value <= 10 ){
+      setRightCarat(100-(value/10)*100)
+      setMaxCarat(value);
+    }
+   }
+
+   
 
 
    const handleFilterPrice = () => {
@@ -429,7 +477,7 @@ function Product() {
                               onClick={() => handleFillterCategory(item)}
                             className={categoryActive.includes(item) ? "isActive" : ""}>
                               <div>
-
+                              
                               </div>
                               <span>
                                   {item}
@@ -560,6 +608,48 @@ function Product() {
                                 >{item.value}</li>
                               ))}
                           </ul>
+                          <h4 style={{marginTop:'40px'}}>Carat</h4>
+                          <div className='input-filter-buy-carat'>
+                                <div className='slider'>
+                                    <div
+                                      style={{
+                                        left: leftCarat+"%",
+                                        right : rightCarat +"%"
+                                      }}  
+                                    
+                                    className='progress'></div>
+                                    <input type='range' 
+                                      onChange={(event) => handleMinValueCarat(event)}
+                                    className='range-min' min="0" max="10" 
+                                      value={minCarat}
+                                    step="0.1"/>
+                                    <input type='range' 
+                                      onChange={(event) => handleMaxValueCarat(event)}
+                                    className='range-max' min="0" max="10" 
+                                    value={maxCarat} step="0.1"/>
+                                </div>
+                                <div className='carat-filter'>
+                              <div className='carat'>
+                              
+                                  <div>
+                                    <div>
+                                         <input
+                                          value={minCarat}
+                                          onChange={handleInputMinValueCarat}
+                                        type='number' />
+                                    </div>
+                                    <span>-</span>
+                                    <div>
+                                        <input 
+                                        value={maxCarat}
+                                        onChange={handleInputMaxValueCarat}
+                                        type='number'/>
+                                    </div>
+                                  </div>
+                              </div>
+                             
+                          </div>
+                      </div>
                           <div
                             onClick={handleScroller}
                           >
