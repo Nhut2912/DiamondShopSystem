@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class PromotionService implements IPromotionService{
+public class PromotionService implements IPromotionService {
 
     @Autowired
     private IProductRepository iProductRepository;
@@ -42,7 +42,7 @@ public class PromotionService implements IPromotionService{
     @Autowired
     private IMaterialPriceListService iMaterialPriceListService;
 
-    public boolean createPromotion(PromotionDTO promotionDTO){
+    public boolean createPromotion(PromotionDTO promotionDTO) {
         //kiem tra product co ton tai trong DB
         List<Product> products = new ArrayList<>();
         for (Long productId : promotionDTO.getProductIds()) {
@@ -55,7 +55,7 @@ public class PromotionService implements IPromotionService{
             }
         }
 
-        try{
+        try {
             Promotion promotion = new Promotion();
             promotion.setPromotionRate(promotionDTO.getPromotionRate());
             promotion.setActive(promotionDTO.isActive());
@@ -63,7 +63,7 @@ public class PromotionService implements IPromotionService{
             promotion.setDateEnd(promotionDTO.getDateEnd());
             promotion.setNamePromotion(promotionDTO.getNamePromotion());
 
-            for(int i = 0; i < products.size(); i++){
+            for (int i = 0; i < products.size(); i++) {
 //                promotion..getProducts().add(products.get(i));
                 promotion.getPromotions_products().add(new Promotions_products(products.get(i), promotion));
             }
@@ -71,7 +71,7 @@ public class PromotionService implements IPromotionService{
             iPromotionRepository.save(promotion);
 
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
@@ -93,7 +93,7 @@ public class PromotionService implements IPromotionService{
             }
         }
 
-        try{
+        try {
             Promotion promotion = new Promotion();
             promotion.setPromotionRate(promotionDTO.getPromotionRate());
             promotion.setActive(promotionDTO.isActive());
@@ -101,12 +101,12 @@ public class PromotionService implements IPromotionService{
             promotion.setDateEnd(promotionDTO.getDateEnd());
             promotion.setNamePromotion(promotionDTO.getNamePromotion());
             promotion.setId(promotionDTO.getIdPromotion());
-            for(int i = 0; i < products.size(); i++){
+            for (int i = 0; i < products.size(); i++) {
                 promotion.getPromotions_products().add(new Promotions_products(products.get(i), promotion));
             }
             iPromotionRepository.save(promotion);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
@@ -114,7 +114,7 @@ public class PromotionService implements IPromotionService{
 
 
     @Override
-    public List<PromotionDTO> getPromotions(){
+    public List<PromotionDTO> getPromotions() {
         Iterable<Promotion> promotions = iPromotionRepository.findAll();
         List<PromotionDTO> promotionDTOS = new ArrayList<>();
         promotions.forEach((promotion -> {
@@ -139,29 +139,30 @@ public class PromotionService implements IPromotionService{
     }
 
     public List<ProductDTO> getProductsByActivePromotion() {
-        List<Promotions_products> activePromotionsProducts = iPromotionProductRepository.findByPromotionActive(true);
         List<ProductDTO> productDTOS = new ArrayList<>();
-        activePromotionsProducts.forEach((item) -> {
+        List<Product> products = iProductRepository.getProductsByActive(true);
+
+        products.forEach((item) -> {
             ProductDTO productDTO = new ProductDTO();
 
-            productDTO.setId(item.getProduct().getId());
+            productDTO.setId(item.getId());
 
-            productDTO.setName(item.getProduct().getName());
+            productDTO.setName(item.getName());
 
-            productDTO.setCode(item.getProduct().getCode());
+            productDTO.setCode(item.getCode());
 
-            productDTO.setSizeUnitPrice(item.getProduct().getSizeUnitPrice());
+            productDTO.setSizeUnitPrice(item.getSizeUnitPrice());
 
-            productDTO.setSize(item.getProduct().getSize().getSize());
+            productDTO.setSize(item.getSize().getSize());
 
-            productDTO.setCategory(item.getProduct().getCategory().getName());
+            productDTO.setCategory(item.getCategory().getName());
 
 
             double totalPrice = 0;
 
 
-            List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getProduct().getId());
-            List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getProduct().getId());
+            List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
+            List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
 
             System.out.println(listDiamondReturn);
 
@@ -183,7 +184,7 @@ public class PromotionService implements IPromotionService{
                     diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
                             diamond.getClarity().getId(), diamond.getColor().getId()
                             , diamond.getCut().getId(), diamond.getOrigin().getId());
-                    totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
+                    totalPrice += diamondPriceList.getPrice() * diamond.getCarat();
                 } catch (ClassNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
@@ -194,7 +195,7 @@ public class PromotionService implements IPromotionService{
 
             Set<MaterialDTO> materialDTOS = new HashSet<>();
 
-            for (ProductMaterial productMaterial : listProductMaterial){
+            for (ProductMaterial productMaterial : listProductMaterial) {
 
                 MaterialDTO materialDTO = new MaterialDTO();
                 materialDTO.setName(productMaterial.getMaterial().getName());
@@ -204,15 +205,22 @@ public class PromotionService implements IPromotionService{
 
                 totalPrice += iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId()).getSellPrice();
             }
-            totalPrice += item.getProduct().getProductionCost() + item.getProduct().getSecondaryDiamondCost() + item.getProduct().getSecondaryMaterialCost();
-            totalPrice += totalPrice*((double) item.getProduct().getPriceRate() / 100);
+            totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
+            totalPrice += totalPrice * ((double) item.getPriceRate() / 100);
 
             productDTO.setMaterials(materialDTOS);
             productDTO.setPrice(totalPrice);
 
 
+
+            Set<String> images = new HashSet<>();
+            item.getImages().forEach((image -> images.add(image.getUrl())));
+            productDTO.setImages(images);
+
+
+
             List<PromotionDTO> promotionDTOS = new ArrayList<>();
-            for(Promotions_products promotions_products : item.getProduct().getPromotions_products()) {
+            for (Promotions_products promotions_products : item.getPromotions_products()) {
                 if (promotions_products.getPromotion().isActive()) {
                     PromotionDTO promotionDTO = new PromotionDTO();
                     promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
@@ -221,21 +229,15 @@ public class PromotionService implements IPromotionService{
                     promotionDTO.setActive(promotions_products.getPromotion().isActive());
                     promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
                     promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
-
                     promotionDTOS.add(promotionDTO);
                 }
             }
-            productDTO.setPromotions(promotionDTOS);
 
-
-            Set<String> images = new HashSet<>();
-            item.getProduct().getImages().forEach((image -> images.add(image.getUrl())));
-            productDTO.setImages(images);
-
-
-            productDTOS.add(productDTO);
+            if( promotionDTOS.size() > 0){
+                productDTO.setPromotions(promotionDTOS);
+                productDTOS.add(productDTO);
+            }
         });
-
         return productDTOS;
     }
 }

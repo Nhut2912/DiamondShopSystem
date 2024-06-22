@@ -205,13 +205,10 @@ public class ProductService implements IProductService{
                     promotionDTO.setActive(promotions_products.getPromotion().isActive());
                     promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
                     promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
-                    
                     promotionDTOS.add(promotionDTO);
                 }
             }
             productDTO.setPromotions(promotionDTOS);
-
-
             Set<String> images = new HashSet<>();
             item.getImages().forEach((image -> images.add(image.getUrl())));
             productDTO.setImages(images);
