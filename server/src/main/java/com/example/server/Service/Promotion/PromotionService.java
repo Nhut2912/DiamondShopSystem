@@ -1,9 +1,6 @@
 package com.example.server.Service.Promotion;
 
-import com.example.server.Model.DiamondDTO;
-import com.example.server.Model.MaterialDTO;
-import com.example.server.Model.ProductDTO;
-import com.example.server.Model.PromotionDTO;
+import com.example.server.Model.*;
 import com.example.server.Pojo.*;
 import com.example.server.Repository.IProductRepository;
 import com.example.server.Repository.IPromotionRepository;
@@ -168,7 +165,7 @@ public class PromotionService implements IPromotionService {
 
 
             List<DiamondDTO> diamondDTOS = new ArrayList<>();
-
+            int countTwoComponentToEstablishPriceOfProduct = 0;
             for (Diamond diamond : listDiamondReturn) {
                 DiamondDTO diamondDTO = new DiamondDTO();
                 diamondDTO.setId(diamond.getId());
@@ -179,12 +176,14 @@ public class PromotionService implements IPromotionService {
                 diamondDTO.setCarat(diamond.getCarat());
                 diamondDTOS.add(diamondDTO);
 
-                DiamondPriceList diamondPriceList = null;
+
                 try {
-                    diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
+                    Optional<DiamondPriceList> diamondPriceList = Optional.ofNullable(iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
                             diamond.getClarity().getId(), diamond.getColor().getId()
-                            , diamond.getCut().getId(), diamond.getOrigin().getId());
-                    totalPrice += diamondPriceList.getPrice() * diamond.getCarat();
+                            , diamond.getCut().getId(), diamond.getOrigin().getId()));
+                    if(diamondPriceList.isPresent()) {
+                        totalPrice += diamondPriceList.get().getPrice() * diamond.getCarat() ;
+                    }else countTwoComponentToEstablishPriceOfProduct++;
                 } catch (ClassNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
@@ -203,10 +202,16 @@ public class PromotionService implements IPromotionService {
                 materialDTOS.add(materialDTO);
 
 
-                totalPrice += iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId()).getSellPrice();
+                MaterialPriceListDTO materialPriceListDTO = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
+                if(materialPriceListDTO != null) {totalPrice += materialPriceListDTO.getSellPrice();}
+                else countTwoComponentToEstablishPriceOfProduct++;
             }
-            totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
-            totalPrice += totalPrice * ((double) item.getPriceRate() / 100);
+            if(countTwoComponentToEstablishPriceOfProduct != 0){
+                totalPrice = -1;
+            }else {
+                totalPrice += item.getProductionCost() + item.getSecondaryDiamondCost() + item.getSecondaryMaterialCost();
+                totalPrice += totalPrice*((double) item.getPriceRate() / 100);
+            }
 
             productDTO.setMaterials(materialDTOS);
             productDTO.setPrice(totalPrice);

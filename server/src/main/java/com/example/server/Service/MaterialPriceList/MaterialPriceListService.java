@@ -54,7 +54,7 @@ public class MaterialPriceListService implements IMaterialPriceListService{
             materialPriceListDTO.setEffDate(materialPriceList.get().getEffDate());
         }catch(Exception ex){
             System.out.println(ex.getMessage());
-            return materialPriceListDTO;
+            return null;
         }
         return materialPriceListDTO;
     }
