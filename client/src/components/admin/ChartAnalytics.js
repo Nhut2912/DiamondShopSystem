@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import '../../theme/admin/ChartAnalytics.css'
-import { calculateNewValue } from '@testing-library/user-event/dist/utils';
+
 
 const findMaxValueAndRounded = (data) => {
     const highestValue = Math.max(...Object.values(data));
@@ -13,70 +13,156 @@ const findMaxValueAndRounded = (data) => {
 }
 
 
+
+
+
 function ChartAnalytics() {
  
  const [activeDays,setActiveDays] = useState("Day");
- const [chartPaddingTop,setChartPaddingTop] = useState();
+
  const [maxValue,setMaxValue] = useState();
  const [keysArray,setKeysArray] = useState();
  const [valueArray,setValueArray] = useState();
+ const [width,setWidth] = useState();
+ const [height,setHeight] = useState();
+ const [positionOptions,setPositionOptions] = useState();
+
+
  const lastDayAnalytics = [
     "Day","Week","Month","Year"
  ]
 
  const  data = {
-    "1" : 123000,
+    "1" : 1000,
     "2" : 0,
     "3" : 2000,
     "4" : 0,
     "5" : 1000,
     "6" : 3000,
-    "7" : 80000,
-    "8" : 3000,
-    "9" : 80000,
-    "10" : 1000,
-    "11" : 3000,
-    "12" : 80000,
-    "13" : 3000,
-    "14" : 80000,
-    "15" : 123000,
-    "16" : 0,
-    "17" : 2000,
-    "18" : 0,
-    "19" : 1000,
-    "20" : 3000,
-    "21" : 80000,
-    "22" : 3000,
-    "23" : 80000,
-    "24" : 1000,
-    "25" : 3000,
-    "26" : 80000,
-    "27" : 3000,
-    "29" : 80000,
-    "30" : 80000
+    "7" : 1000
  }
 
+
  useEffect(() => {
-    const chart = document.getElementById("chart");
-    const containerChart = document.getElementById("container-chart");
-    setChartPaddingTop(containerChart.clientHeight/5-10)
-    setMaxValue(findMaxValueAndRounded(data));
-    setKeysArray(Object.keys(data));
-    setValueArray(Object.values(data));
-    //COng65 them 25% cua max value     
-    // heightChart 100% = maxValue + maxValu*25%;
-    const heightChart = chart.clientHeight;
-    const widthChart = chart.clientWidth;
-    const stepOptions  = widthChart/7;
-    const rangeMaxValue = maxValue + maxValue*25/100;
-    
-    const canvasContext = chart.getContext("2d");
-
-
-
+        setMaxValue(findMaxValueAndRounded(data));
+        setKeysArray(Object.keys(data));
+        setValueArray(Object.values(data));
+        const chart = document.getElementById("chart");
+        const heightChart = chart.clientHeight;
+        const widthChart = chart.clientWidth;
+        setWidth(widthChart)
+        setHeight(heightChart)
  },[])
 
- 
+ useEffect(() => {
+    const options = document.getElementById("options");
+    const optionElements = options.children; // Get all child option elements
+    let positionLeft = []
+    let positionRoot = 0;
+    for (let i = 0; i < optionElements.length; i++) {
+        const optionElement = optionElements[i];
+        const position = optionElement.getBoundingClientRect(); // Get position info
+        console.log(position.width)
+
+        if(i === 0){
+            positionRoot = position.left;
+        }
+        positionLeft.push(position.left - positionRoot);
+     
+    }
+    setPositionOptions(positionLeft);
+ },[valueArray])
+
+
+
+ useEffect(() => {
+    if(valueArray !== undefined && valueArray !== null && positionOptions !== undefined && positionOptions !== null){
+        const chart = document.getElementById("chart");
+       
+        const heightChart = chart.clientHeight;
+        const rangeMaxValue = maxValue + maxValue*25/100;
+
+
+        const canvasContext = chart.getContext("2d");
+        
+        
+        const gradient = canvasContext.createLinearGradient(width/2,0, width/2,height);
+        gradient.addColorStop(0,"#d9b384");
+        gradient.addColorStop(1,"#ffffff");
+
+
+        canvasContext.beginPath();
+        for(let i = 1; i < valueArray.length ; i++){
+            const x_previous = heightChart - (valueArray[i-1] / rangeMaxValue)*heightChart;
+            const y_previous = positionOptions[i-1];
+            const x = heightChart - (valueArray[i] / rangeMaxValue)*heightChart;
+            const y = positionOptions[i];
+
+            canvasContext.lineWidth = 1.5;
+            canvasContext.moveTo(y_previous,x_previous);
+            canvasContext.lineTo(y,x);
+            canvasContext.strokeStyle ="#d9b384"
+        }
+        canvasContext.stroke();
+        
+        for(let i = 1; i < valueArray.length ; i++){
+            const x_previous = heightChart - (valueArray[i-1] / rangeMaxValue)*heightChart;
+            const y_previous = positionOptions[i-1];
+            const x = heightChart - (valueArray[i] / rangeMaxValue)*heightChart;
+            const y = positionOptions[i];
+
+
+
+            const points = [
+                {x: heightChart, y: y_previous},
+                {x: x_previous, y: y_previous}, 
+                 {x: x, y: y},
+                {x: heightChart, y: y},
+            ]   
+    
+            canvasContext.beginPath();
+            canvasContext.moveTo(points[0].y,points[0].x);
+            for(let i = 1; i < points.length; i++){
+                canvasContext.lineTo(points[i].y,points[i].x);
+            }
+            canvasContext.closePath();
+            canvasContext.fillStyle = gradient;
+            canvasContext.fill();
+    
+       
+        }
+
+
+
+    
+       
+
+        for(let i = 0; i < valueArray.length ; i++){
+            canvasContext.beginPath();
+            const x = heightChart - (valueArray[i] / rangeMaxValue)*heightChart;
+            const y = positionOptions[i];
+         
+       
+                canvasContext.arc(y,x,2,0,2*Math.PI)
+                canvasContext.stroke();
+                canvasContext.fillStyle = "#d9b384"
+                canvasContext.fill();
+            
+             
+                
+        }
+            
+    }
+       
+    
+ },[valueArray,positionOptions])
+
+
+ const handleMouseMove = (event) => {
+    const mouseX = event.nativeEvent.offsetX; 
+    const mouseY = event.nativeEvent.offsetY;
+    console.log(mouseX,mouseY)
+ }
 
   return (
     <div className='chart-analytics-container'>
@@ -105,10 +191,14 @@ function ChartAnalytics() {
             <div id="container-chart"
                 
             className='chart-canvas'>
-                <canvas id="chart" />
+                <canvas 
+                    onMouseMove={handleMouseMove}
+                    width={width}
+                    height={height}
+                id="chart" />
             </div>
            
-            <ul 
+            <ul     id="options"
                 style={{"column-gap": `calc(100%/${valueArray!== undefined && 
                     valueArray !== null ?
                     valueArray.length : 0})`}}
@@ -116,7 +206,7 @@ function ChartAnalytics() {
                 {
                     keysArray !== undefined && keysArray !== null&&
                     keysArray.map((item) => (
-                        <li>{item}</li>
+                        <li><span>{item}</span></li>
                     ))
                 }
                 
