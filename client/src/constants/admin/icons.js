@@ -25,7 +25,8 @@ import icon_upload_file from '../../assets/icons/admin/upload-file.svg'
 import icon_delete from '../../assets/icons/admin/delete.svg'
 import icon_back_arrow from '../../assets/icons/admin/back-arrow.svg'
 import icon_search from '../../assets/icons/admin/search.svg'
-
+import icon_trending_down from '../../assets/icons/admin/icon-trending-down.svg';
+import icon_trending_up from '../../assets/icons/admin/icon-trending-up.svg';
 
 const ICONS = {
     icon_logo : icon_logo,
@@ -54,7 +55,9 @@ const ICONS = {
     icon_upload_file: icon_upload_file,
     icon_delete: icon_delete,
     icon_back_arrow:icon_back_arrow,
-    icon_search:icon_search
+    icon_search:icon_search,
+    icon_trending_down: icon_trending_down,
+    icon_trending_up : icon_trending_up
 }
 
 export default ICONS;

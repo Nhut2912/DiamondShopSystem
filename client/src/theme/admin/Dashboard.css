@@ -8,10 +8,19 @@
     font-weight: 600;
     color: rgba(0,0,0,0.8);
     letter-spacing: 0.15px;
+    margin-bottom: 5px;
+}
+.dashboard-container > p{
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: rgba(0,0,0,0.5);
     margin-bottom: 40px;
+    font-weight: 400;
+    cursor: pointer;
 }
 .dashboard-container .analytics-container{
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr;
     column-gap: 20px;
 }
+

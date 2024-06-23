@@ -1,0 +1,110 @@
+.chart-analytics-container{
+    background-color: #FFFFFF;
+    padding: 40px;
+    margin-top: 20px;
+    height: 550px;
+    border-radius: 10px;
+    margin-bottom: 100px;
+}
+.chart-analytics-container > .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chart-analytics-container > .header > h1{
+    margin: 0;
+    font-family: "Poppins";
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.5);
+    position: relative;
+}
+.chart-analytics-container > .header > h1 > span{
+    position: absolute;
+    font-size: 13px;
+    font-weight: 500;
+    bottom: -25px;
+    color: rgba(0,0,0,0.3);
+    left:0;
+    width: max-content;
+}
+.chart-analytics-container > .header > div{
+    display: flex;
+    column-gap: 2px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+.chart-analytics-container > .header > div > div{
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+    font-size: 15px;
+    color: rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+.chart-analytics-container > .header > div > div.isFocus{
+    background-color: #d9b384;
+    color: #FFFFFF;
+}
+.chart-analytics-container > .content-chart{
+    height: 400px;
+    margin-top: 80px;
+    margin-left: 50px;
+    position: relative;
+}
+.chart-analytics-container > .content-chart > ul{
+    padding-inline-start: 0;
+    list-style: none;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.chart-analytics-container > .content-chart > ul > li{
+    font-family: "Poppins";
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.5);
+}
+.chart-analytics-container > .content-chart > ul.numbers{
+    position: absolute;
+    height: 100%;
+    left:-50px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.chart-analytics-container > .content-chart > ul.numbers > li{
+    display: flex;
+    justify-content: end;
+    height: calc(100%/5);
+    align-items: end;
+}
+.chart-analytics-container > .content-chart > ul.options{
+    position: absolute;
+    width: 100%;
+    bottom:-30px;
+    display: flex;
+    justify-content: space-between;
+}
+.chart-analytics-container > .content-chart > ul.options >li {
+    width: 0;
+}
+.chart-analytics-container > .content-chart > .chart-canvas{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 0px 0 5px 0px;
+    position: relative;
+    box-sizing: border-box;
+}
+.chart-analytics-container > .content-chart > .chart-canvas > #chart{
+    width: 100%;
+    height: 100% ;
+    background-color: #d9b384;
+}

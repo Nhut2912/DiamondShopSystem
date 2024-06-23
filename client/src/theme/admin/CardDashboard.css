@@ -1,7 +1,136 @@
 .card-dashboard-analy{
-    height: 160px;
+    height: 200px;
     background-color: #FFFFFF;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+   
+}
+.card-dashboard-analy > .date-period{
+    position: absolute;
+    top:20px;
+    right:20px;
+    font-family: "Poppins";
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #d9b38498;
+}
+.card-dashboard-analy > .date-period > span:hover{
+    color: rgba(0, 0, 0, 0.7);
+    transition: 0.5s ease;
+}
+.card-dashboard-analy > .date-period > span{
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease;
 }
 
+.card-dashboard-analy > .date-period > ul {
+    padding-inline-start: 0;
+    list-style: none;
+
+    border-radius: 5px;
+    position: absolute;
+    height: 0;
+    transition: 0.3s ease;
+    width: 170px;
+    top:10px;
+    right: 0px;
+    border:1px solid transparent;
+}
+.card-dashboard-analy > .date-period > ul.isActive{
+    width: 170px;
+    right: 0px;
+    top:10px;
+    height: 100px;
+    padding: 10px 0;
+    display:flex;
+    flex-direction: column;
+    row-gap: 5px;
+    background-color: #FFFFFF;
+    z-index: 1001;
+    overflow-y:scroll ;
+    transition: 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.card-dashboard-analy > .date-period > ul.isActive::-webkit-scrollbar{
+    display: none;
+    
+}
+.card-dashboard-analy > .date-period > ul > li{
+    color: transparent;
+    background-color: transparent;
+}
+.card-dashboard-analy > .date-period > ul.isActive > li:hover{
+    background-color: #F7F7F7;
+}
+.card-dashboard-analy > .date-period > ul > li.isFocus{
+    color: transparent;
+    background-color: transparent;
+}
+.card-dashboard-analy > .date-period > ul.isActive > li.isFocus{
+    background: #d9b384;
+    color: #FFFFFF;
+    
+}
+.card-dashboard-analy > .date-period > ul.isActive > li{
+    padding: 5px 15px;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    color: rgba(0, 0, 0, 0.5);
+}
+.card-dashboard-analy > .icon{
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.card-dashboard-analy > .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-dashboard-analy > h4{
+    font-family: "Poppins";
+    font-size: 15px;
+    font-weight: 400;
+    margin: 27px 0 0 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+.card-dashboard-analy > h2{
+    font-family: "Poppins";
+    font-size: 22px;
+    margin: 5px 0 0 0;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.9);
+}
+.card-dashboard-analy > .percent{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-family: "Poppins";
+    font-size: 14px;
+    font-weight: 500;
+}
+.card-dashboard-analy > .percent > img{
+    position: absolute;
+    left: 4px;
+    top:50%;
+    transform: translateY(-53%);
+}
+.card-dashboard-analy > .percent.isTrending {
+    padding: 4px 10px 4px 35px;
+    background-color: rgba(54, 227, 57, 0.1);
+    border-radius: 5px;
+    color: rgba(54, 227, 57, 1);
+}
+.card-dashboard-analy > .percent.isTrendingDown{
+    padding: 4px 10px 4px 35px;
+    background-color: rgba(217, 4, 61, 0.1);
+    border-radius: 5px;
+    color: rgba(217, 4, 61, 1);
+}
