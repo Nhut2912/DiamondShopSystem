@@ -1,8 +1,10 @@
 package com.example.server.Service.Order;
 
 import com.example.server.Model.OrderDTO;
+import com.example.server.Model.PaymentDTO;
 import com.example.server.Pojo.Order;
 import com.example.server.Pojo.Product;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -23,4 +25,12 @@ public interface IOrderService {
 
     public Map<LocalDate, Double> getTotalPriceStatisticByWeek() throws ParseException;
     public Map<LocalDate, Double> getTotalPriceStatisticByMonth() throws ParseException;
+
+    public double getSumTotalPriceStatisticByWeek() throws ParseException;
+    public double getSumTotalPriceStatisticByMonth() throws ParseException;
+    public Long getTheSumOfOrderStatisticByWeek() throws ParseException;
+    public Long getTheSumOfOrderStatisticByMonth() throws ParseException;
+
+    public boolean buyProduct(OrderDTO orderDto);
+    public boolean updatePayment(PaymentDTO paymentDTO, Long orderId);
 }

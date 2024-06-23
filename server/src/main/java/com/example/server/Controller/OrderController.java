@@ -51,48 +51,12 @@ public class OrderController {
 
     @PostMapping("/buy")
     public ResponseEntity<?> buyProduct(@RequestBody OrderDTO orderDto) {
-        if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId())) {
-            try{
-
-                if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){
-                    orderDto.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
-                        Order order = iorderService.saveOrder(orderDto);
-                    if(order != null){
-                        iorderDetailService.saveOrderDetail(orderDto, order);
-                        iPaymentService.createPayment(orderDto, order);
-                    }
-                }
-                return new ResponseEntity<>(true, HttpStatus.OK);
-            }catch (Exception ex){
-                return new ResponseEntity<>(false, HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>(false, HttpStatus.OK);
+        return new ResponseEntity<>(iorderService.buyProduct(orderDto), HttpStatus.OK);
 
     }
     @PostMapping("/updatePayment")
-    public boolean updatePayment(@RequestBody PaymentDTO paymentDTO, @RequestParam Long orderId){
-        try {
-
-            Payment newPayment = new Payment();
-
-            Order order = iorderService.getOrderById(orderId);
-            newPayment.setOrder(order);
-            newPayment.setAmount(paymentDTO.getAmount());
-            newPayment.setPayTime(paymentDTO.getPayTime());
-            if(paymentDTO.getPaymentMethodDTO().getMethod().equals("BANKTRANSFER")){
-                newPayment.setImage(paymentDTO.getImage());
-            }else newPayment.setTransactionCode(paymentDTO.getTransactionCode());
-            newPayment.setPaymentMethod(
-                    iPaymentMethodService.getPaymentMethod(paymentDTO.getPaymentMethodDTO().getMethod())
-
-            );
-            iPaymentService.updatePayment(newPayment);
-            return true;
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-            return false;
-        }
+    public ResponseEntity<?> updatePayment(@RequestBody PaymentDTO paymentDTO, @RequestParam Long orderId){
+        return new ResponseEntity<>(iorderService.updatePayment(paymentDTO, orderId), HttpStatus.OK);
     }
 
 
@@ -202,4 +166,25 @@ public class OrderController {
 
         return new ResponseEntity<>(iorderService.getTotalPriceStatisticByMonth(), HttpStatus.OK);
     }
+    @GetMapping("/getSumTotalPriceStatisticByWeek")
+    public ResponseEntity<?> getSumTotalPriceStatisticByWeek() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getSumTotalPriceStatisticByWeek(), HttpStatus.OK);
+    }
+    @GetMapping("/getSumTotalPriceStatisticByMonth")
+    public ResponseEntity<?> getSumTotalPriceStatisticByMonth() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getSumTotalPriceStatisticByMonth(), HttpStatus.OK);
+    }
+    @GetMapping("/getTheSumOfOrderStatisticByWeek")
+    public ResponseEntity<?> getTheSumOfOrderStatisticByWeek() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getTheSumOfOrderStatisticByWeek(), HttpStatus.OK);
+    }
+    @GetMapping("/getTheSumOfOrderStatisticByMonth")
+    public ResponseEntity<?> getTheSumOfOrderStatisticByMonth() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getTheSumOfOrderStatisticByMonth(), HttpStatus.OK);
+    }
+
 }

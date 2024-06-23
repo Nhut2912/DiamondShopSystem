@@ -227,7 +227,7 @@ public class AccountService implements IAccountService {
         return account;
     }
 
-    public Map<LocalDate, Long> getAccountStatisticByWeek() throws ParseException{
+    public Map<LocalDate, Long> getNewAccountStatisticByWeek() throws ParseException{
         LocalDate currentDate = LocalDate.now();
         LocalDate beforeDate = currentDate.minusDays(7);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -257,7 +257,7 @@ public class AccountService implements IAccountService {
         return resultDate;
     }
 
-    public Map<LocalDate, Long> getAccountStatisticByMonth() throws ParseException {
+    public Map<LocalDate, Long> getNewAccountStatisticByMonth() throws ParseException {
 
         LocalDate currentDate = LocalDate.now();
         System.out.println(currentDate.getMonth().getValue());
@@ -298,6 +298,71 @@ public class AccountService implements IAccountService {
         }
         System.out.println(resultDate.size());
         return resultDate;
+    }
+
+    public long getSumNewAccountStatisticByWeek() throws ParseException{
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.minusDays(7);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+        Map<String, Long> accountCountMap = accountList.stream()
+                .collect(Collectors.groupingBy(
+                        account -> {
+                            try {
+                                return formatter.format(formatter.parse(account.getDateAdd().toString()));
+                            } catch (ParseException e) {
+                                System.out.println(e.getMessage() + "Error format");
+                                throw new RuntimeException(e);
+                            }
+                        }, // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        long sumToTalOrders = 0;
+        for (Map.Entry<String, Long> entry : accountCountMap.entrySet()) {
+            sumToTalOrders += entry.getValue();
+        }
+
+        return sumToTalOrders;
+    }
+    public long getSumNewAccountStatisticByMonth() throws ParseException{
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate;
+        if (currentDate.getMonth().getValue() == 4 || currentDate.getMonth().getValue() == 6 ||
+                currentDate.getMonth().getValue() == 9 || currentDate.getMonth().getValue() == 11) {
+            beforeDate = currentDate.minusDays(30);
+        } else if (Year.of(currentDate.getYear()).isLeap() && currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(29);
+        } else if (currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(28);
+        } else {
+            beforeDate = currentDate.minusDays(31);
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+        Map<String, Long> accountCountMap = accountList.stream()
+                .collect(Collectors.groupingBy(
+                        account -> {
+                            try {
+                                return formatter.format(formatter.parse(account.getDateAdd().toString()));
+                            } catch (ParseException e) {
+                                System.out.println(e.getMessage() + "Error format");
+                                throw new RuntimeException(e);
+                            }
+                        }, // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        long sumToTalOrders = 0;
+        for (Map.Entry<String, Long> entry : accountCountMap.entrySet()) {
+            sumToTalOrders += entry.getValue();
+        }
+
+        return sumToTalOrders;
     }
 
 }

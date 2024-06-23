@@ -80,13 +80,25 @@ public class AccountController {
     @GetMapping("/statisticNewCustomerByWeek")
     public ResponseEntity<?> statisticToTalPriceByWeek() throws ParseException {
 
-        return new ResponseEntity<>(accountService.getAccountStatisticByWeek(), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.getNewAccountStatisticByWeek(), HttpStatus.OK);
     }
 
 
     @GetMapping("/statisticNewCustomerByMonth")
     public ResponseEntity<?> statisticToTalPriceByMonth() throws ParseException {
 
-        return new ResponseEntity<>(accountService.getAccountStatisticByMonth(), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.getNewAccountStatisticByMonth(), HttpStatus.OK);
     }
+    @GetMapping("/getSumNewAccountStatisticByWeek")
+    public ResponseEntity<?> getSumNewAccountStatisticByWeek() throws ParseException {
+
+        return new ResponseEntity<>(accountService.getSumNewAccountStatisticByWeek(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getSumNewAccountStatisticByMonth")
+    public ResponseEntity<?> getSumNewAccountStatisticByMonth() throws ParseException {
+
+        return new ResponseEntity<>(accountService.getSumNewAccountStatisticByMonth(), HttpStatus.OK);
+    }
+
 }

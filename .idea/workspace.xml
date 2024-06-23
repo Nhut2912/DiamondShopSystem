@@ -8,22 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/AccountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Repository/IAccountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Account/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Account/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Account/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Account/IAccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/IOrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Order/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IAccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IAccountRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IPromotion_ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Repository/IPromotion_ProductRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/IAccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/IAccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/MaterialPriceList/MaterialPriceListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/MaterialPriceList/MaterialPriceListService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Product/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/PromotionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Promotion/PromotionService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +52,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/Diamond_Shop_22_06/DiamondShopSystem",
+    "last_opened_file_path": "F:/Diamond_Shop_23_06/DiamondShopSystem",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -140,6 +128,7 @@
       <workItem from="1718987300934" duration="8162000" />
       <workItem from="1719019429635" duration="1250000" />
       <workItem from="1719071267381" duration="4828000" />
+      <workItem from="1719132461458" duration="7486000" />
     </task>
     <servers />
   </component>

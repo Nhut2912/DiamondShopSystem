@@ -34,6 +34,9 @@ public interface IAccountService {
     public String createAccount(AccountDTO accountDto);
     public String isStaffOrAdmin(AccountDTO accountDTO);
 
-    public Map<LocalDate, Long> getAccountStatisticByWeek() throws ParseException;
-    public Map<LocalDate, Long> getAccountStatisticByMonth() throws ParseException;
+    public Map<LocalDate, Long> getNewAccountStatisticByWeek() throws ParseException;
+    public Map<LocalDate, Long> getNewAccountStatisticByMonth() throws ParseException;
+
+    public long getSumNewAccountStatisticByWeek() throws ParseException;
+    public long getSumNewAccountStatisticByMonth() throws ParseException;
 }

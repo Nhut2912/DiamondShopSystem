@@ -1,14 +1,25 @@
 package com.example.server.Service.Order;
 
 import com.example.server.Model.OrderDTO;
+import com.example.server.Model.PaymentDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Pojo.Order;
 
+import com.example.server.Pojo.Payment;
 import com.example.server.Repository.IAccountRepository;
 import com.example.server.Repository.IOrderRepository;
 
+import com.example.server.Service.Account.IAccountService;
+import com.example.server.Service.OrderDetail.IOrderDetailService;
+import com.example.server.Service.PaymenMethod.IPaymentMethodService;
+import com.example.server.Service.Payment.IPaymentService;
+import com.example.server.Service.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.text.ParseException;
@@ -25,7 +36,16 @@ public class OrderService implements IOrderService {
     private IOrderRepository iOrderRepository;
     @Autowired
     private IAccountRepository accountRepository;
-
+    @Autowired
+    private IAccountService iAccountService;
+    @Autowired
+    private IProductService iProductService;
+    @Autowired
+    private IOrderDetailService iorderDetailService;
+    @Autowired
+    private IPaymentService iPaymentService;
+    @Autowired
+    private IPaymentMethodService iPaymentMethodService;
     @Override
     public Order saveOrder(OrderDTO orderDTO) {
         try {
@@ -220,6 +240,159 @@ public class OrderService implements IOrderService {
         }
         System.out.println(resultDate.size());
         return resultDate;
+    }
+    public double getSumTotalPriceStatisticByWeek() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.minusDays(7);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+        // Create a map with order counts per day
+        Map<String, Double> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.summingDouble(Order::getTotalPrice)
+                ));
+        double sumToTalPrice = 0;
+        for (Map.Entry<String, Double> entry : orderCountMap.entrySet()) {
+            sumToTalPrice += entry.getValue();
+        }
+
+        return sumToTalPrice;
+    }
+    public double getSumTotalPriceStatisticByMonth() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate;
+        if (currentDate.getMonth().getValue() == 4 || currentDate.getMonth().getValue() == 6 ||
+                currentDate.getMonth().getValue() == 9 || currentDate.getMonth().getValue() == 11) {
+            beforeDate = currentDate.minusDays(30);
+        } else if (Year.of(currentDate.getYear()).isLeap() && currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(29);
+        } else if (currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(28);
+        } else {
+            beforeDate = currentDate.minusDays(31);
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+        // Create a map with order counts per day
+        Map<String, Double> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.summingDouble(Order::getTotalPrice)
+                ));
+        double sumToTalPrice = 0;
+        for (Map.Entry<String, Double> entry : orderCountMap.entrySet()) {
+            sumToTalPrice += entry.getValue();
+        }
+
+        return sumToTalPrice;
+    }
+
+    public Long getTheSumOfOrderStatisticByWeek() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.minusDays(7);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+        // Create a map with order counts per day
+        Map<String, Long> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        long sumToTalOrders = 0;
+        for (Map.Entry<String, Long> entry : orderCountMap.entrySet()) {
+            sumToTalOrders += entry.getValue();
+        }
+
+        return sumToTalOrders;
+    }
+    public Long getTheSumOfOrderStatisticByMonth() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate;
+        if (currentDate.getMonth().getValue() == 4 || currentDate.getMonth().getValue() == 6 ||
+                currentDate.getMonth().getValue() == 9 || currentDate.getMonth().getValue() == 11) {
+            beforeDate = currentDate.minusDays(30);
+        } else if (Year.of(currentDate.getYear()).isLeap() && currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(29);
+        } else if (currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(28);
+        } else {
+            beforeDate = currentDate.minusDays(31);
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+        // Create a map with order counts per day
+        Map<String, Long> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        long sumToTalOrders = 0;
+        for (Map.Entry<String, Long> entry : orderCountMap.entrySet()) {
+            sumToTalOrders += entry.getValue();
+        }
+
+        return sumToTalOrders;
+    }
+    public boolean buyProduct(OrderDTO orderDto){
+        if (iAccountService.isAccountExist(orderDto.getAccountDTO().getId())) {
+            try{
+
+                if(iAccountService.updateNewestInfoForAccount(orderDto.getAccountDTO())){
+                    orderDto.getOrderDetailDTOS().forEach(orderDetail -> iProductService.getProductToSetStatus(orderDetail.getProductID()));
+                    Order order = saveOrder(orderDto);
+                    if(order != null){
+                        iorderDetailService.saveOrderDetail(orderDto, order);
+                        iPaymentService.createPayment(orderDto, order);
+                    }
+                }
+                return true;
+            }catch (Exception ex){
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public boolean updatePayment(PaymentDTO paymentDTO, Long orderId){
+        try {
+
+            Payment newPayment = new Payment();
+
+            Order order = getOrderById(orderId);
+            newPayment.setOrder(order);
+            newPayment.setAmount(paymentDTO.getAmount());
+            newPayment.setPayTime(paymentDTO.getPayTime());
+            if(paymentDTO.getPaymentMethodDTO().getMethod().equals("BANKTRANSFER")){
+                newPayment.setImage(paymentDTO.getImage());
+            }else newPayment.setTransactionCode(paymentDTO.getTransactionCode());
+            newPayment.setPaymentMethod(
+                    iPaymentMethodService.getPaymentMethod(paymentDTO.getPaymentMethodDTO().getMethod())
+
+            );
+            iPaymentService.updatePayment(newPayment);
+            return true;
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
 
 }
