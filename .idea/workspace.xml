@@ -6,14 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="238e78d8-921c-487d-bbcf-651e12043aa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/OrderDetail/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/OrderDetail/OrderDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Controller/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/IAccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Account/IAccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/IOrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/Order/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/OrderDetail/OrderDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/example/server/Service/OrderDetail/OrderDetailService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -132,6 +124,7 @@
       <workItem from="1719071267381" duration="4828000" />
       <workItem from="1719132461458" duration="7834000" />
       <workItem from="1719149482171" duration="1573000" />
+      <workItem from="1719156743513" duration="1493000" />
     </task>
     <servers />
   </component>
