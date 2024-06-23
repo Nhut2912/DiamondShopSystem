@@ -2,15 +2,18 @@ package com.example.server.Service.Account;
 
 import com.example.server.Model.AccountDTO;
 import com.example.server.Pojo.Account;
+import com.example.server.Pojo.Order;
 import com.example.server.Repository.IAccountRepository;
 import com.example.server.Service.Email.IEmailService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Year;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -222,6 +225,79 @@ public class AccountService implements IAccountService {
         account.setRole(accountDto.getRole());
         account.setActive(true); // đảm bảo account đc active
         return account;
+    }
+
+    public Map<LocalDate, Long> getAccountStatisticByWeek() throws ParseException{
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.minusDays(7);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+        Map<String, Long> accountCountMap = accountList.stream()
+                .collect(Collectors.groupingBy(
+                        account -> {
+                            try {
+                                return formatter.format(formatter.parse(account.getDateAdd().toString()));
+                            } catch (ParseException e) {
+                                System.out.println(e.getMessage() + "Error format");
+                                throw new RuntimeException(e);
+                            }
+                        }, // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        Map<LocalDate, Long> resultDate = new HashMap<>();
+
+        for (LocalDate date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
+            long count = accountCountMap.getOrDefault(formatter.format(formatter.parse(date.toString())), 0L);
+            resultDate.put(date, count);
+        }
+        System.out.println(resultDate.size());
+        return resultDate;
+    }
+
+    public Map<LocalDate, Long> getAccountStatisticByMonth() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        System.out.println(currentDate.getMonth().getValue());
+        LocalDate beforeDate;
+        if (currentDate.getMonth().getValue() == 4 || currentDate.getMonth().getValue() == 6 ||
+                currentDate.getMonth().getValue() == 9 || currentDate.getMonth().getValue() == 11) {
+            beforeDate = currentDate.minusDays(30);
+        } else if (Year.of(currentDate.getYear()).isLeap() && currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(29);
+        } else if (currentDate.getMonth().getValue() == 2) {
+            beforeDate = currentDate.minusDays(28);
+        } else {
+            beforeDate = currentDate.minusDays(31);
+        }
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+        Map<String, Long> accountCountMap = accountList.stream()
+                .collect(Collectors.groupingBy(
+                        account -> {
+                            try {
+                                return formatter.format(formatter.parse(account.getDateAdd().toString()));
+                            } catch (ParseException e) {
+                                System.out.println(e.getMessage() + "Error format");
+                                throw new RuntimeException(e);
+                            }
+                        }, // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        Map<LocalDate, Long> resultDate = new HashMap<>();
+
+        for (LocalDate date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
+            long count = accountCountMap.getOrDefault(formatter.format(formatter.parse(date.toString())), 0L);
+            resultDate.put(date, count);
+        }
+        System.out.println(resultDate.size());
+        return resultDate;
     }
 
 }

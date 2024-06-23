@@ -192,4 +192,14 @@ public class OrderController {
         return new ResponseEntity<>(iorderService.getStatisticByMonth(), HttpStatus.OK);
     }
 
+    @GetMapping("/statisticToTalPriceByWeek")
+    public ResponseEntity<?> statisticToTalPriceByWeek() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getTotalPriceStatisticByWeek(), HttpStatus.OK);
+    }
+    @GetMapping("/statisticToTalPriceByMonth")
+    public ResponseEntity<?> statisticToTalPriceByMonth() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getTotalPriceStatisticByMonth(), HttpStatus.OK);
+    }
 }

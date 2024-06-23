@@ -3,7 +3,10 @@ package com.example.server.Service.Account;
 import com.example.server.Model.AccountDTO;
 import com.example.server.Pojo.Account;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface IAccountService {
@@ -30,4 +33,7 @@ public interface IAccountService {
 
     public String createAccount(AccountDTO accountDto);
     public String isStaffOrAdmin(AccountDTO accountDTO);
+
+    public Map<LocalDate, Long> getAccountStatisticByWeek() throws ParseException;
+    public Map<LocalDate, Long> getAccountStatisticByMonth() throws ParseException;
 }
