@@ -4,7 +4,7 @@ import '../../theme/admin/CardDashboard.css'
 
 import {ICONS} from '../../constants/admin'
 
-function CardDashboard() {
+function CardDashboard( {name}) {
 
   const [isTrendingDown,setIsTrendingDown] = useState(true);
   const [lastDaysActive,setLastDaysActive] = useState("Last one days");
@@ -50,7 +50,7 @@ function CardDashboard() {
         <div className='icon'>
             <img src={ICONS.icon_user} />
         </div>
-        <h4>New Customers</h4>
+        <h4>{name}</h4>
         <h2>1,726</h2>
         <div className={isTrendingDown ?'percent isTrendingDown' :  'percent isTrending'}>
           {

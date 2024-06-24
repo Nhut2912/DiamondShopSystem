@@ -12,7 +12,7 @@ function PromotionsView() {
 
 
   useEffect(() => {
-    fetch("http://localhost:8080/Promotion/getPromotions")
+    fetch("${process.env.REACT_APP_API_ENDPOINT}/Promotion/getPromotions")
     .then((response) => response.json())
     .then((result) => setPromotions(result))
     .catch((error) => console.error(error));

@@ -87,8 +87,8 @@ function ChartAnalytics() {
         
         
         const gradient = canvasContext.createLinearGradient(width/2,0, width/2,height);
-        gradient.addColorStop(1,"#d9b384");
-        gradient.addColorStop(0,"#ffffff");
+        gradient.addColorStop(0,"#d9b384");
+        gradient.addColorStop(1,"#ffffff");
 
 
         canvasContext.beginPath();

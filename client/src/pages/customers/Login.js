@@ -37,7 +37,7 @@ function Login() {
         redirect: "follow"
       };
       
-      fetch("http://localhost:8080/api/account/register", requestOptions)
+      fetch("${process.env.REACT_APP_API_ENDPOINT}/api/account/register", requestOptions)
         .then((response) => 
           response.text()
         )

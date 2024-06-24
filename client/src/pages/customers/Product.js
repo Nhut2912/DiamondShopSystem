@@ -68,7 +68,7 @@ function Product() {
 
 
   useEffect(() => {
-        fetch('http://localhost:8080/api/product/getProducts')
+        fetch('${process.env.REACT_APP_API_ENDPOINT}/api/product/getProducts')
           .then(response => response.json())
           .then(data => setData(data))
           .catch((error) => console.error(error));

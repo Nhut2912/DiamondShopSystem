@@ -125,7 +125,7 @@ function Order() {
 
  const handlePayment = async () => {
     
-    await fetch("http://localhost:8080/api/payment/"+convertUSDToVnd(order.totalPrice*10/100))
+    await fetch("${process.env.REACT_APP_API_ENDPOINT}/api/payment/"+convertUSDToVnd(order.totalPrice*10/100))
     .then((response) => response.text())
     .then((result) => 
         window.location.assign(JSON.parse(result).payUrl)
@@ -196,7 +196,7 @@ function Order() {
             "id":  accountDTO.id,
             "name": order.accountDTO.name,
             "email": order.accountDTO.email,
-            "gender" :order.accountDTO.gender,
+            "gender" :order.accountDTO.gender === "Male" ? true : false,
             "numberPhone": order.accountDTO.numberPhone,
             "address": order.accountDTO.address,
             "birthDay": order.accountDTO.birthDay
@@ -222,7 +222,7 @@ function Order() {
       redirect: "follow"
     };
     
-    fetch("http://localhost:8080/api/order/buy", requestOptions)
+    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/order/buy", requestOptions)
       .then((response) => response.text())
       .then((result) => 
         {

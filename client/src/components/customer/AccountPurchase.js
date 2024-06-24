@@ -25,7 +25,7 @@ function AccountPurchase() {
       method: "GET",
       redirect: "follow"
     };
-    fetch(`http://localhost:8080/api/order/account/${account.id}`, requestOptions)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/account/${account.id}`, requestOptions)
       .then((response) => response.text())
       .then(result => setOrders(JSON.parse(result)))
       .catch((error) => console.error(error));

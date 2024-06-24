@@ -52,7 +52,7 @@ const COLORS_STATUS_BACKGROUND = [
   const [statusRemainder,setStatusRemainder] = useState("NOT YET");
 
   useEffect(()=>{
-    fetch(`http://localhost:8080/api/payment?order_id=${orderID}`)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/payment?order_id=${orderID}`)
     .then((response) => response.json())
     .then((result) => setData(result))
     .catch((error) => console.error(error));

@@ -60,7 +60,7 @@ function CheckRemainder() {
              redirect: "follow"
           };
     
-          await fetch(`http://localhost:8080/api/order/updatePayment?orderId=${payment.orderId}`, requestOptions)
+          await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/updatePayment?orderId=${payment.orderId}`, requestOptions)
              .then((response) => response.text())
              .then((result) => 
                 {

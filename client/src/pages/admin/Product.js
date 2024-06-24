@@ -19,7 +19,7 @@ function Product() {
 
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/product/getProducts/roleAdmin")
+    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/product/getProducts/roleAdmin")
     .then((response) => response.json())
     .then((result) => setData(result))
     .catch((error) => console.error(error));

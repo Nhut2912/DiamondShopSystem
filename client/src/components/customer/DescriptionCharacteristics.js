@@ -22,7 +22,7 @@ function DescriptionCharacteristics({data}) {
  useEffect(() => {
 
     if(data !== undefined && data !== null){
-        fetch(`http://localhost:8080/api/diamond/product/${data.id}`)
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/diamond/product/${data.id}`)
         .then((response) => response.json())
         .then((result) => setDiamonds(result))
         .catch((error) => console.error(error));

@@ -16,7 +16,7 @@ function MaterialPriceListContainer() {
   const [dateEffected,setDateEffected] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/materialpricelist/getMaterialPriceLists")
+    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/materialpricelist/getMaterialPriceLists")
     .then((response) => response.json())
     .then((result) => setData(result))
     .catch((error) => console.error(error));
@@ -57,7 +57,7 @@ function MaterialPriceListContainer() {
         redirect: "follow"
       };
 
-      fetch("http://localhost:8080/api/materialpricelist/updateMaterialPriceList", requestOptions)
+      fetch("${process.env.REACT_APP_API_ENDPOINT}/api/materialpricelist/updateMaterialPriceList", requestOptions)
       .then((response) => response.text())
       .then((result) => {
         window.location.href = window.location.href

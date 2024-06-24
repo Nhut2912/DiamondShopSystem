@@ -17,14 +17,14 @@ function ProductDetail() {
 
   console.log(param);
   useEffect(() => {
-      fetch('http://localhost:8080/api/product/getProduct/'+param.id)
+      fetch('${process.env.REACT_APP_API_ENDPOINT}/api/product/getProduct/'+param.id)
         .then(response => response.json())
         .then(data => setData(data))
         .catch((error) => console.error(error));
   },[])
   
   useEffect(() => {
-    fetch('http://localhost:8080/api/product/similar/'+param.id)
+    fetch('${process.env.REACT_APP_API_ENDPOINT}/api/product/similar/'+param.id)
     .then(response => response.json())
     .then(data => setProductSimilar(data))
     .catch((error) => console.error(error));

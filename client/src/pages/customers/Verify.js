@@ -31,7 +31,7 @@ function Verify() {
     };
 
     console.log(OTP);
-    fetch(`http://localhost:8080/api/account/verifyOtp?otp=${OTP}`, requestOptions)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/account/verifyOtp?otp=${OTP}`, requestOptions)
     .then((response) => response.text())
     .then((result) =>{
       if(result !== null && result !== undefined){

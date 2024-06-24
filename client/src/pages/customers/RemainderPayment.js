@@ -56,7 +56,7 @@ function RemainderPayment() {
  },[])
 
  useEffect(() => {
-    fetch(`http://localhost:8080/api/payment?order_id=${orderID}`)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/payment?order_id=${orderID}`)
     .then((response) => response.json())
     .then( ( result ) => {
         if(result !== null){
@@ -68,7 +68,7 @@ function RemainderPayment() {
  },[])
  
  useEffect(()=> {
-    fetch(`http://localhost:8080/api/order_detail?order_id=${orderID}`)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order_detail?order_id=${orderID}`)
     .then((response) => response.json())
     .then( ( result ) => {
         if(result !== null){
@@ -92,7 +92,7 @@ function RemainderPayment() {
 
  const handlePayment = async () => {
     
-    await fetch("http://localhost:8080/api/paymentRemainder/"+convertUSDToVnd(remainder))
+    await fetch("${process.env.REACT_APP_API_ENDPOINT}/api/paymentRemainder/"+convertUSDToVnd(remainder))
     .then((response) => response.text())
     .then((result) => 
        {
@@ -147,7 +147,7 @@ function RemainderPayment() {
            redirect: "follow"
         };
   
-        fetch(`http://localhost:8080/api/order/updatePayment?orderId=${orderID}`, requestOptions)
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/updatePayment?orderId=${orderID}`, requestOptions)
            .then((response) => response.text())
            .then((result) => 
               {

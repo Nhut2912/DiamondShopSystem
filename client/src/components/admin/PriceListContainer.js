@@ -26,7 +26,7 @@ function PriceListContainer({ originFilter,
   useEffect(() => {
 
     if(data === undefined || data === null){
-      fetch("http://localhost:8080/api/diamondpricelist/getAll")
+      fetch("${process.env.REACT_APP_API_ENDPOINT}/api/diamondpricelist/getAll")
       .then((response) => response.json())
       .then((result) => setData(result))
       .catch((error) => console.error(error));
@@ -101,7 +101,7 @@ function PriceListContainer({ originFilter,
           redirect: "follow"
         };
 
-        fetch("http://localhost:8080/api/diamondpricelist/updateDiamondPriceList", requestOptions)
+        fetch("${process.env.REACT_APP_API_ENDPOINT}/api/diamondpricelist/updateDiamondPriceList", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           if(result === "true"){

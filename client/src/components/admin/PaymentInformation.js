@@ -62,7 +62,7 @@ function PaymentInformation({paymentTitle,statusPayment,
             redirect: "follow"
           };
           
-          fetch(`http://localhost:8080/api/order/Preparing/${orderID}`, requestOptions)
+          fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/Preparing/${orderID}`, requestOptions)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .catch((error) => console.error(error));
@@ -75,7 +75,7 @@ function PaymentInformation({paymentTitle,statusPayment,
         redirect: "follow"
       };
       
-      fetch(`http://localhost:8080/api/order/Canceled/${orderID}`, requestOptions)
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/Canceled/${orderID}`, requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.error(error));

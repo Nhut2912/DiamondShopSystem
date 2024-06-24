@@ -30,7 +30,7 @@ function OrderAdmin() {
      },[])
 
      useEffect(() => {
-        fetch("http://localhost:8080/api/order/getAll")
+        fetch("${process.env.REACT_APP_API_ENDPOINT}/api/order/getAll")
         .then((response) => response.json())
         .then((result) => setData(result))
         .catch((error) => console.error(error));

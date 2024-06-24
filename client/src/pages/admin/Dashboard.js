@@ -13,13 +13,23 @@ function Dashboard() {
           Admin / <span>DashBoard</span>
         </p>
         <div className='analytics-container'>
-              <CardDashboard />
-              <CardDashboard />
-              <CardDashboard />
-              <CardDashboard />
+              <CardDashboard 
+                name={"Total Orders"}
+              />
+              <CardDashboard 
+                name={"New Customers"}
+              />
+              <CardDashboard
+                name={""}
+              />
+              <CardDashboard 
+                 name={"Total Revenue"}
+              />
         </div>
-     
+        <div className='container-chart-analytics'>
           <ChartAnalytics />
+        </div>
+          
        
        
         

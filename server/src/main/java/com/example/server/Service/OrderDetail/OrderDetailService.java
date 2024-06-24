@@ -7,6 +7,7 @@ import com.example.server.Pojo.Order;
 import com.example.server.Pojo.OrderDetail;
 import com.example.server.Pojo.Product;
 import com.example.server.Repository.IOrderDetailRepository;
+import com.example.server.Repository.IOrderRepository;
 import com.example.server.Service.Order.IOrderService;
 import com.example.server.Service.Product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +25,23 @@ public class OrderDetailService implements IOrderDetailService{
     @Autowired
     IProductService iProductService;
     @Autowired
-    IOrderService iOrderService;
+    IOrderRepository iOrderRepository;
 
     @Override
     public boolean saveOrderDetail(OrderDTO orderDTO, Order order) {
         try{
             System.out.println("size: " + orderDTO.getOrderDetailDTOS().size());
             orderDTO.getOrderDetailDTOS().forEach((orderDe) -> {
-                    OrderDetail orderDetail = new OrderDetail();
-                    orderDetail.setPriceAfterSizeAdjustment(orderDe.getPriceAfterSizeAdjustment());
-                    orderDetail.setSize(orderDe.getSize());
-                    Product product = iProductService.getProductById(orderDe.getProductID());
-                    orderDetail.setProduct(product);
-                    orderDetail.setOrder(iOrderService.getOrderById(order.getId()));
-                    iOrderDetailRepository.save(orderDetail);
-                        }
-                    );
+                        OrderDetail orderDetail = new OrderDetail();
+                        orderDetail.setPriceAfterSizeAdjustment(orderDe.getPriceAfterSizeAdjustment());
+                        orderDetail.setSize(orderDe.getSize());
+                        Product product = iProductService.getProductById(orderDe.getProductID());
+                        orderDetail.setProduct(product);
+                        Optional<Order> orderOptional = iOrderRepository.findById((order.getId()));
+                        orderOptional.ifPresent(orderDetail::setOrder);
+                        iOrderDetailRepository.save(orderDetail);
+                    }
+            );
             return true;
         }catch (Exception ex){
             System.out.println(ex.getMessage());

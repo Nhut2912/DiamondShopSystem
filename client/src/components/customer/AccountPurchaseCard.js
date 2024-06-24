@@ -45,7 +45,7 @@ function AccountPurchaseCard({
  },[])
 
  useEffect(() => {
-    fetch(`http://localhost:8080/api/payment?order_id=${orderID}`)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/payment?order_id=${orderID}`)
     .then((response) => response.json())
     .then( ( result ) => {
         if(result === null){
@@ -63,7 +63,7 @@ function AccountPurchaseCard({
 
  useEffect(() => {
 
-        fetch(`http://localhost:8080/api/order_detail?order_id=${orderID}`)
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order_detail?order_id=${orderID}`)
         .then((response) => response.json())
         .then((result) => {
             if(result !== null){

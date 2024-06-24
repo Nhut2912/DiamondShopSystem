@@ -41,7 +41,7 @@ function OrderCarddetail() {
 
 
  useEffect(() => {
-        fetch(`http://localhost:8080/api/order_detail?order_id=${orderID}`)
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order_detail?order_id=${orderID}`)
         .then((response) => response.json())
         .then((result) => {
             if(result !== null){
@@ -53,7 +53,7 @@ function OrderCarddetail() {
 
 
  useEffect(() => {
-    fetch(`http://localhost:8080/api/payment?order_id=${orderID}`)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/payment?order_id=${orderID}`)
   .then((response) => response.json())
   .then((result) => setPayments(result))
   .catch((error) => console.error(error));
@@ -64,7 +64,7 @@ function OrderCarddetail() {
         let warrantyProducts = [];
         orderDetail.map((item) => {
            
-                fetch(`http://localhost:8080/api/warranty/getByProductId/${item.product.id}`,{method:"POST"})
+                fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/getByProductId/${item.product.id}`,{method:"POST"})
                 .then((response) => response.text())
                 .then((result) => 
                     {   
@@ -179,7 +179,7 @@ const handlePreparedOrder = () => {
             redirect: "follow"
           };
           
-          fetch(`http://localhost:8080/api/order/Prepared/${orderID}`, requestOptions)
+          fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/Prepared/${orderID}`, requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 if(result){
@@ -196,7 +196,7 @@ const handlePreparedOrder = () => {
         redirect: "follow"
       };
       
-      fetch(`http://localhost:8080/api/order/Delivering/${orderID}`, requestOptions)
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/Delivering/${orderID}`, requestOptions)
         .then((response) => response.text())
         .then((result) => 
             {
@@ -216,7 +216,7 @@ const handlePreparedOrder = () => {
         redirect: "follow"
       };
       
-      fetch(`http://localhost:8080/api/order/Canceled/${orderID}`, requestOptions)
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/Canceled/${orderID}`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
 
@@ -234,7 +234,7 @@ const handlePreparedOrder = () => {
         redirect: "follow"
       };
       
-      fetch(`http://localhost:8080/api/order/Completed/${orderID}`, requestOptions)
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/Completed/${orderID}`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
             if(result){

@@ -92,6 +92,11 @@
 }
 .chart-analytics-container > .content-chart > ul.options >li {
     width: 0;
+    position: relative;
+}
+.chart-analytics-container > .content-chart > ul.options >li > span{
+    position: absolute;
+    transform: translateX(-50%);
 }
 .chart-analytics-container > .content-chart > .chart-canvas{
     width: 100%;
@@ -105,5 +110,6 @@
 }
 .chart-analytics-container > .content-chart > .chart-canvas > #chart{
     width: 100%;
-    height: 100% ;
+    height: 100%;
+    position: relative;
 }

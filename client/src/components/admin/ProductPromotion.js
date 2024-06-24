@@ -20,7 +20,7 @@ function ProductPromotion({thisPromotionID,productsPromotion, thisPromotion,this
 
             const productObject = await Promise.all(
               productsPromotion.map( async (item) => {
-               const response = await fetch(`http://localhost:8080/api/product/getProduct/${item}`);
+               const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/getProduct/${item}`);
                return await response.json();
               })
             )
@@ -42,7 +42,7 @@ function ProductPromotion({thisPromotionID,productsPromotion, thisPromotion,this
 
               const productObject = await Promise.all(
                 dataFetch.map( async (item) => {
-                 const response = await fetch(`http://localhost:8080/api/product/getProduct/${item}`);
+                 const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/getProduct/${item}`);
                  return await response.json();
                 })
               )
