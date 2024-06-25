@@ -19,6 +19,7 @@ com\example\server\Service\Size\SizeService.class
 com\example\server\Service\DiamondPriceList\IDiamondPriceListService.class
 com\example\server\Service\ProductMaterial\IProductMaterialService.class
 com\example\server\Repository\IMaterialPriceListRepository.class
+com\example\server\Pojo\Blog.class
 com\example\server\Model\OrderDetailDTO.class
 com\example\server\Repository\ICategoryRepository.class
 com\example\server\Repository\IClarityRepository.class
@@ -89,7 +90,9 @@ com\example\server\Pojo\Cut.class
 com\example\server\MoMo\MoMoModel\PaymentNotificationDTO.class
 com\example\server\Pojo\Product.class
 com\example\server\MoMo\Constant\Parameter.class
+com\example\server\Service\Blog\IBlogService.class
 com\example\server\Service\Email\IEmailService.class
+com\example\server\Controller\BlogController.class
 com\example\server\Pojo\OrderDetail.class
 com\example\server\Pojo\MaterialPriceList.class
 com\example\server\Service\PaymenMethod\IPaymentMethodService.class
@@ -103,6 +106,7 @@ com\example\server\Repository\IOrderDetailRepository.class
 com\example\server\Pojo\Image.class
 com\example\server\Pojo\WarrantyPolicy.class
 com\example\server\Repository\IColorRepository.class
+com\example\server\Service\Blog\BlogService.class
 com\example\server\Model\MaterialDTO.class
 com\example\server\MoMo\MoMoModel\Response.class
 com\example\server\Pojo\Promotions_products.class
@@ -113,6 +117,7 @@ com\example\server\Service\PaymenMethod\PaymentMethodService.class
 com\example\server\Service\WarrantyPolicy\WarrantyPolicyService.class
 com\example\server\Service\Material\MaterialService.class
 com\example\server\Model\OrderDTO.class
+com\example\server\Repository\IBlogRepository.class
 com\example\server\Repository\IMaterialRepository.class
 com\example\server\Controller\WarrantyController.class
 com\example\server\Service\Category\CategoryService.class
@@ -123,6 +128,7 @@ com\example\server\Pojo\Warranty.class
 com\example\server\Service\Cut\ICutService.class
 com\example\server\Repository\IPromotion_ProductRepository.class
 com\example\server\Model\PaymentMethodDTO.class
+com\example\server\Config\HostFrontEnd.class
 com\example\server\Service\Email\EmailService.class
 com\example\server\MoMo\MoMoModel\HttpRequest.class
 com\example\server\Pojo\Clarity.class

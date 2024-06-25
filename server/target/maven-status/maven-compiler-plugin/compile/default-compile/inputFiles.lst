@@ -1,4 +1,6 @@
+D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Config\HostFrontEnd.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Controller\AccountController.java
+D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Controller\BlogController.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Controller\DiamondController.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Controller\DiamondPriceListController.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Controller\MaterialPriceListController.java
@@ -43,6 +45,7 @@ D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\MoM
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\MoMo\Processor\AbstractProcess.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\MoMo\Processor\CreateOrderMoMo.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Pojo\Account.java
+D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Pojo\Blog.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Pojo\Category.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Pojo\Clarity.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Pojo\Color.java
@@ -66,6 +69,7 @@ D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Poj
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Pojo\Warranty.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Pojo\WarrantyPolicy.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Repository\IAccountRepository.java
+D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Repository\IBlogRepository.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Repository\ICategoryRepository.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Repository\IClarityRepository.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Repository\IColorRepository.java
@@ -90,6 +94,8 @@ D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Rep
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\ServerApplication.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Service\Account\AccountService.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Service\Account\IAccountService.java
+D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Service\Blog\BlogService.java
+D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Service\Blog\IBlogService.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Service\Category\CategoryService.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Service\Category\ICategoryService.java
 D:\FPT_University\SWP391\DiamondShop\server\src\main\java\com\example\server\Service\Clarity\ClarityService.java
