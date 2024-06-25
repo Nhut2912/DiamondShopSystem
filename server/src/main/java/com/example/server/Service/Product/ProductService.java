@@ -263,6 +263,7 @@ public class ProductService implements IProductService{
                     if(diamondPriceList.isPresent()) {
                         totalPrice += diamondPriceList.get().getPrice() * diamond.getCarat() * 100;
                     }
+
                 } catch (ClassNotFoundException e) {
                     System.out.println(e.getMessage());
                     countTwoComponentToEstablishPriceOfProduct++;
@@ -389,7 +390,7 @@ public class ProductService implements IProductService{
                 diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
                         diamond.getClarity().getId(), diamond.getColor().getId()
                         , diamond.getCut().getId(), diamond.getOrigin().getId());
-                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
+                totalPrice += diamondPriceList.getPrice() * 100 * diamond.getCarat() ;
             } catch (ClassNotFoundException e) {
                 System.out.println(e.getMessage());
             }
