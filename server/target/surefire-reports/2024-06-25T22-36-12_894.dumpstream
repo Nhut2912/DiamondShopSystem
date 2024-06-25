@@ -1,5 +1,0 @@
-# Created at 2024-06-25T22:36:13.272
-Boot Manifest-JAR contains absolute paths in classpath 'D:\FPT_University\SWP391\DiamondShop\server\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-
