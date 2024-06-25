@@ -14,7 +14,7 @@ function OrderAdmin() {
 
 
      useEffect(() => {
-        const loggedAccount = localStorage.getItem('account');
+        const loggedAccount = localStorage.getItem('_acount_manager');
         if(loggedAccount){
             const account = JSON.parse(loggedAccount);
             setAccount(account);
@@ -30,7 +30,7 @@ function OrderAdmin() {
      },[])
 
      useEffect(() => {
-        fetch("${process.env.REACT_APP_API_ENDPOINT}/api/order/getAll")
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/getAll`)
         .then((response) => response.json())
         .then((result) => setData(result))
         .catch((error) => console.error(error));

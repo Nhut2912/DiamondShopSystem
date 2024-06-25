@@ -16,7 +16,7 @@ function MaterialPriceListContainer() {
   const [dateEffected,setDateEffected] = useState();
 
   useEffect(() => {
-    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/materialpricelist/getMaterialPriceLists")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/materialpricelist/getMaterialPriceLists`)
     .then((response) => response.json())
     .then((result) => setData(result))
     .catch((error) => console.error(error));

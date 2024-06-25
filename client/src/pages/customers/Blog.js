@@ -1,10 +1,13 @@
 import React from 'react'
 
+import '../../theme/customer/Blog.css'
 
 function Blog() {
   return (
-    <div>
-      Blog
+    <div className='blog-customer-container'>
+          <p>
+            Home / <span>Product</span>
+          </p>
     </div>
   )
 }

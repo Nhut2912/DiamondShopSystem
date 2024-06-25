@@ -11,28 +11,37 @@ const Authentication = () => {
 
   const navigate = useNavigate();
 
-  const userVirtual = [
-    {username : "delivery_staff", password : "1234" , role: "DELIVERY STAFF"},
-    {username : "sale_staff", password : "1234" , role: "SALE STAFF"},
-    {username : "admin", password : "1234" , role: "ADMIN"},
-  ]
-
-
-
   const handleLogin = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
     
-
-
-
-    userVirtual.map((item) => {
-        if(item.username === userName && item.password === password){
-          localStorage.setItem('account', JSON.stringify(item));
-          if(item.role === "DELIVERY STAFF" || item.role === "SALE STAFF" ){
-            navigate("/admin/overview/order")
-          }else    navigate("/admin/overview")
-       
+    const raw = JSON.stringify({
+      "email": userName,
+      "password":password
+    });
+    
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+    
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/account/checkUserNameAndPassword`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        if(result !== "Not Valid"){
+          const user = {
+            "email": userName,
+            "role": result
+          }
+          localStorage.setItem("_acount_manager",JSON.stringify(user));
+          navigate("/admin/overview");
         }
-    })
+      })
+      .catch((error) => console.error(error));
+
+
   }
 
   

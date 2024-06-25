@@ -8,7 +8,7 @@ function WarrantyPolicyViews() {
  const [data,setData] = useState();
 
  useEffect(() => {
-    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/warrantypolicy/get")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warrantypolicy/get`)
     .then((response) => response.json())
     .then((result) => {
         if(result !== null ){

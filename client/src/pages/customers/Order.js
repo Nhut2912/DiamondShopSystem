@@ -125,7 +125,7 @@ function Order() {
 
  const handlePayment = async () => {
     
-    await fetch("${process.env.REACT_APP_API_ENDPOINT}/api/payment/"+convertUSDToVnd(order.totalPrice*10/100))
+    await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/payment/`+convertUSDToVnd(order.totalPrice*10/100))
     .then((response) => response.text())
     .then((result) => 
         window.location.assign(JSON.parse(result).payUrl)
@@ -222,7 +222,7 @@ function Order() {
       redirect: "follow"
     };
     
-    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/order/buy", requestOptions)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/buy`, requestOptions)
       .then((response) => response.text())
       .then((result) => 
         {

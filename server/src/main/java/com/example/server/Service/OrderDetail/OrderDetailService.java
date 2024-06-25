@@ -32,7 +32,7 @@ public class OrderDetailService implements IOrderDetailService{
         try{
             System.out.println("size: " + orderDTO.getOrderDetailDTOS().size());
             orderDTO.getOrderDetailDTOS().forEach((orderDe) -> {
-<<<<<<< HEAD
+
                         OrderDetail orderDetail = new OrderDetail();
                         orderDetail.setPriceAfterSizeAdjustment(orderDe.getPriceAfterSizeAdjustment());
                         orderDetail.setSize(orderDe.getSize());
@@ -43,18 +43,7 @@ public class OrderDetailService implements IOrderDetailService{
                         iOrderDetailRepository.save(orderDetail);
                     }
             );
-=======
-                    OrderDetail orderDetail = new OrderDetail();
-                    orderDetail.setPriceAfterSizeAdjustment(orderDe.getPriceAfterSizeAdjustment());
-                    orderDetail.setSize(orderDe.getSize());
-                    Product product = iProductService.getProductById(orderDe.getProductID());
-                    orderDetail.setProduct(product);
-                    Optional<Order> orderOptional = iOrderRepository.findById((order.getId()));
-                    orderOptional.ifPresent(orderDetail::setOrder);
-                    iOrderDetailRepository.save(orderDetail);
-                        }
-                    );
->>>>>>> d14bfed066988702981f026be24c978a5478a620
+
             return true;
         }catch (Exception ex){
             System.out.println(ex.getMessage());

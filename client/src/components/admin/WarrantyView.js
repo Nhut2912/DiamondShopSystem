@@ -19,7 +19,7 @@ function WarrantyView() {
 
 
   useEffect(() => {
-    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/warranty/get")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/get`)
       .then((response) => response.json())
       .then((result) => {
         setData(result)
@@ -53,7 +53,7 @@ function WarrantyView() {
     };
     
 
-    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/warranty/update", requestOptions)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/update`, requestOptions)
       .then((response) => response.text())
       .then((result) => 
         window.location.href = window.location.href

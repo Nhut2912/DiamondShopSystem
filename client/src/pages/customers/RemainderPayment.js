@@ -92,7 +92,7 @@ function RemainderPayment() {
 
  const handlePayment = async () => {
     
-    await fetch("${process.env.REACT_APP_API_ENDPOINT}/api/paymentRemainder/"+convertUSDToVnd(remainder))
+    await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/paymentRemainder/`+convertUSDToVnd(remainder))
     .then((response) => response.text())
     .then((result) => 
        {

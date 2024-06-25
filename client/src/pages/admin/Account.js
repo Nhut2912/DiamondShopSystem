@@ -13,7 +13,7 @@ function Account(){
 
 
   useEffect(() => {
-    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/account")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/account`)
     .then((response) => response.json())
     .then((result) => setData(result))
     .catch((error) => console.error(error));

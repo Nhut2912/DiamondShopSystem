@@ -45,7 +45,7 @@ function PromotionInformation({data}) {
 
  const handleProductsData = async() => {
     if(productsData === undefined || productsData === null){
-        await fetch('${process.env.REACT_APP_API_ENDPOINT}/api/product/getProducts')
+        await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/getProducts`)
         .then(response => response.json())
         .then(data => setProductsData(data))
         .catch((error) => console.error(error));
@@ -131,7 +131,7 @@ function PromotionInformation({data}) {
             
             console.log(raw)
 
-            fetch("${process.env.REACT_APP_API_ENDPOINT}/Promotion/update", requestOptions)
+            fetch(`${process.env.REACT_APP_API_ENDPOINT}/Promotion/update`, requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 if(result){

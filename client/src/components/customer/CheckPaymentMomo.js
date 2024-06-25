@@ -89,7 +89,7 @@ useEffect(() => {
                   redirect: "follow"
                };
          
-               await fetch("${process.env.REACT_APP_API_ENDPOINT}/api/order/buy", requestOptions)
+               await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/buy`, requestOptions)
                   .then((response) => response.text())
                   .then((result) => 
                      {

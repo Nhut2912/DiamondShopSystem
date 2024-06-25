@@ -41,7 +41,7 @@ function AddAccount() {
         redirect: "follow"
       };
       
-      fetch("${process.env.REACT_APP_API_ENDPOINT}/api/account/create", requestOptions)
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/account/create`, requestOptions)
         .then((response) => response.text())
         .then((result) => 
           {

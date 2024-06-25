@@ -28,7 +28,7 @@ function Home() {
   
 
   useEffect(() => {
-        fetch('${process.env.REACT_APP_API_ENDPOINT}/api/product/getProducts')
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/getProducts`)
           .then(response => response.json())
           .then(data => setData(data))
           .catch((error) => console.error(error));

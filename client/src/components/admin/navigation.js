@@ -17,9 +17,11 @@ const Navigation = () => {
     const [notificationsActive, setNotificationsActive] = useState(false);
     const [isSetting,setIsSetting] = useState(false);
 
+ 
+
 
     useEffect(() => {
-            const accountLogged = localStorage.getItem('account');
+            const accountLogged = localStorage.getItem('_acount_manager');
             if (accountLogged) {
                 try{
                     const accountJson = JSON.parse(accountLogged);
@@ -119,7 +121,7 @@ const Navigation = () => {
     }
     
     const handleLogout = () => {
-        localStorage.removeItem('account');
+        localStorage.removeItem('_acount_manager');
         navigate("/admin");
     }
 
@@ -172,9 +174,9 @@ const Navigation = () => {
 
                     </div>
                     <div className="account-info">
-                        <span className="name-account">nhutminhtran</span>
+                        <span className="name-account">{account !== undefined && account !== null ? account.email : null}</span>
                         <br />
-                        <span className="role-account">Admin</span>
+                        <span className="role-account">{account !== undefined && account !== null ? account.role : null}</span>
                     </div>
                     <div className="option-account" onClick={optionsAccount}>
                         <ul className="logout-setting" id="logout-setting">

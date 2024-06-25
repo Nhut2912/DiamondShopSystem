@@ -14,7 +14,7 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
   const [policyData,setPolicyData] = useState();
 
   useEffect(() => {
-    fetch("${process.env.REACT_APP_API_ENDPOINT}/api/warrantypolicy/get")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warrantypolicy/get`)
     .then((response) => response.json())
     .then((result) => setPolicyData(result))
     .catch((error) => console.error(error));
@@ -65,7 +65,7 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
               redirect: "follow"
             };
             
-            fetch("${process.env.REACT_APP_API_ENDPOINT}/api/warranty/create", requestOptions)
+            fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/create`, requestOptions)
               .then((response) => response.text())
               .then((result) => console.log(result))
               .catch((error) => console.error(error));
