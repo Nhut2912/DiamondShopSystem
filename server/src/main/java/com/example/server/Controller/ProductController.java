@@ -1,6 +1,7 @@
 package com.example.server.Controller;
 
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.Model.ProductDTO;
 import com.example.server.Pojo.Product;
 import com.example.server.Repository.IProductRepository;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/product")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class ProductController {
 
 

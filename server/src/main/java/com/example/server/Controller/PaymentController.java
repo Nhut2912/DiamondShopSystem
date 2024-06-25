@@ -3,6 +3,7 @@ package com.example.server.Controller;
 
 
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.MoMo.Config.Environment;
 import com.example.server.MoMo.Enum.RequestType;
 import com.example.server.MoMo.MoMoModel.PaymentNotificationDTO;
@@ -26,7 +27,7 @@ import java.util.Objects;
 
 @RestController()
 @RequestMapping(path = "api/")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class PaymentController {
     private final Gson gson;
 

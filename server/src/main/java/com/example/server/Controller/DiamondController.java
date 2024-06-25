@@ -1,6 +1,7 @@
 package com.example.server.Controller;
 
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.Model.DiamondDTO;
 import com.example.server.Pojo.Diamond;
 import com.example.server.Service.Diamond.IDiamondService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/diamond")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class DiamondController {
 
     @Autowired

@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.Model.DiamondPriceListDTO;
 import com.example.server.Model.MaterialPriceListDTO;
 import com.example.server.Service.MaterialPriceList.IMaterialPriceListService;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/materialpricelist")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class MaterialPriceListController {
     @Autowired
     IMaterialPriceListService iMaterialPriceListService;

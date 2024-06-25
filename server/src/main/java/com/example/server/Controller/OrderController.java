@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.Model.AccountDTO;
 import com.example.server.Model.OrderDTO;
 import com.example.server.Model.PaymentDTO;
@@ -28,7 +29,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/order")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class OrderController {
 
     @Autowired

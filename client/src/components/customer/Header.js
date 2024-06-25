@@ -3,15 +3,13 @@ import React, { useEffect, useMemo, useState } from 'react'
 import '../../theme/customer/Header.css';
 import { ICONS } from '../../constants/customer';
 import { useNavigate } from 'react-router-dom';
-import useLocalStorage from '../../hook/useLocalStorage';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 
 function Header() {
  const navigate = useNavigate();
 
- const [account,setAccount] = useLocalStorage("account",localStorage.getItem("account"));
-
+ const [account,setAccount] = useState();
 
  const [login,setLogin] = useState(false);
 
@@ -26,6 +24,23 @@ function Header() {
     {name : 'CONTACT', path : "/contact"},
  ]
 
+ useEffect(() => {
+    const accountLocal = JSON.parse(localStorage.getItem("account"));
+    if(accountLocal !== undefined && accountLocal !== null ){
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/account/AccountEmail?email=${accountLocal.email}`)
+        .then((response) => response.json())
+        .then((result) => {
+            if(result !== undefined && result !== null && result !== false){
+               setAccount(accountLocal);
+            }else{
+                localStorage.removeItem("account");
+                window.location.href =  window.location.href;
+            };
+        })
+        .catch((error) => console.error(error));
+    }
+    
+ },[])
 
 
  useEffect(() => {
@@ -40,10 +55,10 @@ function Header() {
  },[])
 
  useEffect(() => {
-    if(account !== null){
+    if(account !== null && account !== undefined){
         setLogin(true);
     }
- },[])
+ },[account])
 
  const handleClickNavigate = (item) => {
     navigation.map((element) => {
@@ -85,7 +100,8 @@ function Header() {
                     }>
                         <img src={ICONS.icon_user} />
                         <span>
-                            {login ? account.email.split("@")[0] : "Login"}
+                            
+                            {account !== undefined && account !== null & login ? account.email.split("@")[0] : "Login"}
                         </span>
                     </div>
                     <div 

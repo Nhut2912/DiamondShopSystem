@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.Model.PromotionDTO;
 import com.example.server.Service.Promotion.IPromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Promotion")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class PromotionController {
 
     @Autowired

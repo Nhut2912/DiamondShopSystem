@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.Model.AccountDTO;
 import com.example.server.Pojo.Account;
 import com.example.server.Service.Account.IAccountService;
@@ -17,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/account")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class AccountController {
 
     @Autowired
@@ -44,9 +45,11 @@ public class AccountController {
     }
 
     @GetMapping("/AccountEmail")
-    public ResponseEntity<AccountDTO> getAccountByEmail(@RequestParam(value = "email") String email) {
+    public ResponseEntity<?> getAccountByEmail(@RequestParam(value = "email") String email) {
         Optional<AccountDTO> account = accountService.findByEmail(email);
-        return account.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        if(account.isPresent() && account.get().getEmail().equals(email)){
+            return ResponseEntity.ok(account);
+        }else return ResponseEntity.ok(false);
     }
 
 

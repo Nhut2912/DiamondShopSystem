@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Config.HostFrontEnd;
 import com.example.server.Model.WarrantyDTO;
 import com.example.server.Pojo.Warranty;
 import com.example.server.Service.Warranty.IWarrantyService;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/warranty")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = HostFrontEnd.hostFrontEnd)
 public class WarrantyController {
     @Autowired
     IWarrantyService iWarrantyService;
