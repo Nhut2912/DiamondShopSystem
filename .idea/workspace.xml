@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="238e78d8-921c-487d-bbcf-651e12043aa4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/example/server/Service/Product/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +47,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/Diamond_Shop_23_06/DiamondShopSystem&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Diamond_Shop_25_06/DiamondShopSystem&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -125,6 +126,9 @@
       <workItem from="1719132461458" duration="7834000" />
       <workItem from="1719149482171" duration="1573000" />
       <workItem from="1719156743513" duration="1493000" />
+      <workItem from="1719295223838" duration="1362000" />
+      <workItem from="1719307955253" duration="714000" />
+      <workItem from="1719321504363" duration="6156000" />
     </task>
     <servers />
   </component>

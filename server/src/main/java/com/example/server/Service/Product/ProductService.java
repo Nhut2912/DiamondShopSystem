@@ -165,10 +165,11 @@ public class ProductService implements IProductService{
                             diamond.getClarity().getId(), diamond.getColor().getId()
                             , diamond.getCut().getId(), diamond.getOrigin().getId()));
                     if(diamondPriceList.isPresent()) {
-                        totalPrice += diamondPriceList.get().getPrice() * diamond.getCarat() ;
-                    }else countTwoComponentToEstablishPriceOfProduct++;
+                        totalPrice += diamondPriceList.get().getPrice() * diamond.getCarat() * 100 ;
+                    }
                 } catch (ClassNotFoundException e) {
                     System.out.println(e.getMessage());
+                    countTwoComponentToEstablishPriceOfProduct++;
                 }
 
             }
@@ -185,8 +186,9 @@ public class ProductService implements IProductService{
                 materialDTOS.add(materialDTO);
 
                 MaterialPriceListDTO materialPriceListDTO = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
-                if(materialPriceListDTO != null) {totalPrice += materialPriceListDTO.getSellPrice();}
-                else countTwoComponentToEstablishPriceOfProduct++;
+
+                if(materialPriceListDTO != null && countTwoComponentToEstablishPriceOfProduct == 0) {totalPrice += materialPriceListDTO.getSellPrice();}
+
             }
             if(countTwoComponentToEstablishPriceOfProduct != 0){
                 totalPrice = -1;
@@ -197,7 +199,7 @@ public class ProductService implements IProductService{
 
             productDTO.setMaterials(materialDTOS);
             productDTO.setPrice(totalPrice);
-
+            System.out.println("Total price without diamond or material: " + totalPrice);
 
             List<PromotionDTO> promotionDTOS = new ArrayList<>();
             for(Promotions_products promotions_products : item.getPromotions_products()) {
@@ -248,19 +250,22 @@ public class ProductService implements IProductService{
             List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(product.get().getId());
 
 
-
+            int countTwoComponentToEstablishPriceOfProduct = 0;
             for (Diamond diamond : listDiamondReturn) {
 
 
                 System.out.println(diamond.getCarat());
-                DiamondPriceList diamondPriceList = null;
+
                 try {
-                    diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
+                    Optional<DiamondPriceList> diamondPriceList = Optional.ofNullable(iDiamondPriceListService.getDiamondPriceListBy4C(diamond.getCarat(),
                             diamond.getClarity().getId(), diamond.getColor().getId()
-                            , diamond.getCut().getId(), diamond.getOrigin().getId());
-                    totalPrice += diamondPriceList.getPrice() * diamond.getCarat() ;
+                            , diamond.getCut().getId(), diamond.getOrigin().getId()));
+                    if(diamondPriceList.isPresent()) {
+                        totalPrice += diamondPriceList.get().getPrice() * diamond.getCarat() * 100;
+                    }
                 } catch (ClassNotFoundException e) {
                     System.out.println(e.getMessage());
+                    countTwoComponentToEstablishPriceOfProduct++;
                 }
 
 
@@ -272,13 +277,21 @@ public class ProductService implements IProductService{
 
             for (ProductMaterial productMaterial : listProductMaterial){
 
-                totalPrice += iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId()).getSellPrice();
+                MaterialPriceListDTO materialPriceListDTO = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
+
+                if(materialPriceListDTO != null && countTwoComponentToEstablishPriceOfProduct == 0) {totalPrice += materialPriceListDTO.getSellPrice();}
+
             }
-            totalPrice += product.get().getProductionCost() + product.get().getSecondaryDiamondCost() + product.get().getSecondaryMaterialCost();
-            totalPrice += totalPrice*((double) product.get().getPriceRate() / 100);
+            if(countTwoComponentToEstablishPriceOfProduct != 0){
+                totalPrice = -1;
+            }else {
+                totalPrice += product.get().getProductionCost() + product.get().getSecondaryDiamondCost() + product.get().getSecondaryMaterialCost();
+                totalPrice += totalPrice*((double) product.get().getPriceRate() / 100);
+            }
+
 
             productDTO.setPrice(totalPrice);
-
+            System.out.println("Total price without diamond or material: " + totalPrice);
 
             List<PromotionDTO> promotionDTOS = new ArrayList<>();
             for(Promotions_products promotions_products : product.get().getPromotions_products()){
