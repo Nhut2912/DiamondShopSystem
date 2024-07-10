@@ -7,7 +7,6 @@ import HeadAccount from './HeadAccount';
 
 function AccountProfile() {
 
-  const [acountName,setAccountName] = useState("Tran Minh Nhut")
 
   return (
     <div className='account-profile-container'>

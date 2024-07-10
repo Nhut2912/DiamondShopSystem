@@ -1,0 +1,11 @@
+.container-blog-content-customer{
+    width: 1180px;
+    margin: 0 auto;
+}
+.container-blog-content-customer > p{
+    font-family: "Roboto Serif";
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 80px;
+}

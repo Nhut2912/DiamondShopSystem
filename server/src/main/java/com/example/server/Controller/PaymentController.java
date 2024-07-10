@@ -48,7 +48,7 @@ public class PaymentController {
         
 
         String orderInfo = "Pay With MoMo";
-        String returnURL = "http:/localhost:3000/checkout-cart/check-payment";
+        String returnURL = HostFrontEnd.hostFrontEnd + "/checkout-cart/check-payment";
         String notifyURL = "/check";
         Environment environment = Environment.selectEnv("dev");
 
@@ -68,7 +68,7 @@ public class PaymentController {
         String orderId = String.valueOf(System.currentTimeMillis());
 
         String orderInfo = "Pay Remainder";
-        String returnURL = "http:/localhost:3000/purchase/remainder/check-payment";
+        String returnURL = HostFrontEnd.hostFrontEnd + "/purchase/remainder/check-payment";
         String notifyURL = "/check";
         Environment environment = Environment.selectEnv("dev");
 

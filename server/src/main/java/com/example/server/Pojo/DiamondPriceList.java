@@ -14,9 +14,9 @@ public class DiamondPriceList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private float caratFrom;
+    private double caratFrom;
 
-    private float caratTo;
+    private double caratTo;
 
     private Date effDate;
 

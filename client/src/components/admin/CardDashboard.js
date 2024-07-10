@@ -4,9 +4,17 @@ import '../../theme/admin/CardDashboard.css'
 
 import {ICONS} from '../../constants/admin'
 
-function CardDashboard( {name}) {
 
-  const [isTrendingDown,setIsTrendingDown] = useState(true);
+const formattedNumber = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+})
+
+
+function CardDashboard( {name,data,setDayActive,img}) {
+
+  const [isTrendingDown,setIsTrendingDown] = useState(false);
   const [lastDaysActive,setLastDaysActive] = useState("Last one days");
   const [isDropdown,setDropDown] = useState(false);
 
@@ -20,11 +28,10 @@ function CardDashboard( {name}) {
   
   const handleChooseLastdays = (value) => {
     if(isDropdown){
+      setDayActive(value)
       setLastDaysActive(value)
       setDropDown(!isDropdown)
     }
-    
-    
   }
 
   return (
@@ -48,10 +55,12 @@ function CardDashboard( {name}) {
           </ul>
         </div>
         <div className='icon'>
-            <img src={ICONS.icon_user} />
+            <img src={img} />
         </div>
         <h4>{name}</h4>
-        <h2>1,726</h2>
+        <h2>{
+        name === "Total Revenue" ? formattedNumber.format(data) : data
+        }</h2>
         <div className={isTrendingDown ?'percent isTrendingDown' :  'percent isTrending'}>
           {
             !isTrendingDown

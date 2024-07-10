@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Year;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -55,7 +57,7 @@ public class AccountService implements IAccountService {
     @Override
     public String isStaffOrAdmin(AccountDTO accountDTO) {
 
-        Optional<Account> account = iAccountRepository.findByNameAndPassword(accountDTO.getName(), accountDTO.getPassword());;
+        Optional<Account> account = iAccountRepository.findByEmailAndPassword(accountDTO.getEmail(), accountDTO.getPassword());;
         try {
             account.orElseThrow(() -> new ClassNotFoundException("Account is not valid!!"));
             return account.get().getRole();
@@ -227,14 +229,12 @@ public class AccountService implements IAccountService {
         return account;
     }
 
-    public Map<LocalDate, Long> getNewAccountStatisticByWeek() throws ParseException{
-        LocalDate currentDate = LocalDate.now();
-        LocalDate beforeDate = currentDate.minusDays(7);
+    public Map<LocalDateTime, Long> getNewAccountStatisticByWeek() throws ParseException{
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDateTime beforeDate = currentDate.minusDays(7);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date endDate = formatter.parse(currentDate.toString());
-        Date startDate = formatter.parse(beforeDate.toString());
-        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(beforeDate, currentDate);
         Map<String, Long> accountCountMap = accountList.stream()
                 .collect(Collectors.groupingBy(
                         account -> {
@@ -247,9 +247,9 @@ public class AccountService implements IAccountService {
                         }, // Chuyển đổi Date thành String
                         Collectors.counting()
                 ));
-        Map<LocalDate, Long> resultDate = new HashMap<>();
+        Map<LocalDateTime, Long> resultDate = new HashMap<>();
 
-        for (LocalDate date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
+        for (LocalDateTime date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
             long count = accountCountMap.getOrDefault(formatter.format(formatter.parse(date.toString())), 0L);
             resultDate.put(date, count);
         }
@@ -257,11 +257,11 @@ public class AccountService implements IAccountService {
         return resultDate;
     }
 
-    public Map<LocalDate, Long> getNewAccountStatisticByMonth() throws ParseException {
+    public Map<LocalDateTime, Long> getNewAccountStatisticByMonth() throws ParseException {
 
-        LocalDate currentDate = LocalDate.now();
+        LocalDateTime currentDate = LocalDateTime.now();
         System.out.println(currentDate.getMonth().getValue());
-        LocalDate beforeDate;
+        LocalDateTime beforeDate;
         if (currentDate.getMonth().getValue() == 4 || currentDate.getMonth().getValue() == 6 ||
                 currentDate.getMonth().getValue() == 9 || currentDate.getMonth().getValue() == 11) {
             beforeDate = currentDate.minusDays(30);
@@ -274,10 +274,9 @@ public class AccountService implements IAccountService {
         }
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date endDate = formatter.parse(currentDate.toString());
-        Date startDate = formatter.parse(beforeDate.toString());
 
-        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(beforeDate, currentDate);
         Map<String, Long> accountCountMap = accountList.stream()
                 .collect(Collectors.groupingBy(
                         account -> {
@@ -290,9 +289,9 @@ public class AccountService implements IAccountService {
                         }, // Chuyển đổi Date thành String
                         Collectors.counting()
                 ));
-        Map<LocalDate, Long> resultDate = new HashMap<>();
+        Map<LocalDateTime, Long> resultDate = new HashMap<>();
 
-        for (LocalDate date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
+        for (LocalDateTime date = beforeDate; !date.isAfter(currentDate); date = date.plusDays(1)) {
             long count = accountCountMap.getOrDefault(formatter.format(formatter.parse(date.toString())), 0L);
             resultDate.put(date, count);
         }
@@ -301,13 +300,11 @@ public class AccountService implements IAccountService {
     }
 
     public long getSumNewAccountStatisticByWeek() throws ParseException{
-        LocalDate currentDate = LocalDate.now();
-        LocalDate beforeDate = currentDate.minusDays(7);
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDateTime beforeDate = currentDate.minusDays(7);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date endDate = formatter.parse(currentDate.toString());
-        Date startDate = formatter.parse(beforeDate.toString());
-        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(beforeDate, currentDate);
         Map<String, Long> accountCountMap = accountList.stream()
                 .collect(Collectors.groupingBy(
                         account -> {
@@ -328,8 +325,8 @@ public class AccountService implements IAccountService {
         return sumToTalOrders;
     }
     public long getSumNewAccountStatisticByMonth() throws ParseException{
-        LocalDate currentDate = LocalDate.now();
-        LocalDate beforeDate;
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDateTime beforeDate;
         if (currentDate.getMonth().getValue() == 4 || currentDate.getMonth().getValue() == 6 ||
                 currentDate.getMonth().getValue() == 9 || currentDate.getMonth().getValue() == 11) {
             beforeDate = currentDate.minusDays(30);
@@ -342,9 +339,42 @@ public class AccountService implements IAccountService {
         }
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date endDate = formatter.parse(currentDate.toString());
-        Date startDate = formatter.parse(beforeDate.toString());
-        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(startDate, endDate);
+
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(beforeDate, currentDate);
+        Map<String, Long> accountCountMap = accountList.stream()
+                .collect(Collectors.groupingBy(
+                        account -> {
+                            try {
+                                return formatter.format(formatter.parse(account.getDateAdd().toString()));
+                            } catch (ParseException e) {
+                                System.out.println(e.getMessage() + "Error format");
+                                throw new RuntimeException(e);
+                            }
+                        }, // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        long sumToTalOrders = 0;
+        for (Map.Entry<String, Long> entry : accountCountMap.entrySet()) {
+            sumToTalOrders += entry.getValue();
+        }
+
+        return sumToTalOrders;
+    }
+
+
+    @Override
+    public long getSumNewAccountStatisticByDay() throws ParseException{
+
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalTime targetTime = LocalTime.of(23, 59, 0);
+        LocalDateTime endOfDay = currentDate.with(targetTime);
+        LocalDateTime previousDay = currentDate.minusDays(1);
+        LocalDateTime previousDayEndOfDay = previousDay.with(targetTime);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
+        List<Account> accountList = iAccountRepository.getAccountByStartDateAndEndDate(previousDayEndOfDay, endOfDay);
         Map<String, Long> accountCountMap = accountList.stream()
                 .collect(Collectors.groupingBy(
                         account -> {

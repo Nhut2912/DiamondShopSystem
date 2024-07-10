@@ -1,0 +1,96 @@
+.contact-container{
+    width: 1180px;
+    margin: 0 auto 0 auto;
+    padding-bottom: 50px;
+}
+.contact-container > p{
+    font-family: "Roboto Serif";
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.contact-container > .contact-content{
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    column-gap: 40px;
+    margin-top: 100px;
+  
+}
+.contact-container > .contact-content > .contact-us > span{
+    font-family: "Roboto Serif";
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.contact-container > .contact-content > .contact-us > h1{
+    font-family: "Roboto Serif";
+    font-size: 54px;
+    letter-spacing: 3px;
+    margin: 10px 0 40px 0;
+}
+.contact-container > .contact-content > .contact-us > .content-input-contact{
+    display:grid;
+    width: 70%;
+    margin: 0 auto;
+    row-gap: 25px;
+}
+.contact-container > .contact-content > .contact-us > .content-input-contact > p{
+    font-family: "Roboto Serif";
+    line-height: 25px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 17px;
+    margin: 0 0 20px 0; 
+    
+}
+.contact-container > .contact-content > .contact-us > .content-input-contact > input{
+    height: 40px;
+    border: none;
+    border-bottom:1px solid rgba(0, 0, 0, 0.3) ;
+    font-family: "Roboto Serif";
+    height: 50px;
+    background-color: transparent;
+    outline: none;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 15px;
+    font-weight: 400;
+}
+.contact-container > .contact-content > .contact-us > .content-input-contact > div{
+    background-color: #d9b384;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto Serif";
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.contact-container > .contact-content  > .information-us{
+    display: grid;
+    row-gap: 20px;
+    align-items: center;
+}
+.contact-container > .contact-content  > .information-us > div {
+    margin-left: 40px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+.contact-container > .contact-content  > .information-us > div > div > h4{
+    font-family: "Roboto Serif";
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+}
+.contact-container > .contact-content  > .information-us > div > div > p{
+    font-family: "Roboto Serif";
+    line-height: 23px;
+    width: 70%;
+    margin: 7px 0;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 500;
+}

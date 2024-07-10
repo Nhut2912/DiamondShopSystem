@@ -39,7 +39,8 @@ import CheckRemainder from './components/customer/CheckRemainder';
 import RemainderSuccessfull from './components/customer/RemainderSuccessfull';
 import PromotionsDetail from './components/admin/PromotionsDetail';
 import { UpdateContextProvider } from './context/UpdateContext';
-
+import BlogAdmin from './pages/admin/Blog';
+import BlogDetail from './pages/customers/BlogDetail';
 
 
 
@@ -62,6 +63,7 @@ root.render(
                   <Route path="complete" element={<OrderComplete />} />
               </Route>
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogDetail />} />
               <Route path="/contact" element={<Contact />} />
             </Route>
 
@@ -97,7 +99,7 @@ root.render(
                     <Route path="gold-price" element={<GoldPriceAdmin />}/>
                     <Route path="diamond-price" element={<DiamondPriceAdmin />}/>
                     <Route path="notifications" element={<NotificationsAdmin />}/>
-                 
+                    <Route path="blog-manage" element={<BlogAdmin />}/>
             </Route>
         </Routes>
     </BrowserRouter>

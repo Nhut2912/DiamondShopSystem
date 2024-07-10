@@ -21,8 +21,8 @@ function InputBox({title,
     <div className='input-admin-box-container'>
         <label>{title}</label>
         <input 
-          placeholder={getParams !== null ? getParams : null}
-          onBlur={(event) => handleChange(event)}
+          value={getParams !== null ? getParams : null}
+          onChange={(event) => handleChange(event)}
           type='text' />
     </div>
   )

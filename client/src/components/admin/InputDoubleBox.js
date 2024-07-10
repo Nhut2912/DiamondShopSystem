@@ -10,17 +10,15 @@ function InputDoubleBox({title,
 
   const handleChange = (event) => {
     const value = event.target.value;
-    if(value !== ""){
-      setParams(value);
-    }
+    setParams(value);
       
   }
   return (
     <div className='input-double-box-container'>
         <label>{title}</label>
         <input
-          onBlur={(event) => handleChange(event)}
-          placeholder={getParams !== null ? getParams : null}
+          onChange={(event) => handleChange(event)}
+          value={getParams !== null ? getParams : null}
         style={{'width': _width}} type='number' />
     </div>
   )

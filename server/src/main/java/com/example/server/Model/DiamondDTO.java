@@ -18,4 +18,6 @@ public class DiamondDTO {
     private String cut;
 
     private String code;
+
+    private String image;
 }

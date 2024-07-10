@@ -97,6 +97,7 @@
 .chart-analytics-container > .content-chart > ul.options >li > span{
     position: absolute;
     transform: translateX(-50%);
+    width: max-content;
 }
 .chart-analytics-container > .content-chart > .chart-canvas{
     width: 100%;

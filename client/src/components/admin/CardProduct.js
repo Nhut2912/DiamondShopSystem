@@ -8,8 +8,9 @@ import { getDownloadURL, ref } from 'firebase/storage';
 function CardProduct({data}) {
   const navigate = useNavigate();
   const productId = data.id;
+  console.log(data)
   const handClick = () => {  
-    navigate(""+productId);
+    navigate(""+productId,{state: data});
   }
   const [images,setImages] = useState();
 

@@ -177,6 +177,13 @@ public class OrderController {
 
         return new ResponseEntity<>(iorderService.getSumTotalPriceStatisticByMonth(), HttpStatus.OK);
     }
+
+    @GetMapping("/getSumTotalPriceStatisticByDay")
+    public ResponseEntity<?> getSumTotalPriceStatisticByDay() throws ParseException {
+
+        return new ResponseEntity<>(iorderService.getSumTotalPriceStatisticByDay(), HttpStatus.OK);
+    }
+
     @GetMapping("/getTheSumOfOrderStatisticByWeek")
     public ResponseEntity<?> getTheSumOfOrderStatisticByWeek() throws ParseException {
 
@@ -186,6 +193,11 @@ public class OrderController {
     public ResponseEntity<?> getTheSumOfOrderStatisticByMonth() throws ParseException {
 
         return new ResponseEntity<>(iorderService.getTheSumOfOrderStatisticByMonth(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getTheSumOfOrderStatisticByDay")
+    public ResponseEntity<?> getTheSumOfOrderStatisticByDay() throws ParseException {
+        return new ResponseEntity<>(iorderService.getTheSumOfOrderStatisticByDay(), HttpStatus.OK);
     }
 
 }

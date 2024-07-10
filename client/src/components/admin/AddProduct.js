@@ -217,7 +217,7 @@ function AddProduct() {
         body: raw,
         redirect: "follow"
       };
-      fetch("http://localhost:8080/api/product/save", requestOptions)
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/save`, requestOptions)
       .then((response) => response.text())
       .then(data =>  {
         if(data !== null){

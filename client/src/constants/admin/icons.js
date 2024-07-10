@@ -27,8 +27,43 @@ import icon_back_arrow from '../../assets/icons/admin/back-arrow.svg'
 import icon_search from '../../assets/icons/admin/search.svg'
 import icon_trending_down from '../../assets/icons/admin/icon-trending-down.svg';
 import icon_trending_up from '../../assets/icons/admin/icon-trending-up.svg';
+import icon_undo from '../../assets/icons/admin/undo.svg';
+import icon_redo from '../../assets/icons/admin/redo.svg'
+import icon_bold from '../../assets/icons/admin/bold.svg'
+import icon_underline from '../../assets/icons/admin/underline.svg'
+import icon_italic from '../../assets/icons/admin/italic.svg'
+import icon_strike_through from '../../assets/icons/admin/strikethrough.svg'
+import icon_justify_left from '../../assets/icons/admin/align-left.svg'
+import icon_justify_center from '../../assets/icons/admin/middle.svg'
+import icon_justify_right from '../../assets/icons/admin/align-right.svg'
+import icon_justify_full from '../../assets/icons/admin/align-justify.svg'
+import icon_list_ol from '../../assets/icons/admin/list-ol.svg'
+import icon_list_ul from '../../assets/icons/admin/list-ul.svg'
+import icon_link from '../../assets/icons/admin/link.svg'
+import icon_unlink from '../../assets/icons/admin/unlink.svg'
+import icon_code from '../../assets/icons/admin/code.svg'
+import icon_order_dashboard from '../../assets/icons/admin/order-dashboard.svg'
+import icon_revenue_dashboard from '../../assets/icons/admin/revenue-dashboard.svg'
 
 const ICONS = {
+    icon_order_dashboard: icon_order_dashboard,
+    icon_revenue_dashboard:icon_revenue_dashboard,
+    icon_code:icon_code,
+    icon_undo: icon_undo,
+    icon_redo: icon_redo,
+    icon_bold: icon_bold,
+    icon_underline: icon_underline,
+    icon_italic: icon_italic,
+    icon_strike_through: icon_strike_through,
+    icon_justify_left:icon_justify_left,
+    icon_justify_center:icon_justify_center,
+    icon_justify_right: icon_justify_right,
+    icon_justify_full:icon_justify_full,
+    icon_list_ol:icon_list_ol,
+    icon_list_ul:icon_list_ul,
+    icon_link:icon_link,
+    icon_unlink:icon_unlink,
+    
     icon_logo : icon_logo,
     icon_logo_no_jewelry_text : icon_logo_no_jewelry_text,
     icon_dashboard : icon_dashboard,

@@ -66,12 +66,16 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
             };
             
             fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/create`, requestOptions)
-              .then((response) => response.text())
-              .then((result) => console.log(result))
+            .then((response) => response.json())
+              .then(result => {
+        
+              })
               .catch((error) => console.error(error));
 
 
           })
+
+          window.location.href = window.location.href;
       
     }
 

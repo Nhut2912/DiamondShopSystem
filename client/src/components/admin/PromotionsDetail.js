@@ -17,7 +17,6 @@ function PromotionsDetail() {
 useEffect(() => {
         if(location.state){
             setData(location.state);
-            console.log(data);
          }
         
 },[])

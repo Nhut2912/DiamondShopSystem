@@ -28,8 +28,11 @@ function OrderCarddetail() {
  
  const [warranty,setWarranty] = useState();
 
+ 
+
+
  useEffect(() => {
-    const loggedAccount = localStorage.getItem('account');
+    const loggedAccount = localStorage.getItem('_acount_manager');
     if(loggedAccount){
         const account = JSON.parse(loggedAccount);
         setUserRole(account.role);
@@ -168,7 +171,7 @@ function OrderCarddetail() {
 
   if(statusDeposit === undefined || statusDeposit === null) return <div>Loadding</div> 
  if(orderDetail === undefined || orderDetail === null) return <div>Loading</div>;
-
+ if(warranty === undefined  || warranty === null) return <div>Loading...</div>
 
 
 
@@ -273,7 +276,7 @@ console.log(warranty)
         <div className='order-detail-content'>
             <div className='information-order'>
                 <h3>ORDER INFORMATION</h3>
-                <span className='type-order'>PICK UP IN STORE</span>
+                <span className='type-order'>DELIVERING</span>
                 <div className='customer-information'>
                     <ul>
                         <li>
@@ -437,7 +440,9 @@ console.log(warranty)
             }
             {   
                   orderDetail !== undefined && orderDetail !== undefined && warranty !== undefined && warranty !== null &&
-                orderDetail.length !== warranty.length ? 
+                 
+                orderDetail[0].order.orderStatus  === "PREPARING" && orderDetail.length !== warranty.length
+                ? 
                 <WarrantyPrepare 
                 orderDetail={orderDetail}
                 warrantyProduct={warranty}

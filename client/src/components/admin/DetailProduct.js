@@ -8,15 +8,19 @@ import InputFile from './InputFile';
 import { ICONS } from '../../constants/admin/index';
 import UpdateMaterial from './UpdateMateria';
 import UpdateDiamond from './UpdateDiamond';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { getDownloadURL, listAll, ref, uploadBytes } from 'firebase/storage';
 import { imageStorage } from '../../config/FirebaseConfig';
 
-function DetailProduct() {
 
+
+function DetailProduct() {
+ const location = useLocation(); 
  const navigate = useNavigate();
  const [isEdit, setIsEdit] = useState(false);
+
+
  const [imageDataProduct,setImageDataProduct] = useState();
  const [fileImageProduct,setFileImageProduct] = useState();
  const [certificateDiamond,setCertificateDiamond] = useState();
@@ -32,106 +36,57 @@ function DetailProduct() {
  const [diamondCount, setDiamondCount] = useState();
  const [materialProducts,setMaterialProducts] = useState();
  const [materiaCount, setMaterialCount] = useState();
-
-
+ const [priceRate,setPriceRate] = useState();
+ const [sizeUnitPrice,setSizeUnitPrice] = useState();
+ const [productID,setProductID] = useState();
 
 
     useEffect(() => {
-        const product = {
-            "Name": "Nhẫn Vàng trắng 10K đính đá ECZ PNJ XMXMW000128",
-            "Code": "XMXMW000128",
-            "Category": "Shake",
-            "ProductionCost": "12.4",
-            "SecondaryDiamondCost": "12.5",
-            "SecondaryMaterialCost": "124.4",
-            "Material": [
-                {
-                    "Type": "14K White Gold",
-                    "Weight": "12.4"
-                },
-                {
-                    "Type": "18K White Gold",
-                    "Weight": "123.4"
-                }
-            ],
-            "ProductSize": "15",
-            "ImagesProduct": [
-                "uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_1",
-                "uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_2",
-                "uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_3"
-            ],
-            "DiamondsProduct": [
-                {   
-                    "DiamondCode" :"DDDDW000924",
-                    "Origin": "LAB GROWN",
-                    "Color": "J",
-                    "Clarity": "FL",
-                    "Cut": "GOOD",
-                    "Carat": "12.3",
-                    "Image": "uploads/undefined_ceritificate_1"
-                },
-                {   
-                    "DiamondCode" :"DDDDW000923",
-                    "Origin": "LAB GROWN",
-                    "Color": "E",
-                    "Clarity": "IF",
-                    "Cut": "GOOD",
-                    "Carat": "112.3",
-                    "Image": "uploads/undefined_ceritificate_2"
-                }
-            ]
-        }
-   
-        //     getDownloadURL(
-        //         ref(imageStorage,"uploads/Nhẫn cưới Kim cương Vàng 18K Disney|PNJ Sleeping Beauty DDDDC001273_image_1")
-        // ).then(url => {
-        //    setImageDataProduct(url);
-        // });
-      
-        
-        let imagesProduct = [];
-        
-        
-        product.ImagesProduct.map((item) => {
+        const product = location.state;
+        console.log(product)
+        let imagesProduct = [];   
+        product.images.map((item) => {
             const imageRef = ref(imageStorage,item);
             getDownloadURL(imageRef).then((url) => {
-                imagesProduct = [...imagesProduct,url];
-                setImageDataProduct(imagesProduct);
+                imagesProduct = [...imagesProduct,url]     
+                setImageDataProduct(imagesProduct); 
             })
         })
+       
 
-        setCertificateDiamond(product.DiamondsProduct.map((item) => {return item.Image}));
+        let imageCertificate = [];
+        product.diamonds.map((item) => {
+            const imageRef = ref(imageStorage,item.image);
+            getDownloadURL(imageRef).then((url) => {
+                imageCertificate = [...imageCertificate,url]
+                setCertificateDiamond(imageCertificate);      
+            })
+        })
+        setProductID(product.id)
+
+        setFileImageProduct(product.images);
+        setFileCertificateDiamond(product.diamonds.map((item) => {return item.image}));
+
+        setName(product.name);
+        setCode(product.code);
+        setCategoryProduct(product.category);
+        setProductionCost(product.productionCost);
+        setSecondaryDiamondCost(product.secondaryDiamondCost);
+        setSecondaryMaterialCost(product.secondaryMaterialCost);
+        setProductSize(product.size);
 
 
-
-
-        setFileImageProduct(product.ImagesProduct);
-        setFileCertificateDiamond(product.DiamondsProduct.map((item) => {return item.Image}));
-        setName(product.Name);
-        setCode(product.Code);
-        setCategoryProduct(product.Category);
-        setProductionCost(product.ProductionCost);
-        setSecondaryDiamondCost(product.SecondaryDiamondCost);
-        setSecondaryMaterialCost(product.SecondaryMaterialCost);
-        setProductSize(product.ProductSize);
-        setDiamondProducts(product.DiamondsProduct);
-        setMaterialProducts(product.Material);
-        setDiamondCount(product.DiamondsProduct.length);
-        setMaterialCount(product.Material.length);
-
+        setPriceRate(product.priceRate)
+        setSizeUnitPrice(product.sizeUnitPrice)
+     
+        setDiamondProducts(product.diamonds);
+        setMaterialProducts(product.materials);
+        setDiamondCount(product.diamonds.length);
+        setMaterialCount(product.materials.length);
+     
     },[])
 
-if(!imageDataProduct || 
-    !fileImageProduct ||
-    !certificateDiamond ||
-    !fileCertificateDiamond ||
-    !name || !code || !categoryProduct || !productionCost ||
-    !secondaryDiamondCost || !SecondaryMaterialCost || !productSize
-    || !diamondProducts || !diamondCount || !materialProducts || !materiaCount
-){
-    return <div> Loadinggg...................</div>
-}
- 
+
 
 const size =[{name : '6'},{name : '7'},{name : '8'},
 {name : '9'},{name : '10'},{name : '11'},
@@ -158,15 +113,10 @@ const cut = [ {value : "FAIR"},  {value : "GOOD"}, {value : "V.GOOD"}, {value : 
 const material = [{name : "14K White Gold"},  {name : "18K White Gold"}, {name : "24K Gold"}]
 
 
-
-
-
-
-
   const handleAddMaterial = () => {
     setMaterialProducts([...materialProducts, {
-        "Type" :    null,
-        "Weight" :  null
+        "name" :    null,
+        "weight" :  null
      }])
     setMaterialCount((prevCount) => prevCount +1);
  }
@@ -180,17 +130,17 @@ const material = [{name : "14K White Gold"},  {name : "18K White Gold"}, {name :
     return prevCount; 
   });
 };
-console.log(materialProducts);
+
 const handleAddDiamond = () => {
     setDiamondProducts([...diamondProducts,{
         
-            "DiamondCode" :null ,
-            "Origin" :null ,
-            "Color" : null,
-            "Clarity" : null,
-            "Cut" : null,
-            "Carat" : null  ,
-            "Image" : ""
+            "code" :null ,
+            "origin" :null ,
+            "color" : null,
+            "clarity" : null,
+            "cut" : null,
+            "carat" : null  ,
+            "image" : ""
     }])
     setDiamondCount((prevCount) => prevCount + 1);
   };
@@ -208,20 +158,7 @@ const handleAddDiamond = () => {
     });
   };
 
-console.log(
-    {
-        "Name" : name,
-        "Code" : code,
-        "Category" : categoryProduct,
-        "ProductionCost" : productionCost,
-        "SecondaryDiamondCost" : secondaryDiamondCost,
-        "SecondaryMaterialCost" : SecondaryMaterialCost,
-        "Material" : materialProducts,
-        "ProductSize" : productSize,
-        "ImagesProduct" : imageDataProduct,
-        "DiamondsProduct" : diamondProducts
-    }
-)   
+
 
     const handleEdit = () => {
         setIsEdit(true);
@@ -231,7 +168,132 @@ console.log(
         setIsEdit(true);
     }
     const handleBreadCump = () => {
-        navigate("/admin/products");
+        navigate("/admin/overview/products");
+    }
+
+
+    const handleUpdate = () => {
+
+
+        let imageCount = 1;
+        fileImageProduct.forEach(file => {
+            if(file && !(typeof  file === "string")){
+              const url = `uploads/${code+"_image_" + new Date().getTime() + imageCount}`;
+              const imageRef = ref(imageStorage,url);
+              uploadBytes(imageRef,file);
+              fileImageProduct[imageCount-1] = url;
+              imageCount++;
+            }
+        });
+    
+        let certificateCount = 1; 
+        fileCertificateDiamond.forEach(file => {
+          if(file && !(typeof  file === "string")){
+              const url = `uploads/${diamondProducts[certificateCount-1].DiamondCode+"_ceritificate_" +  new Date().getTime() }`;
+              const imageRef = ref(imageStorage,url);
+              uploadBytes(imageRef,file);
+              const diamondInfor = {
+                "code" :diamondProducts[certificateCount-1].code ,
+                "origin" : diamondProducts[certificateCount-1].origin  ,
+                "color" : diamondProducts[certificateCount-1].color ,
+                "clarity" : diamondProducts[certificateCount-1].clarity ,
+                "cut" : diamondProducts[certificateCount-1].cut ,
+                "carat" : diamondProducts[certificateCount-1].carat ,
+                "image" : url
+              }
+    
+              diamondProducts[certificateCount-1] = diamondInfor;
+              certificateCount++;
+          }else{
+            const diamondInfor = {
+                "code" :diamondProducts[certificateCount-1].code ,
+                "origin" : diamondProducts[certificateCount-1].origin  ,
+                "color" : diamondProducts[certificateCount-1].color ,
+                "clarity" : diamondProducts[certificateCount-1].clarity ,
+                "cut" : diamondProducts[certificateCount-1].cut ,
+                "carat" : diamondProducts[certificateCount-1].carat ,
+                "image" : file
+            }
+            diamondProducts[certificateCount-1] = diamondInfor;
+            certificateCount++;
+          }
+        })
+
+        let diamonsProduct = [];
+        diamondProducts.map((item) => {
+        diamonsProduct = [...diamonsProduct,
+            {
+                "code": item.code,
+                "certificate": item.image,
+                "carat": item.carat,
+                "cut": {
+                    "cut": item.cut
+                },
+                "origin": {
+                    "origin": item.origin
+                },
+                "color": {
+                    "color": item.color
+                },
+                "clarity": {
+                    "clarity": item.clarity
+                }
+            }
+        ]
+        })
+
+        let imagesProduct = [];
+        fileImageProduct.map((item) => {
+            imagesProduct = [...imagesProduct,{
+              "url" : item
+            }]
+        })
+        
+        let materialsProduct = [];
+        materialProducts.map((item) => {
+        materialsProduct = [...materialsProduct, {
+            "material" : {"name" :item.Type},
+            "weight" :item.Weight
+        }]
+        })
+        const product =
+        {
+            "id": productID,
+            "code":code ,
+            "name": name,
+            "active": true,
+            "priceRate": priceRate,
+            "productionCost": productionCost === "" ? 0 :productionCost ,
+            "secondaryDiamondCost":secondaryDiamondCost === "" ? 0 : secondaryDiamondCost,
+            "secondaryMaterialCost": SecondaryMaterialCost === "" ? 0 : SecondaryMaterialCost,
+            "sizeUnitPrice": sizeUnitPrice === "" ? 0 : sizeUnitPrice,
+            "size": {
+              "size": productSize
+            },
+            "diamonds": diamonsProduct,
+            "images": imagesProduct,
+            "category": {
+              "name": categoryProduct,
+            },
+            "productMaterials":materialsProduct,
+          }
+
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify(product),
+            redirect: "follow"
+          };
+          fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/updateProduct`, requestOptions)
+          .then((response) => response.text())
+          .then(data =>  {
+            if(data !== null){
+              window.location.href = window.location.href;
+            }
+          })
+          .catch((error) => console.error(error));
     }
 
   return (
@@ -241,7 +303,9 @@ console.log(
             Product
         </h1>
         <p>
-          Admin / <span onClick={handleBreadCump} >Products</span> / <span> {code}</span>
+          Admin / <span onClick={handleBreadCump} >Products</span> / <span> {code !== undefined
+          && code !== null ?
+          code : null}</span>
         </p>
 
         <div className='button-back' onClick={handleBreadCump}>
@@ -322,7 +386,12 @@ console.log(
                         }
                         
                     </div>
-                    <div className='production-diamond-material-cost'>
+                    <div className='production-diamond-material-cost'
+                    style={{flexWrap: "wrap",
+                        rowGap: "20px"
+                    }}
+                    
+                    >
 
                     {
                             isEdit ? 
@@ -350,7 +419,7 @@ console.log(
                             
                         }
 
-    {
+                        {
                             isEdit ? 
                                 <InputDoubleBox title={"Secondary Material Cost"}  _width="150px" 
                                 setParams={setSecondaryMaterialCost}
@@ -359,6 +428,30 @@ console.log(
                             : <div>
                                     <label>Secondary Material Cost</label>
                                     <h3>{SecondaryMaterialCost}</h3>
+                                </div>
+                            
+                        }
+                        {
+                            isEdit ? 
+                                <InputDoubleBox title={"Secondary Material Cost"}  _width="150px" 
+                                setParams={setPriceRate}
+                                getParams={priceRate}
+                                />
+                            : <div>
+                                    <label>Price Rate</label>
+                                    <h3>{priceRate}</h3>
+                                </div>
+                            
+                        }
+                        {
+                            isEdit ? 
+                                <InputDoubleBox title={"Secondary Material Cost"}  _width="150px" 
+                                setParams={setSizeUnitPrice}
+                                getParams={sizeUnitPrice}
+                                />
+                            : <div>
+                                    <label>Size Unit Price</label>
+                                    <h3>{sizeUnitPrice}</h3>
                                 </div>
                             
                         }
@@ -403,7 +496,8 @@ console.log(
                                         )
                                     :
                                         (
-
+                                            materiaCount !== undefined && materiaCount !== null
+                                            && materialProducts !== undefined && materialProducts !== null &&
                                             Array(materiaCount).fill(0).map((_,index) => (
 
                                                 <ul>
@@ -411,11 +505,11 @@ console.log(
                                                         {index+1}
                                                     </li>
                                                     <li  >
-                                                        {materialProducts[index].Type}
+                                                        {materialProducts[index].name}
                                                     
                                                     </li>
                                                     <li>
-                                                        {materialProducts[index].Weight}
+                                                        {materialProducts[index].weight}
                                                     </li>
                                                     <li>
                                                         {""}
@@ -477,7 +571,8 @@ console.log(
                                 ) : <>
                                     
                                         <div>
-                                            {imageDataProduct[0] && <img src={imageDataProduct[0]} alt='' />}
+                                            {imageDataProduct !== undefined 
+                                            && imageDataProduct !== null && <img src={imageDataProduct[0]} alt='' />}
                                         </div>
                                         <label>images-1</label>
                                   
@@ -511,7 +606,9 @@ console.log(
                                 ) : <>
                                     
                                         <div>
-                                        {imageDataProduct[1] && <img src={imageDataProduct[1]} alt='' />}
+                                        {
+                                        imageDataProduct !== undefined 
+                                        && imageDataProduct !== null && imageDataProduct[1] && <img src={imageDataProduct[1]} alt='' />}
                                         </div>
                                         <label>images-2</label>
                                    
@@ -526,7 +623,10 @@ console.log(
                                 (
                                     <>
                                     <div className='image-card'>
-                                            {imageDataProduct[2] && <img src={imageDataProduct[2]} alt='' />}
+                                            {
+                                            imageDataProduct !== undefined 
+                                            && imageDataProduct !== null &&
+                                            imageDataProduct[2] && <img src={imageDataProduct[2]} alt='' />}
                                             </div>
                                             <InputFile title={"images-3"} 
                                             _width="150px" 
@@ -542,7 +642,9 @@ console.log(
                                 ) : <>
                                     
                                         <div>
-                                        {imageDataProduct[2] && <img src={imageDataProduct[2]} alt='' />}
+                                        {
+                                        imageDataProduct !== undefined 
+                                        && imageDataProduct !== null  && <img src={imageDataProduct[2]} alt='' />}
                                         </div>
                                         <label>images-3</label>
                                  
@@ -563,10 +665,11 @@ console.log(
                                 <div className='diamond-information-add'>
                                     <span>No.{index+1}</span>
                                     <UpdateDiamond 
-                                    key={index}
+                                        key={index}
                                         color={color}
                                         clarity={clarity} 
                                         cut={cut} 
+
                                         origin={origin}
                                         imageData ={certificateDiamond}
                                         index={index}
@@ -598,22 +701,24 @@ console.log(
                             </div> :
                        <div className='container-diamond-no-edit' >
                             {
-                                Array(diamondCount).fill(0).map((_,index) => (
+                                diamondCount !== undefined && diamondCount !== null && 
+                                diamondProducts !== undefined && diamondProducts !== null && 
+                                Array(diamondCount).fill(0).map((_index) => (
                                     <div>
                                         <span>
-                                            No. {index}
+                                            No. {_index}
                                         </span>
                                         <div>
                                             <div>
                                                 <label>Diamond Code</label>
-                                                <h3>{diamondProducts[index].DiamondCode}</h3>
+                                                <h3>{diamondProducts[_index].code}</h3>
                                             </div>
                                             <div>
                                                 <div>
                                                     <label>Origin</label>
                                                     <div>
                                                         <span>
-                                                            {diamondProducts[index].Origin}
+                                                            {diamondProducts[_index].origin}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -621,7 +726,7 @@ console.log(
                                                     <label>Color</label>
                                                     <div>
                                                         <span>
-                                                            {diamondProducts[index].Color}
+                                                            {diamondProducts[_index].color}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -629,7 +734,7 @@ console.log(
                                                     <label>Clarity</label>
                                                     <div>
                                                         <span>
-                                                            {diamondProducts[index].Clarity}
+                                                            {diamondProducts[_index].clarity}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -637,18 +742,29 @@ console.log(
                                                     <label>Cut</label>
                                                     <div>
                                                         <span>
-                                                            {diamondProducts[index].Cut}
+                                                            {diamondProducts[_index].cut}
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div>
                                                 <label>Carat (g)</label>
-                                                <h3>{diamondProducts[index].Carat}</h3>
+                                                <h3>{diamondProducts[_index].carat}</h3>
                                             </div>
                                             <div>
                                                 <label>Certificate</label>
                                                 <div>
+                                                    {console.log(certificateDiamond)}
+                                                    {   
+                                                        certificateDiamond !== undefined && certificateDiamond !== null &&
+                                                        certificateDiamond[_index] && <img 
+                                                        style={{
+                                                            "max-width" : '100%',
+                                                            "max-height" : '100%'
+                                                        }}
+                                                        src={certificateDiamond[_index]} alt='' />
+                                                    }
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -667,7 +783,9 @@ console.log(
                 
                 {
                     isEdit ? 
-                    <div className='button-update-product'>
+                    <div    
+                        onClick={() => handleUpdate()}
+                    className='button-update-product'>
                     <span>Update</span>
                 </div> : ""
                 }

@@ -2,6 +2,7 @@ package com.example.server.Pojo;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -18,6 +19,7 @@ public class Order {
 
     private String address;
 
+    @CreationTimestamp
     private Date date;
 
     private boolean isDelivery;

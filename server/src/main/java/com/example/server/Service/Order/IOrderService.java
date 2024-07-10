@@ -28,9 +28,13 @@ public interface IOrderService {
 
     public double getSumTotalPriceStatisticByWeek() throws ParseException;
     public double getSumTotalPriceStatisticByMonth() throws ParseException;
+
+    public double getSumTotalPriceStatisticByDay() throws ParseException;
+
     public Long getTheSumOfOrderStatisticByWeek() throws ParseException;
     public Long getTheSumOfOrderStatisticByMonth() throws ParseException;
 
     public boolean buyProduct(OrderDTO orderDto);
     public boolean updatePayment(PaymentDTO paymentDTO, Long orderId);
+    public Long getTheSumOfOrderStatisticByDay() throws ParseException;
 }

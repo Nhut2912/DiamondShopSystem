@@ -91,8 +91,8 @@ function ProductCard({name,images,id,price,promotions}) {
             <div>
               {isPromotion &&
                 isPromotion ? 
-                <h3>{formattedNumber.format(price-(price*promtionRate)/100)}</h3>:
-                <h3>{formattedNumber.format(price)}</h3>
+                <h3>{  price < 0 ? <span style={{fontSize: "15px"}}>COMING SOON</span> : formattedNumber.format(price-(price*promtionRate)/100)}</h3>:
+                <h3>{price < 0 ? <span style={{fontSize: "19px"}} >COMING SOON</span> : formattedNumber.format(price)}</h3>
               }
              
 

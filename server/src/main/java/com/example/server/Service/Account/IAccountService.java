@@ -5,6 +5,7 @@ import com.example.server.Pojo.Account;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -34,9 +35,13 @@ public interface IAccountService {
     public String createAccount(AccountDTO accountDto);
     public String isStaffOrAdmin(AccountDTO accountDTO);
 
-    public Map<LocalDate, Long> getNewAccountStatisticByWeek() throws ParseException;
-    public Map<LocalDate, Long> getNewAccountStatisticByMonth() throws ParseException;
+    public Map<LocalDateTime, Long> getNewAccountStatisticByWeek() throws ParseException;
+    public Map<LocalDateTime, Long> getNewAccountStatisticByMonth() throws ParseException;
 
     public long getSumNewAccountStatisticByWeek() throws ParseException;
     public long getSumNewAccountStatisticByMonth() throws ParseException;
+
+    public long getSumNewAccountStatisticByDay() throws ParseException ;
+
+
 }

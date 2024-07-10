@@ -11,13 +11,13 @@ function UpdateMaterial({index,
     setMaterialProducts,
     material}) {
 
-  const [type, setType] = useState(materialProducts[index].Type !== null ?materialProducts[index].Type : null );
-  const [weight, setWeight] = useState(materialProducts[index].Weight !== null ?materialProducts[index].Weight : null);
+  const [type, setType] = useState(materialProducts[index].name !== null ?materialProducts[index].name : null );
+  const [weight, setWeight] = useState(materialProducts[index].weight !== null ?materialProducts[index].weight : null);
 
   const materialProduct = useMemo(() => (
     {
-        "Type" : type === null ? material[0].name : type,
-        "Weight" : weight
+        "name" : type === null ? material[0].name : type,
+        "weight" : weight
      }
     ),[type,weight]);
     const updatedMaterial = useMemo(() => {
@@ -40,12 +40,12 @@ function UpdateMaterial({index,
             </li>
             <li>
                 <InputSelectBox setParams={setType} 
-                  getParams={materialProducts[index].Type}
+                  getParams={materialProducts[index].name}
                 options={material} />
             </li>
             <li>
                 <InputDoubleBox  _width="100px"  
-                getParams={materialProducts[index].Weight}
+                getParams={materialProducts[index].weight}
                 setParams={setWeight}  />
             </li>
             <li>

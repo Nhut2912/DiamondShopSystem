@@ -1,8 +1,6 @@
 package com.example.server.Pojo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -10,9 +8,20 @@ import lombok.Data;
 @Data
 public class Blog {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String title;
-    private String content;
-    private boolean isActive;
+
+    @Column(name ="description", length =  1000000)
+    private String description;
+
+    private String tagName;
+
+    @Column(name ="contentDetail", length =  100000000)
+    private String contentDetail;
+
     private String image;
+
+    private boolean isActive;
 }

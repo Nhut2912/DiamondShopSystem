@@ -19,6 +19,7 @@ import com.example.server.Service.Size.ISizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -157,7 +158,9 @@ public class ProductService implements IProductService{
                 diamondDTO.setCut(diamond.getCut().getCut());
                 diamondDTO.setColor(diamond.getColor().getColor());
                 diamondDTO.setCarat(diamond.getCarat());
+                diamondDTO.setImage(diamond.getCertificate());
                 diamondDTOS.add(diamondDTO);
+
 
 
                 try {
@@ -203,7 +206,8 @@ public class ProductService implements IProductService{
 
             List<PromotionDTO> promotionDTOS = new ArrayList<>();
             for(Promotions_products promotions_products : item.getPromotions_products()) {
-                if (promotions_products.getPromotion().isActive()) {
+                java.util.Date now = new java.util.Date();
+                if (promotions_products.getPromotion().isActive() && promotions_products.getPromotion().getDateStart().getTime() <= now.getTime() && promotions_products.getPromotion().getDateEnd().getTime() >= now.getTime()) {
                     PromotionDTO promotionDTO = new PromotionDTO();
                     promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
                     promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
@@ -296,7 +300,8 @@ public class ProductService implements IProductService{
 
             List<PromotionDTO> promotionDTOS = new ArrayList<>();
             for(Promotions_products promotions_products : product.get().getPromotions_products()){
-                if(promotions_products.getPromotion().isActive()){
+                java.util.Date now = new java.util.Date();
+                if(promotions_products.getPromotion().isActive() && promotions_products.getPromotion().getDateStart().getTime() <= now.getTime() && promotions_products.getPromotion().getDateEnd().getTime() >= now.getTime()){
                     PromotionDTO promotionDTO = new PromotionDTO();
                     promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
                     promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
@@ -334,6 +339,7 @@ public class ProductService implements IProductService{
                   DiamondDTO diamondDTO = new DiamondDTO();
                   diamondDTO.setCarat(item.getCarat());
                   diamondDTO.setId(item.getId());
+                  diamondDTO.setImage(item.getCertificate());
                   diamondDTOS.add(diamondDTO);
               });
               productDTO.setDiamonds(diamondDTOS);
@@ -467,6 +473,11 @@ public class ProductService implements IProductService{
 
             productDTO.setActive(item.isActive());
 
+            productDTO.setSizeUnitPrice(item.getSizeUnitPrice());
+            productDTO.setProductionCost(item.getProductionCost());
+            productDTO.setSecondaryDiamondCost(item.getSecondaryDiamondCost());
+            productDTO.setPriceRate(item.getPriceRate());
+            productDTO.setSecondaryMaterialCost(item.getSecondaryMaterialCost());
             double totalPrice = 0;
 
 
@@ -489,6 +500,7 @@ public class ProductService implements IProductService{
                 diamondDTO.setColor(diamond.getColor().getColor());
                 diamondDTO.setCarat(diamond.getCarat());
                 diamondDTO.setCode(diamond.getCode());
+                diamondDTO.setImage(diamond.getCertificate());
                 diamondDTOS.add(diamondDTO);
 
                 DiamondPriceList diamondPriceList = null;
@@ -572,8 +584,10 @@ public class ProductService implements IProductService{
         productSave.setPriceRate(product.getPriceRate());
         Category category = categoryService.getCategory(product.getCategory().getName());
         productSave.setCategory(category);
+
         Size size = sizeService.getSize(product.getSize().getSize());
         productSave.setSize(size);
+
         Set<ProductMaterial> productMaterialSet = new HashSet<>();
         product.getProductMaterials().forEach((item) -> {
             Material material = materialService.getMaterial(item.getMaterial().getName());

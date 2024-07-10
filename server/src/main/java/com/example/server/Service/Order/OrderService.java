@@ -187,6 +187,8 @@ public class OrderService implements IOrderService {
         Date startDate = formatter.parse(beforeDate.toString());
 
         List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
+
+        System.out.print(orders.size());
         // Create a map with order counts per day
         Map<String, Double> orderCountMap = orders.stream()
                 .collect(Collectors.groupingBy(
@@ -297,7 +299,33 @@ public class OrderService implements IOrderService {
         return sumToTalPrice;
     }
 
+    @Override
+    public double getSumTotalPriceStatisticByDay() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.plusDays(1);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(endDate, startDate);
+        // Create a map with order counts per day
+        Map<String, Double> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.summingDouble(Order::getTotalPrice)
+                ));
+        double sumToTalPrice = 0;
+        for (Map.Entry<String, Double> entry : orderCountMap.entrySet()) {
+            sumToTalPrice += entry.getValue();
+        }
+
+        return sumToTalPrice;
+    }
+
     public Long getTheSumOfOrderStatisticByWeek() throws ParseException {
+
 
         LocalDate currentDate = LocalDate.now();
         LocalDate beforeDate = currentDate.minusDays(7);
@@ -319,6 +347,31 @@ public class OrderService implements IOrderService {
 
         return sumToTalOrders;
     }
+
+    @Override
+    public Long getTheSumOfOrderStatisticByDay() throws ParseException {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate beforeDate = currentDate.plusDays(1);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = formatter.parse(currentDate.toString());
+        Date startDate = formatter.parse(beforeDate.toString());
+
+        List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(endDate, startDate);
+        // Create a map with order counts per day
+        Map<String, Long> orderCountMap = orders.stream()
+                .collect(Collectors.groupingBy(
+                        order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
+                        Collectors.counting()
+                ));
+        long sumToTalOrders = 0;
+        for (Map.Entry<String, Long> entry : orderCountMap.entrySet()) {
+            sumToTalOrders += entry.getValue();
+        }
+
+        return sumToTalOrders;
+    }
+
     public Long getTheSumOfOrderStatisticByMonth() throws ParseException {
 
         LocalDate currentDate = LocalDate.now();

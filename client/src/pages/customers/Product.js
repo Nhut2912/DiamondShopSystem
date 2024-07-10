@@ -428,7 +428,11 @@ function Product() {
    
   
 
-
+   const handlePanagation = (value) => {
+      console.log(value);
+      setIndex(value);
+      handleScroller();
+   }
 
   return (
     <div className='product-page'>
@@ -690,7 +694,10 @@ function Product() {
                       <div> 
                           { numberProduct > 12 && 
                             Array.from({length : Math.ceil(numberProduct / 12)}, (_, i) => (
-                              <div className={i == index ? "isActive" : 0}><span>
+                              <div
+                              onClick={() => handlePanagation(i)}
+                              className={i == index ? "isActive" : 0}><span
+                              >
                                 {i < 9 ? "0"+(i+1) : i+1 }
                                 </span></div>
                             ))

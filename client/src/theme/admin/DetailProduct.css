@@ -6,23 +6,23 @@
     font-family: 'Poppins';
     font-size: 25px;
     font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    color: rgba(0,0,0,0.8);
     margin-bottom: 5px;
 }
 .detail-product-container >  p{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     margin-bottom: 60px;
     font-weight: 300;
     cursor: pointer;
 }
 .detail-product-container >  p > span:last-child{
-    color: rgba(255,255,255,0.4);
+    color: rgba(0,0,0,0.7);
     font-weight: 400;
 }   
 .detail-product-container >  .detail-product-content{
-    background-color: rgba(26, 27, 29, 1);
+    background-color: #F7f7f7;
     border-top-left-radius: 0;
     display: block;
     padding-top: 20px;
@@ -38,8 +38,7 @@
     margin-bottom: 30px;
     position: relative;
     border-radius: 5px;
-    background-color: rgba(26, 27, 29, 0.6);
-    border:1px solid rgba(26, 27, 29, 1);
+    border:1px solid rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
 .detail-product-container > .button-back > img{
@@ -53,16 +52,19 @@
     margin-left: 25px;
     font-family: 'Poppins';
     font-size: 16px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(0,0,0,0.6);
     font-weight: 300;
     letter-spacing: 0.25px;
+}
+.detail-product-container >  .detail-product-content{
+    background-color: #FFFFFF;
 }
 .detail-product-container >  .detail-product-content > h2{
     margin-left: 50px;
     margin-top: 50px;
     font-family: 'Poppins';
     font-size: 22px;
-    color: rgba(255,255,255,0.7);
+    color:  rgba(0,0,0,0.7);
     font-weight: 500;
     letter-spacing: 0.25px;
 }
@@ -78,18 +80,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255,255,255,0.01);
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.2);
 }
 .detail-product-container >  .detail-product-content > .detail-prodcuct-edit-delete > div:hover{
-    background-color: rgba(255,255,255,0.05);
+    background-color: rgba(0,0,0,0.05);
 }
 .detail-product-container >  .detail-product-content > .detail-prodcuct-edit-delete > div > span{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.9);
+    color: rgba(0,0,0,0.9);
     font-weight: 400;
     letter-spacing: 0.25px;
 }
@@ -106,10 +107,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255,255,255,0.05);
+    background-color: rgba(0,0,0,0.05);
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid rgba(217, 179, 132, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     position: absolute;
     bottom: -70px;
     left: 0;
@@ -117,7 +118,7 @@
 .detail-product-container >  .detail-product-content > .detail-product-card > .button-update-product > span{
     font-family: 'Poppins';
     font-size: 16px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(0,0,0,0.7);
     font-weight: 400;
     letter-spacing: 0.25px;
 }
@@ -128,20 +129,20 @@
 .detail-product-container >  .detail-product-content > .detail-product-card > .main-information-product > div > div > label{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     font-weight: 300;
 }
 .detail-product-container >  .detail-product-content > .detail-product-card > .main-information-product > div > div > h3{
     margin: 5px 0 20px 0;
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.8);
     font-weight: 400;
 }
 .detail-product-container >  .detail-product-content > .detail-product-card > .main-information-product > div > label{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     font-weight: 300;
 }
 
@@ -154,7 +155,7 @@
 .detail-product-container >  .detail-product-content > .detail-product-card > .main-information-product > div > div.content-material > ul:nth-child(1) > li{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     font-weight: 300;
 }
 .detail-product-container >  .detail-product-content > .detail-product-card > .main-information-product > div > div.content-material > div.button-add-material-product{
@@ -165,12 +166,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    background-color: rgba(255,255,255,0.1);cursor: pointer;
+    background-color: rgba(0,0,0,0.1);cursor: pointer;
 }
 .detail-product-container >  .detail-product-content > .detail-product-card > .main-information-product > div > div.content-material > ul:nth-child(n+2) > li{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.5);
     font-weight: 400;
 }
 .detail-product-container >  .detail-product-content > .detail-product-card >
@@ -180,7 +181,7 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.1);
     cursor: pointer;
 }
 .detail-product-container >  .detail-product-content > .detail-product-card >
@@ -214,7 +215,7 @@
     margin-bottom: 5px;
     overflow: hidden;
     border-radius: 5px;
-    border:1px solid rgba(255,255,255,0.2);
+    border:1px solid rgba(0,0,0,0.2);
 }
 .detail-product-container >  .detail-product-content > .detail-product-card > .main-information-product > div:last-child > div > div:nth-child(1) > img{
     width: 100%;
@@ -222,7 +223,7 @@
 .detail-product-container >  .detail-product-content > .detail-product-card >  .diamond-information-product > h4{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     font-weight: 300;
     margin: 0 0 40px 0;
 }   
@@ -241,20 +242,20 @@
  .detail-product-card >  .diamond-information-product > .container-diamond-no-edit > div > span{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     font-weight: 300;
  }
  .detail-product-card >  .diamond-information-product > .container-diamond-no-edit > div > div > div > label{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     font-weight: 300;
  }
  .detail-product-card >  .diamond-information-product > .container-diamond-no-edit > div > div > div > h3{
     margin: 5px 0 20px 0;
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.8);
     font-weight: 400;
  }
 
@@ -270,13 +271,13 @@
  .detail-product-card >  .diamond-information-product > .container-diamond-no-edit > div > div > div:nth-child(2) > div > label{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.5);
     font-weight: 300;
  }
  .detail-product-card >  .diamond-information-product > .container-diamond-no-edit > div > div > div:nth-child(2) > div > div {
     width: 130px;
     height: 40px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.15);
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -287,13 +288,13 @@
  .detail-product-card >  .diamond-information-product > .container-diamond-no-edit > div > div > div:nth-child(2) > div > div > span{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.5);
     font-weight: 400;
  }
  .detail-product-card >  .diamond-information-product > .container-diamond-no-edit > div > div > div:last-child > div{
     width: 500px;
     height: 386.16px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(0,0,0,0.15);
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 40px;
@@ -312,7 +313,7 @@
  .detail-product-card >  .diamond-information-product > .container-input-diamond > .diamond-information-add > span{
     font-family: 'Poppins';
     font-size: 15px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(0,0,0,0.2);
     font-weight: 300;
  }
  .detail-product-card >  .diamond-information-product > .container-input-diamond > .diamond-information-add > .delete-diamond-in-product{
@@ -324,7 +325,7 @@
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.1);
     cursor: pointer;
  }
  .detail-product-card >  .diamond-information-product > .container-input-diamond > .diamond-information-add > .delete-diamond-in-product > img {
@@ -337,6 +338,6 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.1);
     cursor: pointer;
  }

@@ -41,8 +41,7 @@
 }
 
 .product-detail-container > .similar-product > .slider > .slider-container{
-    display: grid;
-    grid-template-columns: 3fr 3fr 3fr 3fr;
+    display: flex;
     column-gap: 20px;
     position: relative;
     z-index: 100;

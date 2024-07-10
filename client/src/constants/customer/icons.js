@@ -13,6 +13,7 @@ import icon_purchase from '../../assets/icons/customer/purchase.svg'
 import icon_logout from '../../assets/icons/customer/log_out.svg'
 import icon_notification from '../../assets/icons/customer/notification.svg'
 import icon_back_arrow from '../../assets/icons/customer/back-arrow.svg'
+import icon_arrow_blog from '../../assets/icons/customer/blog-arrow.svg'
 
 const ICONS = {
     icon_logo : icon_logo,
@@ -29,7 +30,8 @@ const ICONS = {
     icon_purchase:icon_purchase,
     icon_logout:icon_logout,
     icon_notification:icon_notification,
-    icon_back_arrow: icon_back_arrow
+    icon_back_arrow: icon_back_arrow,
+    icon_arrow_blog:icon_arrow_blog
 }
 
 export default ICONS;

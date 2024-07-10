@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BlogService {
+public class BlogService implements  IBlogService{
     @Autowired
     IBlogRepository iBlogRepository;
 

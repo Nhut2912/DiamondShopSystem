@@ -23,7 +23,3 @@
     grid-template-columns: 3fr 3fr 3fr 3fr;
     column-gap: 20px;
 }
-.dashboard-container > .container-chart-analytics{
-    display: grid;
-    grid-template-columns: 8fr 4fr;
-}

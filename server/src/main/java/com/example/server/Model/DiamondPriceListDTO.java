@@ -8,9 +8,9 @@ import java.sql.Date;
 public class DiamondPriceListDTO {
     private Long id;
 
-    private float caratFrom;
+    private double caratFrom;
 
-    private float caratTo;
+    private double caratTo;
 
     private Date effDate;
 

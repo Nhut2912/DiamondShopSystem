@@ -13,12 +13,35 @@ const findMaxValueAndRounded = (data) => {
 }
 
 
+const formatDate = (dateString) => {
+    const dateObject = new Date(Date.parse(dateString));
 
+    // Định dạng đối tượng Date theo định dạng "DD-MM" với dấu phân cách "-"
+    const formattedDate = dateObject.toLocaleDateString("vi-VN", {
+    day: "numeric",
+    month: "numeric"
+    });
+    return formattedDate;
+}
+
+const sortDate = (data) => {
+    const dateObjects = Object.entries(data).map(([dateString, value]) => ({
+        date: new Date(dateString),
+        value
+      }));
+    
+      dateObjects.sort((a, b) => a.date - b.date);
+      const sortedData = {};
+      for (const obj of dateObjects) {
+        sortedData[obj.date.toISOString().slice(0, 10)] = obj.value;
+      }
+      return sortedData;
+}
 
 
 function ChartAnalytics() {
  
- const [activeDays,setActiveDays] = useState("Day");
+ const [activeDays,setActiveDays] = useState("Week");
 
  const [maxValue,setMaxValue] = useState();
  const [keysArray,setKeysArray] = useState();
@@ -26,33 +49,44 @@ function ChartAnalytics() {
  const [width,setWidth] = useState();
  const [height,setHeight] = useState();
  const [positionOptions,setPositionOptions] = useState();
-
+ const [data,setData] = useState();
 
  const lastDayAnalytics = [
-    "Day","Week","Month","Year"
+    "Week","Month"
  ]
 
- const  data = {
-    "1" : 1000,
-    "2" : 0,
-    "3" : 2000,
-    "4" : 0,
-    "5" : 1000,
-    "6" : 3000,
-    "7" : 1000
- }
+ 
 
 
  useEffect(() => {
-        setMaxValue(findMaxValueAndRounded(data));
-        setKeysArray(Object.keys(data));
-        setValueArray(Object.values(data));
-        const chart = document.getElementById("chart");
-        const heightChart = chart.clientHeight;
-        const widthChart = chart.clientWidth;
-        setWidth(widthChart)
-        setHeight(heightChart)
- },[])
+    let url = "";
+    if(activeDays === "Week"){
+        url= `${process.env.REACT_APP_API_ENDPOINT}/api/order/statisticToTalPriceByWeek`
+    }else if(activeDays === "Month"){
+        url= `${process.env.REACT_APP_API_ENDPOINT}/api/order/statisticToTalPriceByMonth`
+    }
+    fetch(url)
+    .then((response) => response.json())
+    .then((result) =>{
+        setData(sortDate(result))
+    } )
+    .catch((error) => console.error(error));
+    
+ },[activeDays])
+
+
+ useEffect(() => {
+        if(data !== undefined && data !== null ){
+            setMaxValue(findMaxValueAndRounded(data));
+            setKeysArray(Object.keys(data));
+            setValueArray(Object.values(data));
+            const chart = document.getElementById("chart");
+            const heightChart = chart.clientHeight;
+            const widthChart = chart.clientWidth;
+            setWidth(widthChart)
+            setHeight(heightChart)
+        }
+ },[data])
 
  useEffect(() => {
     const options = document.getElementById("options");
@@ -157,23 +191,32 @@ function ChartAnalytics() {
     
  },[valueArray,positionOptions])
 
+ const handleChangeDays = (item) => {
+   
+    setActiveDays(item);
+ }
 
  const handleMouseMove = (event) => {
     const mouseX = event.nativeEvent.offsetX; 
     const mouseY = event.nativeEvent.offsetY;
-    console.log(mouseX,mouseY)
+  
  }
 
   return (
     <div className='chart-analytics-container'>
         <div className='header'>
             <h1>Revenue
-                <span>{"0h - 24h 23/06/2024"}</span>
+                {
+                    keysArray !== undefined && keysArray !== null &&
+                    <span>{`${formatDate(keysArray[0])} - ${formatDate(keysArray[keysArray.length-1])} `}</span>
+                }
+                
             </h1>
             <div>
                 {
                     lastDayAnalytics.map((item) => (
                         <div
+                            onClick={() => handleChangeDays(item)}
                             className={activeDays === item ? "isFocus" : null}
                         >{item}</div>
                     ))
@@ -182,11 +225,11 @@ function ChartAnalytics() {
         </div>
         <div className='content-chart'>
             <ul className='numbers'>
-                <li>{maxValue}</li>
-                <li>{maxValue*75/100}</li>
-                <li>{maxValue*50/100}</li>
-                <li>{maxValue*25/100}</li>
-                <li>{maxValue*0/100}</li>
+                <li>{maxValue === 0 ? 10000 : maxValue}</li>
+                <li>{maxValue === 0 ? 10000*75/100 :maxValue*75/100}</li>
+                <li>{maxValue === 0 ? 10000*50/100  : maxValue*50/100}</li>
+                <li>{maxValue === 0 ? 10000*25/100  : maxValue*25/100}</li>
+                <li>{maxValue === 0 ? 0 : maxValue*0/100}</li>
             </ul>
             <div id="container-chart"
                 
@@ -206,7 +249,7 @@ function ChartAnalytics() {
                 {
                     keysArray !== undefined && keysArray !== null&&
                     keysArray.map((item) => (
-                        <li><span>{item}</span></li>
+                        <li><span>{formatDate(item)}</span></li>
                     ))
                 }
                 

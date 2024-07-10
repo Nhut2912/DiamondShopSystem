@@ -104,4 +104,9 @@ public class AccountController {
         return new ResponseEntity<>(accountService.getSumNewAccountStatisticByMonth(), HttpStatus.OK);
     }
 
+    @GetMapping("/getSumNewAccountStatisticByDay")
+    public ResponseEntity<?> getSumNewAccountStatisticByDay() throws ParseException {
+        return new ResponseEntity<>(accountService.getSumNewAccountStatisticByDay(), HttpStatus.OK);
+    }
+
 }

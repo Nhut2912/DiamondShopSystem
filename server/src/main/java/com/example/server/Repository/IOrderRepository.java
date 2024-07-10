@@ -22,6 +22,6 @@ public interface IOrderRepository extends CrudRepository<Order, Long> {
      @Query("Select o from Order o where DAY(o.date) = :day")
      List<Order> getOrderByDay(@Param("day") int day);
 
-     @Query(value = "SELECT * FROM orders WHERE CONVERT(date, date) BETWEEN :startDate AND :endDate", nativeQuery = true)
+     @Query(value = "SELECT o FROM Order  o WHERE o.date >= :startDate AND o.date <= :endDate")
      List<Order> getOrderByStartDateAndEndDate(@Param("startDate")Date startDate, @Param("endDate")Date endDate);
 }

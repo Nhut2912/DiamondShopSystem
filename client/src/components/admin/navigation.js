@@ -17,9 +17,6 @@ const Navigation = () => {
     const [notificationsActive, setNotificationsActive] = useState(false);
     const [isSetting,setIsSetting] = useState(false);
 
- 
-
-
     useEffect(() => {
             const accountLogged = localStorage.getItem('_acount_manager');
             if (accountLogged) {
@@ -35,8 +32,9 @@ const Navigation = () => {
                             { name: 'Account',  path : "account"},
                             { name: 'Warranty',  path : "warranty"},
                             { name: 'Promotions',  path : "promotions"},
-                            { name: 'Gold Price',  path : "gold-price"},
+                            { name: 'Material Price',  path : "gold-price"},
                             { name: 'Diamond Price', path : "diamond-price" },
+                            { name: 'Blog', path : "blog-manage" },
                         ])
                         setNavigationItems ([
                             { name: 'Dashboard', icon: ICONS.icon_dashboard, icon_active : ICONS.icon_dashboard_active },
@@ -45,8 +43,9 @@ const Navigation = () => {
                             { name: 'Account', icon: ICONS.icon_user , icon_active : ICONS.icon_user_active},
                             { name: 'Warranty', icon: ICONS.icon_warranty , icon_active : ICONS.icon_warranty_active},
                             { name: 'Promotions', icon: ICONS.icon_promotions , icon_active : ICONS.icon_promotion_active},
-                            { name: 'Gold Price', icon: ICONS.icon_gold_price , icon_active : ICONS.icon_gold_price_active},
+                            { name: 'Material Price', icon: ICONS.icon_gold_price , icon_active : ICONS.icon_gold_price_active},
                             { name: 'Diamond Price', icon: ICONS.icon_diamond , icon_active : ICONS.icon_diamond_active},
+                            { name: 'Blog', icon: ICONS.icon_diamond , icon_active : ICONS.icon_diamond_active},
                           ])
                     }else if(accountJson.role === "SALE STAFF" || accountJson.role === "DELIVERY STAFF"){
                         setContentItems( [
