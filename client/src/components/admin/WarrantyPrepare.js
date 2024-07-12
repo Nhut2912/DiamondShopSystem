@@ -34,12 +34,10 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
   }
 
 
+
   const handleCreateWarranty = () => {
 
-
-      const handleCreateWarranty = () => {
-
-          orderDetail.map((item,index) => {
+          orderDetail.map(async (item,index) => {
             
           const Object = {
             "status" : true,
@@ -65,23 +63,21 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
               redirect: "follow"
             };
             
-            fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/create`, requestOptions)
+            await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/create`, requestOptions)
             .then((response) => response.json())
               .then(result => {
-        
               })
               .catch((error) => console.error(error));
 
 
           })
-
           window.location.href = window.location.href;
       
-    }
-
-    handleCreateWarranty();
-
   }
+
+
+
+  
 
 
 
@@ -143,7 +139,7 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
         </table>
       
         <div 
-          onClick={handleCreateWarranty}
+          onClick={() => handleCreateWarranty()}
         className='button-create-warranty'>
             CREATE WARRANTY
         </div>

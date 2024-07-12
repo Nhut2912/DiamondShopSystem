@@ -18,7 +18,8 @@ function OrderCarddetail() {
  const navigate = useNavigate();
  const [imagesProduct,setImagesProduct] = useState();
  const [payments,setPayments] = useState();
-
+ const [lengthOrderDetail, setLengthOrderDetail] = useState();
+ const [lengthWarranty,setLengthWarranty] = useState();
  
  const [remainderPaid,setRemainderPaid] = useState(); 
  const [totalOrder,setTotalOrder] = useState();
@@ -63,7 +64,7 @@ function OrderCarddetail() {
  },[])
 
  useEffect(() => {
-    if(orderDetail !== undefined && orderDetail !== null && orderDetail.length >0){
+    if(orderDetail !== undefined && orderDetail !== null && orderDetail.length > 0){
         let warrantyProducts = [];
         orderDetail.map((item) => {
            
@@ -71,12 +72,15 @@ function OrderCarddetail() {
                 .then((response) => response.text())
                 .then((result) => 
                     {   
-                        if(result !== null && result !== "" ){
+                        if(result){
+                            console.log(result)
                             const warranty = {
                                 productId : item.product.id,
                                 warranty : JSON.parse(result)
                             }
                             warrantyProducts.push(warranty)
+                            setLengthOrderDetail(orderDetail.length)
+                            setLengthWarranty(warrantyProducts.length)
                         }
                     }
                 )
@@ -171,7 +175,7 @@ function OrderCarddetail() {
 
   if(statusDeposit === undefined || statusDeposit === null) return <div>Loadding</div> 
  if(orderDetail === undefined || orderDetail === null) return <div>Loading</div>;
- if(warranty === undefined  || warranty === null) return <div>Loading...</div>
+ if(warranty === undefined  || warranty === null || lengthWarranty === undefined || lengthWarranty === null) return <div>Loading...</div>
 
 
 
@@ -438,10 +442,20 @@ console.log(warranty)
                     orderDetail[0].order.orderStatus : ""}
                 />
             }
+
+            {
+                console.log(lengthWarranty)
+              
+            }
+            {
+                  console.log(lengthOrderDetail)
+            }
             {   
                   orderDetail !== undefined && orderDetail !== undefined && warranty !== undefined && warranty !== null &&
                  
-                orderDetail[0].order.orderStatus  === "PREPARING" && orderDetail.length !== warranty.length
+                orderDetail[0].order.orderStatus  === "PREPARING"
+                && lengthWarranty !== undefined && lengthWarranty !== null && lengthOrderDetail !== undefined && lengthOrderDetail !== null
+                && lengthOrderDetail !== lengthWarranty
                 ? 
                 <WarrantyPrepare 
                 orderDetail={orderDetail}
@@ -455,7 +469,10 @@ console.log(warranty)
            {
             userRole !== "DELIVERY STAFF" && 
             orderDetail !== undefined && orderDetail !== undefined && warranty !== undefined && warranty !== null &&
-                    orderDetail[0].order.orderStatus  === "PREPARING" && orderDetail.length === warranty.length ?
+                    orderDetail[0].order.orderStatus  === "PREPARING" 
+                    && lengthWarranty !== undefined && lengthWarranty !== null && lengthOrderDetail !== undefined && lengthOrderDetail !== null
+                && lengthOrderDetail === lengthWarranty
+                ?
             <div className='button-prepared'>
                 <div
                     onClick={handlePreparedOrder}

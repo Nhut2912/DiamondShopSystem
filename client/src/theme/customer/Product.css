@@ -40,9 +40,11 @@ input::-webkit-inner-spin-button {
 }
 
 .product-page-container > .on-sale > .slider > .slider-container{
-    display: flex;
+    display: inline-grid;
     column-gap: 20px;
     position: relative;
+    grid-template-columns: 3fr 3fr 3fr 3fr;
+    grid-auto-flow: column;
     z-index: 100;
 }
 .product-page-container > .all-product{

@@ -182,7 +182,7 @@ public class PromotionService implements IPromotionService {
                             diamond.getClarity().getId(), diamond.getColor().getId()
                             , diamond.getCut().getId(), diamond.getOrigin().getId()));
                     if(diamondPriceList.isPresent()) {
-                        totalPrice += diamondPriceList.get().getPrice() * diamond.getCarat() ;
+                        totalPrice += diamondPriceList.get().getPrice() * diamond.getCarat() *100;
                     }else countTwoComponentToEstablishPriceOfProduct++;
                 } catch (ClassNotFoundException e) {
                     System.out.println(e.getMessage());
@@ -226,7 +226,8 @@ public class PromotionService implements IPromotionService {
 
             List<PromotionDTO> promotionDTOS = new ArrayList<>();
             for (Promotions_products promotions_products : item.getPromotions_products()) {
-                if (promotions_products.getPromotion().isActive()) {
+                java.util.Date now = new java.util.Date();
+                if (promotions_products.getPromotion().isActive() && promotions_products.getPromotion().getDateStart().getTime() <= now.getTime() && promotions_products.getPromotion().getDateEnd().getTime() >= now.getTime()) {
                     PromotionDTO promotionDTO = new PromotionDTO();
                     promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
                     promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());

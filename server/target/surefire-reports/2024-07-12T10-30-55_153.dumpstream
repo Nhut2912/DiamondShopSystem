@@ -1,4 +1,4 @@
-# Created at 2024-07-10T07:34:38.262
+# Created at 2024-07-12T10:30:55.441
 Boot Manifest-JAR contains absolute paths in classpath 'D:\FPT_University\SWP391\DiamondShop\server\target\test-classes'
 Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
 'other' has different root

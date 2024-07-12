@@ -19,9 +19,6 @@ const formattedNumber = new Intl.NumberFormat('en-US', {
 
 
 const getPriceBySize = (userSize,productSize,unitPrice,productPrice) => {
-    
-    if(productPrice <= 0) return "COMMING SOON"
-
     if(userSize == productSize){
       return productPrice.toFixed(2);
     }else if(userSize > productSize){
@@ -158,15 +155,23 @@ function ProductDetailCard({data}) {
               <h1>{data.name}</h1>
               <p>CODE : {data.code}</p>
               <h5>{isPromotion !== undefined && isPromotion !== null && promtionRate !== undefined
-                  && promtionRate !== null && isPromotion  ? 
+                  && promtionRate !== null && isPromotion  && data.price > 0? 
                   formattedNumber.format(data.price) :null
                 }</h5>
 
                 {
                   isPromotion !== undefined && isPromotion !== null && isPromotion ? 
-                  <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,(data.price-(data.price*promtionRate)  /100)))}
+                  <h2>{
+                    getPriceBySize(userSize,data.size,data.sizeUnitPrice,(data.price-(data.price*promtionRate)  /100)) < 0 ?
+                    "COMING SOON"
+                    : 
+                    formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,(data.price-(data.price*promtionRate)  /100)))}
                 
-                  </h2>: <h2>{formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price))}
+                  </h2>: <h2>{
+                  getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price) < 0 ? 
+                  "COMING SOON"
+                  :
+                  formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price))}
                 
                  </h2>
                 }

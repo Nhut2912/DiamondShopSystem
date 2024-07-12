@@ -36,13 +36,18 @@ const Authentication = () => {
             "role": result
           }
           localStorage.setItem("_acount_manager",JSON.stringify(user));
-          navigate("/admin/overview");
+          if(user.role === "ADMIN" || user.role === "MANAGER"){
+            navigate("/admin/overview");
+          }else navigate("/admin/overview/order");
+          
         }
       })
       .catch((error) => console.error(error));
 
 
   }
+
+  
 
   
 

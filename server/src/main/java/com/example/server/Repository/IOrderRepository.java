@@ -24,4 +24,5 @@ public interface IOrderRepository extends CrudRepository<Order, Long> {
 
      @Query(value = "SELECT o FROM Order  o WHERE o.date >= :startDate AND o.date <= :endDate")
      List<Order> getOrderByStartDateAndEndDate(@Param("startDate")Date startDate, @Param("endDate")Date endDate);
+
 }

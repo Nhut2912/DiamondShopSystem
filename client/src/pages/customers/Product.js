@@ -38,7 +38,7 @@ function Product() {
   const [clarityFilter,setClarityFilter] = useState([]);
   const [cutFilter,setCutFilter] = useState([]);
 
- 
+  const [saleProduct,setSaleProduct] = useState();
 
 
   const origin = [ {value : "NATURAL" },   {value : "LAB GROWN" }  ]
@@ -67,12 +67,22 @@ function Product() {
 
 
 
+
   useEffect(() => {
         fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/getProducts`)
           .then(response => response.json())
           .then(data => setData(data))
           .catch((error) => console.error(error));
   },[])
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/Promotion/getProductsByActivePromotion`)
+      .then(response => response.json())
+      .then(data => setSaleProduct(data))
+      .catch((error) => console.error(error));
+  },[])
+
+
 
   useEffect(() => {
     if(data !== undefined && data !== null){
@@ -446,8 +456,8 @@ function Product() {
                 </h3>
                 <div className='slider'>
                    <div className='slider-container' id="slider-container">
-                    {
-                            data.map((product) => (
+                    { saleProduct !== undefined && saleProduct !== null && 
+                            saleProduct.map((product) => (
                               <ProductCard 
                               name={product.name}
                               images={product.images}
@@ -467,7 +477,7 @@ function Product() {
                       <input type='text' placeholder='Search' />
                   </div>
                   <div className='sorted-products'>
-                      <p>Showing 12 of 90 result</p>
+                      <p>Showing 12 of {numberProduct} result</p>
                       <div className='input-select'>
                           <InputSelectBox options={itemsSorted} />
                       </div>
@@ -565,7 +575,7 @@ function Product() {
                                       {item.name}
                                   </span>
                               </div>
-                              <span>{"(01)"}</span>
+                              <span>{""}</span>
                             </li>
 
                           ))
@@ -632,13 +642,14 @@ function Product() {
                                     className='range-max' min="0" max="10" 
                                     value={maxCarat} step="0.1"/>
                                 </div>
-                                <div className='carat-filter'>
+                                <div className='carat-filter' style={{margin :'0'}}>
                               <div className='carat'>
                               
                                   <div>
                                     <div>
                                          <input
                                           value={minCarat}
+                                          style={{height:"auto"}}
                                           onChange={handleInputMinValueCarat}
                                         type='number' />
                                     </div>
@@ -646,6 +657,7 @@ function Product() {
                                     <div>
                                         <input 
                                         value={maxCarat}
+                                        style={{height:"auto"}}
                                         onChange={handleInputMaxValueCarat}
                                         type='number'/>
                                     </div>

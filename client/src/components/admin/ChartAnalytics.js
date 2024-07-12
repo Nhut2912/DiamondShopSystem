@@ -192,7 +192,9 @@ function ChartAnalytics() {
  },[valueArray,positionOptions])
 
  const handleChangeDays = (item) => {
-   
+    const chart = document.getElementById("chart");
+    const canvasContext = chart.getContext("2d");
+    canvasContext.clearRect(0, 0, chart.width, chart.height);
     setActiveDays(item);
  }
 
