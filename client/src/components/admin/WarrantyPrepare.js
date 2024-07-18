@@ -36,7 +36,7 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
 
 
   const handleCreateWarranty = () => {
-
+          let isActive = false;
           orderDetail.map(async (item,index) => {
             
           const Object = {
@@ -66,12 +66,21 @@ function WarrantyPrepare({orderDetail,warrantyProduct}) {
             await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/warranty/create`, requestOptions)
             .then((response) => response.json())
               .then(result => {
+                  if(result){
+
+                    isActive = true;
+                    console.log(isActive);
+                  }
               })
               .catch((error) => console.error(error));
 
 
           })
-          window.location.href = window.location.href;
+          console.log(isActive);
+          if(isActive){
+            window.location.href = window.location.href;
+          }
+       
       
   }
 

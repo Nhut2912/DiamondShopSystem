@@ -81,6 +81,9 @@ function OrderCarddetail() {
                             warrantyProducts.push(warranty)
                             setLengthOrderDetail(orderDetail.length)
                             setLengthWarranty(warrantyProducts.length)
+                        }else{
+                            setLengthOrderDetail(orderDetail.length)
+                            setLengthWarranty(0)
                         }
                     }
                 )

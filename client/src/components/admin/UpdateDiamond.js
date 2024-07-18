@@ -15,8 +15,8 @@ function UpdateDiamond({origin, color, clarity,cut ,imageData,index,setImageData
 
   const [code,setCode] = useState(diamondProducts[index].code !== null ? 
     diamondProducts[index].code  : null );
-  const [originDiamond,setOriginDiamond] = useState(diamondProducts[index].orgin !== null ? 
-    diamondProducts[index].orgin  : null);
+  const [originDiamond,setOriginDiamond] = useState(diamondProducts[index].origin !== null ? 
+    diamondProducts[index].origin  : null);
   const [colorDiamond,setColorDiamond] = useState(diamondProducts[index].color !== null ? 
     diamondProducts[index].color  : null);
   const [clarityDiamond,setClarityDiamond] =useState(diamondProducts[index].clarity !== null ? 

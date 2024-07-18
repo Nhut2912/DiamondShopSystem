@@ -51,7 +51,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    private Set<Image> images = new HashSet<>();
+    private Set<Image> images ;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
@@ -68,6 +68,4 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name ="product_id")
     private Set<OrderDetail> orderDetails;
-
-
 }

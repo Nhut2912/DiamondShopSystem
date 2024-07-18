@@ -6,6 +6,7 @@ import com.example.server.Pojo.Account;
 import com.example.server.Pojo.Order;
 
 import com.example.server.Pojo.Payment;
+import com.example.server.Pojo.Product;
 import com.example.server.Repository.IAccountRepository;
 import com.example.server.Repository.IOrderRepository;
 
@@ -81,6 +82,13 @@ public class OrderService implements IOrderService {
     @Override
     public boolean updateOrderStatus(Long id, String status) {
         Optional<Order> optionalOrder = iOrderRepository.findById(id);
+
+        if(status.equals("CANCELLED") && optionalOrder.isPresent()){
+            optionalOrder.get().getOrderDetails().forEach(item -> {
+                item.getProduct().setActive(true);
+            });
+        }
+
         if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setOrderStatus(status);
@@ -254,7 +262,7 @@ public class OrderService implements IOrderService {
 
         List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
         // Create a map with order counts per day
-        Map<String, Double> orderCountMap = orders.stream()
+        Map<String, Double> orderCountMap = orders.stream().filter(item -> item.getOrderStatus().equals("COMPLETED"))
                 .collect(Collectors.groupingBy(
                         order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
                         Collectors.summingDouble(Order::getTotalPrice)
@@ -286,7 +294,7 @@ public class OrderService implements IOrderService {
 
         List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(startDate, endDate);
         // Create a map with order counts per day
-        Map<String, Double> orderCountMap = orders.stream()
+        Map<String, Double> orderCountMap = orders.stream().filter(item -> item.getOrderStatus().equals("COMPLETED"))
                 .collect(Collectors.groupingBy(
                         order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
                         Collectors.summingDouble(Order::getTotalPrice)
@@ -310,8 +318,8 @@ public class OrderService implements IOrderService {
         Date startDate = formatter.parse(beforeDate.toString());
 
         List<Order> orders = iOrderRepository.getOrderByStartDateAndEndDate(endDate, startDate);
-        // Create a map with order counts per day
-        Map<String, Double> orderCountMap = orders.stream()
+
+        Map<String, Double> orderCountMap = orders.stream().filter(item -> item.getOrderStatus().equals("COMPLETED"))
                 .collect(Collectors.groupingBy(
                         order -> formatter.format(order.getDate()), // Chuyển đổi Date thành String
                         Collectors.summingDouble(Order::getTotalPrice)
@@ -323,7 +331,6 @@ public class OrderService implements IOrderService {
 
         return sumToTalPrice;
     }
-
     public Long getTheSumOfOrderStatisticByWeek() throws ParseException {
 
 
