@@ -367,7 +367,24 @@ public class ProductService implements IProductService{
 
     @Override
     public List<Product> getProductsNewArrival() {
-        return null;
+        try{
+            List<Product> productActive = productRepository.getProductsByActive(true);
+            List<Product> productInactive = productRepository.getProductsByActive(false);
+            List<Product> productList = new ArrayList<>();
+            productList.addAll(productInactive);
+            productList.addAll(productActive);
+            List<Product> productReturn = new ArrayList<>();
+            for(Product product : productList){
+                if(LocalDateTime.now().minusDays(7).isBefore(product.getDateAdd())){
+                    productReturn.add(product);
+                }
+            }
+            return productReturn;
+        }catch(Exception ex){
+            System.out.println("Error: "+ex.getMessage());
+            return null;
+        }
+
     }
 
     @Override
@@ -668,6 +685,7 @@ public class ProductService implements IProductService{
         productRepository.save(productDelete);
         return true;
     }
+
 
 
 }

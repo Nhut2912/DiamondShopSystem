@@ -84,4 +84,9 @@ public class ProductController {
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         return ResponseEntity.ok((productService.deleteProduct(id)));
     }
+
+    @GetMapping("/newArrival")
+    public ResponseEntity<List<Product>> getNewArrival(){
+        return ResponseEntity.ok((productService.getProductsNewArrival()));
+    }
 }
