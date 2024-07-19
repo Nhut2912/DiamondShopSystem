@@ -85,6 +85,7 @@ public class ProductController {
         return ResponseEntity.ok((productService.deleteProduct(id)));
     }
 
+
     @GetMapping("/search")
     public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam("name") String name) {
         List<ProductDTO> products = productService.searchProduct(name);
@@ -93,4 +94,9 @@ public class ProductController {
         }
         return ResponseEntity.ok(products);
     }
-}
+        @GetMapping("/newArrival")
+        public ResponseEntity<List<Product>> getNewArrival () {
+            return ResponseEntity.ok((productService.getProductsNewArrival()));
+
+        }
+    }

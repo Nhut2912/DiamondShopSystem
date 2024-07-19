@@ -150,6 +150,8 @@ const COLORS_STATUS_BACKGROUND = [
                         <h4>Deposit</h4>
                         <div>
                           <b> ${(Total*10/100).toFixed(2)} </b>
+
+
                           {
                             depositMethod !== undefined && depositMethod !== null &&
                             depositMethod === "BANKTRANSFER" && Status === "PENDING"
@@ -159,12 +161,24 @@ const COLORS_STATUS_BACKGROUND = [
                                   border: "1px solid rgba(217, 179, 132, 1)",
                                   padding: "2px 20px"
                               }}
-                            >PENDING</span> : <span
-                            style={{color: "rgba(54, 227, 57, 1)",
+                            >PENDING</span> :
+                            (
+                              Status === "CANCELLED" ?
+                              <span 
+                              style={{color: "rgba(217, 179, 132, 1)" ,
+                                  border: "1px solid rgba(217, 179, 132, 1)",
+                                  padding: "2px 20px"
+                              }}
+                            >--:--</span>
+                              :
+                              <span
+                              style={{color: "rgba(54, 227, 57, 1)",
                               border: "1px solid rgba(54, 227, 57,1)",
                               padding: "2px 20px"
-                            }} 
+                              }} 
                             >DONE</span>
+                            )
+                           
                           }
                       
                         </div>

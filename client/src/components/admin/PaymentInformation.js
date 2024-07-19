@@ -77,18 +77,35 @@ function PaymentInformation({paymentTitle,statusPayment,
       
       fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/order/Canceled/${orderID}`, requestOptions)
         .then((response) => response.text())
-        .then((result) => console.log(result))
+        .then((result) => {
+            if(result){
+                console.log(result);
+                window.location.href = window.location.href;
+            }
+        })
         .catch((error) => console.error(error));
+        
   }
 
   return (
     <div className='deposit-payment'>
     <h3>{paymentTitle}
-        <span
+        {
+            statusOrder ==="CANCELLED" ? 
+            <span 
+            style={{color: "rgba(217, 179, 132, 1)" ,
+                border: "1px solid rgba(217, 179, 132, 1)",
+                padding: "2px 20px"
+            }}
+            >--:--</span>
+            :
+            <span
             style={{color : colorActive,
                 borderColor: colorActive
             }}
         >{statusPayment}</span>
+        }
+       
     </h3>
     <ul className='method-payment-deposit'>
         <li>

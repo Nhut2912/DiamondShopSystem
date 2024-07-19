@@ -56,11 +56,11 @@ function MaterialPriceListContainer() {
         body: JSON.stringify(Object),
         redirect: "follow"
       };
-
-      fetch("${process.env.REACT_APP_API_ENDPOINT}/api/materialpricelist/updateMaterialPriceList", requestOptions)
+      console.log(Object);
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/materialpricelist/updateMaterialPriceList`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        window.location.href = window.location.href
+        window.location.href = window.location.href;
       })
       .catch((error) => console.error(error));
     }
@@ -103,8 +103,7 @@ function MaterialPriceListContainer() {
                       }}
                       value={sellPrice} />
                     }
-                   
-
+                  
                   </li>
                   <li>
                   {

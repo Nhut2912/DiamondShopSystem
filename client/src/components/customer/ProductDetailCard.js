@@ -162,13 +162,13 @@ function ProductDetailCard({data}) {
                 {
                   isPromotion !== undefined && isPromotion !== null && isPromotion ? 
                   <h2>{
-                    getPriceBySize(userSize,data.size,data.sizeUnitPrice,(data.price-(data.price*promtionRate)  /100)) < 0 ?
+                    data.price < 0 ?
                     "COMING SOON"
                     : 
                     formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,(data.price-(data.price*promtionRate)  /100)))}
                 
                   </h2>: <h2>{
-                  getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price) < 0 ? 
+                  data.price < 0 ? 
                   "COMING SOON"
                   :
                   formattedNumber.format(getPriceBySize(userSize,data.size,data.sizeUnitPrice,data.price))}

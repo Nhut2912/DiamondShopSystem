@@ -49,7 +49,8 @@ function Navigate() {
                 </li>
               ))
             }
-              <li >
+              <li 
+              >
                     <div>
                         <img src={ICONS.icon_logout} alt='' />
                     </div>

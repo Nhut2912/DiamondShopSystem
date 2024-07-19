@@ -149,9 +149,11 @@ const handleAddDiamond = () => {
     setDiamondCount((prevCount) => {
       if (prevCount > 1) {
         const updatedCertificateDiamond = certificateDiamond.filter((_, i) => i !== indexToDelete);
+        const updatedImageCertificateDiamond = fileCertificateDiamond.filter((_, i) => i !== indexToDelete);
         const updateDiamondProducts = diamondProducts.filter((_,i) =>  i !== indexToDelete );
         setDiamondProducts(updateDiamondProducts);
         setCertificateDiamond(updatedCertificateDiamond);
+        setFileCertificateDiamond(updatedImageCertificateDiamond);
         return prevCount - 1;
       }
       return prevCount; 
@@ -187,9 +189,13 @@ const handleAddDiamond = () => {
         });
     
         let certificateCount = 1; 
+
+        console.log(fileCertificateDiamond)
+        console.log(diamondProducts)
+
         fileCertificateDiamond.forEach(file => {
           if(file && !(typeof  file === "string")){
-              const url = `uploads/${diamondProducts[certificateCount-1].DiamondCode+"_ceritificate_" +  new Date().getTime() }`;
+              const url = `uploads/${diamondProducts[certificateCount-1].code+"_ceritificate_" +  new Date().getTime() }`;
               const imageRef = ref(imageStorage,url);
               uploadBytes(imageRef,file);
               const diamondInfor = {
@@ -220,6 +226,7 @@ const handleAddDiamond = () => {
         })
 
         let diamonsProduct = [];
+        console.log(diamondProducts)
         diamondProducts.map((item) => {
         diamonsProduct = [...diamonsProduct,
             {
@@ -252,8 +259,8 @@ const handleAddDiamond = () => {
         let materialsProduct = [];
         materialProducts.map((item) => {
         materialsProduct = [...materialsProduct, {
-            "material" : {"name" :item.Type},
-            "weight" :item.Weight
+            "material" : {"name" :item.name},
+            "weight" :item.weight
         }]
         })
         const product =
@@ -286,14 +293,19 @@ const handleAddDiamond = () => {
             body: JSON.stringify(product),
             redirect: "follow"
           };
+
+          console.log(product);
+
           fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/product/updateProduct`, requestOptions)
           .then((response) => response.text())
           .then(data =>  {
             if(data !== null){
-              window.location.href = window.location.href;
+              window.location.pathname = "/admin/overview/products";
             }
           })
           .catch((error) => console.error(error));
+
+
     }
 
   return (
@@ -661,7 +673,7 @@ const handleAddDiamond = () => {
                     {
                         isEdit ? 
                         <div className='container-input-diamond'>
-                                {Array(diamondCount).fill(0).map((_,index) => (
+                                {Array(diamondCount).fill(0).map((item,index) => (
                                 <div className='diamond-information-add'>
                                     <span>No.{index+1}</span>
                                     <UpdateDiamond 
@@ -669,7 +681,6 @@ const handleAddDiamond = () => {
                                         color={color}
                                         clarity={clarity} 
                                         cut={cut} 
-
                                         origin={origin}
                                         imageData ={certificateDiamond}
                                         index={index}
@@ -703,7 +714,7 @@ const handleAddDiamond = () => {
                             {
                                 diamondCount !== undefined && diamondCount !== null && 
                                 diamondProducts !== undefined && diamondProducts !== null && 
-                                Array(diamondCount).fill(0).map((_index) => (
+                                Array(diamondCount).fill(0).map((item,_index) => (
                                     <div>
                                         <span>
                                             No. {_index}

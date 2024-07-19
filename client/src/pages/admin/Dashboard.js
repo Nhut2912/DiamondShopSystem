@@ -88,10 +88,6 @@ useEffect(() => {
                 data={newCustomer}
                 img={ICONS.icon_user}
               />
-              <CardDashboard
-                setDayActive={setDayCustomerActive}
-                name={""}
-              />
               <CardDashboard 
                 setDayActive={setDayRevenueActive}
                  name={"Total Revenue"}

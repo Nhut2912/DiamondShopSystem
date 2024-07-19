@@ -18,6 +18,7 @@ import com.example.server.Service.Promotion.IPromotionService;
 import com.example.server.Service.Size.ISizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Transactional
 public class ProductService implements IProductService{
 
     @Autowired
@@ -76,7 +78,12 @@ public class ProductService implements IProductService{
     @Autowired
     private IMaterialPriceListService iMaterialPriceListService;
 
-    @Autowired IPromotionRepository promotionRepository;
+    @Autowired
+    private IPromotionRepository promotionRepository;
+
+    @Autowired
+    private IProductMaterialRepository productMaterialRepository;
+
 
     @Override
     public boolean save(Product product) {
@@ -122,7 +129,6 @@ public class ProductService implements IProductService{
     public List<ProductDTO> getProducts() {
         List<ProductDTO> productDTOS = new ArrayList<>();
         List<Product> products = productRepository.getProductsByActive(true);
-
         products.forEach((item) -> {
             ProductDTO productDTO = new ProductDTO();
 
@@ -141,7 +147,7 @@ public class ProductService implements IProductService{
 
             double totalPrice = 0;
 
-            
+
             List<Diamond> listDiamondReturn = diamondService.getDiamondByProductID(item.getId());
             List<ProductMaterial> listProductMaterial = productMaterialService.getProductMaterials(item.getId());
 
@@ -219,10 +225,13 @@ public class ProductService implements IProductService{
                 }
             }
             productDTO.setPromotions(promotionDTOS);
+            Set<Image> imagesSet = imageRepository.getImagesByProduct_Id(item.getId());
             Set<String> images = new HashSet<>();
-            item.getImages().forEach((image -> images.add(image.getUrl())));
+            imagesSet.forEach(image -> {
+                images.add(image.getUrl());
+            });
+            System.out.println(item.getImages().size());
             productDTO.setImages(images);
-
 
             productDTOS.add(productDTO);
         });
@@ -316,9 +325,12 @@ public class ProductService implements IProductService{
             productDTO.setPromotions(promotionDTOS);
 
 
-
+            Set<Image> imagesSet = imageRepository.getImagesByProduct_Id(product.get().getId());
             Set<String> images = new HashSet<>();
-              product.get().getImages().forEach((image -> images.add(image.getUrl())));
+            imagesSet.forEach(image -> {
+                images.add(image.getUrl());
+            });
+
               productDTO.setImages(images);
               productDTO.setCategory(product.get().getCategory().getName());
 
@@ -355,7 +367,24 @@ public class ProductService implements IProductService{
 
     @Override
     public List<Product> getProductsNewArrival() {
-        return null;
+        try{
+            List<Product> productActive = productRepository.getProductsByActive(true);
+            List<Product> productInactive = productRepository.getProductsByActive(false);
+            List<Product> productList = new ArrayList<>();
+            productList.addAll(productInactive);
+            productList.addAll(productActive);
+            List<Product> productReturn = new ArrayList<>();
+            for(Product product : productList){
+                if(LocalDateTime.now().minusDays(7).isBefore(product.getDateAdd())){
+                    productReturn.add(product);
+                }
+            }
+            return productReturn;
+        }catch(Exception ex){
+            System.out.println("Error: "+ex.getMessage());
+            return null;
+        }
+
     }
 
     @Override
@@ -552,8 +581,11 @@ public class ProductService implements IProductService{
             productDTO.setPromotions(promotionDTOS);
 
 
+            Set<Image> imagesSet = imageRepository.getImagesByProduct_Id(item.getId());
             Set<String> images = new HashSet<>();
-            item.getImages().forEach((image -> images.add(image.getUrl())));
+            imagesSet.forEach(image -> {
+                images.add(image.getUrl());
+            });
             productDTO.setImages(images);
 
 
@@ -571,47 +603,71 @@ public class ProductService implements IProductService{
             System.out.println(ex.getMessage());
             return false;
         }
-        Product productSave = productOptional.get();
-        productSave.setId(product.getId());
-        productSave.setCode(product.getCode());
-        productSave.setName(product.getName());
-        productSave.setActive(true);
-        productSave.setDateAdd(product.getDateAdd());
-        productSave.setSizeUnitPrice(product.getSizeUnitPrice());
-        productSave.setSecondaryMaterialCost(product.getSecondaryMaterialCost());
-        productSave.setSecondaryDiamondCost(product.getSecondaryDiamondCost());
-        productSave.setProductionCost(product.getProductionCost());
-        productSave.setPriceRate(product.getPriceRate());
-        Category category = categoryService.getCategory(product.getCategory().getName());
-        productSave.setCategory(category);
+
+        // delete
+        imageRepository.deleteImagesByProduct_Id(productOptional.get().getId());
+        productMaterialRepository.deleteProductMaterialsByProduct_Id(productOptional.get().getId());
+        diamondRepository.deleteDiamondsByProductID(productOptional.get().getId());
+
+        //
+
+        productOptional.get().setPromotions_products(product.getPromotions_products());
 
         Size size = sizeService.getSize(product.getSize().getSize());
-        productSave.setSize(size);
+        if(size != null){
+            productOptional.get().setSize(size);
+        }else  productOptional.get().setSize(product.getSize());
 
-        Set<ProductMaterial> productMaterialSet = new HashSet<>();
-        product.getProductMaterials().forEach((item) -> {
-            Material material = materialService.getMaterial(item.getMaterial().getName());
-            item.setMaterial(material);
-            productMaterialSet.add(item);
+
+        product.getProductMaterials().forEach((element) -> {
+            Material material =materialService.getMaterial(element.getMaterial().getName());
+            if(material != null) element.setMaterial(material);
         });
-        product.setProductMaterials(productMaterialSet);
 
-        Set<Diamond> diamondSet = new HashSet<>();
-        product.getDiamonds().forEach((item) -> {
-            Color color = colorService.getColor(item.getColor().getColor());
-            item.setColor(color);
-            Clarity clarity =clarityService.getClarity(item.getClarity().getClarity());
-            item.setClarity(clarity);
-            Cut cut = cutService.getCut(item.getCut().getCut());
-            item.setCut(cut);
-            Origin origin = originService.getOrigin(item.getOrigin().getOrigin());
-            item.setOrigin(origin);
-            diamondSet.add(item);
+
+
+        productOptional.get().setCode(product.getCode());
+
+        productOptional.get().setName(product.getName());
+
+        productOptional.get().setPriceRate(product.getPriceRate());
+
+        productOptional.get().setProductionCost(product.getProductionCost());
+
+        productOptional.get().setSecondaryDiamondCost(product.getSecondaryDiamondCost());
+
+        productOptional.get().setSecondaryMaterialCost(product.getSecondaryMaterialCost());
+
+        productOptional.get().setSizeUnitPrice(product.getSizeUnitPrice());
+
+        productOptional.get().setProductMaterials(product.getProductMaterials());
+
+
+        product.getDiamonds().forEach(diamond -> {
+            Color color = colorService.getColor(diamond.getColor().getColor());
+            if(color != null ) diamond.setColor(color);
+
+            Clarity clarity =clarityService.getClarity(diamond.getClarity().getClarity());
+            if(clarity != null) diamond.setClarity(clarity);
+
+            Cut cut = cutService.getCut(diamond.getCut().getCut());
+            if(cut != null) diamond.setCut(cut);
+
+            Origin origin = originService.getOrigin(diamond.getOrigin().getOrigin());
+            if(origin != null)  diamond.setOrigin(origin);
         });
-        productSave.setDiamonds(diamondSet);
+        productOptional.get().setDiamonds( product.getDiamonds());
 
-        productRepository.save(productSave);
+        productOptional.get().setImages(product.getImages());
 
+        Category category = categoryService.getCategory(product.getCategory().getName());
+        if(category != null){
+            productOptional.get().setCategory(category);
+        }else productOptional.get().setCategory(product.getCategory());
+
+        productOptional.get().setOrderDetails(product.getOrderDetails());
+
+        productRepository.save(productOptional.get());
         return true;
     }
 
@@ -629,6 +685,7 @@ public class ProductService implements IProductService{
         productRepository.save(productDelete);
         return true;
     }
+
 
 
 
@@ -746,6 +803,7 @@ public class ProductService implements IProductService{
 
         return totalPrice;
     }
+
 
 }
 
