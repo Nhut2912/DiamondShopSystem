@@ -631,4 +631,122 @@ public class ProductService implements IProductService{
     }
 
 
+
+    @Override
+    public List<ProductDTO> searchProduct(String name) {
+        List<Product> products = productRepository.findByNameContainingIgnoreCase(name);
+        return products.stream()
+                .map(this::convertToProductDTO)
+                .collect(Collectors.toList());
+    }
+
+    private ProductDTO convertToProductDTO(Product product) {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(product.getId());
+        productDTO.setName(product.getName());
+        productDTO.setCode(product.getCode());
+        productDTO.setSize(product.getSize().getSize());
+        productDTO.setSizeUnitPrice(product.getSizeUnitPrice());
+
+        double totalPrice = calculateTotalPrice(product);
+        productDTO.setPrice(totalPrice);
+
+        // Set promotions
+        List<PromotionDTO> promotionDTOS = product.getPromotions_products().stream()
+                .filter(promotions_products ->
+                        promotions_products.getPromotion().isActive()
+                                && promotions_products.getPromotion().getDateStart().getTime() <= System.currentTimeMillis()
+                                && promotions_products.getPromotion().getDateEnd().getTime() >= System.currentTimeMillis())
+                .map(promotions_products -> {
+                    PromotionDTO promotionDTO = new PromotionDTO();
+                    promotionDTO.setNamePromotion(promotions_products.getPromotion().getNamePromotion());
+                    promotionDTO.setPromotionRate(promotions_products.getPromotion().getPromotionRate());
+                    promotionDTO.setIdPromotion(promotions_products.getPromotion().getId());
+                    promotionDTO.setActive(promotions_products.getPromotion().isActive());
+                    promotionDTO.setDateStart(promotions_products.getPromotion().getDateStart());
+                    promotionDTO.setDateEnd(promotions_products.getPromotion().getDateEnd());
+                    return promotionDTO;
+                })
+                .collect(Collectors.toList());
+        productDTO.setPromotions(promotionDTOS);
+
+        // Set images
+        Set<String> images = product.getImages().stream()
+                .map(Image::getUrl)
+                .collect(Collectors.toSet());
+        productDTO.setImages(images);
+
+        // Set category
+        productDTO.setCategory(product.getCategory().getName());
+
+        // Set materials
+        Set<MaterialDTO> materialDTOS = productMaterialService.getProductMaterials(product.getId()).stream()
+                .map(item -> {
+                    MaterialDTO materialDTO = new MaterialDTO();
+                    materialDTO.setWeight(item.getWeight());
+                    materialDTO.setName(item.getMaterial().getName());
+                    return materialDTO;
+                })
+                .collect(Collectors.toSet());
+        productDTO.setMaterials(materialDTOS);
+
+        // Set diamonds
+        List<DiamondDTO> diamondDTOS = diamondService.getDiamondByProductID(product.getId()).stream()
+                .map(item -> {
+                    DiamondDTO diamondDTO = new DiamondDTO();
+                    diamondDTO.setId(item.getId());
+                    diamondDTO.setCarat(item.getCarat());
+                    diamondDTO.setImage(item.getCertificate());
+                    return diamondDTO;
+                })
+                .collect(Collectors.toList());
+        productDTO.setDiamonds(diamondDTOS);
+
+        return productDTO;
+    }
+
+    private double calculateTotalPrice(Product product) {
+        double totalPrice = 0;
+
+        // Calculate total price based on diamonds
+        List<Diamond> diamonds = diamondService.getDiamondByProductID(product.getId());
+        int countTwoComponentToEstablishPriceOfProduct = 0;
+        for (Diamond diamond : diamonds) {
+            try {
+                DiamondPriceList diamondPriceList = iDiamondPriceListService.getDiamondPriceListBy4C(
+                        diamond.getCarat(),
+                        diamond.getClarity().getId(),
+                        diamond.getColor().getId(),
+                        diamond.getCut().getId(),
+                        diamond.getOrigin().getId()
+                );
+                totalPrice += diamondPriceList.getPrice() * diamond.getCarat() * 100;
+            } catch (ClassNotFoundException e) {
+                System.out.println(e.getMessage());
+                countTwoComponentToEstablishPriceOfProduct++;
+            }
+        }
+
+        // Calculate total price based on materials
+        List<ProductMaterial> productMaterials = productMaterialService.getProductMaterials(product.getId());
+        for (ProductMaterial productMaterial : productMaterials) {
+            MaterialPriceListDTO materialPriceListDTO = iMaterialPriceListService.getMaterialPriceListById(productMaterial.getMaterial().getId());
+            if (materialPriceListDTO != null && countTwoComponentToEstablishPriceOfProduct == 0) {
+                totalPrice += materialPriceListDTO.getSellPrice();
+            }
+        }
+
+        // Handle total price calculation based on errors
+        if (countTwoComponentToEstablishPriceOfProduct != 0) {
+            totalPrice = -1;
+        } else {
+            totalPrice += product.getProductionCost() + product.getSecondaryDiamondCost() + product.getSecondaryMaterialCost();
+            totalPrice += totalPrice * ((double) product.getPriceRate() / 100);
+        }
+
+        return totalPrice;
+    }
+
 }
+
+

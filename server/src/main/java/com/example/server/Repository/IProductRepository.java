@@ -16,6 +16,7 @@ public interface IProductRepository extends JpaRepository<Product,Long> {
 
     public List<Product> getProductsByActive(boolean active);
 
-    List<Product>  findAllByProductMaterialsOrCategory(Set<ProductMaterial> materials, Category category);
+        List<Product>  findAllByProductMaterialsOrCategory(Set<ProductMaterial> materials, Category category);
 
+         List<Product> findByNameContainingIgnoreCase(String name);
 }

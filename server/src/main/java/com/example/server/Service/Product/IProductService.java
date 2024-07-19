@@ -29,4 +29,6 @@ public interface IProductService {
 
     public boolean deleteProduct(Long id);
 
+    public List<ProductDTO> searchProduct(String name);
+
 }
